@@ -18,3 +18,12 @@
 
 production port 	: 3000
 development port	: 3001
+
+### AdminLTE Templit 사용
+ - public/Bootstrap
+ - public/dist
+ - public/pages
+ - public/plugins
+ - LICENSE
+ - README.md
+ - starter.html

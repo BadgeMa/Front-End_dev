@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { App, Login } from './containers';
 
 let rootElement = document.getElementById('root');
 
