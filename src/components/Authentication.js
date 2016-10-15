@@ -1,13 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 
 const propTypes = {
-	mode: React.PropTypes.bool,
 	onLogin: React.PropTypes.func,
 	onRegister: React.PropTypes.func
 };
 
 const defaultProps = {
-	mode: true,
 	onLogin: (id, pw) => { console.error("login function not defined")},
 	onRegister: (id, pw) => { console.error("register function not defined")}
 };
@@ -16,11 +14,23 @@ class Authentication extends React.Component {
 
 	constructor(props) {
         super(props);
-		this. state = {
+		this.state = {
+			mode: true,
 			username: "",
 			password: ""
 		}
+
+		this.handleChange = this.handleChange.bind(this);
 		this.handleModal = this.handleModal.bind(this);
+		this.handleMode = this.handleMode.bind(this);
+		this.handleLogin = this.handleLogin.bind(this);
+		this.handleRegister = this.handleRegister.bind(this);
+	}
+
+	handleChange(e) {
+		let nextState = {};
+		nextState[e.target.name] = e.target.value;
+		this.setState(nextState);
 	}
 
 	handleModal() {
@@ -29,6 +39,51 @@ class Authentication extends React.Component {
     		$('.modal-trigger').leanModal();
   		});
 	}
+
+	handleMode() {
+		// mode handling
+		if(this.state.mode) {
+			this.setState({mode: false});
+		}
+		else {
+			this.setState({mode: true});
+		}
+	}
+
+	handleLogin() {
+		let id = this.state.username;
+        let pw = this.state.password;
+
+		console.log("handle Login");
+
+        this.props.onLogin(id, pw).then(
+            (success) => {
+                if(!success) {
+                    this.setState({
+                        password: ''
+                    });
+                }
+            }
+        );
+    }
+
+	handleRegister() {
+		let id = this.state.username;
+		let pw = this.state.password;
+
+		this.props.onRegister(id, pw).then(
+			(success) => {
+				if(!success) {
+					this.setState({
+						password: ''
+					});
+				}
+			}
+		);
+	}
+
+
+
 
 	render() {
 
@@ -55,23 +110,50 @@ class Authentication extends React.Component {
 			</div>
 		);
 
+		const loginView = (
+			<div id="login" className="modal">
+				<div className="modal-content">
+					<h4>Welcom to Badge-Ma</h4>
+					<p>뱃지마는 여러분의 소중한 제보를 기다립니당</p>
+					{inputBoxes}
+					<button
+						className="modal-action waves-effect waves-green btn"
+						onClick={this.handleLogin}>
+						SUBMIT
+					</button>
+				</div>
+				<div className="modal-footer">
+					<div className="right" >
+						New Here? <a onClick={this.handleMode}>Create an account</a>
+					</div>
+				</div>
+			</div>
+		);
+
+		const registerView = (
+			<div id="register" className="modal">
+				<div className="modal-content">
+					<h4>Badge-Ma</h4>
+					<p>아이디를 새로 만드는 페이지</p>
+					{inputBoxes}
+					<button
+						className="modal-action modal-close waves-effect waves-green btn"
+						onClick={this.handleRegister}>
+						REGISTER
+					</button>
+				</div>
+			</div>
+		);
+
+
         return(
 			<div className="row center">
-				<button data-target="login"
+				<button data-target={this.state.mode ? "login" : "register"}
 					className="waves-effect waves-light btn modal-trigger"
 					onClick={this.handleModal}>
 					Login
 				</button>
-				<div id="login" className="modal">
-					<div className="modal-content">
-						<h4>Welcom to Badge-Ma</h4>
-						<p>뱃지마는 여러분의 소중한 제보를 기다립니당</p>
-						{inputBoxes}
-					</div>
-					<div className="modal-footer">
-						<a href="#!" className=" modal-action modal-close waves-effect waves-green btn">Login</a>
-					</div>
-				</div>
+				<div>{this.state.mode ? loginView : registerView}</div>
 			</div>
         );
     }

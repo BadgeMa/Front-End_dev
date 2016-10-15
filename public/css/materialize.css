@@ -5320,6 +5320,8 @@ button.btn-floating {
   padding: 4px 6px;
   height: 56px;
   width: 100%;
+  color: #000000;
+  padding-right: 24px;
 }
 
 .modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {

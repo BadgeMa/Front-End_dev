@@ -4,6 +4,11 @@
  - express
  - react
  - react-dom
+ - redux
+ - react-redux
+ - react-addons-update : Immutablilty Helper (Redux의 store값을 변경할 때 사용됨)
+ - redux-thunk
+ - axios
 
 ### npm install --save-dev
  - babel-core
