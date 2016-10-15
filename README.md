@@ -9,6 +9,7 @@
  - react-addons-update : Immutablilty Helper (Redux의 store값을 변경할 때 사용됨)
  - redux-thunk
  - axios
+ - react-router@next
 
 ### npm install --save-dev
  - babel-core
