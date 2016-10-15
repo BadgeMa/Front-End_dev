@@ -54,8 +54,6 @@ class Authentication extends React.Component {
 		let id = this.state.username;
         let pw = this.state.password;
 
-		console.log("handle Login");
-
         this.props.onLogin(id, pw).then(
             (success) => {
                 if(!success) {
@@ -63,6 +61,9 @@ class Authentication extends React.Component {
                         password: ''
                     });
                 }
+				else {
+					
+				}
             }
         );
     }
