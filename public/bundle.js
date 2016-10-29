@@ -21468,9 +21468,18 @@
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
-					'h1',
+					'div',
 					null,
-					'This is HOT!'
+					_react2.default.createElement(
+						'h1',
+						null,
+						'This is HOT!'
+					),
+					_react2.default.createElement(
+						'h2',
+						null,
+						'H23455asdfsada'
+					)
 				);
 			}
 		}]);
