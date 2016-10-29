@@ -1,10 +1,13 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
+import { Memo } from '../components';
 
 class Home extends React.Component {
 
 	render () {
 		return (
-			<div>Home</div>
+			<div>
+				<Memo/>
+			</div>
 		);
 	}
 }

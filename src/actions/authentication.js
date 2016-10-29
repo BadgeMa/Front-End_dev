@@ -17,8 +17,6 @@ export function loginRequest(username, password) {
 	return (dispatch) => {
 		dispatch(login());
 
-		console.log("login Request");
-
 		return axios.get(LOGIN_URL, {
 			params: {
 				id: username,
@@ -29,18 +27,13 @@ export function loginRequest(username, password) {
 
 			if(res === "ok") {
 				dispatch(loginSuccess(username));
-				console.log("Success");
 			} else if(res === 'no') {
 				dispatch(loginFailure());
-				console.log("Fail!!");
 			}
 		}).catch((error) => {
-			console.log(error);
-			console.log("errrororo!");
 			dispatch(loginFailure());
 		});
 
-		console.log("login Requrest");
 	};
 }
 

@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
+import { Link } from 'react-router';
+
+
 const propTypes = {
 	onLogin: React.PropTypes.func,
 	onRegister: React.PropTypes.func
@@ -62,7 +65,7 @@ class Authentication extends React.Component {
                     });
                 }
 				else {
-					
+					$('#login').closeModal();
 				}
             }
         );
@@ -78,6 +81,10 @@ class Authentication extends React.Component {
 					this.setState({
 						password: ''
 					});
+				}
+				else {
+					this.setState({mode: true});
+
 				}
 			}
 		);
@@ -163,5 +170,8 @@ class Authentication extends React.Component {
 
 Authentication.propTypes = propTypes;
 Authentication.defaultProps = defaultProps;
+Authentication.contestTypes = {
+	router: propTypes.routerContext
+};
 
 export default Authentication;
