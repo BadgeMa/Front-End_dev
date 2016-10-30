@@ -54,15 +54,13 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _App = __webpack_require__(172);
-
-	var _App2 = _interopRequireDefault(_App);
+	var _containers = __webpack_require__(172);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var rootElement = document.getElementById('root');
 
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), rootElement);
+	_reactDom2.default.render(_react2.default.createElement(_containers.App, null), rootElement);
 
 /***/ },
 /* 1 */
@@ -21438,6 +21436,25 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.App = undefined;
+
+	var _App = __webpack_require__(173);
+
+	var _App2 = _interopRequireDefault(_App);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.App = _App2.default;
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 
@@ -21446,6 +21463,8 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _components = __webpack_require__(174);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21470,16 +21489,7 @@
 				return _react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(
-						'h1',
-						null,
-						'This is HOT!'
-					),
-					_react2.default.createElement(
-						'h2',
-						null,
-						'H23455asdfsada'
-					)
+					_react2.default.createElement(_components.Sidebar, null)
 				);
 			}
 		}]);
@@ -21488,6 +21498,226 @@
 	}(_react2.default.Component);
 
 	exports.default = App;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Sidebar = exports.Header = undefined;
+
+	var _Header = __webpack_require__(175);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	var _Sidebar = __webpack_require__(176);
+
+	var _Sidebar2 = _interopRequireDefault(_Sidebar);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.Header = _Header2.default;
+	exports.Sidebar = _Sidebar2.default;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {};
+
+	var defaultProps = {};
+
+	var Sidebar = function (_React$Component) {
+		_inherits(Sidebar, _React$Component);
+
+		function Sidebar(props) {
+			_classCallCheck(this, Sidebar);
+
+			return _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
+		}
+
+		_createClass(Sidebar, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					{ className: "sidebar", "data-background-color": "white", "data-active-color": "danger" },
+					_react2.default.createElement(
+						"div",
+						{ className: "logo" },
+						_react2.default.createElement(
+							"a",
+							{ href: "http://www.creative-tim.com", className: "simple-text" },
+							"Creative Tim"
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "logo logo-mini" },
+						_react2.default.createElement(
+							"a",
+							{ href: "http://www.creative-tim.com", className: "simple-text" },
+							"Ct"
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "sidebar-wrapper" },
+						_react2.default.createElement(
+							"div",
+							{ className: "user" },
+							_react2.default.createElement(
+								"div",
+								{ className: "photo" },
+								_react2.default.createElement("img", { src: "../assets/img/faces/face-2.jpg" })
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "info" },
+								_react2.default.createElement(
+									"a",
+									{ "data-toggle": "collapse", href: "#collapseExample", className: "collapsed" },
+									"Chet Faker",
+									_react2.default.createElement("b", { className: "caret" })
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "collapse", id: "collapseExample" },
+									_react2.default.createElement(
+										"ul",
+										{ className: "nav" },
+										_react2.default.createElement(
+											"li",
+											null,
+											_react2.default.createElement(
+												"a",
+												{ href: "#profile" },
+												"My Profile"
+											)
+										),
+										_react2.default.createElement(
+											"li",
+											null,
+											_react2.default.createElement(
+												"a",
+												{ href: "#edit" },
+												"Edit Profile"
+											)
+										),
+										_react2.default.createElement(
+											"li",
+											null,
+											_react2.default.createElement(
+												"a",
+												{ href: "#settings" },
+												"Settings"
+											)
+										)
+									)
+								)
+							)
+						),
+						_react2.default.createElement(
+							"ul",
+							{ className: "nav" },
+							_react2.default.createElement(
+								"li",
+								null,
+								_react2.default.createElement(
+									"a",
+									{ "data-toggle": "collapse", href: "#dashboardOverview" },
+									_react2.default.createElement("i", { className: "ti-panel" }),
+									_react2.default.createElement(
+										"p",
+										null,
+										"Collapse",
+										_react2.default.createElement("b", { className: "caret" })
+									)
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "collapse", id: "dashboardOverview" },
+									_react2.default.createElement(
+										"ul",
+										{ className: "nav" },
+										_react2.default.createElement(
+											"li",
+											null,
+											_react2.default.createElement(
+												"a",
+												{ href: "#panda" },
+												"Collapse 1"
+											)
+										),
+										_react2.default.createElement(
+											"li",
+											null,
+											_react2.default.createElement(
+												"a",
+												{ href: "#panda" },
+												"Collapse2"
+											)
+										)
+									)
+								)
+							),
+							_react2.default.createElement(
+								"li",
+								null,
+								_react2.default.createElement(
+									"a",
+									{ href: "calendar.html" },
+									_react2.default.createElement("i", { className: "ti-calendar" }),
+									_react2.default.createElement(
+										"p",
+										null,
+										"Simple Link"
+									)
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+
+		return Sidebar;
+	}(_react2.default.Component);
+
+	Sidebar.propTypes = propTypes;
+	Sidebar.defaultProps = defaultProps;
+
+	exports.default = Sidebar;
 
 /***/ }
 /******/ ]);
