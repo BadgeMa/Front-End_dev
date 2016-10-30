@@ -1,11 +1,16 @@
 import React from 'react';
-import { Sidebar } from '../components';
+import { Footer, Sidebar } from '../components';
 
 export default class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<Sidebar/>
+				<div className="wrapper">
+					<Sidebar/>
+					<div className="main-panel">
+						<Footer/>
+					</div>
+				</div>
 			</div>
 
 		)
