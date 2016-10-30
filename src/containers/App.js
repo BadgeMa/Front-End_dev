@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, Sidebar } from '../components';
+import { Header, Footer, Sidebar } from '../components';
 
 export default class App extends React.Component {
 	render() {
@@ -8,6 +8,7 @@ export default class App extends React.Component {
 				<div className="wrapper">
 					<Sidebar/>
 					<div className="main-panel">
+						<Header/>
 						<Footer/>
 					</div>
 				</div>
