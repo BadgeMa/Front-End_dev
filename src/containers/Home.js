@@ -19,13 +19,10 @@ class Home extends React.Component {
 
 	render() {
         return(
-			<div>
-				<div className="wrapper">
-					<Sidebar/>
-					<div className="main-panel">
-						<Header/>
-						<Dashboard/>
-						<Footer/>
+			<div className="content">
+				<div className="container-fluid">
+					<div className="row">
+						<div>Home</div>
 					</div>
 				</div>
 			</div>

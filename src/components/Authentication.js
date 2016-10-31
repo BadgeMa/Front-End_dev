@@ -1,18 +1,52 @@
 import React, { Component, PropTypes } from 'react';
 
 const propTypes = {
-
+	mode: React.PropTypes.bool,
+	onLogin: React.PropTypes.func,
+	onRegister: React.PropTypes.func
 };
 
 const defaultProps = {
-
+	mode: true,
+	onLogin: (id, pw) => { console.error("onLogin not defined"); },
+    onRegister: (id, pw) => { console.error("onRegister not defined"); }
 };
 
 class Authentication extends React.Component {
 
 	constructor(props) {
         super(props);
+		this.state = {
+			username: "",
+			password: ""
+		};
 
+		this.handleChange = this.handleChange.bind(this);
+		this.handleLogin = this.handleLogin.bind(this);
+
+	}
+
+	handleChange(e) {
+		let nextState = {};
+		nextState[e.target.name] = e.target.value;
+		this.setState(nextState);
+	}
+
+	handleLogin() {
+		// let id = this.state.username;
+		// let pw = this.state.password;
+		let id = 'admin';
+		let pw = '1234';
+
+		this.props.onLogin(id, pw).then(
+			(success) => {
+				if(!success) {
+                    this.setState({
+                        password: ''
+                    });
+                }
+			}
+		);
 	}
 
 	render() {
@@ -25,16 +59,31 @@ class Authentication extends React.Component {
 						</div>
 						<div className="content">
 							<div className="form-group">
-								<label>Email address</label>
-								<input type="email" placeholder="Enter email" className="form-control input-no-border"/>
+								<label>Username</label>
+								<input id="username"
+									type="text"
+									placeholder="Username"
+									required="true"
+									className="form-control input-no-border"
+									value={this.state.username}
+									onChange={this.handleChange}/>
 							</div>
 							<div className="form-group">
 								<label>Password</label>
-								<input type="password" placeholder="Password" className="form-control input-no-border"/>
+								<input id="username"
+									type="password"
+									placeholder="Password"
+									className="form-control input-no-border"
+									value={this.state.password}
+									onChange={this.handleChange}/>
 							</div>
 						</div>
 						<div className="footer text-center">
-							<button type="submit" className="btn btn-fill btn-wd ">Let's go</button>
+							<button type="submit"
+								className="btn btn-fill btn-wd "
+								onClick={this.handleLogin}>
+								Let's go
+							</button>
 							<div className="forgot">
 								<a href="#pablo">Register new account!</a>
 							</div>

@@ -1,50 +1,76 @@
 import React, {Component, PropTypes} from 'react';
+import { connect } from 'react-redux';
 import { Authentication } from '../components';
 
-const propTypes = {};
+import { loginRequest } from '../actions/authentication';
+import { browserHistory } from 'react-router';
 
-const defaultProps = {};
-
-export default class Login extends React.Component {
+class Login extends React.Component {
 
     constructor(props) {
         super(props);
 
+		this.handleLogin = this.handleLogin.bind(this);
+
     }
+
+	handleLogin(id, pw) {
+		return this.props.loginRequest(id, pw).then(
+			() => {
+				if(this.props.status === "SUCCESS") {
+					let loginData = {
+						isLoggedId: true,
+						username: id
+					};
+
+					console.log("Login Success!");
+					browserHistory.push('/home');
+
+
+					return true;
+				}
+				else {
+					console.log("Login failure");
+					return false;
+				}
+			}
+		)
+	}
 
     render() {
         return (
             <div>
-                <nav className="navbar navbar-transparent navbar-absolute">
-                    <div className="container">
-                        <div className="navbar-header">
-                            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                                <span className="sr-only">Toggle navigation</span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                            </button>
-                            <a className="navbar-brand" href="#">Badge-Ma</a>
-                        </div>
-                        <div className="collapse navbar-collapse">
-                            <ul className="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="register.html">
-                                        Register
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-
+				<nav className="navbar navbar-transparent navbar-absolute">
+					<div className="container">
+						<div className="navbar-header">
+							<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+								<span className="sr-only">Toggle navigation</span>
+								<span className="icon-bar"></span>
+								<span className="icon-bar"></span>
+								<span className="icon-bar"></span>
+							</button>
+							<a className="navbar-brand" href="#">Badge-Ma</a>
+						</div>
+						<div className="collapse navbar-collapse">
+							<ul className="nav navbar-nav navbar-right">
+								<li>
+									<a href="register.html">
+										Register
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+				
                 <div className="wrapper wrapper-full-page">
                     <div className="full-page login-page" data-color="" data-image="../../assets/img/background/background-2.jpg">
 
                         <div className="content">
                             <div className="container">
                                 <div className="row">
-									<Authentication/>
+									<Authentication mode={true}
+										onLogin={this.handleLogin}/>
                                 </div>
                             </div>
                         </div>
@@ -65,5 +91,18 @@ export default class Login extends React.Component {
     }
 }
 
-Login.propTypes = propTypes;
-Login.defaultProps = defaultProps;
+const mapStateToProps = (state) => {
+    return {
+        status: state.authentication.login.status
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loginRequest: (id, pw) => {
+            return dispatch(loginRequest(id,pw));
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

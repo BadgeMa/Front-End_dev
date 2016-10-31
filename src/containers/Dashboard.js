@@ -17,17 +17,13 @@ class Dashboard extends React.Component {
 
 	render() {
         return(
-
 			<div className="content">
 				<div className="container-fluid">
 					<div className="row">
-
 						<div>Dashboard</div>
-
 					</div>
 				</div>
 			</div>
-
         );
     }
 }

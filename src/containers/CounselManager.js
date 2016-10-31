@@ -1,9 +1,25 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
+
 
 class CounselManager extends React.Component {
-	render () {
-		<div>CounselManager</div>
+
+	constructor(props) {
+        super(props);
+
 	}
+
+	render() {
+        return(
+			<div className="content">
+				<div className="container-fluid">
+					<div className="row">
+						<div>CounselManager</div>
+					</div>
+				</div>
+			</div>
+        );
+    }
 }
+
 
 export default CounselManager;

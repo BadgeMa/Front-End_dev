@@ -4,6 +4,12 @@
  - express
  - react
  - react-dom
+ - react-router
+ - react-addons-update : Immutability Helper (Redux 의 store 값을 변경 할 때 사용됨)
+ - axios : HTTP 클라이언트
+ - redux : FLUX 구현체, 그리고 뷰 레이어 바인딩
+ - react-redux : FLUX 구현체, 그리고 뷰 레이어 바인딩
+ - redux-thunk : redux의 action creator에서 함수를 반환 할 수 있게 해주는 redux 미들웨어, 비동기작업을 처리 할 때 사용됩니다
 
 ### npm install --save-dev
  - babel-core

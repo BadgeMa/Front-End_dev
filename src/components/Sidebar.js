@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 
 const propTypes = {
 	username: React.PropTypes.string
@@ -52,29 +53,29 @@ class Sidebar extends React.Component {
 
 					<ul className="nav">
 						<li>
-							<a href="#dashboard">
+							<Link to="/dashboard">
 								<i className="ti-panel"></i>
 								<p>대시보드
 								</p>
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a href="#reportmanager">
+							<Link to="/reportmanager">
 								<i className="ti-signal"></i>
 								<p>신고관리</p>
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a href="#counselmanager">
+							<Link to="/counselmanager">
 								<i className="ti-comments"></i>
 								<p>상담관리</p>
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a href="#storyboard">
+							<Link to="/bamboogrove">
 								<i className="ti-book"></i>
 								<p>대숲관리</p>
-							</a>
+							</Link>
 						</li>
 					</ul>
 				</div>
