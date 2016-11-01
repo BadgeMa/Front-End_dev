@@ -5,7 +5,6 @@ class Footer extends React.Component {
 	render() {
 
         return(
-			<div>
 				<footer className="footer">
 					<div className="container-fluid">
 						<nav className="pull-left">
@@ -20,7 +19,6 @@ class Footer extends React.Component {
 						</div>
 					</div>
 				</footer>
-			</div>
         );
     }
 }

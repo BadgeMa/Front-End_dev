@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Header, Footer, Sidebar, Dashboard } from '../components';
+import { Header, Footer, Sidebar, Dashboard, Memo } from '../components';
 
 
 const propTypes = {
@@ -23,6 +23,7 @@ class Home extends React.Component {
 				<div className="container-fluid">
 					<div className="row">
 						<div>Home</div>
+						<Memo/>
 					</div>
 				</div>
 			</div>
