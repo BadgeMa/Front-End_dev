@@ -30,8 +30,8 @@ class MiniCard extends React.Component {
                         </div>
                         <div className="col-xs-7">
                             <div className="numbers">
-                                <p>Capacity</p>
-                                105GB
+                                <p>이달의신고</p>
+                                105
                             </div>
                         </div>
                     </div>
@@ -57,8 +57,8 @@ class MiniCard extends React.Component {
                         </div>
                         <div className="col-xs-7">
                             <div className="numbers">
-                                <p>Revenue</p>
-                                $1,345
+                                <p>진행신고</p>
+                                6
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@ class MiniCard extends React.Component {
                         </div>
                         <div className="col-xs-7">
                             <div className="numbers">
-                                <p>Errors</p>
+                                <p>이달의상담</p>
                                 23
                             </div>
                         </div>
@@ -111,8 +111,8 @@ class MiniCard extends React.Component {
                         </div>
                         <div className="col-xs-7">
                             <div className="numbers">
-                                <p>Followers</p>
-                                +45
+                                <p>진행상담</p>
+                                3
                             </div>
                         </div>
                     </div>

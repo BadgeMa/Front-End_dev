@@ -13,16 +13,16 @@ class BambooGrove extends React.Component {
 		var mockData = [
             {
                 "title": "Memo1",
-                "contents": "Testing"
+                "contents": "살려줘 찡찡"
             }, {
                 "title": "Memo1",
-                "contents": "Testing"
+                "contents": "문수야 어디있니"
             }, {
                 "title": "Memo1",
-                "contents": "Testing"
+                "contents": "애들아 어디갔어"
             }, {
                 "title": "Memo1",
-                "contents": "Testing"
+                "contents": "엄마가 보고싶어요"
             }
         ];
 

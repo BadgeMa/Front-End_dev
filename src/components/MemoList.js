@@ -28,16 +28,18 @@ class MemoList extends React.Component {
         };
 
         return (
+			<div>
             <div className="card">
                 <div className="header text-center">
                     <h4 className="title">{this.props.title}</h4>
                 </div>
-                <div>
-                    <ReactCSSTransitionGroup transitionName="memo" transitionEnterTimeout={2000} transitionLeaveTimeout={1000}>
-                        {mapToComponents(this.props.data)}
-                    </ReactCSSTransitionGroup>
-                </div>
             </div>
+			<div>
+				<ReactCSSTransitionGroup transitionName="memo" transitionEnterTimeout={2000} transitionLeaveTimeout={1000}>
+					{mapToComponents(this.props.data)}
+				</ReactCSSTransitionGroup>
+			</div>
+			</div>
         );
     }
 }

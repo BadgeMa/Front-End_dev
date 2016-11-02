@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { Header, Footer, Sidebar } from '../components';
+import { updateMenu } from '../actions/header';
 
-import { connect } from 'react-redux';
 
 
 class App extends React.Component {
@@ -14,12 +15,13 @@ class App extends React.Component {
 
 		return (
 			<div>
-				{this.props.status.isLoggedIn ? <Sidebar/> : undefined}
+				{this.props.status.isLoggedIn ? <Sidebar onUpdate={this.props.updateMenu}/> : undefined}
 				{this.props.status.isLoggedIn ?
 				<div>
 					<div className="wrapper">
 						<div className="main-panel">
-							<Header/>	
+							<Header currentMenu={this.props.menu.currentMenu}
+								onUpdate={this.props.updateMenu}/>
 							{this.props.children}
 							<Footer/>
 						</div>
@@ -34,12 +36,16 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        status: state.authentication.status
+        status: state.authentication.status,
+		menu: state.header.menu
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
+		updateMenu: (menuname) => {
+			return dispatch(updateMenu(menuname));
+		}
     };
 };
 

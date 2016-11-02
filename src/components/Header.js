@@ -1,15 +1,14 @@
 import React, {Component, PropTypes} from 'react';
+import { Link } from 'react-router';
 
 const propTypes = {
-    current: React.PropTypes.string,
-    numOfNoti: React.PropTypes.number,
-	isLoggedIn: React.PropTypes.bool
+    currentMenu: React.PropTypes.string,
+	onUpdate: React.PropTypes.func
 };
 
 const defaultProps = {
-    current: "Menu Name",
-    numOfNoti: 0,
-	isLoggedIn: false
+    currentMenu: "Menu Name",
+	onUpdate: (menuname) => { console.error("onUpdate not defined"); }
 };
 
 class Header extends React.Component {
@@ -17,7 +16,12 @@ class Header extends React.Component {
     constructor(props) {
         super(props);
 
+		this.handleHome = this.handleHome.bind(this);
     }
+
+	handleHome() {
+		this.props.onUpdate('Home');
+	}
 
     render() {
 
@@ -37,15 +41,17 @@ class Header extends React.Component {
                             <span className="icon-bar bar2"></span>
                             <span className="icon-bar bar3"></span>
                         </button>
-                        <a className="navbar-brand" href="#charts">Menu Name</a>
+                        <a className="navbar-brand" href="#charts">{this.props.currentMenu}</a>
                     </div>
                     <div className="collapse navbar-collapse">
                         <ul className="nav navbar-nav navbar-right">
                             <li>
-                                <a href="#home" className="dropdown-toggle btn-magnify">
+                                <Link to="/home" className="btn-magnify">
                                     <i className="ti-home"></i>
-                                    <p>Home</p>
-                                </a>
+                                    <p onClick={this.handleHome}>
+										Home
+									</p>
+                                </Link>
                             </li>
                             <li className="dropdown">
                                 <a href="#notifications" className="dropdown-toggle btn-rotate" data-toggle="dropdown">

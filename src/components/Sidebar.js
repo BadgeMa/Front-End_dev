@@ -2,17 +2,40 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 const propTypes = {
-	username: React.PropTypes.string
+	username: React.PropTypes.string,
+	onUpdate: React.PropTypes.func
 };
 
 const defaultProps = {
-	username: ''
+	username: '',
+	onUpdate: (menuname) => { console.error("onUpdate not defined"); }
 };
 
 class Sidebar extends React.Component {
 
 	constructor(props) {
         super(props);
+
+		this.handleDashboard = this.handleDashboard.bind(this);
+		this.handleReport = this.handleReport.bind(this);
+		this.handleCounsel = this.handleCounsel.bind(this);
+		this.handleBamboo = this.handleBamboo.bind(this);
+	}
+
+	handleDashboard() {
+		this.props.onUpdate('Dashboard');
+	}
+
+	handleReport() {
+		this.props.onUpdate('Report Manager');
+	}
+
+	handleCounsel() {
+		this.props.onUpdate('Counsel Manager');
+	}
+
+	handleBamboo() {
+		this.props.onUpdate('BambooGrove Manager');
 	}
 
 	render() {
@@ -55,26 +78,33 @@ class Sidebar extends React.Component {
 						<li>
 							<Link to="/dashboard">
 								<i className="ti-panel"></i>
-								<p>대시보드
+								<p onClick={this.handleDashboard}>
+									대시보드
 								</p>
 							</Link>
 						</li>
 						<li>
 							<Link to="/reportmanager">
 								<i className="ti-signal"></i>
-								<p>신고관리</p>
+								<p onClick={this.handleReport}>
+									신고관리
+								</p>
 							</Link>
 						</li>
 						<li>
 							<Link to="/counselmanager">
 								<i className="ti-comments"></i>
-								<p>상담관리</p>
+								<p onClick={this.handleCounsel}>
+									상담관리
+								</p>
 							</Link>
 						</li>
 						<li>
 							<Link to="/bamboogrove">
 								<i className="ti-book"></i>
-								<p>대숲관리</p>
+								<p onClick={this.handleBamboo}>
+									대숲관리
+								</p>
 							</Link>
 						</li>
 					</ul>

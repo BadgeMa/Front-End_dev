@@ -10,7 +10,7 @@ class Footer extends React.Component {
 						<nav className="pull-left">
 							<ul>
 								<li>
-									<p>아이들의 행복한 미래를 찾아주는 뺏지마</p>
+									<p>학생들의 소중한 꿈을 학교폭력으로 뻇지마세요</p>
 								</li>
 							</ul>
 						</nav>
