@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Authentication } from '../components';
 
 import { loginRequest } from '../actions/authentication';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
 class Login extends React.Component {
 
@@ -54,15 +54,15 @@ class Login extends React.Component {
 						<div className="collapse navbar-collapse">
 							<ul className="nav navbar-nav navbar-right">
 								<li>
-									<a href="register.html">
+									<Link to="/register">
 										Register
-									</a>
+									</Link>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</nav>
-				
+
                 <div className="wrapper wrapper-full-page">
                     <div className="full-page login-page" data-color="" data-image="../../assets/img/background/background-2.jpg">
 

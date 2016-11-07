@@ -16,7 +16,8 @@ import {
     BambooGrove,
     ReportManager,
     CounselManager,
-    Dashboard
+    Dashboard,
+	SeatingChart
 } from './containers';
 
 const store = createStore(reducers, applyMiddleware(thunk));
@@ -34,6 +35,7 @@ ReactDOM.render(
 	            <Route path="reportmanager" component={ReportManager}/>
 	            <Route path="counselmanager" component={CounselManager}/>
 	            <Route path="dashboard" component={Dashboard}/>
+				<Route path="seatingchart" component={SeatingChart}/>
 	        </Route>
 	    </Router>
 	</Provider>, rootElement);

@@ -2,12 +2,20 @@ import React, {Component, PropTypes} from 'react';
 
 const propTypes = {
 	cate: React.PropTypes.bool,
-	mode: React.PropTypes.bool
+	mode: React.PropTypes.bool,
+	value1st: React.PropTypes.number,
+	value2st: React.PropTypes.number,
+	value3st: React.PropTypes.number,
+	value4st: React.PropTypes.number
 };
 
 const defaultProps = {
 	cate: true,
-	mode: true
+	mode: true,
+	value1st: -1,
+	value2st: -1,
+	value3st: -1,
+	value4st: -1
 };
 
 class MiniCard extends React.Component {
@@ -30,8 +38,8 @@ class MiniCard extends React.Component {
                         </div>
                         <div className="col-xs-7">
                             <div className="numbers">
-                                <p>이달의신고</p>
-                                105
+                                <p>A버튼 건수</p>
+                                {this.props.value1st}
                             </div>
                         </div>
                     </div>
@@ -57,8 +65,8 @@ class MiniCard extends React.Component {
                         </div>
                         <div className="col-xs-7">
                             <div className="numbers">
-                                <p>진행신고</p>
-                                6
+                                <p>A버튼 처리</p>
+                                {this.props.value2st}
                             </div>
                         </div>
                     </div>
@@ -84,8 +92,8 @@ class MiniCard extends React.Component {
                         </div>
                         <div className="col-xs-7">
                             <div className="numbers">
-                                <p>이달의상담</p>
-                                23
+                                <p>B버튼 신고</p>
+                                {this.props.value3st}
                             </div>
                         </div>
                     </div>
@@ -111,8 +119,8 @@ class MiniCard extends React.Component {
                         </div>
                         <div className="col-xs-7">
                             <div className="numbers">
-                                <p>진행상담</p>
-                                3
+                                <p>B버튼 처리</p>
+                                {this.props.value4st}
                             </div>
                         </div>
                     </div>

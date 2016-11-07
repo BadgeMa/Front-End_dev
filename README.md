@@ -11,6 +11,9 @@
  - react-redux : FLUX 구현체, 그리고 뷰 레이어 바인딩
  - redux-thunk : redux의 action creator에서 함수를 반환 할 수 있게 해주는 redux 미들웨어, 비동기작업을 처리 할 때 사용됩니다
  - react-addons-css-transition-group : 특정 컴포넌트가 로딩 될 때, 저희가 지정한 CSS 클래스를 적용시켜주고, 언로딩 될 때, 언로딩을 저희가 지정한 시간만큼 지연시킨후 CSS 클래스를 적용시킨다음에 애니메이션이 끝나고나서 언로딩시킵니다.
+ - react-chartist : chartist library
+ - style-loader : css파일을 react component에 직접로딩
+ - css-loader : css파일을 react component에 직접로딩
 
 
 

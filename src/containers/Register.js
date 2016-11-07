@@ -1,5 +1,9 @@
 import React, {Component, PropTypes} from 'react';
+import { connect } from 'react-redux';
 import { Authentication } from '../components';
+
+import { loginRequest } from '../actions/authentication';
+import { browserHistory, Link } from 'react-router';
 
 const propTypes = {};
 
@@ -29,9 +33,9 @@ export default class Register extends React.Component {
                         <div className="collapse navbar-collapse">
                             <ul className="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="register.html">
-                                        Register
-                                    </a>
+                                    <Link to="/login">
+                                        Login
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
