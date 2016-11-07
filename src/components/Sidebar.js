@@ -101,6 +101,36 @@ class Sidebar extends React.Component {
 			</li>
 		);
 
+		const menuDatabase = (
+			<li>
+				<a href="#componentsDatabase" data-toggle="collapse">
+					<i className="ti-view-list-alt"></i>
+					<p onClick={this.handleDashboard}>
+						목록 보기
+					</p>
+					<div className="collapse" id="componentsDatabase">
+						<ul className="nav">
+							<li>
+								<Link to="#">
+									사용자 목록
+								</Link>
+							</li>
+							<li>
+								<Link to="#">
+									신고 목록
+								</Link>
+							</li>
+							<li>
+								<Link to="#">
+									상담 목록
+								</Link>
+							</li>
+						</ul>
+					</div>
+				</a>
+			</li>
+		);
+
 		const menuReport = (
 			<li>
 				<Link to="/reportmanager">
@@ -136,12 +166,13 @@ class Sidebar extends React.Component {
 
         return(
 
-			<div className="sidebar" data-background-color="white" data-active-color="danger">
+			<div className="sidebar" data-background-color="brown" data-active-color="danger">
 				{logoView}
 				<div className="sidebar-wrapper">
 					{profileView}
 					<ul className="nav">
 						{menuDashboard}
+						{menuDatabase}
 						{menuReport}
 						{menuCounsel}
 						{menuBamboo}

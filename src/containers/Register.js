@@ -48,7 +48,7 @@ export default class Register extends React.Component {
                         <div className="content">
                             <div className="container">
                                 <div className="row">
-									<Authentication/>
+									<Authentication mode={false}/>
                                 </div>
                             </div>
                         </div>

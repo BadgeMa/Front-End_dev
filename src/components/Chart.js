@@ -56,10 +56,13 @@ class Chart extends React.Component {
   		  	low: 0,
 			high: 1000,
 			height: "210px",
+			showPoint: false,
+			lineSmooth: true,
 	        axisX: {
-	          labelInterpolationFnc: function(value, index) {
-	            return index % 2 === 0 ? value : null;
-				}
+	        	labelInterpolationFnc: function(value, index) {
+	        		return index % 2 === 0 ? value : null;
+				},
+				showGrid: false
 			},
 			classNames: {
 				line: 'ct-line ct-red'

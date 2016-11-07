@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-
+import { Link } from 'react-router';
 const propTypes = {
 	mode: React.PropTypes.bool,
 	onLogin: React.PropTypes.func,
@@ -49,47 +49,88 @@ class Authentication extends React.Component {
 		);
 	}
 
+
+
 	render() {
+
+		const loginView = (
+			<div className="card" data-background="color" data-color="blue">
+				<div className="header">
+					<h3 className="title">Login</h3>
+				</div>
+				<div className="content">
+					<div className="form-group">
+						<label>Username</label>
+						<input id="username"
+							type="text"
+							placeholder="Username"
+							required="true"
+							className="form-control input-no-border"
+							value={this.state.username}
+							onChange={this.handleChange}/>
+					</div>
+					<div className="form-group">
+						<label>Password</label>
+						<input id="username"
+							type="password"
+							placeholder="Password"
+							className="form-control input-no-border"
+							value={this.state.password}
+							onChange={this.handleChange}/>
+					</div>
+				</div>
+				<div className="footer text-center">
+					<button type="submit"
+						className="btn btn-fill btn-wd "
+						onClick={this.handleLogin}>
+						Let's go
+					</button>
+					<div className="forgot">
+						<Link to="register">Register new account!</Link>
+					</div>
+				</div>
+			</div>
+		);
+
+		const registView = (
+			<div className="card" data-background="color" data-color="blue">
+				<div className="header">
+					<h3 className="title">Register</h3>
+				</div>
+				<div className="content">
+					<div className="form-group">
+						<label>Username</label>
+						<input id="username"
+							type="text"
+							placeholder="Username"
+							required="true"
+							className="form-control input-no-border"
+							value={this.state.username}
+							onChange={this.handleChange}/>
+					</div>
+					<div className="form-group">
+						<label>Password</label>
+						<input id="username"
+							type="password"
+							placeholder="Password"
+							className="form-control input-no-border"
+							value={this.state.password}
+							onChange={this.handleChange}/>
+					</div>
+				</div>
+				<div className="footer text-center">
+					<button type="submit"
+						className="btn btn-fill btn-wd "
+						onClick={this.handleLogin}>
+						Regist Now!
+					</button>
+				</div>
+			</div>
+		);
+
         return(
 			<div className="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-				<form method="#" action="#">
-					<div className="card" data-background="color" data-color="blue">
-						<div className="header">
-							<h3 className="title">Login</h3>
-						</div>
-						<div className="content">
-							<div className="form-group">
-								<label>Username</label>
-								<input id="username"
-									type="text"
-									placeholder="Username"
-									required="true"
-									className="form-control input-no-border"
-									value={this.state.username}
-									onChange={this.handleChange}/>
-							</div>
-							<div className="form-group">
-								<label>Password</label>
-								<input id="username"
-									type="password"
-									placeholder="Password"
-									className="form-control input-no-border"
-									value={this.state.password}
-									onChange={this.handleChange}/>
-							</div>
-						</div>
-						<div className="footer text-center">
-							<button type="submit"
-								className="btn btn-fill btn-wd "
-								onClick={this.handleLogin}>
-								Let's go
-							</button>
-							<div className="forgot">
-								<a href="#pablo">Register new account!</a>
-							</div>
-						</div>
-					</div>
-				</form>
+				{ this.props.mode ? loginView : registView }
 			</div>
         );
     }
