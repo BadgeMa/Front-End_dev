@@ -8,5 +8,7 @@ import MiniCard from './MiniCard';
 import Chart from './Chart';
 import Room from './Room';
 import Floor from './Floor';
+import EditProfile from './EditProfile';
+import UserCard from './UserCard';
 
-export { Header, Footer, Sidebar, Authentication, Memo, MemoList, MiniCard, Chart, Room, Floor };
+export { Header, Footer, Sidebar, Authentication, Memo, MemoList, MiniCard, Chart, Room, Floor, EditProfile, UserCard };

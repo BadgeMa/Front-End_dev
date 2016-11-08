@@ -17,7 +17,8 @@ import {
     ReportManager,
     CounselManager,
     Dashboard,
-	SeatingChart
+	SeatingChart,
+	User
 } from './containers';
 
 const store = createStore(reducers, applyMiddleware(thunk));
@@ -36,6 +37,7 @@ ReactDOM.render(
 	            <Route path="counselmanager" component={CounselManager}/>
 	            <Route path="dashboard" component={Dashboard}/>
 				<Route path="seatingchart" component={SeatingChart}/>
+				<Route path="user" component={User}/>
 	        </Route>
 	    </Router>
 	</Provider>, rootElement);

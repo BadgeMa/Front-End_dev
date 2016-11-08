@@ -7,6 +7,8 @@ import { browserHistory, Link } from 'react-router';
 
 class Login extends React.Component {
 
+
+
     constructor(props) {
         super(props);
 
@@ -64,7 +66,7 @@ class Login extends React.Component {
 				</nav>
 
                 <div className="wrapper wrapper-full-page">
-                    <div className="full-page login-page" data-color="" data-image="../../assets/img/background/background-2.jpg">
+                    <div className="full-page login-page" data-color="" data-image="./res/sad_girl_background.jpg">
 
                         <div className="content">
                             <div className="container">

@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { Link } from 'react-router';
 
+
 const propTypes = {
     currentMenu: React.PropTypes.string,
 	onUpdate: React.PropTypes.func
@@ -41,7 +42,7 @@ class Header extends React.Component {
                             <span className="icon-bar bar2"></span>
                             <span className="icon-bar bar3"></span>
                         </button>
-                        <a className="navbar-brand" href="#charts">{this.props.currentMenu}</a>
+                        <Link to="#" className="navbar-brand">{this.props.currentMenu}</Link>
                     </div>
                     <div className="collapse navbar-collapse">
                         <ul className="nav navbar-nav navbar-right">
@@ -54,39 +55,39 @@ class Header extends React.Component {
                                 </Link>
                             </li>
                             <li className="dropdown">
-                                <a href="#notifications" className="dropdown-toggle btn-rotate" data-toggle="dropdown">
+                                <Link to="#notifications" className="dropdown-toggle btn-rotate" data-toggle="dropdown">
                                     <i className="ti-bell"></i>
                                     <span className="notification">5</span>
                                     <p className="hidden-md hidden-lg">
                                         Notifications
                                         <b className="caret"></b>
                                     </p>
-                                </a>
+                                </Link>
                                 <ul className="dropdown-menu">
                                     <li>
-                                        <a href="#not1">Notification 1</a>
+                                        <Link to="#not1">Notification 1</Link>
                                     </li>
                                     <li>
-                                        <a href="#not2">Notification 2</a>
+                                        <Link to="#not2">Notification 2</Link>
                                     </li>
                                     <li>
-                                        <a href="#not3">Notification 3</a>
+                                        <Link to="#not3">Notification 3</Link>
                                     </li>
                                     <li>
-                                        <a href="#not4">Notification 4</a>
+                                        <Link to="#not4">Notification 4</Link>
                                     </li>
                                     <li>
-                                        <a href="#another">Another notification</a>
+                                        <Link to="#another">Another notification</Link>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#settings" className="btn-rotate">
+                                <Link to="#settings" className="btn-rotate">
                                     <i className="ti-settings"></i>
                                     <p className="hidden-md hidden-lg">
                                         Settings
                                     </p>
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>

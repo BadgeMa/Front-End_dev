@@ -33,7 +33,7 @@ export default class Register extends React.Component {
                         <div className="collapse navbar-collapse">
                             <ul className="nav navbar-nav navbar-right">
                                 <li>
-                                    <Link to="/login">
+                                    <Link to="/">
                                         Login
                                     </Link>
                                 </li>
@@ -43,7 +43,7 @@ export default class Register extends React.Component {
                 </nav>
 
                 <div className="wrapper wrapper-full-page">
-                    <div className="full-page login-page" data-color="" data-image="../../assets/img/background/background-2.jpg">
+                    <div className="full-page login-page" data-color="" data-image="../res/sad_girl_background.jpg">
 
                         <div className="content">
                             <div className="container">

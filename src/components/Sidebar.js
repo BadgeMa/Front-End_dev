@@ -20,6 +20,7 @@ class Sidebar extends React.Component {
 		this.handleReport = this.handleReport.bind(this);
 		this.handleCounsel = this.handleCounsel.bind(this);
 		this.handleBamboo = this.handleBamboo.bind(this);
+		this.handleProfile = this.handleProfile.bind(this);
 	}
 
 	handleDashboard() {
@@ -38,19 +39,23 @@ class Sidebar extends React.Component {
 		this.props.onUpdate('BambooGrove Manager');
 	}
 
+	handleProfile() {
+		this.props.onUpdate('My Profile');
+	}
+
 	render() {
 
 		const logoView = (
 			<div>
 				<div className="logo">
-					<a className="simple-text">
+					<span className="simple-text">
 						Badge-Ma
-					</a>
+					</span>
 				</div>
 				<div className="logo logo-mini">
-					<a className="simple-text">
+					<span className="simple-text">
 						BM
-					</a>
+					</span>
 				</div>
 			</div>
 		);
@@ -67,9 +72,9 @@ class Sidebar extends React.Component {
 					</a>
 					<div className="collapse" id="collapseExample">
 						<ul className="nav">
-							<li><a href="#profile">My Profile</a></li>
-							<li><a href="#edit">Edit Profile</a></li>
-							<li><a href="#settings">Settings</a></li>
+							<li onClick={this.handleProfile}>
+								<Link to="/user">My Profile</Link>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -111,19 +116,19 @@ class Sidebar extends React.Component {
 					<div className="collapse" id="componentsDatabase">
 						<ul className="nav">
 							<li>
-								<Link to="#">
+								<a href="#">
 									사용자 목록
-								</Link>
+								</a>
 							</li>
 							<li>
-								<Link to="#">
+								<a href="#">
 									신고 목록
-								</Link>
+								</a>
 							</li>
 							<li>
-								<Link to="#">
+								<a href="#">
 									상담 목록
-								</Link>
+								</a>
 							</li>
 						</ul>
 					</div>

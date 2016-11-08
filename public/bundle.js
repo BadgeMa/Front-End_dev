@@ -54,13 +54,48 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _containers = __webpack_require__(172);
+	var _reactRouter = __webpack_require__(172);
+
+	var _reactRedux = __webpack_require__(227);
+
+	var _redux = __webpack_require__(234);
+
+	var _reducers = __webpack_require__(249);
+
+	var _reducers2 = _interopRequireDefault(_reducers);
+
+	var _reduxThunk = __webpack_require__(256);
+
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+	var _containers = __webpack_require__(257);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 	var rootElement = document.getElementById('root');
 
-	_reactDom2.default.render(_react2.default.createElement(_containers.App, null), rootElement);
+	_reactDom2.default.render(_react2.default.createElement(
+					_reactRedux.Provider,
+					{ store: store },
+					_react2.default.createElement(
+									_reactRouter.Router,
+									{ history: _reactRouter.browserHistory },
+									_react2.default.createElement(
+													_reactRouter.Route,
+													{ path: '/', component: _containers.App },
+													_react2.default.createElement(_reactRouter.IndexRoute, { component: _containers.Login }),
+													_react2.default.createElement(_reactRouter.Route, { path: 'home', component: _containers.Home }),
+													_react2.default.createElement(_reactRouter.Route, { path: 'login', component: _containers.Login }),
+													_react2.default.createElement(_reactRouter.Route, { path: 'register', component: _containers.Register }),
+													_react2.default.createElement(_reactRouter.Route, { path: 'bamboogrove', component: _containers.BambooGrove }),
+													_react2.default.createElement(_reactRouter.Route, { path: 'reportmanager', component: _containers.ReportManager }),
+													_react2.default.createElement(_reactRouter.Route, { path: 'counselmanager', component: _containers.CounselManager }),
+													_react2.default.createElement(_reactRouter.Route, { path: 'dashboard', component: _containers.Dashboard }),
+													_react2.default.createElement(_reactRouter.Route, { path: 'seatingchart', component: _containers.SeatingChart })
+									)
+					)
+	), rootElement);
 
 /***/ },
 /* 1 */
@@ -21435,21 +21470,6842 @@
 
 	'use strict';
 
+	exports.__esModule = true;
+	exports.createMemoryHistory = exports.hashHistory = exports.browserHistory = exports.applyRouterMiddleware = exports.formatPattern = exports.useRouterHistory = exports.match = exports.routerShape = exports.locationShape = exports.RouterContext = exports.createRoutes = exports.Route = exports.Redirect = exports.IndexRoute = exports.IndexRedirect = exports.withRouter = exports.IndexLink = exports.Link = exports.Router = undefined;
+
+	var _RouteUtils = __webpack_require__(173);
+
+	Object.defineProperty(exports, 'createRoutes', {
+	  enumerable: true,
+	  get: function get() {
+	    return _RouteUtils.createRoutes;
+	  }
+	});
+
+	var _PropTypes = __webpack_require__(174);
+
+	Object.defineProperty(exports, 'locationShape', {
+	  enumerable: true,
+	  get: function get() {
+	    return _PropTypes.locationShape;
+	  }
+	});
+	Object.defineProperty(exports, 'routerShape', {
+	  enumerable: true,
+	  get: function get() {
+	    return _PropTypes.routerShape;
+	  }
+	});
+
+	var _PatternUtils = __webpack_require__(175);
+
+	Object.defineProperty(exports, 'formatPattern', {
+	  enumerable: true,
+	  get: function get() {
+	    return _PatternUtils.formatPattern;
+	  }
+	});
+
+	var _Router2 = __webpack_require__(177);
+
+	var _Router3 = _interopRequireDefault(_Router2);
+
+	var _Link2 = __webpack_require__(193);
+
+	var _Link3 = _interopRequireDefault(_Link2);
+
+	var _IndexLink2 = __webpack_require__(194);
+
+	var _IndexLink3 = _interopRequireDefault(_IndexLink2);
+
+	var _withRouter2 = __webpack_require__(195);
+
+	var _withRouter3 = _interopRequireDefault(_withRouter2);
+
+	var _IndexRedirect2 = __webpack_require__(197);
+
+	var _IndexRedirect3 = _interopRequireDefault(_IndexRedirect2);
+
+	var _IndexRoute2 = __webpack_require__(199);
+
+	var _IndexRoute3 = _interopRequireDefault(_IndexRoute2);
+
+	var _Redirect2 = __webpack_require__(198);
+
+	var _Redirect3 = _interopRequireDefault(_Redirect2);
+
+	var _Route2 = __webpack_require__(200);
+
+	var _Route3 = _interopRequireDefault(_Route2);
+
+	var _RouterContext2 = __webpack_require__(189);
+
+	var _RouterContext3 = _interopRequireDefault(_RouterContext2);
+
+	var _match2 = __webpack_require__(201);
+
+	var _match3 = _interopRequireDefault(_match2);
+
+	var _useRouterHistory2 = __webpack_require__(214);
+
+	var _useRouterHistory3 = _interopRequireDefault(_useRouterHistory2);
+
+	var _applyRouterMiddleware2 = __webpack_require__(215);
+
+	var _applyRouterMiddleware3 = _interopRequireDefault(_applyRouterMiddleware2);
+
+	var _browserHistory2 = __webpack_require__(216);
+
+	var _browserHistory3 = _interopRequireDefault(_browserHistory2);
+
+	var _hashHistory2 = __webpack_require__(224);
+
+	var _hashHistory3 = _interopRequireDefault(_hashHistory2);
+
+	var _createMemoryHistory2 = __webpack_require__(203);
+
+	var _createMemoryHistory3 = _interopRequireDefault(_createMemoryHistory2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.Router = _Router3.default; /* components */
+
+	exports.Link = _Link3.default;
+	exports.IndexLink = _IndexLink3.default;
+	exports.withRouter = _withRouter3.default;
+
+	/* components (configuration) */
+
+	exports.IndexRedirect = _IndexRedirect3.default;
+	exports.IndexRoute = _IndexRoute3.default;
+	exports.Redirect = _Redirect3.default;
+	exports.Route = _Route3.default;
+
+	/* utils */
+
+	exports.RouterContext = _RouterContext3.default;
+	exports.match = _match3.default;
+	exports.useRouterHistory = _useRouterHistory3.default;
+	exports.applyRouterMiddleware = _applyRouterMiddleware3.default;
+
+	/* histories */
+
+	exports.browserHistory = _browserHistory3.default;
+	exports.hashHistory = _hashHistory3.default;
+	exports.createMemoryHistory = _createMemoryHistory3.default;
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.isReactChildren = isReactChildren;
+	exports.createRouteFromReactElement = createRouteFromReactElement;
+	exports.createRoutesFromReactChildren = createRoutesFromReactChildren;
+	exports.createRoutes = createRoutes;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function isValidChild(object) {
+	  return object == null || _react2.default.isValidElement(object);
+	}
+
+	function isReactChildren(object) {
+	  return isValidChild(object) || Array.isArray(object) && object.every(isValidChild);
+	}
+
+	function createRoute(defaultProps, props) {
+	  return _extends({}, defaultProps, props);
+	}
+
+	function createRouteFromReactElement(element) {
+	  var type = element.type;
+	  var route = createRoute(type.defaultProps, element.props);
+
+	  if (route.children) {
+	    var childRoutes = createRoutesFromReactChildren(route.children, route);
+
+	    if (childRoutes.length) route.childRoutes = childRoutes;
+
+	    delete route.children;
+	  }
+
+	  return route;
+	}
+
+	/**
+	 * Creates and returns a routes object from the given ReactChildren. JSX
+	 * provides a convenient way to visualize how routes in the hierarchy are
+	 * nested.
+	 *
+	 *   import { Route, createRoutesFromReactChildren } from 'react-router'
+	 *
+	 *   const routes = createRoutesFromReactChildren(
+	 *     <Route component={App}>
+	 *       <Route path="home" component={Dashboard}/>
+	 *       <Route path="news" component={NewsFeed}/>
+	 *     </Route>
+	 *   )
+	 *
+	 * Note: This method is automatically used when you provide <Route> children
+	 * to a <Router> component.
+	 */
+	function createRoutesFromReactChildren(children, parentRoute) {
+	  var routes = [];
+
+	  _react2.default.Children.forEach(children, function (element) {
+	    if (_react2.default.isValidElement(element)) {
+	      // Component classes may have a static create* method.
+	      if (element.type.createRouteFromReactElement) {
+	        var route = element.type.createRouteFromReactElement(element, parentRoute);
+
+	        if (route) routes.push(route);
+	      } else {
+	        routes.push(createRouteFromReactElement(element));
+	      }
+	    }
+	  });
+
+	  return routes;
+	}
+
+	/**
+	 * Creates and returns an array of routes from the given object which
+	 * may be a JSX route, a plain object route, or an array of either.
+	 */
+	function createRoutes(routes) {
+	  if (isReactChildren(routes)) {
+	    routes = createRoutesFromReactChildren(routes);
+	  } else if (routes && !Array.isArray(routes)) {
+	    routes = [routes];
+	  }
+
+	  return routes;
+	}
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.locationShape = exports.routerShape = undefined;
+
+	var _react = __webpack_require__(1);
+
+	var func = _react.PropTypes.func,
+	    object = _react.PropTypes.object,
+	    shape = _react.PropTypes.shape,
+	    string = _react.PropTypes.string;
+	var routerShape = exports.routerShape = shape({
+	  push: func.isRequired,
+	  replace: func.isRequired,
+	  go: func.isRequired,
+	  goBack: func.isRequired,
+	  goForward: func.isRequired,
+	  setRouteLeaveHook: func.isRequired,
+	  isActive: func.isRequired
+	});
+
+	var locationShape = exports.locationShape = shape({
+	  pathname: string.isRequired,
+	  search: string.isRequired,
+	  state: object,
+	  action: string.isRequired,
+	  key: string
+	});
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+	exports.compilePattern = compilePattern;
+	exports.matchPattern = matchPattern;
+	exports.getParamNames = getParamNames;
+	exports.getParams = getParams;
+	exports.formatPattern = formatPattern;
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function escapeRegExp(string) {
+	  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	}
+
+	function _compilePattern(pattern) {
+	  var regexpSource = '';
+	  var paramNames = [];
+	  var tokens = [];
+
+	  var match = void 0,
+	      lastIndex = 0,
+	      matcher = /:([a-zA-Z_$][a-zA-Z0-9_$]*)|\*\*|\*|\(|\)/g;
+	  while (match = matcher.exec(pattern)) {
+	    if (match.index !== lastIndex) {
+	      tokens.push(pattern.slice(lastIndex, match.index));
+	      regexpSource += escapeRegExp(pattern.slice(lastIndex, match.index));
+	    }
+
+	    if (match[1]) {
+	      regexpSource += '([^/]+)';
+	      paramNames.push(match[1]);
+	    } else if (match[0] === '**') {
+	      regexpSource += '(.*)';
+	      paramNames.push('splat');
+	    } else if (match[0] === '*') {
+	      regexpSource += '(.*?)';
+	      paramNames.push('splat');
+	    } else if (match[0] === '(') {
+	      regexpSource += '(?:';
+	    } else if (match[0] === ')') {
+	      regexpSource += ')?';
+	    }
+
+	    tokens.push(match[0]);
+
+	    lastIndex = matcher.lastIndex;
+	  }
+
+	  if (lastIndex !== pattern.length) {
+	    tokens.push(pattern.slice(lastIndex, pattern.length));
+	    regexpSource += escapeRegExp(pattern.slice(lastIndex, pattern.length));
+	  }
+
+	  return {
+	    pattern: pattern,
+	    regexpSource: regexpSource,
+	    paramNames: paramNames,
+	    tokens: tokens
+	  };
+	}
+
+	var CompiledPatternsCache = Object.create(null);
+
+	function compilePattern(pattern) {
+	  if (!CompiledPatternsCache[pattern]) CompiledPatternsCache[pattern] = _compilePattern(pattern);
+
+	  return CompiledPatternsCache[pattern];
+	}
+
+	/**
+	 * Attempts to match a pattern on the given pathname. Patterns may use
+	 * the following special characters:
+	 *
+	 * - :paramName     Matches a URL segment up to the next /, ?, or #. The
+	 *                  captured string is considered a "param"
+	 * - ()             Wraps a segment of the URL that is optional
+	 * - *              Consumes (non-greedy) all characters up to the next
+	 *                  character in the pattern, or to the end of the URL if
+	 *                  there is none
+	 * - **             Consumes (greedy) all characters up to the next character
+	 *                  in the pattern, or to the end of the URL if there is none
+	 *
+	 *  The function calls callback(error, matched) when finished.
+	 * The return value is an object with the following properties:
+	 *
+	 * - remainingPathname
+	 * - paramNames
+	 * - paramValues
+	 */
+	function matchPattern(pattern, pathname) {
+	  // Ensure pattern starts with leading slash for consistency with pathname.
+	  if (pattern.charAt(0) !== '/') {
+	    pattern = '/' + pattern;
+	  }
+
+	  var _compilePattern2 = compilePattern(pattern),
+	      regexpSource = _compilePattern2.regexpSource,
+	      paramNames = _compilePattern2.paramNames,
+	      tokens = _compilePattern2.tokens;
+
+	  if (pattern.charAt(pattern.length - 1) !== '/') {
+	    regexpSource += '/?'; // Allow optional path separator at end.
+	  }
+
+	  // Special-case patterns like '*' for catch-all routes.
+	  if (tokens[tokens.length - 1] === '*') {
+	    regexpSource += '$';
+	  }
+
+	  var match = pathname.match(new RegExp('^' + regexpSource, 'i'));
+	  if (match == null) {
+	    return null;
+	  }
+
+	  var matchedPath = match[0];
+	  var remainingPathname = pathname.substr(matchedPath.length);
+
+	  if (remainingPathname) {
+	    // Require that the match ends at a path separator, if we didn't match
+	    // the full path, so any remaining pathname is a new path segment.
+	    if (matchedPath.charAt(matchedPath.length - 1) !== '/') {
+	      return null;
+	    }
+
+	    // If there is a remaining pathname, treat the path separator as part of
+	    // the remaining pathname for properly continuing the match.
+	    remainingPathname = '/' + remainingPathname;
+	  }
+
+	  return {
+	    remainingPathname: remainingPathname,
+	    paramNames: paramNames,
+	    paramValues: match.slice(1).map(function (v) {
+	      return v && decodeURIComponent(v);
+	    })
+	  };
+	}
+
+	function getParamNames(pattern) {
+	  return compilePattern(pattern).paramNames;
+	}
+
+	function getParams(pattern, pathname) {
+	  var match = matchPattern(pattern, pathname);
+	  if (!match) {
+	    return null;
+	  }
+
+	  var paramNames = match.paramNames,
+	      paramValues = match.paramValues;
+
+	  var params = {};
+
+	  paramNames.forEach(function (paramName, index) {
+	    params[paramName] = paramValues[index];
+	  });
+
+	  return params;
+	}
+
+	/**
+	 * Returns a version of the given pattern with params interpolated. Throws
+	 * if there is a dynamic segment of the pattern for which there is no param.
+	 */
+	function formatPattern(pattern, params) {
+	  params = params || {};
+
+	  var _compilePattern3 = compilePattern(pattern),
+	      tokens = _compilePattern3.tokens;
+
+	  var parenCount = 0,
+	      pathname = '',
+	      splatIndex = 0,
+	      parenHistory = [];
+
+	  var token = void 0,
+	      paramName = void 0,
+	      paramValue = void 0;
+	  for (var i = 0, len = tokens.length; i < len; ++i) {
+	    token = tokens[i];
+
+	    if (token === '*' || token === '**') {
+	      paramValue = Array.isArray(params.splat) ? params.splat[splatIndex++] : params.splat;
+
+	      !(paramValue != null || parenCount > 0) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Missing splat #%s for path "%s"', splatIndex, pattern) : (0, _invariant2.default)(false) : void 0;
+
+	      if (paramValue != null) pathname += encodeURI(paramValue);
+	    } else if (token === '(') {
+	      parenHistory[parenCount] = '';
+	      parenCount += 1;
+	    } else if (token === ')') {
+	      var parenText = parenHistory.pop();
+	      parenCount -= 1;
+
+	      if (parenCount) parenHistory[parenCount - 1] += parenText;else pathname += parenText;
+	    } else if (token.charAt(0) === ':') {
+	      paramName = token.substring(1);
+	      paramValue = params[paramName];
+
+	      !(paramValue != null || parenCount > 0) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Missing "%s" parameter for path "%s"', paramName, pattern) : (0, _invariant2.default)(false) : void 0;
+
+	      if (paramValue == null) {
+	        if (parenCount) {
+	          parenHistory[parenCount - 1] = '';
+
+	          var curTokenIdx = tokens.indexOf(token);
+	          var tokensSubset = tokens.slice(curTokenIdx, tokens.length);
+	          var nextParenIdx = -1;
+
+	          for (var _i = 0; _i < tokensSubset.length; _i++) {
+	            if (tokensSubset[_i] == ')') {
+	              nextParenIdx = _i;
+	              break;
+	            }
+	          }
+
+	          !(nextParenIdx > 0) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Path "%s" is missing end paren at segment "%s"', pattern, tokensSubset.join('')) : (0, _invariant2.default)(false) : void 0;
+
+	          // jump to ending paren
+	          i = curTokenIdx + nextParenIdx - 1;
+	        }
+	      } else if (parenCount) parenHistory[parenCount - 1] += encodeURIComponent(paramValue);else pathname += encodeURIComponent(paramValue);
+	    } else {
+	      if (parenCount) parenHistory[parenCount - 1] += token;else pathname += token;
+	    }
+	  }
+
+	  !(parenCount <= 0) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Path "%s" is missing end paren', pattern) : (0, _invariant2.default)(false) : void 0;
+
+	  return pathname.replace(/\/+/g, '/');
+	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+
+	'use strict';
+
+	/**
+	 * Use invariant() to assert state which your program assumes to be true.
+	 *
+	 * Provide sprintf-style format (only %s is supported) and arguments
+	 * to provide information about what broke and what you were
+	 * expecting.
+	 *
+	 * The invariant message will be stripped in production, but the invariant
+	 * will remain to ensure logic does not differ in production.
+	 */
+
+	var invariant = function(condition, format, a, b, c, d, e, f) {
+	  if (process.env.NODE_ENV !== 'production') {
+	    if (format === undefined) {
+	      throw new Error('invariant requires an error message argument');
+	    }
+	  }
+
+	  if (!condition) {
+	    var error;
+	    if (format === undefined) {
+	      error = new Error(
+	        'Minified exception occurred; use the non-minified dev environment ' +
+	        'for the full error message and additional helpful warnings.'
+	      );
+	    } else {
+	      var args = [a, b, c, d, e, f];
+	      var argIndex = 0;
+	      error = new Error(
+	        format.replace(/%s/g, function() { return args[argIndex++]; })
+	      );
+	      error.name = 'Invariant Violation';
+	    }
+
+	    error.framesToPop = 1; // we don't care about invariant's own frame
+	    throw error;
+	  }
+	};
+
+	module.exports = invariant;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _createTransitionManager2 = __webpack_require__(178);
+
+	var _createTransitionManager3 = _interopRequireDefault(_createTransitionManager2);
+
+	var _InternalPropTypes = __webpack_require__(188);
+
+	var _RouterContext = __webpack_require__(189);
+
+	var _RouterContext2 = _interopRequireDefault(_RouterContext);
+
+	var _RouteUtils = __webpack_require__(173);
+
+	var _RouterUtils = __webpack_require__(192);
+
+	var _routerWarning = __webpack_require__(179);
+
+	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var _React$PropTypes = _react2.default.PropTypes,
+	    func = _React$PropTypes.func,
+	    object = _React$PropTypes.object;
+
+	/**
+	 * A <Router> is a high-level API for automatically setting up
+	 * a router that renders a <RouterContext> with all the props
+	 * it needs each time the URL changes.
+	 */
+
+	var Router = _react2.default.createClass({
+	  displayName: 'Router',
+
+
+	  propTypes: {
+	    history: object,
+	    children: _InternalPropTypes.routes,
+	    routes: _InternalPropTypes.routes, // alias for children
+	    render: func,
+	    createElement: func,
+	    onError: func,
+	    onUpdate: func,
+
+	    // PRIVATE: For client-side rehydration of server match.
+	    matchContext: object
+	  },
+
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      render: function render(props) {
+	        return _react2.default.createElement(_RouterContext2.default, props);
+	      }
+	    };
+	  },
+	  getInitialState: function getInitialState() {
+	    return {
+	      location: null,
+	      routes: null,
+	      params: null,
+	      components: null
+	    };
+	  },
+	  handleError: function handleError(error) {
+	    if (this.props.onError) {
+	      this.props.onError.call(this, error);
+	    } else {
+	      // Throw errors by default so we don't silently swallow them!
+	      throw error; // This error probably occurred in getChildRoutes or getComponents.
+	    }
+	  },
+	  createRouterObject: function createRouterObject(state) {
+	    var matchContext = this.props.matchContext;
+
+	    if (matchContext) {
+	      return matchContext.router;
+	    }
+
+	    var history = this.props.history;
+
+	    return (0, _RouterUtils.createRouterObject)(history, this.transitionManager, state);
+	  },
+	  createTransitionManager: function createTransitionManager() {
+	    var matchContext = this.props.matchContext;
+
+	    if (matchContext) {
+	      return matchContext.transitionManager;
+	    }
+
+	    var history = this.props.history;
+	    var _props = this.props,
+	        routes = _props.routes,
+	        children = _props.children;
+
+
+	    !history.getCurrentLocation ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'You have provided a history object created with history v2.x or ' + 'earlier. This version of React Router is only compatible with v3 ' + 'history objects. Please upgrade to history v3.x.') : (0, _invariant2.default)(false) : void 0;
+
+	    return (0, _createTransitionManager3.default)(history, (0, _RouteUtils.createRoutes)(routes || children));
+	  },
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
+
+	    this.transitionManager = this.createTransitionManager();
+	    this.router = this.createRouterObject(this.state);
+
+	    this._unlisten = this.transitionManager.listen(function (error, state) {
+	      if (error) {
+	        _this.handleError(error);
+	      } else {
+	        // Keep the identity of this.router because of a caveat in ContextUtils:
+	        // they only work if the object identity is preserved.
+	        (0, _RouterUtils.assignRouterState)(_this.router, state);
+	        _this.setState(state, _this.props.onUpdate);
+	      }
+	    });
+	  },
+
+
+	  /* istanbul ignore next: sanity check */
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(nextProps.history === this.props.history, 'You cannot change <Router history>; it will be ignored') : void 0;
+
+	    process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)((nextProps.routes || nextProps.children) === (this.props.routes || this.props.children), 'You cannot change <Router routes>; it will be ignored') : void 0;
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    if (this._unlisten) this._unlisten();
+	  },
+	  render: function render() {
+	    var _state = this.state,
+	        location = _state.location,
+	        routes = _state.routes,
+	        params = _state.params,
+	        components = _state.components;
+
+	    var _props2 = this.props,
+	        createElement = _props2.createElement,
+	        render = _props2.render,
+	        props = _objectWithoutProperties(_props2, ['createElement', 'render']);
+
+	    if (location == null) return null; // Async match
+
+	    // Only forward non-Router-specific props to routing context, as those are
+	    // the only ones that might be custom routing context props.
+	    Object.keys(Router.propTypes).forEach(function (propType) {
+	      return delete props[propType];
+	    });
+
+	    return render(_extends({}, props, {
+	      router: this.router,
+	      location: location,
+	      routes: routes,
+	      params: params,
+	      components: components,
+	      createElement: createElement
+	    }));
+	  }
+	});
+
+	exports.default = Router;
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = createTransitionManager;
+
+	var _routerWarning = __webpack_require__(179);
+
+	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+
+	var _computeChangedRoutes2 = __webpack_require__(181);
+
+	var _computeChangedRoutes3 = _interopRequireDefault(_computeChangedRoutes2);
+
+	var _TransitionUtils = __webpack_require__(182);
+
+	var _isActive2 = __webpack_require__(184);
+
+	var _isActive3 = _interopRequireDefault(_isActive2);
+
+	var _getComponents = __webpack_require__(185);
+
+	var _getComponents2 = _interopRequireDefault(_getComponents);
+
+	var _matchRoutes = __webpack_require__(187);
+
+	var _matchRoutes2 = _interopRequireDefault(_matchRoutes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function hasAnyProperties(object) {
+	  for (var p in object) {
+	    if (Object.prototype.hasOwnProperty.call(object, p)) return true;
+	  }return false;
+	}
+
+	function createTransitionManager(history, routes) {
+	  var state = {};
+
+	  // Signature should be (location, indexOnly), but needs to support (path,
+	  // query, indexOnly)
+	  function isActive(location, indexOnly) {
+	    location = history.createLocation(location);
+
+	    return (0, _isActive3.default)(location, indexOnly, state.location, state.routes, state.params);
+	  }
+
+	  var partialNextState = void 0;
+
+	  function match(location, callback) {
+	    if (partialNextState && partialNextState.location === location) {
+	      // Continue from where we left off.
+	      finishMatch(partialNextState, callback);
+	    } else {
+	      (0, _matchRoutes2.default)(routes, location, function (error, nextState) {
+	        if (error) {
+	          callback(error);
+	        } else if (nextState) {
+	          finishMatch(_extends({}, nextState, { location: location }), callback);
+	        } else {
+	          callback();
+	        }
+	      });
+	    }
+	  }
+
+	  function finishMatch(nextState, callback) {
+	    var _computeChangedRoutes = (0, _computeChangedRoutes3.default)(state, nextState),
+	        leaveRoutes = _computeChangedRoutes.leaveRoutes,
+	        changeRoutes = _computeChangedRoutes.changeRoutes,
+	        enterRoutes = _computeChangedRoutes.enterRoutes;
+
+	    (0, _TransitionUtils.runLeaveHooks)(leaveRoutes, state);
+
+	    // Tear down confirmation hooks for left routes
+	    leaveRoutes.filter(function (route) {
+	      return enterRoutes.indexOf(route) === -1;
+	    }).forEach(removeListenBeforeHooksForRoute);
+
+	    // change and enter hooks are run in series
+	    (0, _TransitionUtils.runChangeHooks)(changeRoutes, state, nextState, function (error, redirectInfo) {
+	      if (error || redirectInfo) return handleErrorOrRedirect(error, redirectInfo);
+
+	      (0, _TransitionUtils.runEnterHooks)(enterRoutes, nextState, finishEnterHooks);
+	    });
+
+	    function finishEnterHooks(error, redirectInfo) {
+	      if (error || redirectInfo) return handleErrorOrRedirect(error, redirectInfo);
+
+	      // TODO: Fetch components after state is updated.
+	      (0, _getComponents2.default)(nextState, function (error, components) {
+	        if (error) {
+	          callback(error);
+	        } else {
+	          // TODO: Make match a pure function and have some other API
+	          // for "match and update state".
+	          callback(null, null, state = _extends({}, nextState, { components: components }));
+	        }
+	      });
+	    }
+
+	    function handleErrorOrRedirect(error, redirectInfo) {
+	      if (error) callback(error);else callback(null, redirectInfo);
+	    }
+	  }
+
+	  var RouteGuid = 1;
+
+	  function getRouteID(route) {
+	    var create = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+	    return route.__id__ || create && (route.__id__ = RouteGuid++);
+	  }
+
+	  var RouteHooks = Object.create(null);
+
+	  function getRouteHooksForRoutes(routes) {
+	    return routes.map(function (route) {
+	      return RouteHooks[getRouteID(route)];
+	    }).filter(function (hook) {
+	      return hook;
+	    });
+	  }
+
+	  function transitionHook(location, callback) {
+	    (0, _matchRoutes2.default)(routes, location, function (error, nextState) {
+	      if (nextState == null) {
+	        // TODO: We didn't actually match anything, but hang
+	        // onto error/nextState so we don't have to matchRoutes
+	        // again in the listen callback.
+	        callback();
+	        return;
+	      }
+
+	      // Cache some state here so we don't have to
+	      // matchRoutes() again in the listen callback.
+	      partialNextState = _extends({}, nextState, { location: location });
+
+	      var hooks = getRouteHooksForRoutes((0, _computeChangedRoutes3.default)(state, partialNextState).leaveRoutes);
+
+	      var result = void 0;
+	      for (var i = 0, len = hooks.length; result == null && i < len; ++i) {
+	        // Passing the location arg here indicates to
+	        // the user that this is a transition hook.
+	        result = hooks[i](location);
+	      }
+
+	      callback(result);
+	    });
+	  }
+
+	  /* istanbul ignore next: untestable with Karma */
+	  function beforeUnloadHook() {
+	    // Synchronously check to see if any route hooks want
+	    // to prevent the current window/tab from closing.
+	    if (state.routes) {
+	      var hooks = getRouteHooksForRoutes(state.routes);
+
+	      var message = void 0;
+	      for (var i = 0, len = hooks.length; typeof message !== 'string' && i < len; ++i) {
+	        // Passing no args indicates to the user that this is a
+	        // beforeunload hook. We don't know the next location.
+	        message = hooks[i]();
+	      }
+
+	      return message;
+	    }
+	  }
+
+	  var unlistenBefore = void 0,
+	      unlistenBeforeUnload = void 0;
+
+	  function removeListenBeforeHooksForRoute(route) {
+	    var routeID = getRouteID(route);
+	    if (!routeID) {
+	      return;
+	    }
+
+	    delete RouteHooks[routeID];
+
+	    if (!hasAnyProperties(RouteHooks)) {
+	      // teardown transition & beforeunload hooks
+	      if (unlistenBefore) {
+	        unlistenBefore();
+	        unlistenBefore = null;
+	      }
+
+	      if (unlistenBeforeUnload) {
+	        unlistenBeforeUnload();
+	        unlistenBeforeUnload = null;
+	      }
+	    }
+	  }
+
+	  /**
+	   * Registers the given hook function to run before leaving the given route.
+	   *
+	   * During a normal transition, the hook function receives the next location
+	   * as its only argument and can return either a prompt message (string) to show the user,
+	   * to make sure they want to leave the page; or `false`, to prevent the transition.
+	   * Any other return value will have no effect.
+	   *
+	   * During the beforeunload event (in browsers) the hook receives no arguments.
+	   * In this case it must return a prompt message to prevent the transition.
+	   *
+	   * Returns a function that may be used to unbind the listener.
+	   */
+	  function listenBeforeLeavingRoute(route, hook) {
+	    var thereWereNoRouteHooks = !hasAnyProperties(RouteHooks);
+	    var routeID = getRouteID(route, true);
+
+	    RouteHooks[routeID] = hook;
+
+	    if (thereWereNoRouteHooks) {
+	      // setup transition & beforeunload hooks
+	      unlistenBefore = history.listenBefore(transitionHook);
+
+	      if (history.listenBeforeUnload) unlistenBeforeUnload = history.listenBeforeUnload(beforeUnloadHook);
+	    }
+
+	    return function () {
+	      removeListenBeforeHooksForRoute(route);
+	    };
+	  }
+
+	  /**
+	   * This is the API for stateful environments. As the location
+	   * changes, we update state and call the listener. We can also
+	   * gracefully handle errors and redirects.
+	   */
+	  function listen(listener) {
+	    function historyListener(location) {
+	      if (state.location === location) {
+	        listener(null, state);
+	      } else {
+	        match(location, function (error, redirectLocation, nextState) {
+	          if (error) {
+	            listener(error);
+	          } else if (redirectLocation) {
+	            history.replace(redirectLocation);
+	          } else if (nextState) {
+	            listener(null, nextState);
+	          } else {
+	            process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(false, 'Location "%s" did not match any routes', location.pathname + location.search + location.hash) : void 0;
+	          }
+	        });
+	      }
+	    }
+
+	    // TODO: Only use a single history listener. Otherwise we'll end up with
+	    // multiple concurrent calls to match.
+
+	    // Set up the history listener first in case the initial match redirects.
+	    var unsubscribe = history.listen(historyListener);
+
+	    if (state.location) {
+	      // Picking up on a matchContext.
+	      listener(null, state);
+	    } else {
+	      historyListener(history.getCurrentLocation());
+	    }
+
+	    return unsubscribe;
+	  }
+
+	  return {
+	    isActive: isActive,
+	    match: match,
+	    listenBeforeLeavingRoute: listenBeforeLeavingRoute,
+	    listen: listen
+	  };
+	}
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.default = routerWarning;
+	exports._resetWarned = _resetWarned;
+
+	var _warning = __webpack_require__(180);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var warned = {};
+
+	function routerWarning(falseToWarn, message) {
+	  // Only issue deprecation warnings once.
+	  if (message.indexOf('deprecated') !== -1) {
+	    if (warned[message]) {
+	      return;
+	    }
+
+	    warned[message] = true;
+	  }
+
+	  message = '[react-router] ' + message;
+
+	  for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+	    args[_key - 2] = arguments[_key];
+	  }
+
+	  _warning2.default.apply(undefined, [falseToWarn, message].concat(args));
+	}
+
+	function _resetWarned() {
+	  warned = {};
+	}
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2014-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+
+	'use strict';
+
+	/**
+	 * Similar to invariant but only logs a warning if the condition is not met.
+	 * This can be used to log issues in development environments in critical
+	 * paths. Removing the logging code for production environments will keep the
+	 * same logic and follow the same code paths.
+	 */
+
+	var warning = function() {};
+
+	if (process.env.NODE_ENV !== 'production') {
+	  warning = function(condition, format, args) {
+	    var len = arguments.length;
+	    args = new Array(len > 2 ? len - 2 : 0);
+	    for (var key = 2; key < len; key++) {
+	      args[key - 2] = arguments[key];
+	    }
+	    if (format === undefined) {
+	      throw new Error(
+	        '`warning(condition, format, ...args)` requires a warning ' +
+	        'message argument'
+	      );
+	    }
+
+	    if (format.length < 10 || (/^[s\W]*$/).test(format)) {
+	      throw new Error(
+	        'The warning format should be able to uniquely identify this ' +
+	        'warning. Please, use a more descriptive format than: ' + format
+	      );
+	    }
+
+	    if (!condition) {
+	      var argIndex = 0;
+	      var message = 'Warning: ' +
+	        format.replace(/%s/g, function() {
+	          return args[argIndex++];
+	        });
+	      if (typeof console !== 'undefined') {
+	        console.error(message);
+	      }
+	      try {
+	        // This error was thrown as a convenience so that you can use this stack
+	        // to find the callsite that caused this warning to fire.
+	        throw new Error(message);
+	      } catch(x) {}
+	    }
+	  };
+	}
+
+	module.exports = warning;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _PatternUtils = __webpack_require__(175);
+
+	function routeParamsChanged(route, prevState, nextState) {
+	  if (!route.path) return false;
+
+	  var paramNames = (0, _PatternUtils.getParamNames)(route.path);
+
+	  return paramNames.some(function (paramName) {
+	    return prevState.params[paramName] !== nextState.params[paramName];
+	  });
+	}
+
+	/**
+	 * Returns an object of { leaveRoutes, changeRoutes, enterRoutes } determined by
+	 * the change from prevState to nextState. We leave routes if either
+	 * 1) they are not in the next state or 2) they are in the next state
+	 * but their params have changed (i.e. /users/123 => /users/456).
+	 *
+	 * leaveRoutes are ordered starting at the leaf route of the tree
+	 * we're leaving up to the common parent route. enterRoutes are ordered
+	 * from the top of the tree we're entering down to the leaf route.
+	 *
+	 * changeRoutes are any routes that didn't leave or enter during
+	 * the transition.
+	 */
+	function computeChangedRoutes(prevState, nextState) {
+	  var prevRoutes = prevState && prevState.routes;
+	  var nextRoutes = nextState.routes;
+
+	  var leaveRoutes = void 0,
+	      changeRoutes = void 0,
+	      enterRoutes = void 0;
+	  if (prevRoutes) {
+	    (function () {
+	      var parentIsLeaving = false;
+	      leaveRoutes = prevRoutes.filter(function (route) {
+	        if (parentIsLeaving) {
+	          return true;
+	        } else {
+	          var isLeaving = nextRoutes.indexOf(route) === -1 || routeParamsChanged(route, prevState, nextState);
+	          if (isLeaving) parentIsLeaving = true;
+	          return isLeaving;
+	        }
+	      });
+
+	      // onLeave hooks start at the leaf route.
+	      leaveRoutes.reverse();
+
+	      enterRoutes = [];
+	      changeRoutes = [];
+
+	      nextRoutes.forEach(function (route) {
+	        var isNew = prevRoutes.indexOf(route) === -1;
+	        var paramsChanged = leaveRoutes.indexOf(route) !== -1;
+
+	        if (isNew || paramsChanged) enterRoutes.push(route);else changeRoutes.push(route);
+	      });
+	    })();
+	  } else {
+	    leaveRoutes = [];
+	    changeRoutes = [];
+	    enterRoutes = nextRoutes;
+	  }
+
+	  return {
+	    leaveRoutes: leaveRoutes,
+	    changeRoutes: changeRoutes,
+	    enterRoutes: enterRoutes
+	  };
+	}
+
+	exports.default = computeChangedRoutes;
+	module.exports = exports['default'];
+
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.runEnterHooks = runEnterHooks;
+	exports.runChangeHooks = runChangeHooks;
+	exports.runLeaveHooks = runLeaveHooks;
+
+	var _AsyncUtils = __webpack_require__(183);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var PendingHooks = function PendingHooks() {
+	  var _this = this;
+
+	  _classCallCheck(this, PendingHooks);
+
+	  this.hooks = [];
+
+	  this.add = function (hook) {
+	    return _this.hooks.push(hook);
+	  };
+
+	  this.remove = function (hook) {
+	    return _this.hooks = _this.hooks.filter(function (h) {
+	      return h !== hook;
+	    });
+	  };
+
+	  this.has = function (hook) {
+	    return _this.hooks.indexOf(hook) !== -1;
+	  };
+
+	  this.clear = function () {
+	    return _this.hooks = [];
+	  };
+	};
+
+	var enterHooks = new PendingHooks();
+	var changeHooks = new PendingHooks();
+
+	function createTransitionHook(hook, route, asyncArity, pendingHooks) {
+	  var isSync = hook.length < asyncArity;
+
+	  var transitionHook = function transitionHook() {
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    hook.apply(route, args);
+
+	    if (isSync) {
+	      var callback = args[args.length - 1];
+	      // Assume hook executes synchronously and
+	      // automatically call the callback.
+	      callback();
+	    }
+	  };
+
+	  pendingHooks.add(transitionHook);
+
+	  return transitionHook;
+	}
+
+	function getEnterHooks(routes) {
+	  return routes.reduce(function (hooks, route) {
+	    if (route.onEnter) hooks.push(createTransitionHook(route.onEnter, route, 3, enterHooks));
+	    return hooks;
+	  }, []);
+	}
+
+	function getChangeHooks(routes) {
+	  return routes.reduce(function (hooks, route) {
+	    if (route.onChange) hooks.push(createTransitionHook(route.onChange, route, 4, changeHooks));
+	    return hooks;
+	  }, []);
+	}
+
+	function runTransitionHooks(length, iter, callback) {
+	  if (!length) {
+	    callback();
+	    return;
+	  }
+
+	  var redirectInfo = void 0;
+	  function replace(location) {
+	    redirectInfo = location;
+	  }
+
+	  (0, _AsyncUtils.loopAsync)(length, function (index, next, done) {
+	    iter(index, replace, function (error) {
+	      if (error || redirectInfo) {
+	        done(error, redirectInfo); // No need to continue.
+	      } else {
+	        next();
+	      }
+	    });
+	  }, callback);
+	}
+
+	/**
+	 * Runs all onEnter hooks in the given array of routes in order
+	 * with onEnter(nextState, replace, callback) and calls
+	 * callback(error, redirectInfo) when finished. The first hook
+	 * to use replace short-circuits the loop.
+	 *
+	 * If a hook needs to run asynchronously, it may use the callback
+	 * function. However, doing so will cause the transition to pause,
+	 * which could lead to a non-responsive UI if the hook is slow.
+	 */
+	function runEnterHooks(routes, nextState, callback) {
+	  enterHooks.clear();
+	  var hooks = getEnterHooks(routes);
+	  return runTransitionHooks(hooks.length, function (index, replace, next) {
+	    var wrappedNext = function wrappedNext() {
+	      if (enterHooks.has(hooks[index])) {
+	        next();
+	        enterHooks.remove(hooks[index]);
+	      }
+	    };
+	    hooks[index](nextState, replace, wrappedNext);
+	  }, callback);
+	}
+
+	/**
+	 * Runs all onChange hooks in the given array of routes in order
+	 * with onChange(prevState, nextState, replace, callback) and calls
+	 * callback(error, redirectInfo) when finished. The first hook
+	 * to use replace short-circuits the loop.
+	 *
+	 * If a hook needs to run asynchronously, it may use the callback
+	 * function. However, doing so will cause the transition to pause,
+	 * which could lead to a non-responsive UI if the hook is slow.
+	 */
+	function runChangeHooks(routes, state, nextState, callback) {
+	  changeHooks.clear();
+	  var hooks = getChangeHooks(routes);
+	  return runTransitionHooks(hooks.length, function (index, replace, next) {
+	    var wrappedNext = function wrappedNext() {
+	      if (changeHooks.has(hooks[index])) {
+	        next();
+	        changeHooks.remove(hooks[index]);
+	      }
+	    };
+	    hooks[index](state, nextState, replace, wrappedNext);
+	  }, callback);
+	}
+
+	/**
+	 * Runs all onLeave hooks in the given array of routes in order.
+	 */
+	function runLeaveHooks(routes, prevState) {
+	  for (var i = 0, len = routes.length; i < len; ++i) {
+	    if (routes[i].onLeave) routes[i].onLeave.call(routes[i], prevState);
+	  }
+	}
+
+/***/ },
+/* 183 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+	exports.loopAsync = loopAsync;
+	exports.mapAsync = mapAsync;
+	function loopAsync(turns, work, callback) {
+	  var currentTurn = 0,
+	      isDone = false;
+	  var sync = false,
+	      hasNext = false,
+	      doneArgs = void 0;
+
+	  function done() {
+	    isDone = true;
+	    if (sync) {
+	      // Iterate instead of recursing if possible.
+	      doneArgs = [].concat(Array.prototype.slice.call(arguments));
+	      return;
+	    }
+
+	    callback.apply(this, arguments);
+	  }
+
+	  function next() {
+	    if (isDone) {
+	      return;
+	    }
+
+	    hasNext = true;
+	    if (sync) {
+	      // Iterate instead of recursing if possible.
+	      return;
+	    }
+
+	    sync = true;
+
+	    while (!isDone && currentTurn < turns && hasNext) {
+	      hasNext = false;
+	      work.call(this, currentTurn++, next, done);
+	    }
+
+	    sync = false;
+
+	    if (isDone) {
+	      // This means the loop finished synchronously.
+	      callback.apply(this, doneArgs);
+	      return;
+	    }
+
+	    if (currentTurn >= turns && hasNext) {
+	      isDone = true;
+	      callback();
+	    }
+	  }
+
+	  next();
+	}
+
+	function mapAsync(array, work, callback) {
+	  var length = array.length;
+	  var values = [];
+
+	  if (length === 0) return callback(null, values);
+
+	  var isDone = false,
+	      doneCount = 0;
+
+	  function done(index, error, value) {
+	    if (isDone) return;
+
+	    if (error) {
+	      isDone = true;
+	      callback(error);
+	    } else {
+	      values[index] = value;
+
+	      isDone = ++doneCount === length;
+
+	      if (isDone) callback(null, values);
+	    }
+	  }
+
+	  array.forEach(function (item, index) {
+	    work(item, index, function (error, value) {
+	      done(index, error, value);
+	    });
+	  });
+	}
+
+/***/ },
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	exports.default = isActive;
+
+	var _PatternUtils = __webpack_require__(175);
+
+	function deepEqual(a, b) {
+	  if (a == b) return true;
+
+	  if (a == null || b == null) return false;
+
+	  if (Array.isArray(a)) {
+	    return Array.isArray(b) && a.length === b.length && a.every(function (item, index) {
+	      return deepEqual(item, b[index]);
+	    });
+	  }
+
+	  if ((typeof a === 'undefined' ? 'undefined' : _typeof(a)) === 'object') {
+	    for (var p in a) {
+	      if (!Object.prototype.hasOwnProperty.call(a, p)) {
+	        continue;
+	      }
+
+	      if (a[p] === undefined) {
+	        if (b[p] !== undefined) {
+	          return false;
+	        }
+	      } else if (!Object.prototype.hasOwnProperty.call(b, p)) {
+	        return false;
+	      } else if (!deepEqual(a[p], b[p])) {
+	        return false;
+	      }
+	    }
+
+	    return true;
+	  }
+
+	  return String(a) === String(b);
+	}
+
+	/**
+	 * Returns true if the current pathname matches the supplied one, net of
+	 * leading and trailing slash normalization. This is sufficient for an
+	 * indexOnly route match.
+	 */
+	function pathIsActive(pathname, currentPathname) {
+	  // Normalize leading slash for consistency. Leading slash on pathname has
+	  // already been normalized in isActive. See caveat there.
+	  if (currentPathname.charAt(0) !== '/') {
+	    currentPathname = '/' + currentPathname;
+	  }
+
+	  // Normalize the end of both path names too. Maybe `/foo/` shouldn't show
+	  // `/foo` as active, but in this case, we would already have failed the
+	  // match.
+	  if (pathname.charAt(pathname.length - 1) !== '/') {
+	    pathname += '/';
+	  }
+	  if (currentPathname.charAt(currentPathname.length - 1) !== '/') {
+	    currentPathname += '/';
+	  }
+
+	  return currentPathname === pathname;
+	}
+
+	/**
+	 * Returns true if the given pathname matches the active routes and params.
+	 */
+	function routeIsActive(pathname, routes, params) {
+	  var remainingPathname = pathname,
+	      paramNames = [],
+	      paramValues = [];
+
+	  // for...of would work here but it's probably slower post-transpilation.
+	  for (var i = 0, len = routes.length; i < len; ++i) {
+	    var route = routes[i];
+	    var pattern = route.path || '';
+
+	    if (pattern.charAt(0) === '/') {
+	      remainingPathname = pathname;
+	      paramNames = [];
+	      paramValues = [];
+	    }
+
+	    if (remainingPathname !== null && pattern) {
+	      var matched = (0, _PatternUtils.matchPattern)(pattern, remainingPathname);
+	      if (matched) {
+	        remainingPathname = matched.remainingPathname;
+	        paramNames = [].concat(paramNames, matched.paramNames);
+	        paramValues = [].concat(paramValues, matched.paramValues);
+	      } else {
+	        remainingPathname = null;
+	      }
+
+	      if (remainingPathname === '') {
+	        // We have an exact match on the route. Just check that all the params
+	        // match.
+	        // FIXME: This doesn't work on repeated params.
+	        return paramNames.every(function (paramName, index) {
+	          return String(paramValues[index]) === String(params[paramName]);
+	        });
+	      }
+	    }
+	  }
+
+	  return false;
+	}
+
+	/**
+	 * Returns true if all key/value pairs in the given query are
+	 * currently active.
+	 */
+	function queryIsActive(query, activeQuery) {
+	  if (activeQuery == null) return query == null;
+
+	  if (query == null) return true;
+
+	  return deepEqual(query, activeQuery);
+	}
+
+	/**
+	 * Returns true if a <Link> to the given pathname/query combination is
+	 * currently active.
+	 */
+	function isActive(_ref, indexOnly, currentLocation, routes, params) {
+	  var pathname = _ref.pathname,
+	      query = _ref.query;
+
+	  if (currentLocation == null) return false;
+
+	  // TODO: This is a bit ugly. It keeps around support for treating pathnames
+	  // without preceding slashes as absolute paths, but possibly also works
+	  // around the same quirks with basenames as in matchRoutes.
+	  if (pathname.charAt(0) !== '/') {
+	    pathname = '/' + pathname;
+	  }
+
+	  if (!pathIsActive(pathname, currentLocation.pathname)) {
+	    // The path check is necessary and sufficient for indexOnly, but otherwise
+	    // we still need to check the routes.
+	    if (indexOnly || !routeIsActive(pathname, routes, params)) {
+	      return false;
+	    }
+	  }
+
+	  return queryIsActive(query, currentLocation.query);
+	}
+	module.exports = exports['default'];
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _AsyncUtils = __webpack_require__(183);
+
+	var _PromiseUtils = __webpack_require__(186);
+
+	function getComponentsForRoute(nextState, route, callback) {
+	  if (route.component || route.components) {
+	    callback(null, route.component || route.components);
+	    return;
+	  }
+
+	  var getComponent = route.getComponent || route.getComponents;
+	  if (getComponent) {
+	    var componentReturn = getComponent.call(route, nextState, callback);
+	    if ((0, _PromiseUtils.isPromise)(componentReturn)) componentReturn.then(function (component) {
+	      return callback(null, component);
+	    }, callback);
+	  } else {
+	    callback();
+	  }
+	}
+
+	/**
+	 * Asynchronously fetches all components needed for the given router
+	 * state and calls callback(error, components) when finished.
+	 *
+	 * Note: This operation may finish synchronously if no routes have an
+	 * asynchronous getComponents method.
+	 */
+	function getComponents(nextState, callback) {
+	  (0, _AsyncUtils.mapAsync)(nextState.routes, function (route, index, callback) {
+	    getComponentsForRoute(nextState, route, callback);
+	  }, callback);
+	}
+
+	exports.default = getComponents;
+	module.exports = exports['default'];
+
+/***/ },
+/* 186 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.isPromise = isPromise;
+	function isPromise(obj) {
+	  return obj && typeof obj.then === 'function';
+	}
+
+/***/ },
+/* 187 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	exports.default = matchRoutes;
+
+	var _AsyncUtils = __webpack_require__(183);
+
+	var _PromiseUtils = __webpack_require__(186);
+
+	var _PatternUtils = __webpack_require__(175);
+
+	var _routerWarning = __webpack_require__(179);
+
+	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+
+	var _RouteUtils = __webpack_require__(173);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function getChildRoutes(route, location, paramNames, paramValues, callback) {
+	  if (route.childRoutes) {
+	    return [null, route.childRoutes];
+	  }
+	  if (!route.getChildRoutes) {
+	    return [];
+	  }
+
+	  var sync = true,
+	      result = void 0;
+
+	  var partialNextState = {
+	    location: location,
+	    params: createParams(paramNames, paramValues)
+	  };
+
+	  var childRoutesReturn = route.getChildRoutes(partialNextState, function (error, childRoutes) {
+	    childRoutes = !error && (0, _RouteUtils.createRoutes)(childRoutes);
+	    if (sync) {
+	      result = [error, childRoutes];
+	      return;
+	    }
+
+	    callback(error, childRoutes);
+	  });
+
+	  if ((0, _PromiseUtils.isPromise)(childRoutesReturn)) childRoutesReturn.then(function (childRoutes) {
+	    return callback(null, (0, _RouteUtils.createRoutes)(childRoutes));
+	  }, callback);
+
+	  sync = false;
+	  return result; // Might be undefined.
+	}
+
+	function getIndexRoute(route, location, paramNames, paramValues, callback) {
+	  if (route.indexRoute) {
+	    callback(null, route.indexRoute);
+	  } else if (route.getIndexRoute) {
+	    var partialNextState = {
+	      location: location,
+	      params: createParams(paramNames, paramValues)
+	    };
+
+	    var indexRoutesReturn = route.getIndexRoute(partialNextState, function (error, indexRoute) {
+	      callback(error, !error && (0, _RouteUtils.createRoutes)(indexRoute)[0]);
+	    });
+
+	    if ((0, _PromiseUtils.isPromise)(indexRoutesReturn)) indexRoutesReturn.then(function (indexRoute) {
+	      return callback(null, (0, _RouteUtils.createRoutes)(indexRoute)[0]);
+	    }, callback);
+	  } else if (route.childRoutes) {
+	    (function () {
+	      var pathless = route.childRoutes.filter(function (childRoute) {
+	        return !childRoute.path;
+	      });
+
+	      (0, _AsyncUtils.loopAsync)(pathless.length, function (index, next, done) {
+	        getIndexRoute(pathless[index], location, paramNames, paramValues, function (error, indexRoute) {
+	          if (error || indexRoute) {
+	            var routes = [pathless[index]].concat(Array.isArray(indexRoute) ? indexRoute : [indexRoute]);
+	            done(error, routes);
+	          } else {
+	            next();
+	          }
+	        });
+	      }, function (err, routes) {
+	        callback(null, routes);
+	      });
+	    })();
+	  } else {
+	    callback();
+	  }
+	}
+
+	function assignParams(params, paramNames, paramValues) {
+	  return paramNames.reduce(function (params, paramName, index) {
+	    var paramValue = paramValues && paramValues[index];
+
+	    if (Array.isArray(params[paramName])) {
+	      params[paramName].push(paramValue);
+	    } else if (paramName in params) {
+	      params[paramName] = [params[paramName], paramValue];
+	    } else {
+	      params[paramName] = paramValue;
+	    }
+
+	    return params;
+	  }, params);
+	}
+
+	function createParams(paramNames, paramValues) {
+	  return assignParams({}, paramNames, paramValues);
+	}
+
+	function matchRouteDeep(route, location, remainingPathname, paramNames, paramValues, callback) {
+	  var pattern = route.path || '';
+
+	  if (pattern.charAt(0) === '/') {
+	    remainingPathname = location.pathname;
+	    paramNames = [];
+	    paramValues = [];
+	  }
+
+	  // Only try to match the path if the route actually has a pattern, and if
+	  // we're not just searching for potential nested absolute paths.
+	  if (remainingPathname !== null && pattern) {
+	    try {
+	      var matched = (0, _PatternUtils.matchPattern)(pattern, remainingPathname);
+	      if (matched) {
+	        remainingPathname = matched.remainingPathname;
+	        paramNames = [].concat(paramNames, matched.paramNames);
+	        paramValues = [].concat(paramValues, matched.paramValues);
+	      } else {
+	        remainingPathname = null;
+	      }
+	    } catch (error) {
+	      callback(error);
+	    }
+
+	    // By assumption, pattern is non-empty here, which is the prerequisite for
+	    // actually terminating a match.
+	    if (remainingPathname === '') {
+	      var _ret2 = function () {
+	        var match = {
+	          routes: [route],
+	          params: createParams(paramNames, paramValues)
+	        };
+
+	        getIndexRoute(route, location, paramNames, paramValues, function (error, indexRoute) {
+	          if (error) {
+	            callback(error);
+	          } else {
+	            if (Array.isArray(indexRoute)) {
+	              var _match$routes;
+
+	              process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(indexRoute.every(function (route) {
+	                return !route.path;
+	              }), 'Index routes should not have paths') : void 0;
+	              (_match$routes = match.routes).push.apply(_match$routes, indexRoute);
+	            } else if (indexRoute) {
+	              process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(!indexRoute.path, 'Index routes should not have paths') : void 0;
+	              match.routes.push(indexRoute);
+	            }
+
+	            callback(null, match);
+	          }
+	        });
+
+	        return {
+	          v: void 0
+	        };
+	      }();
+
+	      if ((typeof _ret2 === 'undefined' ? 'undefined' : _typeof(_ret2)) === "object") return _ret2.v;
+	    }
+	  }
+
+	  if (remainingPathname != null || route.childRoutes) {
+	    // Either a) this route matched at least some of the path or b)
+	    // we don't have to load this route's children asynchronously. In
+	    // either case continue checking for matches in the subtree.
+	    var onChildRoutes = function onChildRoutes(error, childRoutes) {
+	      if (error) {
+	        callback(error);
+	      } else if (childRoutes) {
+	        // Check the child routes to see if any of them match.
+	        matchRoutes(childRoutes, location, function (error, match) {
+	          if (error) {
+	            callback(error);
+	          } else if (match) {
+	            // A child route matched! Augment the match and pass it up the stack.
+	            match.routes.unshift(route);
+	            callback(null, match);
+	          } else {
+	            callback();
+	          }
+	        }, remainingPathname, paramNames, paramValues);
+	      } else {
+	        callback();
+	      }
+	    };
+
+	    var result = getChildRoutes(route, location, paramNames, paramValues, onChildRoutes);
+	    if (result) {
+	      onChildRoutes.apply(undefined, result);
+	    }
+	  } else {
+	    callback();
+	  }
+	}
+
+	/**
+	 * Asynchronously matches the given location to a set of routes and calls
+	 * callback(error, state) when finished. The state object will have the
+	 * following properties:
+	 *
+	 * - routes       An array of routes that matched, in hierarchical order
+	 * - params       An object of URL parameters
+	 *
+	 * Note: This operation may finish synchronously if no routes have an
+	 * asynchronous getChildRoutes method.
+	 */
+	function matchRoutes(routes, location, callback, remainingPathname) {
+	  var paramNames = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : [];
+	  var paramValues = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : [];
+
+	  if (remainingPathname === undefined) {
+	    // TODO: This is a little bit ugly, but it works around a quirk in history
+	    // that strips the leading slash from pathnames when using basenames with
+	    // trailing slashes.
+	    if (location.pathname.charAt(0) !== '/') {
+	      location = _extends({}, location, {
+	        pathname: '/' + location.pathname
+	      });
+	    }
+	    remainingPathname = location.pathname;
+	  }
+
+	  (0, _AsyncUtils.loopAsync)(routes.length, function (index, next, done) {
+	    matchRouteDeep(routes[index], location, remainingPathname, paramNames, paramValues, function (error, match) {
+	      if (error || match) {
+	        done(error, match);
+	      } else {
+	        next();
+	      }
+	    });
+	  }, callback);
+	}
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.routes = exports.route = exports.components = exports.component = exports.history = undefined;
+	exports.falsy = falsy;
+
+	var _react = __webpack_require__(1);
+
+	var func = _react.PropTypes.func,
+	    object = _react.PropTypes.object,
+	    arrayOf = _react.PropTypes.arrayOf,
+	    oneOfType = _react.PropTypes.oneOfType,
+	    element = _react.PropTypes.element,
+	    shape = _react.PropTypes.shape,
+	    string = _react.PropTypes.string;
+	function falsy(props, propName, componentName) {
+	  if (props[propName]) return new Error('<' + componentName + '> should not have a "' + propName + '" prop');
+	}
+
+	var history = exports.history = shape({
+	  listen: func.isRequired,
+	  push: func.isRequired,
+	  replace: func.isRequired,
+	  go: func.isRequired,
+	  goBack: func.isRequired,
+	  goForward: func.isRequired
+	});
+
+	var component = exports.component = oneOfType([func, string]);
+	var components = exports.components = oneOfType([component, object]);
+	var route = exports.route = oneOfType([object, element]);
+	var routes = exports.routes = oneOfType([route, arrayOf(route)]);
+
+/***/ },
+/* 189 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _getRouteParams = __webpack_require__(190);
+
+	var _getRouteParams2 = _interopRequireDefault(_getRouteParams);
+
+	var _ContextUtils = __webpack_require__(191);
+
+	var _RouteUtils = __webpack_require__(173);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var _React$PropTypes = _react2.default.PropTypes,
+	    array = _React$PropTypes.array,
+	    func = _React$PropTypes.func,
+	    object = _React$PropTypes.object;
+
+	/**
+	 * A <RouterContext> renders the component tree for a given router state
+	 * and sets the history object and the current location in context.
+	 */
+
+	var RouterContext = _react2.default.createClass({
+	  displayName: 'RouterContext',
+
+
+	  mixins: [(0, _ContextUtils.ContextProvider)('router')],
+
+	  propTypes: {
+	    router: object.isRequired,
+	    location: object.isRequired,
+	    routes: array.isRequired,
+	    params: object.isRequired,
+	    components: array.isRequired,
+	    createElement: func.isRequired
+	  },
+
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      createElement: _react2.default.createElement
+	    };
+	  },
+
+
+	  childContextTypes: {
+	    router: object.isRequired
+	  },
+
+	  getChildContext: function getChildContext() {
+	    return {
+	      router: this.props.router
+	    };
+	  },
+	  createElement: function createElement(component, props) {
+	    return component == null ? null : this.props.createElement(component, props);
+	  },
+	  render: function render() {
+	    var _this = this;
+
+	    var _props = this.props,
+	        location = _props.location,
+	        routes = _props.routes,
+	        params = _props.params,
+	        components = _props.components,
+	        router = _props.router;
+
+	    var element = null;
+
+	    if (components) {
+	      element = components.reduceRight(function (element, components, index) {
+	        if (components == null) return element; // Don't create new children; use the grandchildren.
+
+	        var route = routes[index];
+	        var routeParams = (0, _getRouteParams2.default)(route, params);
+	        var props = {
+	          location: location,
+	          params: params,
+	          route: route,
+	          router: router,
+	          routeParams: routeParams,
+	          routes: routes
+	        };
+
+	        if ((0, _RouteUtils.isReactChildren)(element)) {
+	          props.children = element;
+	        } else if (element) {
+	          for (var prop in element) {
+	            if (Object.prototype.hasOwnProperty.call(element, prop)) props[prop] = element[prop];
+	          }
+	        }
+
+	        if ((typeof components === 'undefined' ? 'undefined' : _typeof(components)) === 'object') {
+	          var elements = {};
+
+	          for (var key in components) {
+	            if (Object.prototype.hasOwnProperty.call(components, key)) {
+	              // Pass through the key as a prop to createElement to allow
+	              // custom createElement functions to know which named component
+	              // they're rendering, for e.g. matching up to fetched data.
+	              elements[key] = _this.createElement(components[key], _extends({
+	                key: key }, props));
+	            }
+	          }
+
+	          return elements;
+	        }
+
+	        return _this.createElement(components, props);
+	      }, element);
+	    }
+
+	    !(element === null || element === false || _react2.default.isValidElement(element)) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'The root route must render a single element') : (0, _invariant2.default)(false) : void 0;
+
+	    return element;
+	  }
+	});
+
+	exports.default = RouterContext;
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _PatternUtils = __webpack_require__(175);
+
+	/**
+	 * Extracts an object of params the given route cares about from
+	 * the given params object.
+	 */
+	function getRouteParams(route, params) {
+	  var routeParams = {};
+
+	  if (!route.path) return routeParams;
+
+	  (0, _PatternUtils.getParamNames)(route.path).forEach(function (p) {
+	    if (Object.prototype.hasOwnProperty.call(params, p)) {
+	      routeParams[p] = params[p];
+	    }
+	  });
+
+	  return routeParams;
+	}
+
+	exports.default = getRouteParams;
+	module.exports = exports['default'];
+
+/***/ },
+/* 191 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.ContextProvider = ContextProvider;
+	exports.ContextSubscriber = ContextSubscriber;
+
+	var _react = __webpack_require__(1);
+
+	// Works around issues with context updates failing to propagate.
+	// Caveat: the context value is expected to never change its identity.
+	// https://github.com/facebook/react/issues/2517
+	// https://github.com/reactjs/react-router/issues/470
+
+	var contextProviderShape = _react.PropTypes.shape({
+	  subscribe: _react.PropTypes.func.isRequired,
+	  eventIndex: _react.PropTypes.number.isRequired
+	});
+
+	function makeContextName(name) {
+	  return '@@contextSubscriber/' + name;
+	}
+
+	function ContextProvider(name) {
+	  var _childContextTypes, _ref2;
+
+	  var contextName = makeContextName(name);
+	  var listenersKey = contextName + '/listeners';
+	  var eventIndexKey = contextName + '/eventIndex';
+	  var subscribeKey = contextName + '/subscribe';
+
+	  return _ref2 = {
+	    childContextTypes: (_childContextTypes = {}, _childContextTypes[contextName] = contextProviderShape.isRequired, _childContextTypes),
+
+	    getChildContext: function getChildContext() {
+	      var _ref;
+
+	      return _ref = {}, _ref[contextName] = {
+	        eventIndex: this[eventIndexKey],
+	        subscribe: this[subscribeKey]
+	      }, _ref;
+	    },
+	    componentWillMount: function componentWillMount() {
+	      this[listenersKey] = [];
+	      this[eventIndexKey] = 0;
+	    },
+	    componentWillReceiveProps: function componentWillReceiveProps() {
+	      this[eventIndexKey]++;
+	    },
+	    componentDidUpdate: function componentDidUpdate() {
+	      var _this = this;
+
+	      this[listenersKey].forEach(function (listener) {
+	        return listener(_this[eventIndexKey]);
+	      });
+	    }
+	  }, _ref2[subscribeKey] = function (listener) {
+	    var _this2 = this;
+
+	    // No need to immediately call listener here.
+	    this[listenersKey].push(listener);
+
+	    return function () {
+	      _this2[listenersKey] = _this2[listenersKey].filter(function (item) {
+	        return item !== listener;
+	      });
+	    };
+	  }, _ref2;
+	}
+
+	function ContextSubscriber(name) {
+	  var _contextTypes, _ref4;
+
+	  var contextName = makeContextName(name);
+	  var lastRenderedEventIndexKey = contextName + '/lastRenderedEventIndex';
+	  var handleContextUpdateKey = contextName + '/handleContextUpdate';
+	  var unsubscribeKey = contextName + '/unsubscribe';
+
+	  return _ref4 = {
+	    contextTypes: (_contextTypes = {}, _contextTypes[contextName] = contextProviderShape, _contextTypes),
+
+	    getInitialState: function getInitialState() {
+	      var _ref3;
+
+	      if (!this.context[contextName]) {
+	        return {};
+	      }
+
+	      return _ref3 = {}, _ref3[lastRenderedEventIndexKey] = this.context[contextName].eventIndex, _ref3;
+	    },
+	    componentDidMount: function componentDidMount() {
+	      if (!this.context[contextName]) {
+	        return;
+	      }
+
+	      this[unsubscribeKey] = this.context[contextName].subscribe(this[handleContextUpdateKey]);
+	    },
+	    componentWillReceiveProps: function componentWillReceiveProps() {
+	      var _setState;
+
+	      if (!this.context[contextName]) {
+	        return;
+	      }
+
+	      this.setState((_setState = {}, _setState[lastRenderedEventIndexKey] = this.context[contextName].eventIndex, _setState));
+	    },
+	    componentWillUnmount: function componentWillUnmount() {
+	      if (!this[unsubscribeKey]) {
+	        return;
+	      }
+
+	      this[unsubscribeKey]();
+	      this[unsubscribeKey] = null;
+	    }
+	  }, _ref4[handleContextUpdateKey] = function (eventIndex) {
+	    if (eventIndex !== this.state[lastRenderedEventIndexKey]) {
+	      var _setState2;
+
+	      this.setState((_setState2 = {}, _setState2[lastRenderedEventIndexKey] = eventIndex, _setState2));
+	    }
+	  }, _ref4;
+	}
+
+/***/ },
+/* 192 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.createRouterObject = createRouterObject;
+	exports.assignRouterState = assignRouterState;
+	function createRouterObject(history, transitionManager, state) {
+	  var router = _extends({}, history, {
+	    setRouteLeaveHook: transitionManager.listenBeforeLeavingRoute,
+	    isActive: transitionManager.isActive
+	  });
+
+	  return assignRouterState(router, state);
+	}
+
+	function assignRouterState(router, _ref) {
+	  var location = _ref.location,
+	      params = _ref.params,
+	      routes = _ref.routes;
+
+	  router.location = location;
+	  router.params = params;
+	  router.routes = routes;
+
+	  return router;
+	}
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _PropTypes = __webpack_require__(174);
+
+	var _ContextUtils = __webpack_require__(191);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var _React$PropTypes = _react2.default.PropTypes,
+	    bool = _React$PropTypes.bool,
+	    object = _React$PropTypes.object,
+	    string = _React$PropTypes.string,
+	    func = _React$PropTypes.func,
+	    oneOfType = _React$PropTypes.oneOfType;
+
+
+	function isLeftClickEvent(event) {
+	  return event.button === 0;
+	}
+
+	function isModifiedEvent(event) {
+	  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+	}
+
+	// TODO: De-duplicate against hasAnyProperties in createTransitionManager.
+	function isEmptyObject(object) {
+	  for (var p in object) {
+	    if (Object.prototype.hasOwnProperty.call(object, p)) return false;
+	  }return true;
+	}
+
+	function resolveToLocation(to, router) {
+	  return typeof to === 'function' ? to(router.location) : to;
+	}
+
+	/**
+	 * A <Link> is used to create an <a> element that links to a route.
+	 * When that route is active, the link gets the value of its
+	 * activeClassName prop.
+	 *
+	 * For example, assuming you have the following route:
+	 *
+	 *   <Route path="/posts/:postID" component={Post} />
+	 *
+	 * You could use the following component to link to that route:
+	 *
+	 *   <Link to={`/posts/${post.id}`} />
+	 *
+	 * Links may pass along location state and/or query string parameters
+	 * in the state/query props, respectively.
+	 *
+	 *   <Link ... query={{ show: true }} state={{ the: 'state' }} />
+	 */
+	var Link = _react2.default.createClass({
+	  displayName: 'Link',
+
+
+	  mixins: [(0, _ContextUtils.ContextSubscriber)('router')],
+
+	  contextTypes: {
+	    router: _PropTypes.routerShape
+	  },
+
+	  propTypes: {
+	    to: oneOfType([string, object, func]),
+	    query: object,
+	    hash: string,
+	    state: object,
+	    activeStyle: object,
+	    activeClassName: string,
+	    onlyActiveOnIndex: bool.isRequired,
+	    onClick: func,
+	    target: string
+	  },
+
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      onlyActiveOnIndex: false,
+	      style: {}
+	    };
+	  },
+	  handleClick: function handleClick(event) {
+	    if (this.props.onClick) this.props.onClick(event);
+
+	    if (event.defaultPrevented) return;
+
+	    var router = this.context.router;
+
+	    !router ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, '<Link>s rendered outside of a router context cannot navigate.') : (0, _invariant2.default)(false) : void 0;
+
+	    if (isModifiedEvent(event) || !isLeftClickEvent(event)) return;
+
+	    // If target prop is set (e.g. to "_blank"), let browser handle link.
+	    /* istanbul ignore if: untestable with Karma */
+	    if (this.props.target) return;
+
+	    event.preventDefault();
+
+	    router.push(resolveToLocation(this.props.to, router));
+	  },
+	  render: function render() {
+	    var _props = this.props,
+	        to = _props.to,
+	        activeClassName = _props.activeClassName,
+	        activeStyle = _props.activeStyle,
+	        onlyActiveOnIndex = _props.onlyActiveOnIndex,
+	        props = _objectWithoutProperties(_props, ['to', 'activeClassName', 'activeStyle', 'onlyActiveOnIndex']);
+
+	    // Ignore if rendered outside the context of router to simplify unit testing.
+
+
+	    var router = this.context.router;
+
+
+	    if (router) {
+	      // If user does not specify a `to` prop, return an empty anchor tag.
+	      if (to == null) {
+	        return _react2.default.createElement('a', props);
+	      }
+
+	      var toLocation = resolveToLocation(to, router);
+	      props.href = router.createHref(toLocation);
+
+	      if (activeClassName || activeStyle != null && !isEmptyObject(activeStyle)) {
+	        if (router.isActive(toLocation, onlyActiveOnIndex)) {
+	          if (activeClassName) {
+	            if (props.className) {
+	              props.className += ' ' + activeClassName;
+	            } else {
+	              props.className = activeClassName;
+	            }
+	          }
+
+	          if (activeStyle) props.style = _extends({}, props.style, activeStyle);
+	        }
+	      }
+	    }
+
+	    return _react2.default.createElement('a', _extends({}, props, { onClick: this.handleClick }));
+	  }
+	});
+
+	exports.default = Link;
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Link = __webpack_require__(193);
+
+	var _Link2 = _interopRequireDefault(_Link);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * An <IndexLink> is used to link to an <IndexRoute>.
+	 */
+	var IndexLink = _react2.default.createClass({
+	  displayName: 'IndexLink',
+	  render: function render() {
+	    return _react2.default.createElement(_Link2.default, _extends({}, this.props, { onlyActiveOnIndex: true }));
+	  }
+	});
+
+	exports.default = IndexLink;
+	module.exports = exports['default'];
+
+/***/ },
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = withRouter;
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _hoistNonReactStatics = __webpack_require__(196);
+
+	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
+
+	var _ContextUtils = __webpack_require__(191);
+
+	var _PropTypes = __webpack_require__(174);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function getDisplayName(WrappedComponent) {
+	  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+	}
+
+	function withRouter(WrappedComponent, options) {
+	  var withRef = options && options.withRef;
+
+	  var WithRouter = _react2.default.createClass({
+	    displayName: 'WithRouter',
+
+	    mixins: [(0, _ContextUtils.ContextSubscriber)('router')],
+
+	    contextTypes: { router: _PropTypes.routerShape },
+	    propTypes: { router: _PropTypes.routerShape },
+
+	    getWrappedInstance: function getWrappedInstance() {
+	      !withRef ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'To access the wrapped instance, you need to specify ' + '`{ withRef: true }` as the second argument of the withRouter() call.') : (0, _invariant2.default)(false) : void 0;
+
+	      return this.wrappedInstance;
+	    },
+	    render: function render() {
+	      var _this = this;
+
+	      var router = this.props.router || this.context.router;
+	      var params = router.params,
+	          location = router.location,
+	          routes = router.routes;
+
+	      var props = _extends({}, this.props, { router: router, params: params, location: location, routes: routes });
+
+	      if (withRef) {
+	        props.ref = function (c) {
+	          _this.wrappedInstance = c;
+	        };
+	      }
+
+	      return _react2.default.createElement(WrappedComponent, props);
+	    }
+	  });
+
+	  WithRouter.displayName = 'withRouter(' + getDisplayName(WrappedComponent) + ')';
+	  WithRouter.WrappedComponent = WrappedComponent;
+
+	  return (0, _hoistNonReactStatics2.default)(WithRouter, WrappedComponent);
+	}
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 196 */
+/***/ function(module, exports) {
+
+	/**
+	 * Copyright 2015, Yahoo! Inc.
+	 * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
+	 */
+	'use strict';
+
+	var REACT_STATICS = {
+	    childContextTypes: true,
+	    contextTypes: true,
+	    defaultProps: true,
+	    displayName: true,
+	    getDefaultProps: true,
+	    mixins: true,
+	    propTypes: true,
+	    type: true
+	};
+
+	var KNOWN_STATICS = {
+	    name: true,
+	    length: true,
+	    prototype: true,
+	    caller: true,
+	    arguments: true,
+	    arity: true
+	};
+
+	var isGetOwnPropertySymbolsAvailable = typeof Object.getOwnPropertySymbols === 'function';
+
+	module.exports = function hoistNonReactStatics(targetComponent, sourceComponent, customStatics) {
+	    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
+	        var keys = Object.getOwnPropertyNames(sourceComponent);
+
+	        /* istanbul ignore else */
+	        if (isGetOwnPropertySymbolsAvailable) {
+	            keys = keys.concat(Object.getOwnPropertySymbols(sourceComponent));
+	        }
+
+	        for (var i = 0; i < keys.length; ++i) {
+	            if (!REACT_STATICS[keys[i]] && !KNOWN_STATICS[keys[i]] && (!customStatics || !customStatics[keys[i]])) {
+	                try {
+	                    targetComponent[keys[i]] = sourceComponent[keys[i]];
+	                } catch (error) {
+
+	                }
+	            }
+	        }
+	    }
+
+	    return targetComponent;
+	};
+
+
+/***/ },
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _routerWarning = __webpack_require__(179);
+
+	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _Redirect = __webpack_require__(198);
+
+	var _Redirect2 = _interopRequireDefault(_Redirect);
+
+	var _InternalPropTypes = __webpack_require__(188);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var _React$PropTypes = _react2.default.PropTypes,
+	    string = _React$PropTypes.string,
+	    object = _React$PropTypes.object;
+
+	/**
+	 * An <IndexRedirect> is used to redirect from an indexRoute.
+	 */
+	/* eslint-disable react/require-render-return */
+
+	var IndexRedirect = _react2.default.createClass({
+	  displayName: 'IndexRedirect',
+
+
+	  statics: {
+	    createRouteFromReactElement: function createRouteFromReactElement(element, parentRoute) {
+	      /* istanbul ignore else: sanity check */
+	      if (parentRoute) {
+	        parentRoute.indexRoute = _Redirect2.default.createRouteFromReactElement(element);
+	      } else {
+	        process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(false, 'An <IndexRedirect> does not make sense at the root of your route config') : void 0;
+	      }
+	    }
+	  },
+
+	  propTypes: {
+	    to: string.isRequired,
+	    query: object,
+	    state: object,
+	    onEnter: _InternalPropTypes.falsy,
+	    children: _InternalPropTypes.falsy
+	  },
+
+	  /* istanbul ignore next: sanity check */
+	  render: function render() {
+	     true ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, '<IndexRedirect> elements are for router configuration only and should not be rendered') : (0, _invariant2.default)(false) : void 0;
+	  }
+	});
+
+	exports.default = IndexRedirect;
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 198 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _RouteUtils = __webpack_require__(173);
+
+	var _PatternUtils = __webpack_require__(175);
+
+	var _InternalPropTypes = __webpack_require__(188);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var _React$PropTypes = _react2.default.PropTypes,
+	    string = _React$PropTypes.string,
+	    object = _React$PropTypes.object;
+
+	/**
+	 * A <Redirect> is used to declare another URL path a client should
+	 * be sent to when they request a given URL.
+	 *
+	 * Redirects are placed alongside routes in the route configuration
+	 * and are traversed in the same manner.
+	 */
+	/* eslint-disable react/require-render-return */
+
+	var Redirect = _react2.default.createClass({
+	  displayName: 'Redirect',
+
+
+	  statics: {
+	    createRouteFromReactElement: function createRouteFromReactElement(element) {
+	      var route = (0, _RouteUtils.createRouteFromReactElement)(element);
+
+	      if (route.from) route.path = route.from;
+
+	      route.onEnter = function (nextState, replace) {
+	        var location = nextState.location,
+	            params = nextState.params;
+
+
+	        var pathname = void 0;
+	        if (route.to.charAt(0) === '/') {
+	          pathname = (0, _PatternUtils.formatPattern)(route.to, params);
+	        } else if (!route.to) {
+	          pathname = location.pathname;
+	        } else {
+	          var routeIndex = nextState.routes.indexOf(route);
+	          var parentPattern = Redirect.getRoutePattern(nextState.routes, routeIndex - 1);
+	          var pattern = parentPattern.replace(/\/*$/, '/') + route.to;
+	          pathname = (0, _PatternUtils.formatPattern)(pattern, params);
+	        }
+
+	        replace({
+	          pathname: pathname,
+	          query: route.query || location.query,
+	          state: route.state || location.state
+	        });
+	      };
+
+	      return route;
+	    },
+	    getRoutePattern: function getRoutePattern(routes, routeIndex) {
+	      var parentPattern = '';
+
+	      for (var i = routeIndex; i >= 0; i--) {
+	        var route = routes[i];
+	        var pattern = route.path || '';
+
+	        parentPattern = pattern.replace(/\/*$/, '/') + parentPattern;
+
+	        if (pattern.indexOf('/') === 0) break;
+	      }
+
+	      return '/' + parentPattern;
+	    }
+	  },
+
+	  propTypes: {
+	    path: string,
+	    from: string, // Alias for path
+	    to: string.isRequired,
+	    query: object,
+	    state: object,
+	    onEnter: _InternalPropTypes.falsy,
+	    children: _InternalPropTypes.falsy
+	  },
+
+	  /* istanbul ignore next: sanity check */
+	  render: function render() {
+	     true ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, '<Redirect> elements are for router configuration only and should not be rendered') : (0, _invariant2.default)(false) : void 0;
+	  }
+	});
+
+	exports.default = Redirect;
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 199 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _routerWarning = __webpack_require__(179);
+
+	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _RouteUtils = __webpack_require__(173);
+
+	var _InternalPropTypes = __webpack_require__(188);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var func = _react2.default.PropTypes.func;
+
+	/**
+	 * An <IndexRoute> is used to specify its parent's <Route indexRoute> in
+	 * a JSX route config.
+	 */
+	/* eslint-disable react/require-render-return */
+
+	var IndexRoute = _react2.default.createClass({
+	  displayName: 'IndexRoute',
+
+
+	  statics: {
+	    createRouteFromReactElement: function createRouteFromReactElement(element, parentRoute) {
+	      /* istanbul ignore else: sanity check */
+	      if (parentRoute) {
+	        parentRoute.indexRoute = (0, _RouteUtils.createRouteFromReactElement)(element);
+	      } else {
+	        process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(false, 'An <IndexRoute> does not make sense at the root of your route config') : void 0;
+	      }
+	    }
+	  },
+
+	  propTypes: {
+	    path: _InternalPropTypes.falsy,
+	    component: _InternalPropTypes.component,
+	    components: _InternalPropTypes.components,
+	    getComponent: func,
+	    getComponents: func
+	  },
+
+	  /* istanbul ignore next: sanity check */
+	  render: function render() {
+	     true ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, '<IndexRoute> elements are for router configuration only and should not be rendered') : (0, _invariant2.default)(false) : void 0;
+	  }
+	});
+
+	exports.default = IndexRoute;
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _RouteUtils = __webpack_require__(173);
+
+	var _InternalPropTypes = __webpack_require__(188);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var _React$PropTypes = _react2.default.PropTypes,
+	    string = _React$PropTypes.string,
+	    func = _React$PropTypes.func;
+
+	/**
+	 * A <Route> is used to declare which components are rendered to the
+	 * page when the URL matches a given pattern.
+	 *
+	 * Routes are arranged in a nested tree structure. When a new URL is
+	 * requested, the tree is searched depth-first to find a route whose
+	 * path matches the URL.  When one is found, all routes in the tree
+	 * that lead to it are considered "active" and their components are
+	 * rendered into the DOM, nested in the same order as in the tree.
+	 */
+	/* eslint-disable react/require-render-return */
+
+	var Route = _react2.default.createClass({
+	  displayName: 'Route',
+
+
+	  statics: {
+	    createRouteFromReactElement: _RouteUtils.createRouteFromReactElement
+	  },
+
+	  propTypes: {
+	    path: string,
+	    component: _InternalPropTypes.component,
+	    components: _InternalPropTypes.components,
+	    getComponent: func,
+	    getComponents: func
+	  },
+
+	  /* istanbul ignore next: sanity check */
+	  render: function render() {
+	     true ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, '<Route> elements are for router configuration only and should not be rendered') : (0, _invariant2.default)(false) : void 0;
+	  }
+	});
+
+	exports.default = Route;
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 201 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _Actions = __webpack_require__(202);
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _createMemoryHistory = __webpack_require__(203);
+
+	var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
+
+	var _createTransitionManager = __webpack_require__(178);
+
+	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
+
+	var _RouteUtils = __webpack_require__(173);
+
+	var _RouterUtils = __webpack_require__(192);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	/**
+	 * A high-level API to be used for server-side rendering.
+	 *
+	 * This function matches a location to a set of routes and calls
+	 * callback(error, redirectLocation, renderProps) when finished.
+	 *
+	 * Note: You probably don't want to use this in a browser unless you're using
+	 * server-side rendering with async routes.
+	 */
+	function match(_ref, callback) {
+	  var history = _ref.history,
+	      routes = _ref.routes,
+	      location = _ref.location,
+	      options = _objectWithoutProperties(_ref, ['history', 'routes', 'location']);
+
+	  !(history || location) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'match needs a history or a location') : (0, _invariant2.default)(false) : void 0;
+
+	  history = history ? history : (0, _createMemoryHistory2.default)(options);
+	  var transitionManager = (0, _createTransitionManager2.default)(history, (0, _RouteUtils.createRoutes)(routes));
+
+	  if (location) {
+	    // Allow match({ location: '/the/path', ... })
+	    location = history.createLocation(location);
+	  } else {
+	    location = history.getCurrentLocation();
+	  }
+
+	  transitionManager.match(location, function (error, redirectLocation, nextState) {
+	    var renderProps = void 0;
+
+	    if (nextState) {
+	      var router = (0, _RouterUtils.createRouterObject)(history, transitionManager, nextState);
+	      renderProps = _extends({}, nextState, {
+	        router: router,
+	        matchContext: { transitionManager: transitionManager, router: router }
+	      });
+	    }
+
+	    callback(error, redirectLocation && history.createLocation(redirectLocation, _Actions.REPLACE), renderProps);
+	  });
+	}
+
+	exports.default = match;
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 202 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	/**
+	 * Indicates that navigation was caused by a call to history.push.
+	 */
+	var PUSH = exports.PUSH = 'PUSH';
+
+	/**
+	 * Indicates that navigation was caused by a call to history.replace.
+	 */
+	var REPLACE = exports.REPLACE = 'REPLACE';
+
+	/**
+	 * Indicates that navigation was caused by some other action such
+	 * as using a browser's back/forward buttons and/or manually manipulating
+	 * the URL in a browser's location bar. This is the default.
+	 *
+	 * See https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
+	 * for more information.
+	 */
+	var POP = exports.POP = 'POP';
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.default = createMemoryHistory;
+
+	var _useQueries = __webpack_require__(204);
+
+	var _useQueries2 = _interopRequireDefault(_useQueries);
+
+	var _useBasename = __webpack_require__(210);
+
+	var _useBasename2 = _interopRequireDefault(_useBasename);
+
+	var _createMemoryHistory = __webpack_require__(211);
+
+	var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function createMemoryHistory(options) {
+	  // signatures and type checking differ between `useQueries` and
+	  // `createMemoryHistory`, have to create `memoryHistory` first because
+	  // `useQueries` doesn't understand the signature
+	  var memoryHistory = (0, _createMemoryHistory2.default)(options);
+	  var createHistory = function createHistory() {
+	    return memoryHistory;
+	  };
+	  var history = (0, _useQueries2.default)((0, _useBasename2.default)(createHistory))(options);
+	  return history;
+	}
+	module.exports = exports['default'];
+
+/***/ },
+/* 204 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _queryString = __webpack_require__(205);
+
+	var _runTransitionHook = __webpack_require__(207);
+
+	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
+
+	var _LocationUtils = __webpack_require__(208);
+
+	var _PathUtils = __webpack_require__(209);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var defaultStringifyQuery = function defaultStringifyQuery(query) {
+	  return (0, _queryString.stringify)(query).replace(/%20/g, '+');
+	};
+
+	var defaultParseQueryString = _queryString.parse;
+
+	/**
+	 * Returns a new createHistory function that may be used to create
+	 * history objects that know how to handle URL queries.
+	 */
+	var useQueries = function useQueries(createHistory) {
+	  return function () {
+	    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	    var history = createHistory(options);
+	    var stringifyQuery = options.stringifyQuery;
+	    var parseQueryString = options.parseQueryString;
+
+
+	    if (typeof stringifyQuery !== 'function') stringifyQuery = defaultStringifyQuery;
+
+	    if (typeof parseQueryString !== 'function') parseQueryString = defaultParseQueryString;
+
+	    var decodeQuery = function decodeQuery(location) {
+	      if (!location) return location;
+
+	      if (location.query == null) location.query = parseQueryString(location.search.substring(1));
+
+	      return location;
+	    };
+
+	    var encodeQuery = function encodeQuery(location, query) {
+	      if (query == null) return location;
+
+	      var object = typeof location === 'string' ? (0, _PathUtils.parsePath)(location) : location;
+	      var queryString = stringifyQuery(query);
+	      var search = queryString ? '?' + queryString : '';
+
+	      return _extends({}, object, {
+	        search: search
+	      });
+	    };
+
+	    // Override all read methods with query-aware versions.
+	    var getCurrentLocation = function getCurrentLocation() {
+	      return decodeQuery(history.getCurrentLocation());
+	    };
+
+	    var listenBefore = function listenBefore(hook) {
+	      return history.listenBefore(function (location, callback) {
+	        return (0, _runTransitionHook2.default)(hook, decodeQuery(location), callback);
+	      });
+	    };
+
+	    var listen = function listen(listener) {
+	      return history.listen(function (location) {
+	        return listener(decodeQuery(location));
+	      });
+	    };
+
+	    // Override all write methods with query-aware versions.
+	    var push = function push(location) {
+	      return history.push(encodeQuery(location, location.query));
+	    };
+
+	    var replace = function replace(location) {
+	      return history.replace(encodeQuery(location, location.query));
+	    };
+
+	    var createPath = function createPath(location) {
+	      return history.createPath(encodeQuery(location, location.query));
+	    };
+
+	    var createHref = function createHref(location) {
+	      return history.createHref(encodeQuery(location, location.query));
+	    };
+
+	    var createLocation = function createLocation(location) {
+	      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	        args[_key - 1] = arguments[_key];
+	      }
+
+	      var newLocation = history.createLocation.apply(history, [encodeQuery(location, location.query)].concat(args));
+
+	      if (location.query) newLocation.query = (0, _LocationUtils.createQuery)(location.query);
+
+	      return decodeQuery(newLocation);
+	    };
+
+	    return _extends({}, history, {
+	      getCurrentLocation: getCurrentLocation,
+	      listenBefore: listenBefore,
+	      listen: listen,
+	      push: push,
+	      replace: replace,
+	      createPath: createPath,
+	      createHref: createHref,
+	      createLocation: createLocation
+	    });
+	  };
+	};
+
+	exports.default = useQueries;
+
+/***/ },
+/* 205 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var strictUriEncode = __webpack_require__(206);
+	var objectAssign = __webpack_require__(4);
+
+	function encode(value, opts) {
+		if (opts.encode) {
+			return opts.strict ? strictUriEncode(value) : encodeURIComponent(value);
+		}
+
+		return value;
+	}
+
+	exports.extract = function (str) {
+		return str.split('?')[1] || '';
+	};
+
+	exports.parse = function (str) {
+		// Create an object with no prototype
+		// https://github.com/sindresorhus/query-string/issues/47
+		var ret = Object.create(null);
+
+		if (typeof str !== 'string') {
+			return ret;
+		}
+
+		str = str.trim().replace(/^(\?|#|&)/, '');
+
+		if (!str) {
+			return ret;
+		}
+
+		str.split('&').forEach(function (param) {
+			var parts = param.replace(/\+/g, ' ').split('=');
+			// Firefox (pre 40) decodes `%3D` to `=`
+			// https://github.com/sindresorhus/query-string/pull/37
+			var key = parts.shift();
+			var val = parts.length > 0 ? parts.join('=') : undefined;
+
+			key = decodeURIComponent(key);
+
+			// missing `=` should be `null`:
+			// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+			val = val === undefined ? null : decodeURIComponent(val);
+
+			if (ret[key] === undefined) {
+				ret[key] = val;
+			} else if (Array.isArray(ret[key])) {
+				ret[key].push(val);
+			} else {
+				ret[key] = [ret[key], val];
+			}
+		});
+
+		return ret;
+	};
+
+	exports.stringify = function (obj, opts) {
+		var defaults = {
+			encode: true,
+			strict: true
+		};
+
+		opts = objectAssign(defaults, opts);
+
+		return obj ? Object.keys(obj).sort().map(function (key) {
+			var val = obj[key];
+
+			if (val === undefined) {
+				return '';
+			}
+
+			if (val === null) {
+				return encode(key, opts);
+			}
+
+			if (Array.isArray(val)) {
+				var result = [];
+
+				val.slice().forEach(function (val2) {
+					if (val2 === undefined) {
+						return;
+					}
+
+					if (val2 === null) {
+						result.push(encode(key, opts));
+					} else {
+						result.push(encode(key, opts) + '=' + encode(val2, opts));
+					}
+				});
+
+				return result.join('&');
+			}
+
+			return encode(key, opts) + '=' + encode(val, opts);
+		}).filter(function (x) {
+			return x.length > 0;
+		}).join('&') : '';
+	};
+
+
+/***/ },
+/* 206 */
+/***/ function(module, exports) {
+
+	'use strict';
+	module.exports = function (str) {
+		return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+			return '%' + c.charCodeAt(0).toString(16).toUpperCase();
+		});
+	};
+
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _warning = __webpack_require__(180);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var runTransitionHook = function runTransitionHook(hook, location, callback) {
+	  var result = hook(location, callback);
+
+	  if (hook.length < 2) {
+	    // Assume the hook runs synchronously and automatically
+	    // call the callback with the return value.
+	    callback(result);
+	  } else {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(result === undefined, 'You should not "return" in a transition hook with a callback argument; ' + 'call the callback instead') : void 0;
+	  }
+	};
+
+	exports.default = runTransitionHook;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+	exports.locationsAreEqual = exports.statesAreEqual = exports.createLocation = exports.createQuery = undefined;
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _warning = __webpack_require__(180);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	var _PathUtils = __webpack_require__(209);
+
+	var _Actions = __webpack_require__(202);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var createQuery = exports.createQuery = function createQuery(props) {
+	  return _extends(Object.create(null), props);
+	};
+
+	var createLocation = exports.createLocation = function createLocation() {
+	  var input = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
+	  var action = arguments.length <= 1 || arguments[1] === undefined ? _Actions.POP : arguments[1];
+	  var key = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+
+	  var object = typeof input === 'string' ? (0, _PathUtils.parsePath)(input) : input;
+
+	  process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(!object.path, 'Location descriptor objects should have a `pathname`, not a `path`.') : void 0;
+
+	  var pathname = object.pathname || '/';
+	  var search = object.search || '';
+	  var hash = object.hash || '';
+	  var state = object.state;
+
+	  return {
+	    pathname: pathname,
+	    search: search,
+	    hash: hash,
+	    state: state,
+	    action: action,
+	    key: key
+	  };
+	};
+
+	var isDate = function isDate(object) {
+	  return Object.prototype.toString.call(object) === '[object Date]';
+	};
+
+	var statesAreEqual = exports.statesAreEqual = function statesAreEqual(a, b) {
+	  if (a === b) return true;
+
+	  var typeofA = typeof a === 'undefined' ? 'undefined' : _typeof(a);
+	  var typeofB = typeof b === 'undefined' ? 'undefined' : _typeof(b);
+
+	  if (typeofA !== typeofB) return false;
+
+	  !(typeofA !== 'function') ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'You must not store functions in location state') : (0, _invariant2.default)(false) : void 0;
+
+	  // Not the same object, but same type.
+	  if (typeofA === 'object') {
+	    !!(isDate(a) && isDate(b)) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'You must not store Date objects in location state') : (0, _invariant2.default)(false) : void 0;
+
+	    if (!Array.isArray(a)) {
+	      var keysofA = Object.keys(a);
+	      var keysofB = Object.keys(b);
+	      return keysofA.length === keysofB.length && keysofA.every(function (key) {
+	        return statesAreEqual(a[key], b[key]);
+	      });
+	    }
+
+	    return Array.isArray(b) && a.length === b.length && a.every(function (item, index) {
+	      return statesAreEqual(item, b[index]);
+	    });
+	  }
+
+	  // All other serializable types (string, number, boolean)
+	  // should be strict equal.
+	  return false;
+	};
+
+	var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a, b) {
+	  return a.key === b.key &&
+	  // a.action === b.action && // Different action !== location change.
+	  a.pathname === b.pathname && a.search === b.search && a.hash === b.hash && statesAreEqual(a.state, b.state);
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+	exports.createPath = exports.parsePath = exports.getQueryStringValueFromPath = exports.stripQueryStringValueFromPath = exports.addQueryStringValueToPath = undefined;
+
+	var _warning = __webpack_require__(180);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var addQueryStringValueToPath = exports.addQueryStringValueToPath = function addQueryStringValueToPath(path, key, value) {
+	  var _parsePath = parsePath(path);
+
+	  var pathname = _parsePath.pathname;
+	  var search = _parsePath.search;
+	  var hash = _parsePath.hash;
+
+
+	  return createPath({
+	    pathname: pathname,
+	    search: search + (search.indexOf('?') === -1 ? '?' : '&') + key + '=' + value,
+	    hash: hash
+	  });
+	};
+
+	var stripQueryStringValueFromPath = exports.stripQueryStringValueFromPath = function stripQueryStringValueFromPath(path, key) {
+	  var _parsePath2 = parsePath(path);
+
+	  var pathname = _parsePath2.pathname;
+	  var search = _parsePath2.search;
+	  var hash = _parsePath2.hash;
+
+
+	  return createPath({
+	    pathname: pathname,
+	    search: search.replace(new RegExp('([?&])' + key + '=[a-zA-Z0-9]+(&?)'), function (match, prefix, suffix) {
+	      return prefix === '?' ? prefix : suffix;
+	    }),
+	    hash: hash
+	  });
+	};
+
+	var getQueryStringValueFromPath = exports.getQueryStringValueFromPath = function getQueryStringValueFromPath(path, key) {
+	  var _parsePath3 = parsePath(path);
+
+	  var search = _parsePath3.search;
+
+	  var match = search.match(new RegExp('[?&]' + key + '=([a-zA-Z0-9]+)'));
+	  return match && match[1];
+	};
+
+	var extractPath = function extractPath(string) {
+	  var match = string.match(/^(https?:)?\/\/[^\/]*/);
+	  return match == null ? string : string.substring(match[0].length);
+	};
+
+	var parsePath = exports.parsePath = function parsePath(path) {
+	  var pathname = extractPath(path);
+	  var search = '';
+	  var hash = '';
+
+	  process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(path === pathname, 'A path must be pathname + search + hash only, not a full URL like "%s"', path) : void 0;
+
+	  var hashIndex = pathname.indexOf('#');
+	  if (hashIndex !== -1) {
+	    hash = pathname.substring(hashIndex);
+	    pathname = pathname.substring(0, hashIndex);
+	  }
+
+	  var searchIndex = pathname.indexOf('?');
+	  if (searchIndex !== -1) {
+	    search = pathname.substring(searchIndex);
+	    pathname = pathname.substring(0, searchIndex);
+	  }
+
+	  if (pathname === '') pathname = '/';
+
+	  return {
+	    pathname: pathname,
+	    search: search,
+	    hash: hash
+	  };
+	};
+
+	var createPath = exports.createPath = function createPath(location) {
+	  if (location == null || typeof location === 'string') return location;
+
+	  var basename = location.basename;
+	  var pathname = location.pathname;
+	  var search = location.search;
+	  var hash = location.hash;
+
+	  var path = (basename || '') + pathname;
+
+	  if (search && search !== '?') path += search;
+
+	  if (hash) path += hash;
+
+	  return path;
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _runTransitionHook = __webpack_require__(207);
+
+	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
+
+	var _PathUtils = __webpack_require__(209);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var useBasename = function useBasename(createHistory) {
+	  return function () {
+	    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	    var history = createHistory(options);
+	    var basename = options.basename;
+
+
+	    var addBasename = function addBasename(location) {
+	      if (!location) return location;
+
+	      if (basename && location.basename == null) {
+	        if (location.pathname.indexOf(basename) === 0) {
+	          location.pathname = location.pathname.substring(basename.length);
+	          location.basename = basename;
+
+	          if (location.pathname === '') location.pathname = '/';
+	        } else {
+	          location.basename = '';
+	        }
+	      }
+
+	      return location;
+	    };
+
+	    var prependBasename = function prependBasename(location) {
+	      if (!basename) return location;
+
+	      var object = typeof location === 'string' ? (0, _PathUtils.parsePath)(location) : location;
+	      var pname = object.pathname;
+	      var normalizedBasename = basename.slice(-1) === '/' ? basename : basename + '/';
+	      var normalizedPathname = pname.charAt(0) === '/' ? pname.slice(1) : pname;
+	      var pathname = normalizedBasename + normalizedPathname;
+
+	      return _extends({}, object, {
+	        pathname: pathname
+	      });
+	    };
+
+	    // Override all read methods with basename-aware versions.
+	    var getCurrentLocation = function getCurrentLocation() {
+	      return addBasename(history.getCurrentLocation());
+	    };
+
+	    var listenBefore = function listenBefore(hook) {
+	      return history.listenBefore(function (location, callback) {
+	        return (0, _runTransitionHook2.default)(hook, addBasename(location), callback);
+	      });
+	    };
+
+	    var listen = function listen(listener) {
+	      return history.listen(function (location) {
+	        return listener(addBasename(location));
+	      });
+	    };
+
+	    // Override all write methods with basename-aware versions.
+	    var push = function push(location) {
+	      return history.push(prependBasename(location));
+	    };
+
+	    var replace = function replace(location) {
+	      return history.replace(prependBasename(location));
+	    };
+
+	    var createPath = function createPath(location) {
+	      return history.createPath(prependBasename(location));
+	    };
+
+	    var createHref = function createHref(location) {
+	      return history.createHref(prependBasename(location));
+	    };
+
+	    var createLocation = function createLocation(location) {
+	      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	        args[_key - 1] = arguments[_key];
+	      }
+
+	      return addBasename(history.createLocation.apply(history, [prependBasename(location)].concat(args)));
+	    };
+
+	    return _extends({}, history, {
+	      getCurrentLocation: getCurrentLocation,
+	      listenBefore: listenBefore,
+	      listen: listen,
+	      push: push,
+	      replace: replace,
+	      createPath: createPath,
+	      createHref: createHref,
+	      createLocation: createLocation
+	    });
+	  };
+	};
+
+	exports.default = useBasename;
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _warning = __webpack_require__(180);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _LocationUtils = __webpack_require__(208);
+
+	var _PathUtils = __webpack_require__(209);
+
+	var _createHistory = __webpack_require__(212);
+
+	var _createHistory2 = _interopRequireDefault(_createHistory);
+
+	var _Actions = __webpack_require__(202);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var createStateStorage = function createStateStorage(entries) {
+	  return entries.filter(function (entry) {
+	    return entry.state;
+	  }).reduce(function (memo, entry) {
+	    memo[entry.key] = entry.state;
+	    return memo;
+	  }, {});
+	};
+
+	var createMemoryHistory = function createMemoryHistory() {
+	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	  if (Array.isArray(options)) {
+	    options = { entries: options };
+	  } else if (typeof options === 'string') {
+	    options = { entries: [options] };
+	  }
+
+	  var getCurrentLocation = function getCurrentLocation() {
+	    var entry = entries[current];
+	    var path = (0, _PathUtils.createPath)(entry);
+
+	    var key = void 0,
+	        state = void 0;
+	    if (entry.key) {
+	      key = entry.key;
+	      state = readState(key);
+	    }
+
+	    var init = (0, _PathUtils.parsePath)(path);
+
+	    return (0, _LocationUtils.createLocation)(_extends({}, init, { state: state }), undefined, key);
+	  };
+
+	  var canGo = function canGo(n) {
+	    var index = current + n;
+	    return index >= 0 && index < entries.length;
+	  };
+
+	  var go = function go(n) {
+	    if (!n) return;
+
+	    if (!canGo(n)) {
+	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, 'Cannot go(%s) there is not enough history', n) : void 0;
+
+	      return;
+	    }
+
+	    current += n;
+	    var currentLocation = getCurrentLocation();
+
+	    // Change action to POP
+	    history.transitionTo(_extends({}, currentLocation, { action: _Actions.POP }));
+	  };
+
+	  var pushLocation = function pushLocation(location) {
+	    current += 1;
+
+	    if (current < entries.length) entries.splice(current);
+
+	    entries.push(location);
+
+	    saveState(location.key, location.state);
+	  };
+
+	  var replaceLocation = function replaceLocation(location) {
+	    entries[current] = location;
+	    saveState(location.key, location.state);
+	  };
+
+	  var history = (0, _createHistory2.default)(_extends({}, options, {
+	    getCurrentLocation: getCurrentLocation,
+	    pushLocation: pushLocation,
+	    replaceLocation: replaceLocation,
+	    go: go
+	  }));
+
+	  var _options = options;
+	  var entries = _options.entries;
+	  var current = _options.current;
+
+
+	  if (typeof entries === 'string') {
+	    entries = [entries];
+	  } else if (!Array.isArray(entries)) {
+	    entries = ['/'];
+	  }
+
+	  entries = entries.map(function (entry) {
+	    return (0, _LocationUtils.createLocation)(entry);
+	  });
+
+	  if (current == null) {
+	    current = entries.length - 1;
+	  } else {
+	    !(current >= 0 && current < entries.length) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Current index must be >= 0 and < %s, was %s', entries.length, current) : (0, _invariant2.default)(false) : void 0;
+	  }
+
+	  var storage = createStateStorage(entries);
+
+	  var saveState = function saveState(key, state) {
+	    return storage[key] = state;
+	  };
+
+	  var readState = function readState(key) {
+	    return storage[key];
+	  };
+
+	  return _extends({}, history, {
+	    canGo: canGo
+	  });
+	};
+
+	exports.default = createMemoryHistory;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _AsyncUtils = __webpack_require__(213);
+
+	var _PathUtils = __webpack_require__(209);
+
+	var _runTransitionHook = __webpack_require__(207);
+
+	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
+
+	var _Actions = __webpack_require__(202);
+
+	var _LocationUtils = __webpack_require__(208);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var createHistory = function createHistory() {
+	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var getCurrentLocation = options.getCurrentLocation;
+	  var getUserConfirmation = options.getUserConfirmation;
+	  var pushLocation = options.pushLocation;
+	  var replaceLocation = options.replaceLocation;
+	  var go = options.go;
+	  var keyLength = options.keyLength;
+
+
+	  var currentLocation = void 0;
+	  var pendingLocation = void 0;
+	  var beforeListeners = [];
+	  var listeners = [];
+	  var allKeys = [];
+
+	  var getCurrentIndex = function getCurrentIndex() {
+	    if (pendingLocation && pendingLocation.action === _Actions.POP) return allKeys.indexOf(pendingLocation.key);
+
+	    if (currentLocation) return allKeys.indexOf(currentLocation.key);
+
+	    return -1;
+	  };
+
+	  var updateLocation = function updateLocation(nextLocation) {
+	    var currentIndex = getCurrentIndex();
+
+	    currentLocation = nextLocation;
+
+	    if (currentLocation.action === _Actions.PUSH) {
+	      allKeys = [].concat(allKeys.slice(0, currentIndex + 1), [currentLocation.key]);
+	    } else if (currentLocation.action === _Actions.REPLACE) {
+	      allKeys[currentIndex] = currentLocation.key;
+	    }
+
+	    listeners.forEach(function (listener) {
+	      return listener(currentLocation);
+	    });
+	  };
+
+	  var listenBefore = function listenBefore(listener) {
+	    beforeListeners.push(listener);
+
+	    return function () {
+	      return beforeListeners = beforeListeners.filter(function (item) {
+	        return item !== listener;
+	      });
+	    };
+	  };
+
+	  var listen = function listen(listener) {
+	    listeners.push(listener);
+
+	    return function () {
+	      return listeners = listeners.filter(function (item) {
+	        return item !== listener;
+	      });
+	    };
+	  };
+
+	  var confirmTransitionTo = function confirmTransitionTo(location, callback) {
+	    (0, _AsyncUtils.loopAsync)(beforeListeners.length, function (index, next, done) {
+	      (0, _runTransitionHook2.default)(beforeListeners[index], location, function (result) {
+	        return result != null ? done(result) : next();
+	      });
+	    }, function (message) {
+	      if (getUserConfirmation && typeof message === 'string') {
+	        getUserConfirmation(message, function (ok) {
+	          return callback(ok !== false);
+	        });
+	      } else {
+	        callback(message !== false);
+	      }
+	    });
+	  };
+
+	  var transitionTo = function transitionTo(nextLocation) {
+	    if (currentLocation && (0, _LocationUtils.locationsAreEqual)(currentLocation, nextLocation) || pendingLocation && (0, _LocationUtils.locationsAreEqual)(pendingLocation, nextLocation)) return; // Nothing to do
+
+	    pendingLocation = nextLocation;
+
+	    confirmTransitionTo(nextLocation, function (ok) {
+	      if (pendingLocation !== nextLocation) return; // Transition was interrupted during confirmation
+
+	      pendingLocation = null;
+
+	      if (ok) {
+	        // Treat PUSH to same path like REPLACE to be consistent with browsers
+	        if (nextLocation.action === _Actions.PUSH) {
+	          var prevPath = (0, _PathUtils.createPath)(currentLocation);
+	          var nextPath = (0, _PathUtils.createPath)(nextLocation);
+
+	          if (nextPath === prevPath && (0, _LocationUtils.statesAreEqual)(currentLocation.state, nextLocation.state)) nextLocation.action = _Actions.REPLACE;
+	        }
+
+	        if (nextLocation.action === _Actions.POP) {
+	          updateLocation(nextLocation);
+	        } else if (nextLocation.action === _Actions.PUSH) {
+	          if (pushLocation(nextLocation) !== false) updateLocation(nextLocation);
+	        } else if (nextLocation.action === _Actions.REPLACE) {
+	          if (replaceLocation(nextLocation) !== false) updateLocation(nextLocation);
+	        }
+	      } else if (currentLocation && nextLocation.action === _Actions.POP) {
+	        var prevIndex = allKeys.indexOf(currentLocation.key);
+	        var nextIndex = allKeys.indexOf(nextLocation.key);
+
+	        if (prevIndex !== -1 && nextIndex !== -1) go(prevIndex - nextIndex); // Restore the URL
+	      }
+	    });
+	  };
+
+	  var push = function push(input) {
+	    return transitionTo(createLocation(input, _Actions.PUSH));
+	  };
+
+	  var replace = function replace(input) {
+	    return transitionTo(createLocation(input, _Actions.REPLACE));
+	  };
+
+	  var goBack = function goBack() {
+	    return go(-1);
+	  };
+
+	  var goForward = function goForward() {
+	    return go(1);
+	  };
+
+	  var createKey = function createKey() {
+	    return Math.random().toString(36).substr(2, keyLength || 6);
+	  };
+
+	  var createHref = function createHref(location) {
+	    return (0, _PathUtils.createPath)(location);
+	  };
+
+	  var createLocation = function createLocation(location, action) {
+	    var key = arguments.length <= 2 || arguments[2] === undefined ? createKey() : arguments[2];
+	    return (0, _LocationUtils.createLocation)(location, action, key);
+	  };
+
+	  return {
+	    getCurrentLocation: getCurrentLocation,
+	    listenBefore: listenBefore,
+	    listen: listen,
+	    transitionTo: transitionTo,
+	    push: push,
+	    replace: replace,
+	    go: go,
+	    goBack: goBack,
+	    goForward: goForward,
+	    createKey: createKey,
+	    createPath: _PathUtils.createPath,
+	    createHref: createHref,
+	    createLocation: createLocation
+	  };
+	};
+
+	exports.default = createHistory;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+	var loopAsync = exports.loopAsync = function loopAsync(turns, work, callback) {
+	  var currentTurn = 0,
+	      isDone = false;
+	  var isSync = false,
+	      hasNext = false,
+	      doneArgs = void 0;
+
+	  var done = function done() {
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    isDone = true;
+
+	    if (isSync) {
+	      // Iterate instead of recursing if possible.
+	      doneArgs = args;
+	      return;
+	    }
+
+	    callback.apply(undefined, args);
+	  };
+
+	  var next = function next() {
+	    if (isDone) return;
+
+	    hasNext = true;
+
+	    if (isSync) return; // Iterate instead of recursing if possible.
+
+	    isSync = true;
+
+	    while (!isDone && currentTurn < turns && hasNext) {
+	      hasNext = false;
+	      work(currentTurn++, next, done);
+	    }
+
+	    isSync = false;
+
+	    if (isDone) {
+	      // This means the loop finished synchronously.
+	      callback.apply(undefined, doneArgs);
+	      return;
+	    }
+
+	    if (currentTurn >= turns && hasNext) {
+	      isDone = true;
+	      callback();
+	    }
+	  };
+
+	  next();
+	};
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.default = useRouterHistory;
+
+	var _useQueries = __webpack_require__(204);
+
+	var _useQueries2 = _interopRequireDefault(_useQueries);
+
+	var _useBasename = __webpack_require__(210);
+
+	var _useBasename2 = _interopRequireDefault(_useBasename);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function useRouterHistory(createHistory) {
+	  return function (options) {
+	    var history = (0, _useQueries2.default)((0, _useBasename2.default)(createHistory))(options);
+	    return history;
+	  };
+	}
+	module.exports = exports['default'];
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _RouterContext = __webpack_require__(189);
+
+	var _RouterContext2 = _interopRequireDefault(_RouterContext);
+
+	var _routerWarning = __webpack_require__(179);
+
+	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function () {
+	  for (var _len = arguments.length, middlewares = Array(_len), _key = 0; _key < _len; _key++) {
+	    middlewares[_key] = arguments[_key];
+	  }
+
+	  if (process.env.NODE_ENV !== 'production') {
+	    middlewares.forEach(function (middleware, index) {
+	      process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(middleware.renderRouterContext || middleware.renderRouteComponent, 'The middleware specified at index ' + index + ' does not appear to be ' + 'a valid React Router middleware.') : void 0;
+	    });
+	  }
+
+	  var withContext = middlewares.map(function (middleware) {
+	    return middleware.renderRouterContext;
+	  }).filter(Boolean);
+	  var withComponent = middlewares.map(function (middleware) {
+	    return middleware.renderRouteComponent;
+	  }).filter(Boolean);
+
+	  var makeCreateElement = function makeCreateElement() {
+	    var baseCreateElement = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _react.createElement;
+	    return function (Component, props) {
+	      return withComponent.reduceRight(function (previous, renderRouteComponent) {
+	        return renderRouteComponent(previous, props);
+	      }, baseCreateElement(Component, props));
+	    };
+	  };
+
+	  return function (renderProps) {
+	    return withContext.reduceRight(function (previous, renderRouterContext) {
+	      return renderRouterContext(previous, renderProps);
+	    }, _react2.default.createElement(_RouterContext2.default, _extends({}, renderProps, {
+	      createElement: makeCreateElement(renderProps.createElement)
+	    })));
+	  };
+	};
+
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _createBrowserHistory = __webpack_require__(217);
+
+	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
+
+	var _createRouterHistory = __webpack_require__(223);
+
+	var _createRouterHistory2 = _interopRequireDefault(_createRouterHistory);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = (0, _createRouterHistory2.default)(_createBrowserHistory2.default);
+	module.exports = exports['default'];
+
+/***/ },
+/* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _ExecutionEnvironment = __webpack_require__(218);
+
+	var _BrowserProtocol = __webpack_require__(219);
+
+	var BrowserProtocol = _interopRequireWildcard(_BrowserProtocol);
+
+	var _RefreshProtocol = __webpack_require__(222);
+
+	var RefreshProtocol = _interopRequireWildcard(_RefreshProtocol);
+
+	var _DOMUtils = __webpack_require__(220);
+
+	var _createHistory = __webpack_require__(212);
+
+	var _createHistory2 = _interopRequireDefault(_createHistory);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * Creates and returns a history object that uses HTML5's history API
+	 * (pushState, replaceState, and the popstate event) to manage history.
+	 * This is the recommended method of managing history in browsers because
+	 * it provides the cleanest URLs.
+	 *
+	 * Note: In browsers that do not support the HTML5 history API full
+	 * page reloads will be used to preserve clean URLs. You can force this
+	 * behavior using { forceRefresh: true } in options.
+	 */
+	var createBrowserHistory = function createBrowserHistory() {
+	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	  !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Browser history needs a DOM') : (0, _invariant2.default)(false) : void 0;
+
+	  var useRefresh = options.forceRefresh || !(0, _DOMUtils.supportsHistory)();
+	  var Protocol = useRefresh ? RefreshProtocol : BrowserProtocol;
+
+	  var getUserConfirmation = Protocol.getUserConfirmation;
+	  var getCurrentLocation = Protocol.getCurrentLocation;
+	  var pushLocation = Protocol.pushLocation;
+	  var replaceLocation = Protocol.replaceLocation;
+	  var go = Protocol.go;
+
+
+	  var history = (0, _createHistory2.default)(_extends({
+	    getUserConfirmation: getUserConfirmation }, options, {
+	    getCurrentLocation: getCurrentLocation,
+	    pushLocation: pushLocation,
+	    replaceLocation: replaceLocation,
+	    go: go
+	  }));
+
+	  var listenerCount = 0,
+	      stopListener = void 0;
+
+	  var startListener = function startListener(listener, before) {
+	    if (++listenerCount === 1) stopListener = BrowserProtocol.startListener(history.transitionTo);
+
+	    var unlisten = before ? history.listenBefore(listener) : history.listen(listener);
+
+	    return function () {
+	      unlisten();
+
+	      if (--listenerCount === 0) stopListener();
+	    };
+	  };
+
+	  var listenBefore = function listenBefore(listener) {
+	    return startListener(listener, true);
+	  };
+
+	  var listen = function listen(listener) {
+	    return startListener(listener, false);
+	  };
+
+	  return _extends({}, history, {
+	    listenBefore: listenBefore,
+	    listen: listen
+	  });
+	};
+
+	exports.default = createBrowserHistory;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 218 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	var canUseDOM = exports.canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.go = exports.replaceLocation = exports.pushLocation = exports.startListener = exports.getUserConfirmation = exports.getCurrentLocation = undefined;
+
+	var _LocationUtils = __webpack_require__(208);
+
+	var _DOMUtils = __webpack_require__(220);
+
+	var _DOMStateStorage = __webpack_require__(221);
+
+	var _PathUtils = __webpack_require__(209);
+
+	var _ExecutionEnvironment = __webpack_require__(218);
+
+	var PopStateEvent = 'popstate';
+	var HashChangeEvent = 'hashchange';
+
+	var needsHashchangeListener = _ExecutionEnvironment.canUseDOM && !(0, _DOMUtils.supportsPopstateOnHashchange)();
+
+	var _createLocation = function _createLocation(historyState) {
+	  var key = historyState && historyState.key;
+
+	  return (0, _LocationUtils.createLocation)({
+	    pathname: window.location.pathname,
+	    search: window.location.search,
+	    hash: window.location.hash,
+	    state: key ? (0, _DOMStateStorage.readState)(key) : undefined
+	  }, undefined, key);
+	};
+
+	var getCurrentLocation = exports.getCurrentLocation = function getCurrentLocation() {
+	  var historyState = void 0;
+	  try {
+	    historyState = window.history.state || {};
+	  } catch (error) {
+	    // IE 11 sometimes throws when accessing window.history.state
+	    // See https://github.com/ReactTraining/history/pull/289
+	    historyState = {};
+	  }
+
+	  return _createLocation(historyState);
+	};
+
+	var getUserConfirmation = exports.getUserConfirmation = function getUserConfirmation(message, callback) {
+	  return callback(window.confirm(message));
+	}; // eslint-disable-line no-alert
+
+	var startListener = exports.startListener = function startListener(listener) {
+	  var handlePopState = function handlePopState(event) {
+	    if (event.state !== undefined) // Ignore extraneous popstate events in WebKit
+	      listener(_createLocation(event.state));
+	  };
+
+	  (0, _DOMUtils.addEventListener)(window, PopStateEvent, handlePopState);
+
+	  var handleUnpoppedHashChange = function handleUnpoppedHashChange() {
+	    return listener(getCurrentLocation());
+	  };
+
+	  if (needsHashchangeListener) {
+	    (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleUnpoppedHashChange);
+	  }
+
+	  return function () {
+	    (0, _DOMUtils.removeEventListener)(window, PopStateEvent, handlePopState);
+
+	    if (needsHashchangeListener) {
+	      (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleUnpoppedHashChange);
+	    }
+	  };
+	};
+
+	var updateLocation = function updateLocation(location, updateState) {
+	  var state = location.state;
+	  var key = location.key;
+
+
+	  if (state !== undefined) (0, _DOMStateStorage.saveState)(key, state);
+
+	  updateState({ key: key }, (0, _PathUtils.createPath)(location));
+	};
+
+	var pushLocation = exports.pushLocation = function pushLocation(location) {
+	  return updateLocation(location, function (state, path) {
+	    return window.history.pushState(state, null, path);
+	  });
+	};
+
+	var replaceLocation = exports.replaceLocation = function replaceLocation(location) {
+	  return updateLocation(location, function (state, path) {
+	    return window.history.replaceState(state, null, path);
+	  });
+	};
+
+	var go = exports.go = function go(n) {
+	  if (n) window.history.go(n);
+	};
+
+/***/ },
+/* 220 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	var addEventListener = exports.addEventListener = function addEventListener(node, event, listener) {
+	  return node.addEventListener ? node.addEventListener(event, listener, false) : node.attachEvent('on' + event, listener);
+	};
+
+	var removeEventListener = exports.removeEventListener = function removeEventListener(node, event, listener) {
+	  return node.removeEventListener ? node.removeEventListener(event, listener, false) : node.detachEvent('on' + event, listener);
+	};
+
+	/**
+	 * Returns true if the HTML5 history API is supported. Taken from Modernizr.
+	 *
+	 * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
+	 * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
+	 * changed to avoid false negatives for Windows Phones: https://github.com/reactjs/react-router/issues/586
+	 */
+	var supportsHistory = exports.supportsHistory = function supportsHistory() {
+	  var ua = window.navigator.userAgent;
+
+	  if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) return false;
+
+	  return window.history && 'pushState' in window.history;
+	};
+
+	/**
+	 * Returns false if using go(n) with hash history causes a full page reload.
+	 */
+	var supportsGoWithoutReloadUsingHash = exports.supportsGoWithoutReloadUsingHash = function supportsGoWithoutReloadUsingHash() {
+	  return window.navigator.userAgent.indexOf('Firefox') === -1;
+	};
+
+	/**
+	 * Returns true if browser fires popstate on hash change.
+	 * IE10 and IE11 do not.
+	 */
+	var supportsPopstateOnHashchange = exports.supportsPopstateOnHashchange = function supportsPopstateOnHashchange() {
+	  return window.navigator.userAgent.indexOf('Trident') === -1;
+	};
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+	exports.readState = exports.saveState = undefined;
+
+	var _warning = __webpack_require__(180);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var QuotaExceededErrors = {
+	  QuotaExceededError: true,
+	  QUOTA_EXCEEDED_ERR: true
+	};
+
+	var SecurityErrors = {
+	  SecurityError: true
+	};
+
+	var KeyPrefix = '@@History/';
+
+	var createKey = function createKey(key) {
+	  return KeyPrefix + key;
+	};
+
+	var saveState = exports.saveState = function saveState(key, state) {
+	  if (!window.sessionStorage) {
+	    // Session storage is not available or hidden.
+	    // sessionStorage is undefined in Internet Explorer when served via file protocol.
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, '[history] Unable to save state; sessionStorage is not available') : void 0;
+
+	    return;
+	  }
+
+	  try {
+	    if (state == null) {
+	      window.sessionStorage.removeItem(createKey(key));
+	    } else {
+	      window.sessionStorage.setItem(createKey(key), JSON.stringify(state));
+	    }
+	  } catch (error) {
+	    if (SecurityErrors[error.name]) {
+	      // Blocking cookies in Chrome/Firefox/Safari throws SecurityError on any
+	      // attempt to access window.sessionStorage.
+	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, '[history] Unable to save state; sessionStorage is not available due to security settings') : void 0;
+
+	      return;
+	    }
+
+	    if (QuotaExceededErrors[error.name] && window.sessionStorage.length === 0) {
+	      // Safari "private mode" throws QuotaExceededError.
+	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, '[history] Unable to save state; sessionStorage is not available in Safari private mode') : void 0;
+
+	      return;
+	    }
+
+	    throw error;
+	  }
+	};
+
+	var readState = exports.readState = function readState(key) {
+	  var json = void 0;
+	  try {
+	    json = window.sessionStorage.getItem(createKey(key));
+	  } catch (error) {
+	    if (SecurityErrors[error.name]) {
+	      // Blocking cookies in Chrome/Firefox/Safari throws SecurityError on any
+	      // attempt to access window.sessionStorage.
+	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, '[history] Unable to read state; sessionStorage is not available due to security settings') : void 0;
+
+	      return undefined;
+	    }
+	  }
+
+	  if (json) {
+	    try {
+	      return JSON.parse(json);
+	    } catch (error) {
+	      // Ignore invalid JSON.
+	    }
+	  }
+
+	  return undefined;
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.replaceLocation = exports.pushLocation = exports.getCurrentLocation = exports.go = exports.getUserConfirmation = undefined;
+
+	var _BrowserProtocol = __webpack_require__(219);
+
+	Object.defineProperty(exports, 'getUserConfirmation', {
+	  enumerable: true,
+	  get: function get() {
+	    return _BrowserProtocol.getUserConfirmation;
+	  }
+	});
+	Object.defineProperty(exports, 'go', {
+	  enumerable: true,
+	  get: function get() {
+	    return _BrowserProtocol.go;
+	  }
+	});
+
+	var _LocationUtils = __webpack_require__(208);
+
+	var _PathUtils = __webpack_require__(209);
+
+	var getCurrentLocation = exports.getCurrentLocation = function getCurrentLocation() {
+	  return (0, _LocationUtils.createLocation)(window.location);
+	};
+
+	var pushLocation = exports.pushLocation = function pushLocation(location) {
+	  window.location.href = (0, _PathUtils.createPath)(location);
+	  return false; // Don't update location
+	};
+
+	var replaceLocation = exports.replaceLocation = function replaceLocation(location) {
+	  window.location.replace((0, _PathUtils.createPath)(location));
+	  return false; // Don't update location
+	};
+
+/***/ },
+/* 223 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	exports.default = function (createHistory) {
+	  var history = void 0;
+	  if (canUseDOM) history = (0, _useRouterHistory2.default)(createHistory)();
+	  return history;
+	};
+
+	var _useRouterHistory = __webpack_require__(214);
+
+	var _useRouterHistory2 = _interopRequireDefault(_useRouterHistory);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+	module.exports = exports['default'];
+
+/***/ },
+/* 224 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _createHashHistory = __webpack_require__(225);
+
+	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
+
+	var _createRouterHistory = __webpack_require__(223);
+
+	var _createRouterHistory2 = _interopRequireDefault(_createRouterHistory);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = (0, _createRouterHistory2.default)(_createHashHistory2.default);
+	module.exports = exports['default'];
+
+/***/ },
+/* 225 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _warning = __webpack_require__(180);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _ExecutionEnvironment = __webpack_require__(218);
+
+	var _DOMUtils = __webpack_require__(220);
+
+	var _HashProtocol = __webpack_require__(226);
+
+	var HashProtocol = _interopRequireWildcard(_HashProtocol);
+
+	var _createHistory = __webpack_require__(212);
+
+	var _createHistory2 = _interopRequireDefault(_createHistory);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var DefaultQueryKey = '_k';
+
+	var addLeadingSlash = function addLeadingSlash(path) {
+	  return path.charAt(0) === '/' ? path : '/' + path;
+	};
+
+	var HashPathCoders = {
+	  hashbang: {
+	    encodePath: function encodePath(path) {
+	      return path.charAt(0) === '!' ? path : '!' + path;
+	    },
+	    decodePath: function decodePath(path) {
+	      return path.charAt(0) === '!' ? path.substring(1) : path;
+	    }
+	  },
+	  noslash: {
+	    encodePath: function encodePath(path) {
+	      return path.charAt(0) === '/' ? path.substring(1) : path;
+	    },
+	    decodePath: addLeadingSlash
+	  },
+	  slash: {
+	    encodePath: addLeadingSlash,
+	    decodePath: addLeadingSlash
+	  }
+	};
+
+	var createHashHistory = function createHashHistory() {
+	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	  !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Hash history needs a DOM') : (0, _invariant2.default)(false) : void 0;
+
+	  var queryKey = options.queryKey;
+	  var hashType = options.hashType;
+
+
+	  process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(queryKey !== false, 'Using { queryKey: false } no longer works. Instead, just don\'t ' + 'use location state if you don\'t want a key in your URL query string') : void 0;
+
+	  if (typeof queryKey !== 'string') queryKey = DefaultQueryKey;
+
+	  if (hashType == null) hashType = 'slash';
+
+	  if (!(hashType in HashPathCoders)) {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, 'Invalid hash type: %s', hashType) : void 0;
+
+	    hashType = 'slash';
+	  }
+
+	  var pathCoder = HashPathCoders[hashType];
+
+	  var getUserConfirmation = HashProtocol.getUserConfirmation;
+
+
+	  var getCurrentLocation = function getCurrentLocation() {
+	    return HashProtocol.getCurrentLocation(pathCoder, queryKey);
+	  };
+
+	  var pushLocation = function pushLocation(location) {
+	    return HashProtocol.pushLocation(location, pathCoder, queryKey);
+	  };
+
+	  var replaceLocation = function replaceLocation(location) {
+	    return HashProtocol.replaceLocation(location, pathCoder, queryKey);
+	  };
+
+	  var history = (0, _createHistory2.default)(_extends({
+	    getUserConfirmation: getUserConfirmation }, options, {
+	    getCurrentLocation: getCurrentLocation,
+	    pushLocation: pushLocation,
+	    replaceLocation: replaceLocation,
+	    go: HashProtocol.go
+	  }));
+
+	  var listenerCount = 0,
+	      stopListener = void 0;
+
+	  var startListener = function startListener(listener, before) {
+	    if (++listenerCount === 1) stopListener = HashProtocol.startListener(history.transitionTo, pathCoder, queryKey);
+
+	    var unlisten = before ? history.listenBefore(listener) : history.listen(listener);
+
+	    return function () {
+	      unlisten();
+
+	      if (--listenerCount === 0) stopListener();
+	    };
+	  };
+
+	  var listenBefore = function listenBefore(listener) {
+	    return startListener(listener, true);
+	  };
+
+	  var listen = function listen(listener) {
+	    return startListener(listener, false);
+	  };
+
+	  var goIsSupportedWithoutReload = (0, _DOMUtils.supportsGoWithoutReloadUsingHash)();
+
+	  var go = function go(n) {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(goIsSupportedWithoutReload, 'Hash history go(n) causes a full page reload in this browser') : void 0;
+
+	    history.go(n);
+	  };
+
+	  var createHref = function createHref(path) {
+	    return '#' + pathCoder.encodePath(history.createHref(path));
+	  };
+
+	  return _extends({}, history, {
+	    listenBefore: listenBefore,
+	    listen: listen,
+	    go: go,
+	    createHref: createHref
+	  });
+	};
+
+	exports.default = createHashHistory;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 226 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+	exports.replaceLocation = exports.pushLocation = exports.startListener = exports.getCurrentLocation = exports.go = exports.getUserConfirmation = undefined;
+
+	var _BrowserProtocol = __webpack_require__(219);
+
+	Object.defineProperty(exports, 'getUserConfirmation', {
+	  enumerable: true,
+	  get: function get() {
+	    return _BrowserProtocol.getUserConfirmation;
+	  }
+	});
+	Object.defineProperty(exports, 'go', {
+	  enumerable: true,
+	  get: function get() {
+	    return _BrowserProtocol.go;
+	  }
+	});
+
+	var _warning = __webpack_require__(180);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	var _LocationUtils = __webpack_require__(208);
+
+	var _DOMUtils = __webpack_require__(220);
+
+	var _DOMStateStorage = __webpack_require__(221);
+
+	var _PathUtils = __webpack_require__(209);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var HashChangeEvent = 'hashchange';
+
+	var getHashPath = function getHashPath() {
+	  // We can't use window.location.hash here because it's not
+	  // consistent across browsers - Firefox will pre-decode it!
+	  var href = window.location.href;
+	  var hashIndex = href.indexOf('#');
+	  return hashIndex === -1 ? '' : href.substring(hashIndex + 1);
+	};
+
+	var pushHashPath = function pushHashPath(path) {
+	  return window.location.hash = path;
+	};
+
+	var replaceHashPath = function replaceHashPath(path) {
+	  var hashIndex = window.location.href.indexOf('#');
+
+	  window.location.replace(window.location.href.slice(0, hashIndex >= 0 ? hashIndex : 0) + '#' + path);
+	};
+
+	var getCurrentLocation = exports.getCurrentLocation = function getCurrentLocation(pathCoder, queryKey) {
+	  var path = pathCoder.decodePath(getHashPath());
+	  var key = (0, _PathUtils.getQueryStringValueFromPath)(path, queryKey);
+
+	  var state = void 0;
+	  if (key) {
+	    path = (0, _PathUtils.stripQueryStringValueFromPath)(path, queryKey);
+	    state = (0, _DOMStateStorage.readState)(key);
+	  }
+
+	  var init = (0, _PathUtils.parsePath)(path);
+	  init.state = state;
+
+	  return (0, _LocationUtils.createLocation)(init, undefined, key);
+	};
+
+	var prevLocation = void 0;
+
+	var startListener = exports.startListener = function startListener(listener, pathCoder, queryKey) {
+	  var handleHashChange = function handleHashChange() {
+	    var path = getHashPath();
+	    var encodedPath = pathCoder.encodePath(path);
+
+	    if (path !== encodedPath) {
+	      // Always be sure we have a properly-encoded hash.
+	      replaceHashPath(encodedPath);
+	    } else {
+	      var currentLocation = getCurrentLocation(pathCoder, queryKey);
+
+	      if (prevLocation && currentLocation.key && prevLocation.key === currentLocation.key) return; // Ignore extraneous hashchange events
+
+	      prevLocation = currentLocation;
+
+	      listener(currentLocation);
+	    }
+	  };
+
+	  // Ensure the hash is encoded properly.
+	  var path = getHashPath();
+	  var encodedPath = pathCoder.encodePath(path);
+
+	  if (path !== encodedPath) replaceHashPath(encodedPath);
+
+	  (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleHashChange);
+
+	  return function () {
+	    return (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleHashChange);
+	  };
+	};
+
+	var updateLocation = function updateLocation(location, pathCoder, queryKey, updateHash) {
+	  var state = location.state;
+	  var key = location.key;
+
+
+	  var path = pathCoder.encodePath((0, _PathUtils.createPath)(location));
+
+	  if (state !== undefined) {
+	    path = (0, _PathUtils.addQueryStringValueToPath)(path, queryKey, key);
+	    (0, _DOMStateStorage.saveState)(key, state);
+	  }
+
+	  prevLocation = location;
+
+	  updateHash(path);
+	};
+
+	var pushLocation = exports.pushLocation = function pushLocation(location, pathCoder, queryKey) {
+	  return updateLocation(location, pathCoder, queryKey, function (path) {
+	    if (getHashPath() !== path) {
+	      pushHashPath(path);
+	    } else {
+	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, 'You cannot PUSH the same path using hash history') : void 0;
+	    }
+	  });
+	};
+
+	var replaceLocation = exports.replaceLocation = function replaceLocation(location, pathCoder, queryKey) {
+	  return updateLocation(location, pathCoder, queryKey, function (path) {
+	    if (getHashPath() !== path) replaceHashPath(path);
+	  });
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.connect = exports.Provider = undefined;
+
+	var _Provider = __webpack_require__(228);
+
+	var _Provider2 = _interopRequireDefault(_Provider);
+
+	var _connect = __webpack_require__(231);
+
+	var _connect2 = _interopRequireDefault(_connect);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	exports.Provider = _Provider2["default"];
+	exports.connect = _connect2["default"];
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+	exports["default"] = undefined;
+
+	var _react = __webpack_require__(1);
+
+	var _storeShape = __webpack_require__(229);
+
+	var _storeShape2 = _interopRequireDefault(_storeShape);
+
+	var _warning = __webpack_require__(230);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var didWarnAboutReceivingStore = false;
+	function warnAboutReceivingStore() {
+	  if (didWarnAboutReceivingStore) {
+	    return;
+	  }
+	  didWarnAboutReceivingStore = true;
+
+	  (0, _warning2["default"])('<Provider> does not support changing `store` on the fly. ' + 'It is most likely that you see this error because you updated to ' + 'Redux 2.x and React Redux 2.x which no longer hot reload reducers ' + 'automatically. See https://github.com/reactjs/react-redux/releases/' + 'tag/v2.0.0 for the migration instructions.');
+	}
+
+	var Provider = function (_Component) {
+	  _inherits(Provider, _Component);
+
+	  Provider.prototype.getChildContext = function getChildContext() {
+	    return { store: this.store };
+	  };
+
+	  function Provider(props, context) {
+	    _classCallCheck(this, Provider);
+
+	    var _this = _possibleConstructorReturn(this, _Component.call(this, props, context));
+
+	    _this.store = props.store;
+	    return _this;
+	  }
+
+	  Provider.prototype.render = function render() {
+	    var children = this.props.children;
+
+	    return _react.Children.only(children);
+	  };
+
+	  return Provider;
+	}(_react.Component);
+
+	exports["default"] = Provider;
+
+	if (process.env.NODE_ENV !== 'production') {
+	  Provider.prototype.componentWillReceiveProps = function (nextProps) {
+	    var store = this.store;
+	    var nextStore = nextProps.store;
+
+	    if (store !== nextStore) {
+	      warnAboutReceivingStore();
+	    }
+	  };
+	}
+
+	Provider.propTypes = {
+	  store: _storeShape2["default"].isRequired,
+	  children: _react.PropTypes.element.isRequired
+	};
+	Provider.childContextTypes = {
+	  store: _storeShape2["default"].isRequired
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _react = __webpack_require__(1);
+
+	exports["default"] = _react.PropTypes.shape({
+	  subscribe: _react.PropTypes.func.isRequired,
+	  dispatch: _react.PropTypes.func.isRequired,
+	  getState: _react.PropTypes.func.isRequired
+	});
+
+/***/ },
+/* 230 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports["default"] = warning;
+	/**
+	 * Prints a warning in the console if it exists.
+	 *
+	 * @param {String} message The warning message.
+	 * @returns {void}
+	 */
+	function warning(message) {
+	  /* eslint-disable no-console */
+	  if (typeof console !== 'undefined' && typeof console.error === 'function') {
+	    console.error(message);
+	  }
+	  /* eslint-enable no-console */
+	  try {
+	    // This error was thrown as a convenience so that you can use this stack
+	    // to find the callsite that caused this warning to fire.
+	    throw new Error(message);
+	    /* eslint-disable no-empty */
+	  } catch (e) {}
+	  /* eslint-enable no-empty */
+	}
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.__esModule = true;
+	exports["default"] = connect;
+
+	var _react = __webpack_require__(1);
+
+	var _storeShape = __webpack_require__(229);
+
+	var _storeShape2 = _interopRequireDefault(_storeShape);
+
+	var _shallowEqual = __webpack_require__(232);
+
+	var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
+
+	var _wrapActionCreators = __webpack_require__(233);
+
+	var _wrapActionCreators2 = _interopRequireDefault(_wrapActionCreators);
+
+	var _warning = __webpack_require__(230);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	var _isPlainObject = __webpack_require__(236);
+
+	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
+
+	var _hoistNonReactStatics = __webpack_require__(196);
+
+	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
+
+	var _invariant = __webpack_require__(176);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var defaultMapStateToProps = function defaultMapStateToProps(state) {
+	  return {};
+	}; // eslint-disable-line no-unused-vars
+	var defaultMapDispatchToProps = function defaultMapDispatchToProps(dispatch) {
+	  return { dispatch: dispatch };
+	};
+	var defaultMergeProps = function defaultMergeProps(stateProps, dispatchProps, parentProps) {
+	  return _extends({}, parentProps, stateProps, dispatchProps);
+	};
+
+	function getDisplayName(WrappedComponent) {
+	  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+	}
+
+	var errorObject = { value: null };
+	function tryCatch(fn, ctx) {
+	  try {
+	    return fn.apply(ctx);
+	  } catch (e) {
+	    errorObject.value = e;
+	    return errorObject;
+	  }
+	}
+
+	// Helps track hot reloading.
+	var nextVersion = 0;
+
+	function connect(mapStateToProps, mapDispatchToProps, mergeProps) {
+	  var options = arguments.length <= 3 || arguments[3] === undefined ? {} : arguments[3];
+
+	  var shouldSubscribe = Boolean(mapStateToProps);
+	  var mapState = mapStateToProps || defaultMapStateToProps;
+
+	  var mapDispatch = undefined;
+	  if (typeof mapDispatchToProps === 'function') {
+	    mapDispatch = mapDispatchToProps;
+	  } else if (!mapDispatchToProps) {
+	    mapDispatch = defaultMapDispatchToProps;
+	  } else {
+	    mapDispatch = (0, _wrapActionCreators2["default"])(mapDispatchToProps);
+	  }
+
+	  var finalMergeProps = mergeProps || defaultMergeProps;
+	  var _options$pure = options.pure;
+	  var pure = _options$pure === undefined ? true : _options$pure;
+	  var _options$withRef = options.withRef;
+	  var withRef = _options$withRef === undefined ? false : _options$withRef;
+
+	  var checkMergedEquals = pure && finalMergeProps !== defaultMergeProps;
+
+	  // Helps track hot reloading.
+	  var version = nextVersion++;
+
+	  return function wrapWithConnect(WrappedComponent) {
+	    var connectDisplayName = 'Connect(' + getDisplayName(WrappedComponent) + ')';
+
+	    function checkStateShape(props, methodName) {
+	      if (!(0, _isPlainObject2["default"])(props)) {
+	        (0, _warning2["default"])(methodName + '() in ' + connectDisplayName + ' must return a plain object. ' + ('Instead received ' + props + '.'));
+	      }
+	    }
+
+	    function computeMergedProps(stateProps, dispatchProps, parentProps) {
+	      var mergedProps = finalMergeProps(stateProps, dispatchProps, parentProps);
+	      if (process.env.NODE_ENV !== 'production') {
+	        checkStateShape(mergedProps, 'mergeProps');
+	      }
+	      return mergedProps;
+	    }
+
+	    var Connect = function (_Component) {
+	      _inherits(Connect, _Component);
+
+	      Connect.prototype.shouldComponentUpdate = function shouldComponentUpdate() {
+	        return !pure || this.haveOwnPropsChanged || this.hasStoreStateChanged;
+	      };
+
+	      function Connect(props, context) {
+	        _classCallCheck(this, Connect);
+
+	        var _this = _possibleConstructorReturn(this, _Component.call(this, props, context));
+
+	        _this.version = version;
+	        _this.store = props.store || context.store;
+
+	        (0, _invariant2["default"])(_this.store, 'Could not find "store" in either the context or ' + ('props of "' + connectDisplayName + '". ') + 'Either wrap the root component in a <Provider>, ' + ('or explicitly pass "store" as a prop to "' + connectDisplayName + '".'));
+
+	        var storeState = _this.store.getState();
+	        _this.state = { storeState: storeState };
+	        _this.clearCache();
+	        return _this;
+	      }
+
+	      Connect.prototype.computeStateProps = function computeStateProps(store, props) {
+	        if (!this.finalMapStateToProps) {
+	          return this.configureFinalMapState(store, props);
+	        }
+
+	        var state = store.getState();
+	        var stateProps = this.doStatePropsDependOnOwnProps ? this.finalMapStateToProps(state, props) : this.finalMapStateToProps(state);
+
+	        if (process.env.NODE_ENV !== 'production') {
+	          checkStateShape(stateProps, 'mapStateToProps');
+	        }
+	        return stateProps;
+	      };
+
+	      Connect.prototype.configureFinalMapState = function configureFinalMapState(store, props) {
+	        var mappedState = mapState(store.getState(), props);
+	        var isFactory = typeof mappedState === 'function';
+
+	        this.finalMapStateToProps = isFactory ? mappedState : mapState;
+	        this.doStatePropsDependOnOwnProps = this.finalMapStateToProps.length !== 1;
+
+	        if (isFactory) {
+	          return this.computeStateProps(store, props);
+	        }
+
+	        if (process.env.NODE_ENV !== 'production') {
+	          checkStateShape(mappedState, 'mapStateToProps');
+	        }
+	        return mappedState;
+	      };
+
+	      Connect.prototype.computeDispatchProps = function computeDispatchProps(store, props) {
+	        if (!this.finalMapDispatchToProps) {
+	          return this.configureFinalMapDispatch(store, props);
+	        }
+
+	        var dispatch = store.dispatch;
+
+	        var dispatchProps = this.doDispatchPropsDependOnOwnProps ? this.finalMapDispatchToProps(dispatch, props) : this.finalMapDispatchToProps(dispatch);
+
+	        if (process.env.NODE_ENV !== 'production') {
+	          checkStateShape(dispatchProps, 'mapDispatchToProps');
+	        }
+	        return dispatchProps;
+	      };
+
+	      Connect.prototype.configureFinalMapDispatch = function configureFinalMapDispatch(store, props) {
+	        var mappedDispatch = mapDispatch(store.dispatch, props);
+	        var isFactory = typeof mappedDispatch === 'function';
+
+	        this.finalMapDispatchToProps = isFactory ? mappedDispatch : mapDispatch;
+	        this.doDispatchPropsDependOnOwnProps = this.finalMapDispatchToProps.length !== 1;
+
+	        if (isFactory) {
+	          return this.computeDispatchProps(store, props);
+	        }
+
+	        if (process.env.NODE_ENV !== 'production') {
+	          checkStateShape(mappedDispatch, 'mapDispatchToProps');
+	        }
+	        return mappedDispatch;
+	      };
+
+	      Connect.prototype.updateStatePropsIfNeeded = function updateStatePropsIfNeeded() {
+	        var nextStateProps = this.computeStateProps(this.store, this.props);
+	        if (this.stateProps && (0, _shallowEqual2["default"])(nextStateProps, this.stateProps)) {
+	          return false;
+	        }
+
+	        this.stateProps = nextStateProps;
+	        return true;
+	      };
+
+	      Connect.prototype.updateDispatchPropsIfNeeded = function updateDispatchPropsIfNeeded() {
+	        var nextDispatchProps = this.computeDispatchProps(this.store, this.props);
+	        if (this.dispatchProps && (0, _shallowEqual2["default"])(nextDispatchProps, this.dispatchProps)) {
+	          return false;
+	        }
+
+	        this.dispatchProps = nextDispatchProps;
+	        return true;
+	      };
+
+	      Connect.prototype.updateMergedPropsIfNeeded = function updateMergedPropsIfNeeded() {
+	        var nextMergedProps = computeMergedProps(this.stateProps, this.dispatchProps, this.props);
+	        if (this.mergedProps && checkMergedEquals && (0, _shallowEqual2["default"])(nextMergedProps, this.mergedProps)) {
+	          return false;
+	        }
+
+	        this.mergedProps = nextMergedProps;
+	        return true;
+	      };
+
+	      Connect.prototype.isSubscribed = function isSubscribed() {
+	        return typeof this.unsubscribe === 'function';
+	      };
+
+	      Connect.prototype.trySubscribe = function trySubscribe() {
+	        if (shouldSubscribe && !this.unsubscribe) {
+	          this.unsubscribe = this.store.subscribe(this.handleChange.bind(this));
+	          this.handleChange();
+	        }
+	      };
+
+	      Connect.prototype.tryUnsubscribe = function tryUnsubscribe() {
+	        if (this.unsubscribe) {
+	          this.unsubscribe();
+	          this.unsubscribe = null;
+	        }
+	      };
+
+	      Connect.prototype.componentDidMount = function componentDidMount() {
+	        this.trySubscribe();
+	      };
+
+	      Connect.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+	        if (!pure || !(0, _shallowEqual2["default"])(nextProps, this.props)) {
+	          this.haveOwnPropsChanged = true;
+	        }
+	      };
+
+	      Connect.prototype.componentWillUnmount = function componentWillUnmount() {
+	        this.tryUnsubscribe();
+	        this.clearCache();
+	      };
+
+	      Connect.prototype.clearCache = function clearCache() {
+	        this.dispatchProps = null;
+	        this.stateProps = null;
+	        this.mergedProps = null;
+	        this.haveOwnPropsChanged = true;
+	        this.hasStoreStateChanged = true;
+	        this.haveStatePropsBeenPrecalculated = false;
+	        this.statePropsPrecalculationError = null;
+	        this.renderedElement = null;
+	        this.finalMapDispatchToProps = null;
+	        this.finalMapStateToProps = null;
+	      };
+
+	      Connect.prototype.handleChange = function handleChange() {
+	        if (!this.unsubscribe) {
+	          return;
+	        }
+
+	        var storeState = this.store.getState();
+	        var prevStoreState = this.state.storeState;
+	        if (pure && prevStoreState === storeState) {
+	          return;
+	        }
+
+	        if (pure && !this.doStatePropsDependOnOwnProps) {
+	          var haveStatePropsChanged = tryCatch(this.updateStatePropsIfNeeded, this);
+	          if (!haveStatePropsChanged) {
+	            return;
+	          }
+	          if (haveStatePropsChanged === errorObject) {
+	            this.statePropsPrecalculationError = errorObject.value;
+	          }
+	          this.haveStatePropsBeenPrecalculated = true;
+	        }
+
+	        this.hasStoreStateChanged = true;
+	        this.setState({ storeState: storeState });
+	      };
+
+	      Connect.prototype.getWrappedInstance = function getWrappedInstance() {
+	        (0, _invariant2["default"])(withRef, 'To access the wrapped instance, you need to specify ' + '{ withRef: true } as the fourth argument of the connect() call.');
+
+	        return this.refs.wrappedInstance;
+	      };
+
+	      Connect.prototype.render = function render() {
+	        var haveOwnPropsChanged = this.haveOwnPropsChanged;
+	        var hasStoreStateChanged = this.hasStoreStateChanged;
+	        var haveStatePropsBeenPrecalculated = this.haveStatePropsBeenPrecalculated;
+	        var statePropsPrecalculationError = this.statePropsPrecalculationError;
+	        var renderedElement = this.renderedElement;
+
+	        this.haveOwnPropsChanged = false;
+	        this.hasStoreStateChanged = false;
+	        this.haveStatePropsBeenPrecalculated = false;
+	        this.statePropsPrecalculationError = null;
+
+	        if (statePropsPrecalculationError) {
+	          throw statePropsPrecalculationError;
+	        }
+
+	        var shouldUpdateStateProps = true;
+	        var shouldUpdateDispatchProps = true;
+	        if (pure && renderedElement) {
+	          shouldUpdateStateProps = hasStoreStateChanged || haveOwnPropsChanged && this.doStatePropsDependOnOwnProps;
+	          shouldUpdateDispatchProps = haveOwnPropsChanged && this.doDispatchPropsDependOnOwnProps;
+	        }
+
+	        var haveStatePropsChanged = false;
+	        var haveDispatchPropsChanged = false;
+	        if (haveStatePropsBeenPrecalculated) {
+	          haveStatePropsChanged = true;
+	        } else if (shouldUpdateStateProps) {
+	          haveStatePropsChanged = this.updateStatePropsIfNeeded();
+	        }
+	        if (shouldUpdateDispatchProps) {
+	          haveDispatchPropsChanged = this.updateDispatchPropsIfNeeded();
+	        }
+
+	        var haveMergedPropsChanged = true;
+	        if (haveStatePropsChanged || haveDispatchPropsChanged || haveOwnPropsChanged) {
+	          haveMergedPropsChanged = this.updateMergedPropsIfNeeded();
+	        } else {
+	          haveMergedPropsChanged = false;
+	        }
+
+	        if (!haveMergedPropsChanged && renderedElement) {
+	          return renderedElement;
+	        }
+
+	        if (withRef) {
+	          this.renderedElement = (0, _react.createElement)(WrappedComponent, _extends({}, this.mergedProps, {
+	            ref: 'wrappedInstance'
+	          }));
+	        } else {
+	          this.renderedElement = (0, _react.createElement)(WrappedComponent, this.mergedProps);
+	        }
+
+	        return this.renderedElement;
+	      };
+
+	      return Connect;
+	    }(_react.Component);
+
+	    Connect.displayName = connectDisplayName;
+	    Connect.WrappedComponent = WrappedComponent;
+	    Connect.contextTypes = {
+	      store: _storeShape2["default"]
+	    };
+	    Connect.propTypes = {
+	      store: _storeShape2["default"]
+	    };
+
+	    if (process.env.NODE_ENV !== 'production') {
+	      Connect.prototype.componentWillUpdate = function componentWillUpdate() {
+	        if (this.version === version) {
+	          return;
+	        }
+
+	        // We are hot reloading!
+	        this.version = version;
+	        this.trySubscribe();
+	        this.clearCache();
+	      };
+	    }
+
+	    return (0, _hoistNonReactStatics2["default"])(Connect, WrappedComponent);
+	  };
+	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 232 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+	exports["default"] = shallowEqual;
+	function shallowEqual(objA, objB) {
+	  if (objA === objB) {
+	    return true;
+	  }
+
+	  var keysA = Object.keys(objA);
+	  var keysB = Object.keys(objB);
+
+	  if (keysA.length !== keysB.length) {
+	    return false;
+	  }
+
+	  // Test for A's keys different from B.
+	  var hasOwn = Object.prototype.hasOwnProperty;
+	  for (var i = 0; i < keysA.length; i++) {
+	    if (!hasOwn.call(objB, keysA[i]) || objA[keysA[i]] !== objB[keysA[i]]) {
+	      return false;
+	    }
+	  }
+
+	  return true;
+	}
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports["default"] = wrapActionCreators;
+
+	var _redux = __webpack_require__(234);
+
+	function wrapActionCreators(actionCreators) {
+	  return function (dispatch) {
+	    return (0, _redux.bindActionCreators)(actionCreators, dispatch);
+	  };
+	}
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+	exports.compose = exports.applyMiddleware = exports.bindActionCreators = exports.combineReducers = exports.createStore = undefined;
+
+	var _createStore = __webpack_require__(235);
+
+	var _createStore2 = _interopRequireDefault(_createStore);
+
+	var _combineReducers = __webpack_require__(244);
+
+	var _combineReducers2 = _interopRequireDefault(_combineReducers);
+
+	var _bindActionCreators = __webpack_require__(246);
+
+	var _bindActionCreators2 = _interopRequireDefault(_bindActionCreators);
+
+	var _applyMiddleware = __webpack_require__(247);
+
+	var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
+
+	var _compose = __webpack_require__(248);
+
+	var _compose2 = _interopRequireDefault(_compose);
+
+	var _warning = __webpack_require__(245);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/*
+	* This is a dummy function to check if the function name has been altered by minification.
+	* If the function has been minified and NODE_ENV !== 'production', warn the user.
+	*/
+	function isCrushed() {}
+
+	if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+	  (0, _warning2['default'])('You are currently using minified code outside of NODE_ENV === \'production\'. ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' + 'to ensure you have the correct code for your production build.');
+	}
+
+	exports.createStore = _createStore2['default'];
+	exports.combineReducers = _combineReducers2['default'];
+	exports.bindActionCreators = _bindActionCreators2['default'];
+	exports.applyMiddleware = _applyMiddleware2['default'];
+	exports.compose = _compose2['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.ActionTypes = undefined;
+	exports['default'] = createStore;
+
+	var _isPlainObject = __webpack_require__(236);
+
+	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
+
+	var _symbolObservable = __webpack_require__(240);
+
+	var _symbolObservable2 = _interopRequireDefault(_symbolObservable);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/**
+	 * These are private action types reserved by Redux.
+	 * For any unknown actions, you must return the current state.
+	 * If the current state is undefined, you must return the initial state.
+	 * Do not reference these action types directly in your code.
+	 */
+	var ActionTypes = exports.ActionTypes = {
+	  INIT: '@@redux/INIT'
+	};
+
+	/**
+	 * Creates a Redux store that holds the state tree.
+	 * The only way to change the data in the store is to call `dispatch()` on it.
+	 *
+	 * There should only be a single store in your app. To specify how different
+	 * parts of the state tree respond to actions, you may combine several reducers
+	 * into a single reducer function by using `combineReducers`.
+	 *
+	 * @param {Function} reducer A function that returns the next state tree, given
+	 * the current state tree and the action to handle.
+	 *
+	 * @param {any} [preloadedState] The initial state. You may optionally specify it
+	 * to hydrate the state from the server in universal apps, or to restore a
+	 * previously serialized user session.
+	 * If you use `combineReducers` to produce the root reducer function, this must be
+	 * an object with the same shape as `combineReducers` keys.
+	 *
+	 * @param {Function} enhancer The store enhancer. You may optionally specify it
+	 * to enhance the store with third-party capabilities such as middleware,
+	 * time travel, persistence, etc. The only store enhancer that ships with Redux
+	 * is `applyMiddleware()`.
+	 *
+	 * @returns {Store} A Redux store that lets you read the state, dispatch actions
+	 * and subscribe to changes.
+	 */
+	function createStore(reducer, preloadedState, enhancer) {
+	  var _ref2;
+
+	  if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
+	    enhancer = preloadedState;
+	    preloadedState = undefined;
+	  }
+
+	  if (typeof enhancer !== 'undefined') {
+	    if (typeof enhancer !== 'function') {
+	      throw new Error('Expected the enhancer to be a function.');
+	    }
+
+	    return enhancer(createStore)(reducer, preloadedState);
+	  }
+
+	  if (typeof reducer !== 'function') {
+	    throw new Error('Expected the reducer to be a function.');
+	  }
+
+	  var currentReducer = reducer;
+	  var currentState = preloadedState;
+	  var currentListeners = [];
+	  var nextListeners = currentListeners;
+	  var isDispatching = false;
+
+	  function ensureCanMutateNextListeners() {
+	    if (nextListeners === currentListeners) {
+	      nextListeners = currentListeners.slice();
+	    }
+	  }
+
+	  /**
+	   * Reads the state tree managed by the store.
+	   *
+	   * @returns {any} The current state tree of your application.
+	   */
+	  function getState() {
+	    return currentState;
+	  }
+
+	  /**
+	   * Adds a change listener. It will be called any time an action is dispatched,
+	   * and some part of the state tree may potentially have changed. You may then
+	   * call `getState()` to read the current state tree inside the callback.
+	   *
+	   * You may call `dispatch()` from a change listener, with the following
+	   * caveats:
+	   *
+	   * 1. The subscriptions are snapshotted just before every `dispatch()` call.
+	   * If you subscribe or unsubscribe while the listeners are being invoked, this
+	   * will not have any effect on the `dispatch()` that is currently in progress.
+	   * However, the next `dispatch()` call, whether nested or not, will use a more
+	   * recent snapshot of the subscription list.
+	   *
+	   * 2. The listener should not expect to see all state changes, as the state
+	   * might have been updated multiple times during a nested `dispatch()` before
+	   * the listener is called. It is, however, guaranteed that all subscribers
+	   * registered before the `dispatch()` started will be called with the latest
+	   * state by the time it exits.
+	   *
+	   * @param {Function} listener A callback to be invoked on every dispatch.
+	   * @returns {Function} A function to remove this change listener.
+	   */
+	  function subscribe(listener) {
+	    if (typeof listener !== 'function') {
+	      throw new Error('Expected listener to be a function.');
+	    }
+
+	    var isSubscribed = true;
+
+	    ensureCanMutateNextListeners();
+	    nextListeners.push(listener);
+
+	    return function unsubscribe() {
+	      if (!isSubscribed) {
+	        return;
+	      }
+
+	      isSubscribed = false;
+
+	      ensureCanMutateNextListeners();
+	      var index = nextListeners.indexOf(listener);
+	      nextListeners.splice(index, 1);
+	    };
+	  }
+
+	  /**
+	   * Dispatches an action. It is the only way to trigger a state change.
+	   *
+	   * The `reducer` function, used to create the store, will be called with the
+	   * current state tree and the given `action`. Its return value will
+	   * be considered the **next** state of the tree, and the change listeners
+	   * will be notified.
+	   *
+	   * The base implementation only supports plain object actions. If you want to
+	   * dispatch a Promise, an Observable, a thunk, or something else, you need to
+	   * wrap your store creating function into the corresponding middleware. For
+	   * example, see the documentation for the `redux-thunk` package. Even the
+	   * middleware will eventually dispatch plain object actions using this method.
+	   *
+	   * @param {Object} action A plain object representing “what changed”. It is
+	   * a good idea to keep actions serializable so you can record and replay user
+	   * sessions, or use the time travelling `redux-devtools`. An action must have
+	   * a `type` property which may not be `undefined`. It is a good idea to use
+	   * string constants for action types.
+	   *
+	   * @returns {Object} For convenience, the same action object you dispatched.
+	   *
+	   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
+	   * return something else (for example, a Promise you can await).
+	   */
+	  function dispatch(action) {
+	    if (!(0, _isPlainObject2['default'])(action)) {
+	      throw new Error('Actions must be plain objects. ' + 'Use custom middleware for async actions.');
+	    }
+
+	    if (typeof action.type === 'undefined') {
+	      throw new Error('Actions may not have an undefined "type" property. ' + 'Have you misspelled a constant?');
+	    }
+
+	    if (isDispatching) {
+	      throw new Error('Reducers may not dispatch actions.');
+	    }
+
+	    try {
+	      isDispatching = true;
+	      currentState = currentReducer(currentState, action);
+	    } finally {
+	      isDispatching = false;
+	    }
+
+	    var listeners = currentListeners = nextListeners;
+	    for (var i = 0; i < listeners.length; i++) {
+	      listeners[i]();
+	    }
+
+	    return action;
+	  }
+
+	  /**
+	   * Replaces the reducer currently used by the store to calculate the state.
+	   *
+	   * You might need this if your app implements code splitting and you want to
+	   * load some of the reducers dynamically. You might also need this if you
+	   * implement a hot reloading mechanism for Redux.
+	   *
+	   * @param {Function} nextReducer The reducer for the store to use instead.
+	   * @returns {void}
+	   */
+	  function replaceReducer(nextReducer) {
+	    if (typeof nextReducer !== 'function') {
+	      throw new Error('Expected the nextReducer to be a function.');
+	    }
+
+	    currentReducer = nextReducer;
+	    dispatch({ type: ActionTypes.INIT });
+	  }
+
+	  /**
+	   * Interoperability point for observable/reactive libraries.
+	   * @returns {observable} A minimal observable of state changes.
+	   * For more information, see the observable proposal:
+	   * https://github.com/zenparsing/es-observable
+	   */
+	  function observable() {
+	    var _ref;
+
+	    var outerSubscribe = subscribe;
+	    return _ref = {
+	      /**
+	       * The minimal observable subscription method.
+	       * @param {Object} observer Any object that can be used as an observer.
+	       * The observer object should have a `next` method.
+	       * @returns {subscription} An object with an `unsubscribe` method that can
+	       * be used to unsubscribe the observable from the store, and prevent further
+	       * emission of values from the observable.
+	       */
+	      subscribe: function subscribe(observer) {
+	        if (typeof observer !== 'object') {
+	          throw new TypeError('Expected the observer to be an object.');
+	        }
+
+	        function observeState() {
+	          if (observer.next) {
+	            observer.next(getState());
+	          }
+	        }
+
+	        observeState();
+	        var unsubscribe = outerSubscribe(observeState);
+	        return { unsubscribe: unsubscribe };
+	      }
+	    }, _ref[_symbolObservable2['default']] = function () {
+	      return this;
+	    }, _ref;
+	  }
+
+	  // When a store is created, an "INIT" action is dispatched so that every
+	  // reducer returns their initial state. This effectively populates
+	  // the initial state tree.
+	  dispatch({ type: ActionTypes.INIT });
+
+	  return _ref2 = {
+	    dispatch: dispatch,
+	    subscribe: subscribe,
+	    getState: getState,
+	    replaceReducer: replaceReducer
+	  }, _ref2[_symbolObservable2['default']] = observable, _ref2;
+	}
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var getPrototype = __webpack_require__(237),
+	    isObjectLike = __webpack_require__(239);
+
+	/** `Object#toString` result references. */
+	var objectTag = '[object Object]';
+
+	/** Used for built-in method references. */
+	var funcProto = Function.prototype,
+	    objectProto = Object.prototype;
+
+	/** Used to resolve the decompiled source of functions. */
+	var funcToString = funcProto.toString;
+
+	/** Used to check objects for own properties. */
+	var hasOwnProperty = objectProto.hasOwnProperty;
+
+	/** Used to infer the `Object` constructor. */
+	var objectCtorString = funcToString.call(Object);
+
+	/**
+	 * Used to resolve the
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+	 * of values.
+	 */
+	var objectToString = objectProto.toString;
+
+	/**
+	 * Checks if `value` is a plain object, that is, an object created by the
+	 * `Object` constructor or one with a `[[Prototype]]` of `null`.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.8.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+	 * @example
+	 *
+	 * function Foo() {
+	 *   this.a = 1;
+	 * }
+	 *
+	 * _.isPlainObject(new Foo);
+	 * // => false
+	 *
+	 * _.isPlainObject([1, 2, 3]);
+	 * // => false
+	 *
+	 * _.isPlainObject({ 'x': 0, 'y': 0 });
+	 * // => true
+	 *
+	 * _.isPlainObject(Object.create(null));
+	 * // => true
+	 */
+	function isPlainObject(value) {
+	  if (!isObjectLike(value) || objectToString.call(value) != objectTag) {
+	    return false;
+	  }
+	  var proto = getPrototype(value);
+	  if (proto === null) {
+	    return true;
+	  }
+	  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+	  return (typeof Ctor == 'function' &&
+	    Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString);
+	}
+
+	module.exports = isPlainObject;
+
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var overArg = __webpack_require__(238);
+
+	/** Built-in value references. */
+	var getPrototype = overArg(Object.getPrototypeOf, Object);
+
+	module.exports = getPrototype;
+
+
+/***/ },
+/* 238 */
+/***/ function(module, exports) {
+
+	/**
+	 * Creates a unary function that invokes `func` with its argument transformed.
+	 *
+	 * @private
+	 * @param {Function} func The function to wrap.
+	 * @param {Function} transform The argument transform.
+	 * @returns {Function} Returns the new function.
+	 */
+	function overArg(func, transform) {
+	  return function(arg) {
+	    return func(transform(arg));
+	  };
+	}
+
+	module.exports = overArg;
+
+
+/***/ },
+/* 239 */
+/***/ function(module, exports) {
+
+	/**
+	 * Checks if `value` is object-like. A value is object-like if it's not `null`
+	 * and has a `typeof` result of "object".
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+	 * @example
+	 *
+	 * _.isObjectLike({});
+	 * // => true
+	 *
+	 * _.isObjectLike([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObjectLike(_.noop);
+	 * // => false
+	 *
+	 * _.isObjectLike(null);
+	 * // => false
+	 */
+	function isObjectLike(value) {
+	  return value != null && typeof value == 'object';
+	}
+
+	module.exports = isObjectLike;
+
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(241);
+
+
+/***/ },
+/* 241 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global, module) {'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.App = undefined;
 
-	var _App = __webpack_require__(173);
+	var _ponyfill = __webpack_require__(243);
+
+	var _ponyfill2 = _interopRequireDefault(_ponyfill);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var root; /* global window */
+
+
+	if (typeof self !== 'undefined') {
+	  root = self;
+	} else if (typeof window !== 'undefined') {
+	  root = window;
+	} else if (typeof global !== 'undefined') {
+	  root = global;
+	} else if (true) {
+	  root = module;
+	} else {
+	  root = Function('return this')();
+	}
+
+	var result = (0, _ponyfill2['default'])(root);
+	exports['default'] = result;
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(242)(module)))
+
+/***/ },
+/* 242 */
+/***/ function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ },
+/* 243 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports['default'] = symbolObservablePonyfill;
+	function symbolObservablePonyfill(root) {
+		var result;
+		var _Symbol = root.Symbol;
+
+		if (typeof _Symbol === 'function') {
+			if (_Symbol.observable) {
+				result = _Symbol.observable;
+			} else {
+				result = _Symbol('observable');
+				_Symbol.observable = result;
+			}
+		} else {
+			result = '@@observable';
+		}
+
+		return result;
+	};
+
+/***/ },
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	exports.__esModule = true;
+	exports['default'] = combineReducers;
+
+	var _createStore = __webpack_require__(235);
+
+	var _isPlainObject = __webpack_require__(236);
+
+	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
+
+	var _warning = __webpack_require__(245);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function getUndefinedStateErrorMessage(key, action) {
+	  var actionType = action && action.type;
+	  var actionName = actionType && '"' + actionType.toString() + '"' || 'an action';
+
+	  return 'Given action ' + actionName + ', reducer "' + key + '" returned undefined. ' + 'To ignore an action, you must explicitly return the previous state.';
+	}
+
+	function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
+	  var reducerKeys = Object.keys(reducers);
+	  var argumentName = action && action.type === _createStore.ActionTypes.INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
+
+	  if (reducerKeys.length === 0) {
+	    return 'Store does not have a valid reducer. Make sure the argument passed ' + 'to combineReducers is an object whose values are reducers.';
+	  }
+
+	  if (!(0, _isPlainObject2['default'])(inputState)) {
+	    return 'The ' + argumentName + ' has unexpected type of "' + {}.toString.call(inputState).match(/\s([a-z|A-Z]+)/)[1] + '". Expected argument to be an object with the following ' + ('keys: "' + reducerKeys.join('", "') + '"');
+	  }
+
+	  var unexpectedKeys = Object.keys(inputState).filter(function (key) {
+	    return !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key];
+	  });
+
+	  unexpectedKeys.forEach(function (key) {
+	    unexpectedKeyCache[key] = true;
+	  });
+
+	  if (unexpectedKeys.length > 0) {
+	    return 'Unexpected ' + (unexpectedKeys.length > 1 ? 'keys' : 'key') + ' ' + ('"' + unexpectedKeys.join('", "') + '" found in ' + argumentName + '. ') + 'Expected to find one of the known reducer keys instead: ' + ('"' + reducerKeys.join('", "') + '". Unexpected keys will be ignored.');
+	  }
+	}
+
+	function assertReducerSanity(reducers) {
+	  Object.keys(reducers).forEach(function (key) {
+	    var reducer = reducers[key];
+	    var initialState = reducer(undefined, { type: _createStore.ActionTypes.INIT });
+
+	    if (typeof initialState === 'undefined') {
+	      throw new Error('Reducer "' + key + '" returned undefined during initialization. ' + 'If the state passed to the reducer is undefined, you must ' + 'explicitly return the initial state. The initial state may ' + 'not be undefined.');
+	    }
+
+	    var type = '@@redux/PROBE_UNKNOWN_ACTION_' + Math.random().toString(36).substring(7).split('').join('.');
+	    if (typeof reducer(undefined, { type: type }) === 'undefined') {
+	      throw new Error('Reducer "' + key + '" returned undefined when probed with a random type. ' + ('Don\'t try to handle ' + _createStore.ActionTypes.INIT + ' or other actions in "redux/*" ') + 'namespace. They are considered private. Instead, you must return the ' + 'current state for any unknown actions, unless it is undefined, ' + 'in which case you must return the initial state, regardless of the ' + 'action type. The initial state may not be undefined.');
+	    }
+	  });
+	}
+
+	/**
+	 * Turns an object whose values are different reducer functions, into a single
+	 * reducer function. It will call every child reducer, and gather their results
+	 * into a single state object, whose keys correspond to the keys of the passed
+	 * reducer functions.
+	 *
+	 * @param {Object} reducers An object whose values correspond to different
+	 * reducer functions that need to be combined into one. One handy way to obtain
+	 * it is to use ES6 `import * as reducers` syntax. The reducers may never return
+	 * undefined for any action. Instead, they should return their initial state
+	 * if the state passed to them was undefined, and the current state for any
+	 * unrecognized action.
+	 *
+	 * @returns {Function} A reducer function that invokes every reducer inside the
+	 * passed object, and builds a state object with the same shape.
+	 */
+	function combineReducers(reducers) {
+	  var reducerKeys = Object.keys(reducers);
+	  var finalReducers = {};
+	  for (var i = 0; i < reducerKeys.length; i++) {
+	    var key = reducerKeys[i];
+
+	    if (process.env.NODE_ENV !== 'production') {
+	      if (typeof reducers[key] === 'undefined') {
+	        (0, _warning2['default'])('No reducer provided for key "' + key + '"');
+	      }
+	    }
+
+	    if (typeof reducers[key] === 'function') {
+	      finalReducers[key] = reducers[key];
+	    }
+	  }
+	  var finalReducerKeys = Object.keys(finalReducers);
+
+	  if (process.env.NODE_ENV !== 'production') {
+	    var unexpectedKeyCache = {};
+	  }
+
+	  var sanityError;
+	  try {
+	    assertReducerSanity(finalReducers);
+	  } catch (e) {
+	    sanityError = e;
+	  }
+
+	  return function combination() {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	    var action = arguments[1];
+
+	    if (sanityError) {
+	      throw sanityError;
+	    }
+
+	    if (process.env.NODE_ENV !== 'production') {
+	      var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache);
+	      if (warningMessage) {
+	        (0, _warning2['default'])(warningMessage);
+	      }
+	    }
+
+	    var hasChanged = false;
+	    var nextState = {};
+	    for (var i = 0; i < finalReducerKeys.length; i++) {
+	      var key = finalReducerKeys[i];
+	      var reducer = finalReducers[key];
+	      var previousStateForKey = state[key];
+	      var nextStateForKey = reducer(previousStateForKey, action);
+	      if (typeof nextStateForKey === 'undefined') {
+	        var errorMessage = getUndefinedStateErrorMessage(key, action);
+	        throw new Error(errorMessage);
+	      }
+	      nextState[key] = nextStateForKey;
+	      hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
+	    }
+	    return hasChanged ? nextState : state;
+	  };
+	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 245 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports['default'] = warning;
+	/**
+	 * Prints a warning in the console if it exists.
+	 *
+	 * @param {String} message The warning message.
+	 * @returns {void}
+	 */
+	function warning(message) {
+	  /* eslint-disable no-console */
+	  if (typeof console !== 'undefined' && typeof console.error === 'function') {
+	    console.error(message);
+	  }
+	  /* eslint-enable no-console */
+	  try {
+	    // This error was thrown as a convenience so that if you enable
+	    // "break on all exceptions" in your console,
+	    // it would pause the execution at this line.
+	    throw new Error(message);
+	    /* eslint-disable no-empty */
+	  } catch (e) {}
+	  /* eslint-enable no-empty */
+	}
+
+/***/ },
+/* 246 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports['default'] = bindActionCreators;
+	function bindActionCreator(actionCreator, dispatch) {
+	  return function () {
+	    return dispatch(actionCreator.apply(undefined, arguments));
+	  };
+	}
+
+	/**
+	 * Turns an object whose values are action creators, into an object with the
+	 * same keys, but with every function wrapped into a `dispatch` call so they
+	 * may be invoked directly. This is just a convenience method, as you can call
+	 * `store.dispatch(MyActionCreators.doSomething())` yourself just fine.
+	 *
+	 * For convenience, you can also pass a single function as the first argument,
+	 * and get a function in return.
+	 *
+	 * @param {Function|Object} actionCreators An object whose values are action
+	 * creator functions. One handy way to obtain it is to use ES6 `import * as`
+	 * syntax. You may also pass a single function.
+	 *
+	 * @param {Function} dispatch The `dispatch` function available on your Redux
+	 * store.
+	 *
+	 * @returns {Function|Object} The object mimicking the original object, but with
+	 * every action creator wrapped into the `dispatch` call. If you passed a
+	 * function as `actionCreators`, the return value will also be a single
+	 * function.
+	 */
+	function bindActionCreators(actionCreators, dispatch) {
+	  if (typeof actionCreators === 'function') {
+	    return bindActionCreator(actionCreators, dispatch);
+	  }
+
+	  if (typeof actionCreators !== 'object' || actionCreators === null) {
+	    throw new Error('bindActionCreators expected an object or a function, instead received ' + (actionCreators === null ? 'null' : typeof actionCreators) + '. ' + 'Did you write "import ActionCreators from" instead of "import * as ActionCreators from"?');
+	  }
+
+	  var keys = Object.keys(actionCreators);
+	  var boundActionCreators = {};
+	  for (var i = 0; i < keys.length; i++) {
+	    var key = keys[i];
+	    var actionCreator = actionCreators[key];
+	    if (typeof actionCreator === 'function') {
+	      boundActionCreators[key] = bindActionCreator(actionCreator, dispatch);
+	    }
+	  }
+	  return boundActionCreators;
+	}
+
+/***/ },
+/* 247 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports['default'] = applyMiddleware;
+
+	var _compose = __webpack_require__(248);
+
+	var _compose2 = _interopRequireDefault(_compose);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/**
+	 * Creates a store enhancer that applies middleware to the dispatch method
+	 * of the Redux store. This is handy for a variety of tasks, such as expressing
+	 * asynchronous actions in a concise manner, or logging every action payload.
+	 *
+	 * See `redux-thunk` package as an example of the Redux middleware.
+	 *
+	 * Because middleware is potentially asynchronous, this should be the first
+	 * store enhancer in the composition chain.
+	 *
+	 * Note that each middleware will be given the `dispatch` and `getState` functions
+	 * as named arguments.
+	 *
+	 * @param {...Function} middlewares The middleware chain to be applied.
+	 * @returns {Function} A store enhancer applying the middleware.
+	 */
+	function applyMiddleware() {
+	  for (var _len = arguments.length, middlewares = Array(_len), _key = 0; _key < _len; _key++) {
+	    middlewares[_key] = arguments[_key];
+	  }
+
+	  return function (createStore) {
+	    return function (reducer, preloadedState, enhancer) {
+	      var store = createStore(reducer, preloadedState, enhancer);
+	      var _dispatch = store.dispatch;
+	      var chain = [];
+
+	      var middlewareAPI = {
+	        getState: store.getState,
+	        dispatch: function dispatch(action) {
+	          return _dispatch(action);
+	        }
+	      };
+	      chain = middlewares.map(function (middleware) {
+	        return middleware(middlewareAPI);
+	      });
+	      _dispatch = _compose2['default'].apply(undefined, chain)(store.dispatch);
+
+	      return _extends({}, store, {
+	        dispatch: _dispatch
+	      });
+	    };
+	  };
+	}
+
+/***/ },
+/* 248 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+	exports["default"] = compose;
+	/**
+	 * Composes single-argument functions from right to left. The rightmost
+	 * function can take multiple arguments as it provides the signature for
+	 * the resulting composite function.
+	 *
+	 * @param {...Function} funcs The functions to compose.
+	 * @returns {Function} A function obtained by composing the argument functions
+	 * from right to left. For example, compose(f, g, h) is identical to doing
+	 * (...args) => f(g(h(...args))).
+	 */
+
+	function compose() {
+	  for (var _len = arguments.length, funcs = Array(_len), _key = 0; _key < _len; _key++) {
+	    funcs[_key] = arguments[_key];
+	  }
+
+	  if (funcs.length === 0) {
+	    return function (arg) {
+	      return arg;
+	    };
+	  }
+
+	  if (funcs.length === 1) {
+	    return funcs[0];
+	  }
+
+	  var last = funcs[funcs.length - 1];
+	  var rest = funcs.slice(0, -1);
+	  return function () {
+	    return rest.reduceRight(function (composed, f) {
+	      return f(composed);
+	    }, last.apply(undefined, arguments));
+	  };
+	}
+
+/***/ },
+/* 249 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _authentication = __webpack_require__(250);
+
+	var _authentication2 = _interopRequireDefault(_authentication);
+
+	var _header = __webpack_require__(254);
+
+	var _header2 = _interopRequireDefault(_header);
+
+	var _minicard = __webpack_require__(255);
+
+	var _minicard2 = _interopRequireDefault(_minicard);
+
+	var _redux = __webpack_require__(234);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = (0, _redux.combineReducers)({
+		authentication: _authentication2.default,
+		header: _header2.default,
+		minicard: _minicard2.default
+	});
+
+/***/ },
+/* 250 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = authentication;
+
+	var _ActionTypes = __webpack_require__(251);
+
+	var types = _interopRequireWildcard(_ActionTypes);
+
+	var _reactAddonsUpdate = __webpack_require__(252);
+
+	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	var initialState = {
+	    login: {
+	        status: 'INIT'
+	    },
+	    status: {
+	        valid: false,
+	        isLoggedIn: false,
+	        currentUser: ''
+	    }
+	};
+
+	function authentication(state, action) {
+	    if (typeof state === "undefined") {
+	        state = initialState;
+	    }
+
+	    switch (action.type) {
+	        /* LOGIN */
+	        case types.AUTH_LOGIN:
+	            return (0, _reactAddonsUpdate2.default)(state, {
+	                login: {
+	                    status: { $set: 'WAITING ' }
+	                }
+	            });
+	        case types.AUTH_LOGIN_SUCCESS:
+	            return (0, _reactAddonsUpdate2.default)(state, {
+	                login: {
+	                    status: { $set: 'SUCCESS' }
+	                },
+	                status: {
+	                    isLoggedIn: { $set: true },
+	                    currentUser: { $set: action.username }
+	                }
+	            });
+	        case types.AUTH_FAILURE:
+	            return (0, _reactAddonsUpdate2.default)(state, {
+	                login: {
+	                    status: { $set: 'FAILURE' }
+	                }
+	            });
+	        default:
+	            return state;
+	    }
+	}
+
+/***/ },
+/* 251 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/* AUTH */
+
+	var AUTH_LOGIN = exports.AUTH_LOGIN = "AUTH_LOGIN";
+	var AUTH_LOGIN_SUCCESS = exports.AUTH_LOGIN_SUCCESS = "AUTH_LOGIN_SUCCESS";
+	var AUTH_LOGIN_FAILIURE = exports.AUTH_LOGIN_FAILIURE = "AUTH_LOGIN_FAILURE";
+
+	/* BROWSER */
+	var MENU_UPDATE = exports.MENU_UPDATE = "MANU_UPDATE";
+
+	/* MiniCard */
+	var MINI_UPDATE_1TH = exports.MINI_UPDATE_1TH = "MINI_UPDATE_1TH";
+	var MINI_UPDATE_2TH = exports.MINI_UPDATE_2TH = "MINI_UPDATE_2TH";
+	var MINI_UPDATE_3TH = exports.MINI_UPDATE_3TH = "MINI_UPDATE_3TH";
+	var MINI_UPDATE_4TH = exports.MINI_UPDATE_4TH = "MINI_UPDATE_4TH";
+
+/***/ },
+/* 252 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(253);
+
+/***/ },
+/* 253 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule update
+	 */
+
+	/* global hasOwnProperty:true */
+
+	'use strict';
+
+	var _prodInvariant = __webpack_require__(7),
+	    _assign = __webpack_require__(4);
+
+	var keyOf = __webpack_require__(25);
+	var invariant = __webpack_require__(8);
+	var hasOwnProperty = {}.hasOwnProperty;
+
+	function shallowCopy(x) {
+	  if (Array.isArray(x)) {
+	    return x.concat();
+	  } else if (x && typeof x === 'object') {
+	    return _assign(new x.constructor(), x);
+	  } else {
+	    return x;
+	  }
+	}
+
+	var COMMAND_PUSH = keyOf({ $push: null });
+	var COMMAND_UNSHIFT = keyOf({ $unshift: null });
+	var COMMAND_SPLICE = keyOf({ $splice: null });
+	var COMMAND_SET = keyOf({ $set: null });
+	var COMMAND_MERGE = keyOf({ $merge: null });
+	var COMMAND_APPLY = keyOf({ $apply: null });
+
+	var ALL_COMMANDS_LIST = [COMMAND_PUSH, COMMAND_UNSHIFT, COMMAND_SPLICE, COMMAND_SET, COMMAND_MERGE, COMMAND_APPLY];
+
+	var ALL_COMMANDS_SET = {};
+
+	ALL_COMMANDS_LIST.forEach(function (command) {
+	  ALL_COMMANDS_SET[command] = true;
+	});
+
+	function invariantArrayCase(value, spec, command) {
+	  !Array.isArray(value) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected target of %s to be an array; got %s.', command, value) : _prodInvariant('1', command, value) : void 0;
+	  var specValue = spec[command];
+	  !Array.isArray(specValue) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array; got %s. Did you forget to wrap your parameter in an array?', command, specValue) : _prodInvariant('2', command, specValue) : void 0;
+	}
+
+	/**
+	 * Returns a updated shallow copy of an object without mutating the original.
+	 * See https://facebook.github.io/react/docs/update.html for details.
+	 */
+	function update(value, spec) {
+	  !(typeof spec === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): You provided a key path to update() that did not contain one of %s. Did you forget to include {%s: ...}?', ALL_COMMANDS_LIST.join(', '), COMMAND_SET) : _prodInvariant('3', ALL_COMMANDS_LIST.join(', '), COMMAND_SET) : void 0;
+
+	  if (hasOwnProperty.call(spec, COMMAND_SET)) {
+	    !(Object.keys(spec).length === 1) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Cannot have more than one key in an object with %s', COMMAND_SET) : _prodInvariant('4', COMMAND_SET) : void 0;
+
+	    return spec[COMMAND_SET];
+	  }
+
+	  var nextValue = shallowCopy(value);
+
+	  if (hasOwnProperty.call(spec, COMMAND_MERGE)) {
+	    var mergeObj = spec[COMMAND_MERGE];
+	    !(mergeObj && typeof mergeObj === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): %s expects a spec of type \'object\'; got %s', COMMAND_MERGE, mergeObj) : _prodInvariant('5', COMMAND_MERGE, mergeObj) : void 0;
+	    !(nextValue && typeof nextValue === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): %s expects a target of type \'object\'; got %s', COMMAND_MERGE, nextValue) : _prodInvariant('6', COMMAND_MERGE, nextValue) : void 0;
+	    _assign(nextValue, spec[COMMAND_MERGE]);
+	  }
+
+	  if (hasOwnProperty.call(spec, COMMAND_PUSH)) {
+	    invariantArrayCase(value, spec, COMMAND_PUSH);
+	    spec[COMMAND_PUSH].forEach(function (item) {
+	      nextValue.push(item);
+	    });
+	  }
+
+	  if (hasOwnProperty.call(spec, COMMAND_UNSHIFT)) {
+	    invariantArrayCase(value, spec, COMMAND_UNSHIFT);
+	    spec[COMMAND_UNSHIFT].forEach(function (item) {
+	      nextValue.unshift(item);
+	    });
+	  }
+
+	  if (hasOwnProperty.call(spec, COMMAND_SPLICE)) {
+	    !Array.isArray(value) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected %s target to be an array; got %s', COMMAND_SPLICE, value) : _prodInvariant('7', COMMAND_SPLICE, value) : void 0;
+	    !Array.isArray(spec[COMMAND_SPLICE]) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array of arrays; got %s. Did you forget to wrap your parameters in an array?', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : _prodInvariant('8', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : void 0;
+	    spec[COMMAND_SPLICE].forEach(function (args) {
+	      !Array.isArray(args) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array of arrays; got %s. Did you forget to wrap your parameters in an array?', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : _prodInvariant('8', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : void 0;
+	      nextValue.splice.apply(nextValue, args);
+	    });
+	  }
+
+	  if (hasOwnProperty.call(spec, COMMAND_APPLY)) {
+	    !(typeof spec[COMMAND_APPLY] === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be a function; got %s.', COMMAND_APPLY, spec[COMMAND_APPLY]) : _prodInvariant('9', COMMAND_APPLY, spec[COMMAND_APPLY]) : void 0;
+	    nextValue = spec[COMMAND_APPLY](nextValue);
+	  }
+
+	  for (var k in spec) {
+	    if (!(ALL_COMMANDS_SET.hasOwnProperty(k) && ALL_COMMANDS_SET[k])) {
+	      nextValue[k] = update(value[k], spec[k]);
+	    }
+	  }
+
+	  return nextValue;
+	}
+
+	module.exports = update;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = header;
+
+	var _ActionTypes = __webpack_require__(251);
+
+	var types = _interopRequireWildcard(_ActionTypes);
+
+	var _reactAddonsUpdate = __webpack_require__(252);
+
+	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	var initialState = {
+		menu: {
+			currentMenu: 'Current Menu'
+		}
+	};
+
+	function header(state, action) {
+		if (typeof state === "undefined") {
+			state = initialState;
+		}
+
+		switch (action.type) {
+			/* MENU */
+			case types.MENU_UPDATE:
+				return (0, _reactAddonsUpdate2.default)(state, {
+					menu: {
+						currentMenu: { $set: action.menuname }
+					}
+				});
+			default:
+				return state;
+		}
+	}
+
+/***/ },
+/* 255 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = header;
+
+	var _ActionTypes = __webpack_require__(251);
+
+	var types = _interopRequireWildcard(_ActionTypes);
+
+	var _reactAddonsUpdate = __webpack_require__(252);
+
+	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	var initialState = {
+	    count: {
+	        mini1th: -1,
+	        mini2th: -1,
+	        mini3th: -1,
+	        mini4th: -1
+	    }
+	};
+
+	function header(state, action) {
+	    if (typeof state === "undefined") {
+	        state = initialState;
+	    }
+
+	    switch (action.type) {
+	        /* MINI CARD */
+	        case types.MINI_UPDATE_1TH:
+	            return (0, _reactAddonsUpdate2.default)(state, {
+	                mini1th: {
+	                    $set: action.value
+	                }
+	            });
+	        case types.MINI_UPDATE_2TH:
+	            return (0, _reactAddonsUpdate2.default)(state, {
+	                mini2th: {
+	                    $set: action.value
+	                }
+	            });
+	        case types.MINI_UPDATE_3TH:
+	            return (0, _reactAddonsUpdate2.default)(state, {
+	                mini3th: {
+	                    $set: action.value
+	                }
+	            });
+	        case types.MINI_UPDATE_4TH:
+	            return (0, _reactAddonsUpdate2.default)(state, {
+	                mini4th: {
+	                    $set: action.value
+	                }
+	            });
+	        default:
+	            return state;
+	    }
+	}
+
+/***/ },
+/* 256 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch;
+	    var getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
+
+	        return next(action);
+	      };
+	    };
+	  };
+	}
+
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
+
+	exports['default'] = thunk;
+
+/***/ },
+/* 257 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.SeatingChart = exports.Dashboard = exports.Register = exports.Login = exports.CounselManager = exports.ReportManager = exports.BambooGrove = exports.Home = exports.App = undefined;
+
+	var _App = __webpack_require__(258);
 
 	var _App2 = _interopRequireDefault(_App);
+
+	var _Home = __webpack_require__(280);
+
+	var _Home2 = _interopRequireDefault(_Home);
+
+	var _BambooGrove = __webpack_require__(281);
+
+	var _BambooGrove2 = _interopRequireDefault(_BambooGrove);
+
+	var _ReportManager = __webpack_require__(282);
+
+	var _ReportManager2 = _interopRequireDefault(_ReportManager);
+
+	var _CounselManager = __webpack_require__(283);
+
+	var _CounselManager2 = _interopRequireDefault(_CounselManager);
+
+	var _Login = __webpack_require__(284);
+
+	var _Login2 = _interopRequireDefault(_Login);
+
+	var _Register = __webpack_require__(311);
+
+	var _Register2 = _interopRequireDefault(_Register);
+
+	var _Dashboard = __webpack_require__(312);
+
+	var _Dashboard2 = _interopRequireDefault(_Dashboard);
+
+	var _SeatingChart = __webpack_require__(314);
+
+	var _SeatingChart2 = _interopRequireDefault(_SeatingChart);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.App = _App2.default;
+	exports.Home = _Home2.default;
+	exports.BambooGrove = _BambooGrove2.default;
+	exports.ReportManager = _ReportManager2.default;
+	exports.CounselManager = _CounselManager2.default;
+	exports.Login = _Login2.default;
+	exports.Register = _Register2.default;
+	exports.Dashboard = _Dashboard2.default;
+	exports.SeatingChart = _SeatingChart2.default;
 
 /***/ },
-/* 173 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21464,7 +28320,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _components = __webpack_require__(174);
+	var _reactRedux = __webpack_require__(227);
+
+	var _components = __webpack_require__(259);
+
+	var _header = __webpack_require__(279);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21486,10 +28346,27 @@
 		_createClass(App, [{
 			key: 'render',
 			value: function render() {
+
 				return _react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(_components.Sidebar, null)
+					this.props.status.isLoggedIn ? _react2.default.createElement(_components.Sidebar, { onUpdate: this.props.updateMenu }) : undefined,
+					this.props.status.isLoggedIn ? _react2.default.createElement(
+						'div',
+						null,
+						_react2.default.createElement(
+							'div',
+							{ className: 'wrapper' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'main-panel' },
+								_react2.default.createElement(_components.Header, { currentMenu: this.props.menu.currentMenu,
+									onUpdate: this.props.updateMenu }),
+								this.props.children,
+								_react2.default.createElement(_components.Footer, null)
+							)
+						)
+					) : this.props.children
 				);
 			}
 		}]);
@@ -21497,10 +28374,25 @@
 		return App;
 	}(_react2.default.Component);
 
-	exports.default = App;
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			status: state.authentication.status,
+			menu: state.header.menu
+		};
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			updateMenu: function updateMenu(menuname) {
+				return dispatch((0, _header.updateMenu)(menuname));
+			}
+		};
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(App);
 
 /***/ },
-/* 174 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21508,29 +28400,276 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.Sidebar = exports.Header = undefined;
+	exports.Floor = exports.Room = exports.Chart = exports.MiniCard = exports.MemoList = exports.Memo = exports.Authentication = exports.Sidebar = exports.Footer = exports.Header = undefined;
 
-	var _Header = __webpack_require__(175);
+	var _Header = __webpack_require__(260);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Sidebar = __webpack_require__(176);
+	var _Footer = __webpack_require__(261);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
+	var _Sidebar = __webpack_require__(262);
 
 	var _Sidebar2 = _interopRequireDefault(_Sidebar);
+
+	var _Authentication = __webpack_require__(263);
+
+	var _Authentication2 = _interopRequireDefault(_Authentication);
+
+	var _Memo = __webpack_require__(264);
+
+	var _Memo2 = _interopRequireDefault(_Memo);
+
+	var _MemoList = __webpack_require__(265);
+
+	var _MemoList2 = _interopRequireDefault(_MemoList);
+
+	var _MiniCard = __webpack_require__(273);
+
+	var _MiniCard2 = _interopRequireDefault(_MiniCard);
+
+	var _Chart = __webpack_require__(274);
+
+	var _Chart2 = _interopRequireDefault(_Chart);
+
+	var _Room = __webpack_require__(277);
+
+	var _Room2 = _interopRequireDefault(_Room);
+
+	var _Floor = __webpack_require__(278);
+
+	var _Floor2 = _interopRequireDefault(_Floor);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.Header = _Header2.default;
+	exports.Footer = _Footer2.default;
 	exports.Sidebar = _Sidebar2.default;
+	exports.Authentication = _Authentication2.default;
+	exports.Memo = _Memo2.default;
+	exports.MemoList = _MemoList2.default;
+	exports.MiniCard = _MiniCard2.default;
+	exports.Chart = _Chart2.default;
+	exports.Room = _Room2.default;
+	exports.Floor = _Floor2.default;
 
 /***/ },
-/* 175 */
-/***/ function(module, exports) {
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(172);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {
+	    currentMenu: _react2.default.PropTypes.string,
+	    onUpdate: _react2.default.PropTypes.func
+	};
+
+	var defaultProps = {
+	    currentMenu: "Menu Name",
+	    onUpdate: function onUpdate(menuname) {
+	        console.error("onUpdate not defined");
+	    }
+	};
+
+	var Header = function (_React$Component) {
+	    _inherits(Header, _React$Component);
+
+	    function Header(props) {
+	        _classCallCheck(this, Header);
+
+	        var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
+
+	        _this.handleHome = _this.handleHome.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(Header, [{
+	        key: 'handleHome',
+	        value: function handleHome() {
+	            this.props.onUpdate('Home');
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+
+	            return _react2.default.createElement(
+	                'nav',
+	                { className: 'navbar navbar-default' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'container-fluid' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'navbar-minimize' },
+	                        _react2.default.createElement(
+	                            'button',
+	                            { id: 'minimizeSidebar', className: 'btn btn-fill btn-icon' },
+	                            _react2.default.createElement('i', { className: 'ti-more-alt' })
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'navbar-header' },
+	                        _react2.default.createElement(
+	                            'button',
+	                            { type: 'button', className: 'navbar-toggle' },
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'sr-only' },
+	                                'Toggle navigation'
+	                            ),
+	                            _react2.default.createElement('span', { className: 'icon-bar bar1' }),
+	                            _react2.default.createElement('span', { className: 'icon-bar bar2' }),
+	                            _react2.default.createElement('span', { className: 'icon-bar bar3' })
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: '#', className: 'navbar-brand' },
+	                            this.props.currentMenu
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'collapse navbar-collapse' },
+	                        _react2.default.createElement(
+	                            'ul',
+	                            { className: 'nav navbar-nav navbar-right' },
+	                            _react2.default.createElement(
+	                                'li',
+	                                null,
+	                                _react2.default.createElement(
+	                                    _reactRouter.Link,
+	                                    { to: '/home', className: 'btn-magnify' },
+	                                    _react2.default.createElement('i', { className: 'ti-home' }),
+	                                    _react2.default.createElement(
+	                                        'p',
+	                                        { onClick: this.handleHome },
+	                                        'Home'
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'li',
+	                                { className: 'dropdown' },
+	                                _react2.default.createElement(
+	                                    _reactRouter.Link,
+	                                    { to: '#notifications', className: 'dropdown-toggle btn-rotate', 'data-toggle': 'dropdown' },
+	                                    _react2.default.createElement('i', { className: 'ti-bell' }),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'notification' },
+	                                        '5'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'p',
+	                                        { className: 'hidden-md hidden-lg' },
+	                                        'Notifications',
+	                                        _react2.default.createElement('b', { className: 'caret' })
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'ul',
+	                                    { className: 'dropdown-menu' },
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            _reactRouter.Link,
+	                                            { to: '#not1' },
+	                                            'Notification 1'
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            _reactRouter.Link,
+	                                            { to: '#not2' },
+	                                            'Notification 2'
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            _reactRouter.Link,
+	                                            { to: '#not3' },
+	                                            'Notification 3'
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            _reactRouter.Link,
+	                                            { to: '#not4' },
+	                                            'Notification 4'
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            _reactRouter.Link,
+	                                            { to: '#another' },
+	                                            'Another notification'
+	                                        )
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'li',
+	                                null,
+	                                _react2.default.createElement(
+	                                    _reactRouter.Link,
+	                                    { to: '#settings', className: 'btn-rotate' },
+	                                    _react2.default.createElement('i', { className: 'ti-settings' }),
+	                                    _react2.default.createElement(
+	                                        'p',
+	                                        { className: 'hidden-md hidden-lg' },
+	                                        'Settings'
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Header;
+	}(_react2.default.Component);
+
+	Header.propTypes = propTypes;
+	Header.defaultProps = defaultProps;
+
+	exports.default = Header;
 
 /***/ },
-/* 176 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21553,9 +28692,100 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var propTypes = {};
+	var Footer = function (_React$Component) {
+		_inherits(Footer, _React$Component);
 
-	var defaultProps = {};
+		function Footer() {
+			_classCallCheck(this, Footer);
+
+			return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+		}
+
+		_createClass(Footer, [{
+			key: "render",
+			value: function render() {
+
+				return _react2.default.createElement(
+					"footer",
+					{ className: "footer" },
+					_react2.default.createElement(
+						"div",
+						{ className: "container-fluid" },
+						_react2.default.createElement(
+							"nav",
+							{ className: "pull-left" },
+							_react2.default.createElement(
+								"ul",
+								null,
+								_react2.default.createElement(
+									"li",
+									null,
+									_react2.default.createElement(
+										"p",
+										null,
+										"\uD559\uC0DD\uB4E4\uC758 \uC18C\uC911\uD55C \uAFC8\uC744 \uD559\uAD50\uD3ED\uB825\uC73C\uB85C \uBEC7\uC9C0\uB9C8\uC138\uC694"
+									)
+								)
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "copyright pull-right" },
+							_react2.default.createElement(
+								"p",
+								null,
+								"2016, made with ",
+								_react2.default.createElement("i", { className: "fa fa-heart heart" }),
+								" by Badge-Ma Team"
+							)
+						)
+					)
+				);
+			}
+		}]);
+
+		return Footer;
+	}(_react2.default.Component);
+
+	exports.default = Footer;
+
+/***/ },
+/* 262 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(172);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {
+		username: _react2.default.PropTypes.string,
+		onUpdate: _react2.default.PropTypes.func
+	};
+
+	var defaultProps = {
+		username: '',
+		onUpdate: function onUpdate(menuname) {
+			console.error("onUpdate not defined");
+		}
+	};
 
 	var Sidebar = function (_React$Component) {
 		_inherits(Sidebar, _React$Component);
@@ -21563,148 +28793,268 @@
 		function Sidebar(props) {
 			_classCallCheck(this, Sidebar);
 
-			return _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
+
+			_this.handleDashboard = _this.handleDashboard.bind(_this);
+			_this.handleReport = _this.handleReport.bind(_this);
+			_this.handleCounsel = _this.handleCounsel.bind(_this);
+			_this.handleBamboo = _this.handleBamboo.bind(_this);
+			return _this;
 		}
 
 		_createClass(Sidebar, [{
-			key: "render",
+			key: 'handleDashboard',
+			value: function handleDashboard() {
+				this.props.onUpdate('Dashboard');
+			}
+		}, {
+			key: 'handleReport',
+			value: function handleReport() {
+				this.props.onUpdate('Report Manager');
+			}
+		}, {
+			key: 'handleCounsel',
+			value: function handleCounsel() {
+				this.props.onUpdate('Counsel Manager');
+			}
+		}, {
+			key: 'handleBamboo',
+			value: function handleBamboo() {
+				this.props.onUpdate('BambooGrove Manager');
+			}
+		}, {
+			key: 'render',
 			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ className: "sidebar", "data-background-color": "white", "data-active-color": "danger" },
+
+				var logoView = _react2.default.createElement(
+					'div',
+					null,
 					_react2.default.createElement(
-						"div",
-						{ className: "logo" },
+						'div',
+						{ className: 'logo' },
 						_react2.default.createElement(
-							"a",
-							{ href: "http://www.creative-tim.com", className: "simple-text" },
-							"Creative Tim"
+							'span',
+							{ className: 'simple-text' },
+							'Badge-Ma'
 						)
 					),
 					_react2.default.createElement(
-						"div",
-						{ className: "logo logo-mini" },
+						'div',
+						{ className: 'logo logo-mini' },
 						_react2.default.createElement(
-							"a",
-							{ href: "http://www.creative-tim.com", className: "simple-text" },
-							"Ct"
+							'span',
+							{ className: 'simple-text' },
+							'BM'
 						)
+					)
+				);
+
+				var profileView = _react2.default.createElement(
+					'div',
+					{ className: 'user' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'photo' },
+						_react2.default.createElement('img', { src: './assets/img/faces/face-2.jpg' })
 					),
 					_react2.default.createElement(
-						"div",
-						{ className: "sidebar-wrapper" },
+						'div',
+						{ className: 'info' },
 						_react2.default.createElement(
-							"div",
-							{ className: "user" },
-							_react2.default.createElement(
-								"div",
-								{ className: "photo" },
-								_react2.default.createElement("img", { src: "../assets/img/faces/face-2.jpg" })
-							),
-							_react2.default.createElement(
-								"div",
-								{ className: "info" },
-								_react2.default.createElement(
-									"a",
-									{ "data-toggle": "collapse", href: "#collapseExample", className: "collapsed" },
-									"Chet Faker",
-									_react2.default.createElement("b", { className: "caret" })
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "collapse", id: "collapseExample" },
-									_react2.default.createElement(
-										"ul",
-										{ className: "nav" },
-										_react2.default.createElement(
-											"li",
-											null,
-											_react2.default.createElement(
-												"a",
-												{ href: "#profile" },
-												"My Profile"
-											)
-										),
-										_react2.default.createElement(
-											"li",
-											null,
-											_react2.default.createElement(
-												"a",
-												{ href: "#edit" },
-												"Edit Profile"
-											)
-										),
-										_react2.default.createElement(
-											"li",
-											null,
-											_react2.default.createElement(
-												"a",
-												{ href: "#settings" },
-												"Settings"
-											)
-										)
-									)
-								)
-							)
+							'a',
+							{ 'data-toggle': 'collapse', href: '#collapseExample', className: 'collapsed' },
+							this.props.username,
+							_react2.default.createElement('b', { className: 'caret' })
 						),
 						_react2.default.createElement(
-							"ul",
-							{ className: "nav" },
+							'div',
+							{ className: 'collapse', id: 'collapseExample' },
 							_react2.default.createElement(
-								"li",
-								null,
+								'ul',
+								{ className: 'nav' },
 								_react2.default.createElement(
-									"a",
-									{ "data-toggle": "collapse", href: "#dashboardOverview" },
-									_react2.default.createElement("i", { className: "ti-panel" }),
+									'li',
+									null,
 									_react2.default.createElement(
-										"p",
-										null,
-										"Collapse",
-										_react2.default.createElement("b", { className: "caret" })
+										'a',
+										{ href: '#profile' },
+										'My Profile'
 									)
 								),
 								_react2.default.createElement(
-									"div",
-									{ className: "collapse", id: "dashboardOverview" },
+									'li',
+									null,
 									_react2.default.createElement(
-										"ul",
-										{ className: "nav" },
-										_react2.default.createElement(
-											"li",
-											null,
-											_react2.default.createElement(
-												"a",
-												{ href: "#panda" },
-												"Collapse 1"
-											)
-										),
-										_react2.default.createElement(
-											"li",
-											null,
-											_react2.default.createElement(
-												"a",
-												{ href: "#panda" },
-												"Collapse2"
-											)
-										)
+										'a',
+										{ href: '#edit' },
+										'Edit Profile'
 									)
-								)
-							),
-							_react2.default.createElement(
-								"li",
-								null,
+								),
 								_react2.default.createElement(
-									"a",
-									{ href: "calendar.html" },
-									_react2.default.createElement("i", { className: "ti-calendar" }),
+									'li',
+									null,
 									_react2.default.createElement(
-										"p",
-										null,
-										"Simple Link"
+										'a',
+										{ href: '#settings' },
+										'Settings'
 									)
 								)
 							)
+						)
+					)
+				);
+
+				var menuDashboard = _react2.default.createElement(
+					'li',
+					null,
+					_react2.default.createElement(
+						'a',
+						{ href: '#componentsDashboard', 'data-toggle': 'collapse' },
+						_react2.default.createElement('i', { className: 'ti-panel' }),
+						_react2.default.createElement(
+							'p',
+							{ onClick: this.handleDashboard },
+							'\uB300\uC2DC\uBCF4\uB4DC'
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'collapse', id: 'componentsDashboard' },
+							_react2.default.createElement(
+								'ul',
+								{ className: 'nav' },
+								_react2.default.createElement(
+									'li',
+									null,
+									_react2.default.createElement(
+										_reactRouter.Link,
+										{ to: '/dashboard' },
+										'Overview'
+									)
+								),
+								_react2.default.createElement(
+									'li',
+									null,
+									_react2.default.createElement(
+										_reactRouter.Link,
+										{ to: '/seatingchart' },
+										'\uC7A5\uBE44\uBC30\uCE58\uB3C4'
+									)
+								)
+							)
+						)
+					)
+				);
+
+				var menuDatabase = _react2.default.createElement(
+					'li',
+					null,
+					_react2.default.createElement(
+						'a',
+						{ href: '#componentsDatabase', 'data-toggle': 'collapse' },
+						_react2.default.createElement('i', { className: 'ti-view-list-alt' }),
+						_react2.default.createElement(
+							'p',
+							{ onClick: this.handleDashboard },
+							'\uBAA9\uB85D \uBCF4\uAE30'
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'collapse', id: 'componentsDatabase' },
+							_react2.default.createElement(
+								'ul',
+								{ className: 'nav' },
+								_react2.default.createElement(
+									'li',
+									null,
+									_react2.default.createElement(
+										'a',
+										{ href: '#' },
+										'\uC0AC\uC6A9\uC790 \uBAA9\uB85D'
+									)
+								),
+								_react2.default.createElement(
+									'li',
+									null,
+									_react2.default.createElement(
+										'a',
+										{ href: '#' },
+										'\uC2E0\uACE0 \uBAA9\uB85D'
+									)
+								),
+								_react2.default.createElement(
+									'li',
+									null,
+									_react2.default.createElement(
+										'a',
+										{ href: '#' },
+										'\uC0C1\uB2F4 \uBAA9\uB85D'
+									)
+								)
+							)
+						)
+					)
+				);
+
+				var menuReport = _react2.default.createElement(
+					'li',
+					null,
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: '/reportmanager' },
+						_react2.default.createElement('i', { className: 'ti-signal' }),
+						_react2.default.createElement(
+							'p',
+							{ onClick: this.handleReport },
+							'\uC2E0\uACE0\uAD00\uB9AC'
+						)
+					)
+				);
+
+				var menuCounsel = _react2.default.createElement(
+					'li',
+					null,
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: '/counselmanager' },
+						_react2.default.createElement('i', { className: 'ti-comments' }),
+						_react2.default.createElement(
+							'p',
+							{ onClick: this.handleCounsel },
+							'\uC0C1\uB2F4\uAD00\uB9AC'
+						)
+					)
+				);
+
+				var menuBamboo = _react2.default.createElement(
+					'li',
+					null,
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: '/bamboogrove' },
+						_react2.default.createElement('i', { className: 'ti-book' }),
+						_react2.default.createElement(
+							'p',
+							{ onClick: this.handleBamboo },
+							'\uB300\uC232\uAD00\uB9AC'
+						)
+					)
+				);
+
+				return _react2.default.createElement(
+					'div',
+					{ className: 'sidebar', 'data-background-color': 'brown', 'data-active-color': 'danger' },
+					logoView,
+					_react2.default.createElement(
+						'div',
+						{ className: 'sidebar-wrapper' },
+						profileView,
+						_react2.default.createElement(
+							'ul',
+							{ className: 'nav' },
+							menuDatabase,
+							menuReport,
+							menuCounsel,
+							menuBamboo
 						)
 					)
 				);
@@ -21718,6 +29068,8961 @@
 	Sidebar.defaultProps = defaultProps;
 
 	exports.default = Sidebar;
+
+/***/ },
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(172);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {
+		mode: _react2.default.PropTypes.bool,
+		onLogin: _react2.default.PropTypes.func,
+		onRegister: _react2.default.PropTypes.func
+	};
+
+	var defaultProps = {
+		mode: true,
+		onLogin: function onLogin(id, pw) {
+			console.error("onLogin not defined");
+		},
+		onRegister: function onRegister(id, pw) {
+			console.error("onRegister not defined");
+		}
+	};
+
+	var Authentication = function (_React$Component) {
+		_inherits(Authentication, _React$Component);
+
+		function Authentication(props) {
+			_classCallCheck(this, Authentication);
+
+			var _this = _possibleConstructorReturn(this, (Authentication.__proto__ || Object.getPrototypeOf(Authentication)).call(this, props));
+
+			_this.state = {
+				username: "",
+				password: ""
+			};
+
+			_this.handleChange = _this.handleChange.bind(_this);
+			_this.handleLogin = _this.handleLogin.bind(_this);
+
+			return _this;
+		}
+
+		_createClass(Authentication, [{
+			key: 'handleChange',
+			value: function handleChange(e) {
+				var nextState = {};
+				nextState[e.target.name] = e.target.value;
+				this.setState(nextState);
+			}
+		}, {
+			key: 'handleLogin',
+			value: function handleLogin() {
+				var _this2 = this;
+
+				// let id = this.state.username;
+				// let pw = this.state.password;
+				var id = 'admin';
+				var pw = '1234';
+
+				this.props.onLogin(id, pw).then(function (success) {
+					if (!success) {
+						_this2.setState({
+							password: ''
+						});
+					}
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+
+				var loginView = _react2.default.createElement(
+					'div',
+					{ className: 'card', 'data-background': 'color', 'data-color': 'blue' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'header' },
+						_react2.default.createElement(
+							'h3',
+							{ className: 'title' },
+							'Login'
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'content' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'form-group' },
+							_react2.default.createElement(
+								'label',
+								null,
+								'Username'
+							),
+							_react2.default.createElement('input', { id: 'username',
+								type: 'text',
+								placeholder: 'Username',
+								required: 'true',
+								className: 'form-control input-no-border',
+								value: this.state.username,
+								onChange: this.handleChange })
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'form-group' },
+							_react2.default.createElement(
+								'label',
+								null,
+								'Password'
+							),
+							_react2.default.createElement('input', { id: 'username',
+								type: 'password',
+								placeholder: 'Password',
+								className: 'form-control input-no-border',
+								value: this.state.password,
+								onChange: this.handleChange })
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'footer text-center' },
+						_react2.default.createElement(
+							'button',
+							{ type: 'submit',
+								className: 'btn btn-fill btn-wd ',
+								onClick: this.handleLogin },
+							'Let\'s go'
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'forgot' },
+							_react2.default.createElement(
+								_reactRouter.Link,
+								{ to: 'register' },
+								'Register new account!'
+							)
+						)
+					)
+				);
+
+				var registView = _react2.default.createElement(
+					'div',
+					{ className: 'card', 'data-background': 'color', 'data-color': 'blue' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'header' },
+						_react2.default.createElement(
+							'h3',
+							{ className: 'title' },
+							'Register'
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'content' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'form-group' },
+							_react2.default.createElement(
+								'label',
+								null,
+								'Username'
+							),
+							_react2.default.createElement('input', { id: 'username',
+								type: 'text',
+								placeholder: 'Username',
+								required: 'true',
+								className: 'form-control input-no-border',
+								value: this.state.username,
+								onChange: this.handleChange })
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'form-group' },
+							_react2.default.createElement(
+								'label',
+								null,
+								'Password'
+							),
+							_react2.default.createElement('input', { id: 'username',
+								type: 'password',
+								placeholder: 'Password',
+								className: 'form-control input-no-border',
+								value: this.state.password,
+								onChange: this.handleChange })
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'footer text-center' },
+						_react2.default.createElement(
+							'button',
+							{ type: 'submit',
+								className: 'btn btn-fill btn-wd ',
+								onClick: this.handleLogin },
+							'Regist Now!'
+						)
+					)
+				);
+
+				return _react2.default.createElement(
+					'div',
+					{ className: 'col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3' },
+					this.props.mode ? loginView : registView
+				);
+			}
+		}]);
+
+		return Authentication;
+	}(_react2.default.Component);
+
+	Authentication.propTypes = propTypes;
+	Authentication.defaultProps = defaultProps;
+
+	exports.default = Authentication;
+
+/***/ },
+/* 264 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {
+	    data: _react2.default.PropTypes.object
+	};
+
+	var defaultProps = {
+	    data: {
+	        title: 'Memo title',
+	        contents: 'Contents'
+	    }
+	};
+
+	var Memo = function (_React$Component) {
+	    _inherits(Memo, _React$Component);
+
+	    function Memo(props) {
+	        _classCallCheck(this, Memo);
+
+	        return _possibleConstructorReturn(this, (Memo.__proto__ || Object.getPrototypeOf(Memo)).call(this, props));
+	    }
+
+	    _createClass(Memo, [{
+	        key: 'render',
+	        value: function render() {
+
+	            var bambooMemo = _react2.default.createElement(
+	                'div',
+	                { className: 'card' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'header' },
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'label label-success' },
+	                        'Bamboo Memo'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'category' },
+	                        this.props.data.title
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'content' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        this.props.data.contents
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'card-footer' },
+	                    _react2.default.createElement('hr', null),
+	                    _react2.default.createElement('i', { className: 'ti-time' }),
+	                    '11 hours ago via Twitter'
+	                )
+	            );
+
+	            var reportMemo = _react2.default.createElement(
+	                'div',
+	                { className: 'card' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'header' },
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'label label-danger' },
+	                        'Emergency Report'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'category' },
+	                        this.props.data.title
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'content' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        this.props.data.contents
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'card-footer' },
+	                    _react2.default.createElement('hr', null),
+	                    _react2.default.createElement('i', { className: 'ti-time' }),
+	                    '11 hours ago via Twitter'
+	                )
+	            );
+
+	            var counselMemo = _react2.default.createElement(
+	                'div',
+	                { className: 'card' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'header' },
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'label label-info' },
+	                        'Counseling'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'category' },
+	                        this.props.data.title
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'content' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        this.props.data.contents
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'card-footer' },
+	                    _react2.default.createElement('hr', null),
+	                    _react2.default.createElement('i', { className: 'ti-time' }),
+	                    '11 hours ago via Twitter'
+	                )
+	            );
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                bambooMemo,
+	                reportMemo,
+	                counselMemo
+	            );
+	        }
+	    }]);
+
+	    return Memo;
+	}(_react2.default.Component);
+
+	exports.default = Memo;
+
+/***/ },
+/* 265 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _components = __webpack_require__(259);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(266);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {
+	    data: _react2.default.PropTypes.array,
+	    title: _react2.default.PropTypes.string
+	};
+
+	var defaultProps = {
+	    data: [],
+	    title: 'Memo List'
+	};
+
+	var MemoList = function (_React$Component) {
+	    _inherits(MemoList, _React$Component);
+
+	    function MemoList(props) {
+	        _classCallCheck(this, MemoList);
+
+	        return _possibleConstructorReturn(this, (MemoList.__proto__ || Object.getPrototypeOf(MemoList)).call(this, props));
+	    }
+
+	    _createClass(MemoList, [{
+	        key: 'render',
+	        value: function render() {
+
+	            var mapToComponents = function mapToComponents(data) {
+	                return data.map(function (memo, i) {
+	                    return _react2.default.createElement(_components.Memo, { data: memo, index: i });
+	                });
+	            };
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'card' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'header text-center' },
+	                        _react2.default.createElement(
+	                            'h4',
+	                            { className: 'title' },
+	                            this.props.title
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _react2.default.createElement(
+	                        _reactAddonsCssTransitionGroup2.default,
+	                        { transitionName: 'memo', transitionEnterTimeout: 2000, transitionLeaveTimeout: 1000 },
+	                        mapToComponents(this.props.data)
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return MemoList;
+	}(_react2.default.Component);
+
+	MemoList.propTypes = propTypes;
+	MemoList.defaultProps = defaultProps;
+
+	exports.default = MemoList;
+
+/***/ },
+/* 266 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(267);
+
+/***/ },
+/* 267 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactCSSTransitionGroup
+	 */
+
+	'use strict';
+
+	var _assign = __webpack_require__(4);
+
+	var React = __webpack_require__(2);
+
+	var ReactTransitionGroup = __webpack_require__(268);
+	var ReactCSSTransitionGroupChild = __webpack_require__(270);
+
+	function createTransitionTimeoutPropValidator(transitionType) {
+	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
+	  var enabledPropName = 'transition' + transitionType;
+
+	  return function (props) {
+	    // If the transition is enabled
+	    if (props[enabledPropName]) {
+	      // If no timeout duration is provided
+	      if (props[timeoutPropName] == null) {
+	        return new Error(timeoutPropName + ' wasn\'t supplied to ReactCSSTransitionGroup: ' + 'this can cause unreliable animations and won\'t be supported in ' + 'a future version of React. See ' + 'https://fb.me/react-animation-transition-group-timeout for more ' + 'information.');
+
+	        // If the duration isn't a number
+	      } else if (typeof props[timeoutPropName] !== 'number') {
+	          return new Error(timeoutPropName + ' must be a number (in milliseconds)');
+	        }
+	    }
+	  };
+	}
+
+	/**
+	 * An easy way to perform CSS transitions and animations when a React component
+	 * enters or leaves the DOM.
+	 * See https://facebook.github.io/react/docs/animation.html#high-level-api-reactcsstransitiongroup
+	 */
+	var ReactCSSTransitionGroup = React.createClass({
+	  displayName: 'ReactCSSTransitionGroup',
+
+	  propTypes: {
+	    transitionName: ReactCSSTransitionGroupChild.propTypes.name,
+
+	    transitionAppear: React.PropTypes.bool,
+	    transitionEnter: React.PropTypes.bool,
+	    transitionLeave: React.PropTypes.bool,
+	    transitionAppearTimeout: createTransitionTimeoutPropValidator('Appear'),
+	    transitionEnterTimeout: createTransitionTimeoutPropValidator('Enter'),
+	    transitionLeaveTimeout: createTransitionTimeoutPropValidator('Leave')
+	  },
+
+	  getDefaultProps: function () {
+	    return {
+	      transitionAppear: false,
+	      transitionEnter: true,
+	      transitionLeave: true
+	    };
+	  },
+
+	  _wrapChild: function (child) {
+	    // We need to provide this childFactory so that
+	    // ReactCSSTransitionGroupChild can receive updates to name, enter, and
+	    // leave while it is leaving.
+	    return React.createElement(ReactCSSTransitionGroupChild, {
+	      name: this.props.transitionName,
+	      appear: this.props.transitionAppear,
+	      enter: this.props.transitionEnter,
+	      leave: this.props.transitionLeave,
+	      appearTimeout: this.props.transitionAppearTimeout,
+	      enterTimeout: this.props.transitionEnterTimeout,
+	      leaveTimeout: this.props.transitionLeaveTimeout
+	    }, child);
+	  },
+
+	  render: function () {
+	    return React.createElement(ReactTransitionGroup, _assign({}, this.props, { childFactory: this._wrapChild }));
+	  }
+	});
+
+	module.exports = ReactCSSTransitionGroup;
+
+/***/ },
+/* 268 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactTransitionGroup
+	 */
+
+	'use strict';
+
+	var _assign = __webpack_require__(4);
+
+	var React = __webpack_require__(2);
+	var ReactInstanceMap = __webpack_require__(119);
+	var ReactTransitionChildMapping = __webpack_require__(269);
+
+	var emptyFunction = __webpack_require__(12);
+
+	/**
+	 * A basis for animations. When children are declaratively added or removed,
+	 * special lifecycle hooks are called.
+	 * See https://facebook.github.io/react/docs/animation.html#low-level-api-reacttransitiongroup
+	 */
+	var ReactTransitionGroup = React.createClass({
+	  displayName: 'ReactTransitionGroup',
+
+	  propTypes: {
+	    component: React.PropTypes.any,
+	    childFactory: React.PropTypes.func
+	  },
+
+	  getDefaultProps: function () {
+	    return {
+	      component: 'span',
+	      childFactory: emptyFunction.thatReturnsArgument
+	    };
+	  },
+
+	  getInitialState: function () {
+	    return {
+	      // TODO: can we get useful debug information to show at this point?
+	      children: ReactTransitionChildMapping.getChildMapping(this.props.children)
+	    };
+	  },
+
+	  componentWillMount: function () {
+	    this.currentlyTransitioningKeys = {};
+	    this.keysToEnter = [];
+	    this.keysToLeave = [];
+	  },
+
+	  componentDidMount: function () {
+	    var initialChildMapping = this.state.children;
+	    for (var key in initialChildMapping) {
+	      if (initialChildMapping[key]) {
+	        this.performAppear(key);
+	      }
+	    }
+	  },
+
+	  componentWillReceiveProps: function (nextProps) {
+	    var nextChildMapping;
+	    if (process.env.NODE_ENV !== 'production') {
+	      nextChildMapping = ReactTransitionChildMapping.getChildMapping(nextProps.children, ReactInstanceMap.get(this)._debugID);
+	    } else {
+	      nextChildMapping = ReactTransitionChildMapping.getChildMapping(nextProps.children);
+	    }
+	    var prevChildMapping = this.state.children;
+
+	    this.setState({
+	      children: ReactTransitionChildMapping.mergeChildMappings(prevChildMapping, nextChildMapping)
+	    });
+
+	    var key;
+
+	    for (key in nextChildMapping) {
+	      var hasPrev = prevChildMapping && prevChildMapping.hasOwnProperty(key);
+	      if (nextChildMapping[key] && !hasPrev && !this.currentlyTransitioningKeys[key]) {
+	        this.keysToEnter.push(key);
+	      }
+	    }
+
+	    for (key in prevChildMapping) {
+	      var hasNext = nextChildMapping && nextChildMapping.hasOwnProperty(key);
+	      if (prevChildMapping[key] && !hasNext && !this.currentlyTransitioningKeys[key]) {
+	        this.keysToLeave.push(key);
+	      }
+	    }
+
+	    // If we want to someday check for reordering, we could do it here.
+	  },
+
+	  componentDidUpdate: function () {
+	    var keysToEnter = this.keysToEnter;
+	    this.keysToEnter = [];
+	    keysToEnter.forEach(this.performEnter);
+
+	    var keysToLeave = this.keysToLeave;
+	    this.keysToLeave = [];
+	    keysToLeave.forEach(this.performLeave);
+	  },
+
+	  performAppear: function (key) {
+	    this.currentlyTransitioningKeys[key] = true;
+
+	    var component = this.refs[key];
+
+	    if (component.componentWillAppear) {
+	      component.componentWillAppear(this._handleDoneAppearing.bind(this, key));
+	    } else {
+	      this._handleDoneAppearing(key);
+	    }
+	  },
+
+	  _handleDoneAppearing: function (key) {
+	    var component = this.refs[key];
+	    if (component.componentDidAppear) {
+	      component.componentDidAppear();
+	    }
+
+	    delete this.currentlyTransitioningKeys[key];
+
+	    var currentChildMapping;
+	    if (process.env.NODE_ENV !== 'production') {
+	      currentChildMapping = ReactTransitionChildMapping.getChildMapping(this.props.children, ReactInstanceMap.get(this)._debugID);
+	    } else {
+	      currentChildMapping = ReactTransitionChildMapping.getChildMapping(this.props.children);
+	    }
+
+	    if (!currentChildMapping || !currentChildMapping.hasOwnProperty(key)) {
+	      // This was removed before it had fully appeared. Remove it.
+	      this.performLeave(key);
+	    }
+	  },
+
+	  performEnter: function (key) {
+	    this.currentlyTransitioningKeys[key] = true;
+
+	    var component = this.refs[key];
+
+	    if (component.componentWillEnter) {
+	      component.componentWillEnter(this._handleDoneEntering.bind(this, key));
+	    } else {
+	      this._handleDoneEntering(key);
+	    }
+	  },
+
+	  _handleDoneEntering: function (key) {
+	    var component = this.refs[key];
+	    if (component.componentDidEnter) {
+	      component.componentDidEnter();
+	    }
+
+	    delete this.currentlyTransitioningKeys[key];
+
+	    var currentChildMapping;
+	    if (process.env.NODE_ENV !== 'production') {
+	      currentChildMapping = ReactTransitionChildMapping.getChildMapping(this.props.children, ReactInstanceMap.get(this)._debugID);
+	    } else {
+	      currentChildMapping = ReactTransitionChildMapping.getChildMapping(this.props.children);
+	    }
+
+	    if (!currentChildMapping || !currentChildMapping.hasOwnProperty(key)) {
+	      // This was removed before it had fully entered. Remove it.
+	      this.performLeave(key);
+	    }
+	  },
+
+	  performLeave: function (key) {
+	    this.currentlyTransitioningKeys[key] = true;
+
+	    var component = this.refs[key];
+	    if (component.componentWillLeave) {
+	      component.componentWillLeave(this._handleDoneLeaving.bind(this, key));
+	    } else {
+	      // Note that this is somewhat dangerous b/c it calls setState()
+	      // again, effectively mutating the component before all the work
+	      // is done.
+	      this._handleDoneLeaving(key);
+	    }
+	  },
+
+	  _handleDoneLeaving: function (key) {
+	    var component = this.refs[key];
+
+	    if (component.componentDidLeave) {
+	      component.componentDidLeave();
+	    }
+
+	    delete this.currentlyTransitioningKeys[key];
+
+	    var currentChildMapping;
+	    if (process.env.NODE_ENV !== 'production') {
+	      currentChildMapping = ReactTransitionChildMapping.getChildMapping(this.props.children, ReactInstanceMap.get(this)._debugID);
+	    } else {
+	      currentChildMapping = ReactTransitionChildMapping.getChildMapping(this.props.children);
+	    }
+
+	    if (currentChildMapping && currentChildMapping.hasOwnProperty(key)) {
+	      // This entered again before it fully left. Add it again.
+	      this.performEnter(key);
+	    } else {
+	      this.setState(function (state) {
+	        var newChildren = _assign({}, state.children);
+	        delete newChildren[key];
+	        return { children: newChildren };
+	      });
+	    }
+	  },
+
+	  render: function () {
+	    // TODO: we could get rid of the need for the wrapper node
+	    // by cloning a single child
+	    var childrenToRender = [];
+	    for (var key in this.state.children) {
+	      var child = this.state.children[key];
+	      if (child) {
+	        // You may need to apply reactive updates to a child as it is leaving.
+	        // The normal React way to do it won't work since the child will have
+	        // already been removed. In case you need this behavior you can provide
+	        // a childFactory function to wrap every child, even the ones that are
+	        // leaving.
+	        childrenToRender.push(React.cloneElement(this.props.childFactory(child), { ref: key, key: key }));
+	      }
+	    }
+
+	    // Do not forward ReactTransitionGroup props to primitive DOM nodes
+	    var props = _assign({}, this.props);
+	    delete props.transitionLeave;
+	    delete props.transitionName;
+	    delete props.transitionAppear;
+	    delete props.transitionEnter;
+	    delete props.childFactory;
+	    delete props.transitionLeaveTimeout;
+	    delete props.transitionEnterTimeout;
+	    delete props.transitionAppearTimeout;
+	    delete props.component;
+
+	    return React.createElement(this.props.component, props, childrenToRender);
+	  }
+	});
+
+	module.exports = ReactTransitionGroup;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 269 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactTransitionChildMapping
+	 */
+
+	'use strict';
+
+	var flattenChildren = __webpack_require__(128);
+
+	var ReactTransitionChildMapping = {
+	  /**
+	   * Given `this.props.children`, return an object mapping key to child. Just
+	   * simple syntactic sugar around flattenChildren().
+	   *
+	   * @param {*} children `this.props.children`
+	   * @param {number=} selfDebugID Optional debugID of the current internal instance.
+	   * @return {object} Mapping of key to child
+	   */
+	  getChildMapping: function (children, selfDebugID) {
+	    if (!children) {
+	      return children;
+	    }
+
+	    if (process.env.NODE_ENV !== 'production') {
+	      return flattenChildren(children, selfDebugID);
+	    }
+
+	    return flattenChildren(children);
+	  },
+
+	  /**
+	   * When you're adding or removing children some may be added or removed in the
+	   * same render pass. We want to show *both* since we want to simultaneously
+	   * animate elements in and out. This function takes a previous set of keys
+	   * and a new set of keys and merges them with its best guess of the correct
+	   * ordering. In the future we may expose some of the utilities in
+	   * ReactMultiChild to make this easy, but for now React itself does not
+	   * directly have this concept of the union of prevChildren and nextChildren
+	   * so we implement it here.
+	   *
+	   * @param {object} prev prev children as returned from
+	   * `ReactTransitionChildMapping.getChildMapping()`.
+	   * @param {object} next next children as returned from
+	   * `ReactTransitionChildMapping.getChildMapping()`.
+	   * @return {object} a key set that contains all keys in `prev` and all keys
+	   * in `next` in a reasonable order.
+	   */
+	  mergeChildMappings: function (prev, next) {
+	    prev = prev || {};
+	    next = next || {};
+
+	    function getValueForKey(key) {
+	      if (next.hasOwnProperty(key)) {
+	        return next[key];
+	      } else {
+	        return prev[key];
+	      }
+	    }
+
+	    // For each key of `next`, the list of keys to insert before that key in
+	    // the combined list
+	    var nextKeysPending = {};
+
+	    var pendingKeys = [];
+	    for (var prevKey in prev) {
+	      if (next.hasOwnProperty(prevKey)) {
+	        if (pendingKeys.length) {
+	          nextKeysPending[prevKey] = pendingKeys;
+	          pendingKeys = [];
+	        }
+	      } else {
+	        pendingKeys.push(prevKey);
+	      }
+	    }
+
+	    var i;
+	    var childMapping = {};
+	    for (var nextKey in next) {
+	      if (nextKeysPending.hasOwnProperty(nextKey)) {
+	        for (i = 0; i < nextKeysPending[nextKey].length; i++) {
+	          var pendingNextKey = nextKeysPending[nextKey][i];
+	          childMapping[nextKeysPending[nextKey][i]] = getValueForKey(pendingNextKey);
+	        }
+	      }
+	      childMapping[nextKey] = getValueForKey(nextKey);
+	    }
+
+	    // Finally, add the keys which didn't appear before any key in `next`
+	    for (i = 0; i < pendingKeys.length; i++) {
+	      childMapping[pendingKeys[i]] = getValueForKey(pendingKeys[i]);
+	    }
+
+	    return childMapping;
+	  }
+	};
+
+	module.exports = ReactTransitionChildMapping;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 270 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactCSSTransitionGroupChild
+	 */
+
+	'use strict';
+
+	var React = __webpack_require__(2);
+	var ReactDOM = __webpack_require__(35);
+
+	var CSSCore = __webpack_require__(271);
+	var ReactTransitionEvents = __webpack_require__(272);
+
+	var onlyChild = __webpack_require__(33);
+
+	var TICK = 17;
+
+	var ReactCSSTransitionGroupChild = React.createClass({
+	  displayName: 'ReactCSSTransitionGroupChild',
+
+	  propTypes: {
+	    name: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.shape({
+	      enter: React.PropTypes.string,
+	      leave: React.PropTypes.string,
+	      active: React.PropTypes.string
+	    }), React.PropTypes.shape({
+	      enter: React.PropTypes.string,
+	      enterActive: React.PropTypes.string,
+	      leave: React.PropTypes.string,
+	      leaveActive: React.PropTypes.string,
+	      appear: React.PropTypes.string,
+	      appearActive: React.PropTypes.string
+	    })]).isRequired,
+
+	    // Once we require timeouts to be specified, we can remove the
+	    // boolean flags (appear etc.) and just accept a number
+	    // or a bool for the timeout flags (appearTimeout etc.)
+	    appear: React.PropTypes.bool,
+	    enter: React.PropTypes.bool,
+	    leave: React.PropTypes.bool,
+	    appearTimeout: React.PropTypes.number,
+	    enterTimeout: React.PropTypes.number,
+	    leaveTimeout: React.PropTypes.number
+	  },
+
+	  transition: function (animationType, finishCallback, userSpecifiedDelay) {
+	    var node = ReactDOM.findDOMNode(this);
+
+	    if (!node) {
+	      if (finishCallback) {
+	        finishCallback();
+	      }
+	      return;
+	    }
+
+	    var className = this.props.name[animationType] || this.props.name + '-' + animationType;
+	    var activeClassName = this.props.name[animationType + 'Active'] || className + '-active';
+	    var timeout = null;
+
+	    var endListener = function (e) {
+	      if (e && e.target !== node) {
+	        return;
+	      }
+
+	      clearTimeout(timeout);
+
+	      CSSCore.removeClass(node, className);
+	      CSSCore.removeClass(node, activeClassName);
+
+	      ReactTransitionEvents.removeEndEventListener(node, endListener);
+
+	      // Usually this optional callback is used for informing an owner of
+	      // a leave animation and telling it to remove the child.
+	      if (finishCallback) {
+	        finishCallback();
+	      }
+	    };
+
+	    CSSCore.addClass(node, className);
+
+	    // Need to do this to actually trigger a transition.
+	    this.queueClassAndNode(activeClassName, node);
+
+	    // If the user specified a timeout delay.
+	    if (userSpecifiedDelay) {
+	      // Clean-up the animation after the specified delay
+	      timeout = setTimeout(endListener, userSpecifiedDelay);
+	      this.transitionTimeouts.push(timeout);
+	    } else {
+	      // DEPRECATED: this listener will be removed in a future version of react
+	      ReactTransitionEvents.addEndEventListener(node, endListener);
+	    }
+	  },
+
+	  queueClassAndNode: function (className, node) {
+	    this.classNameAndNodeQueue.push({
+	      className: className,
+	      node: node
+	    });
+
+	    if (!this.timeout) {
+	      this.timeout = setTimeout(this.flushClassNameAndNodeQueue, TICK);
+	    }
+	  },
+
+	  flushClassNameAndNodeQueue: function () {
+	    if (this.isMounted()) {
+	      this.classNameAndNodeQueue.forEach(function (obj) {
+	        CSSCore.addClass(obj.node, obj.className);
+	      });
+	    }
+	    this.classNameAndNodeQueue.length = 0;
+	    this.timeout = null;
+	  },
+
+	  componentWillMount: function () {
+	    this.classNameAndNodeQueue = [];
+	    this.transitionTimeouts = [];
+	  },
+
+	  componentWillUnmount: function () {
+	    if (this.timeout) {
+	      clearTimeout(this.timeout);
+	    }
+	    this.transitionTimeouts.forEach(function (timeout) {
+	      clearTimeout(timeout);
+	    });
+
+	    this.classNameAndNodeQueue.length = 0;
+	  },
+
+	  componentWillAppear: function (done) {
+	    if (this.props.appear) {
+	      this.transition('appear', done, this.props.appearTimeout);
+	    } else {
+	      done();
+	    }
+	  },
+
+	  componentWillEnter: function (done) {
+	    if (this.props.enter) {
+	      this.transition('enter', done, this.props.enterTimeout);
+	    } else {
+	      done();
+	    }
+	  },
+
+	  componentWillLeave: function (done) {
+	    if (this.props.leave) {
+	      this.transition('leave', done, this.props.leaveTimeout);
+	    } else {
+	      done();
+	    }
+	  },
+
+	  render: function () {
+	    return onlyChild(this.props.children);
+	  }
+	});
+
+	module.exports = ReactCSSTransitionGroupChild;
+
+/***/ },
+/* 271 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @typechecks
+	 */
+
+	var invariant = __webpack_require__(8);
+
+	/**
+	 * The CSSCore module specifies the API (and implements most of the methods)
+	 * that should be used when dealing with the display of elements (via their
+	 * CSS classes and visibility on screen. It is an API focused on mutating the
+	 * display and not reading it as no logical state should be encoded in the
+	 * display of elements.
+	 */
+
+	/* Slow implementation for browsers that don't natively support .matches() */
+	function matchesSelector_SLOW(element, selector) {
+	  var root = element;
+	  while (root.parentNode) {
+	    root = root.parentNode;
+	  }
+
+	  var all = root.querySelectorAll(selector);
+	  return Array.prototype.indexOf.call(all, element) !== -1;
+	}
+
+	var CSSCore = {
+
+	  /**
+	   * Adds the class passed in to the element if it doesn't already have it.
+	   *
+	   * @param {DOMElement} element the element to set the class on
+	   * @param {string} className the CSS className
+	   * @return {DOMElement} the element passed in
+	   */
+	  addClass: function addClass(element, className) {
+	    !!/\s/.test(className) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'CSSCore.addClass takes only a single class name. "%s" contains ' + 'multiple classes.', className) : invariant(false) : void 0;
+
+	    if (className) {
+	      if (element.classList) {
+	        element.classList.add(className);
+	      } else if (!CSSCore.hasClass(element, className)) {
+	        element.className = element.className + ' ' + className;
+	      }
+	    }
+	    return element;
+	  },
+
+	  /**
+	   * Removes the class passed in from the element
+	   *
+	   * @param {DOMElement} element the element to set the class on
+	   * @param {string} className the CSS className
+	   * @return {DOMElement} the element passed in
+	   */
+	  removeClass: function removeClass(element, className) {
+	    !!/\s/.test(className) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'CSSCore.removeClass takes only a single class name. "%s" contains ' + 'multiple classes.', className) : invariant(false) : void 0;
+
+	    if (className) {
+	      if (element.classList) {
+	        element.classList.remove(className);
+	      } else if (CSSCore.hasClass(element, className)) {
+	        element.className = element.className.replace(new RegExp('(^|\\s)' + className + '(?:\\s|$)', 'g'), '$1').replace(/\s+/g, ' ') // multiple spaces to one
+	        .replace(/^\s*|\s*$/g, ''); // trim the ends
+	      }
+	    }
+	    return element;
+	  },
+
+	  /**
+	   * Helper to add or remove a class from an element based on a condition.
+	   *
+	   * @param {DOMElement} element the element to set the class on
+	   * @param {string} className the CSS className
+	   * @param {*} bool condition to whether to add or remove the class
+	   * @return {DOMElement} the element passed in
+	   */
+	  conditionClass: function conditionClass(element, className, bool) {
+	    return (bool ? CSSCore.addClass : CSSCore.removeClass)(element, className);
+	  },
+
+	  /**
+	   * Tests whether the element has the class specified.
+	   *
+	   * @param {DOMNode|DOMWindow} element the element to check the class on
+	   * @param {string} className the CSS className
+	   * @return {boolean} true if the element has the class, false if not
+	   */
+	  hasClass: function hasClass(element, className) {
+	    !!/\s/.test(className) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'CSS.hasClass takes only a single class name.') : invariant(false) : void 0;
+	    if (element.classList) {
+	      return !!className && element.classList.contains(className);
+	    }
+	    return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
+	  },
+
+	  /**
+	   * Tests whether the element matches the selector specified
+	   *
+	   * @param {DOMNode|DOMWindow} element the element that we are querying
+	   * @param {string} selector the CSS selector
+	   * @return {boolean} true if the element matches the selector, false if not
+	   */
+	  matchesSelector: function matchesSelector(element, selector) {
+	    var matchesImpl = element.matches || element.webkitMatchesSelector || element.mozMatchesSelector || element.msMatchesSelector || function (s) {
+	      return matchesSelector_SLOW(element, s);
+	    };
+	    return matchesImpl.call(element, selector);
+	  }
+
+	};
+
+	module.exports = CSSCore;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 272 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactTransitionEvents
+	 */
+
+	'use strict';
+
+	var ExecutionEnvironment = __webpack_require__(49);
+
+	var getVendorPrefixedEventName = __webpack_require__(109);
+
+	var endEvents = [];
+
+	function detectEvents() {
+	  var animEnd = getVendorPrefixedEventName('animationend');
+	  var transEnd = getVendorPrefixedEventName('transitionend');
+
+	  if (animEnd) {
+	    endEvents.push(animEnd);
+	  }
+
+	  if (transEnd) {
+	    endEvents.push(transEnd);
+	  }
+	}
+
+	if (ExecutionEnvironment.canUseDOM) {
+	  detectEvents();
+	}
+
+	// We use the raw {add|remove}EventListener() call because EventListener
+	// does not know how to remove event listeners and we really should
+	// clean up. Also, these events are not triggered in older browsers
+	// so we should be A-OK here.
+
+	function addEventListener(node, eventName, eventListener) {
+	  node.addEventListener(eventName, eventListener, false);
+	}
+
+	function removeEventListener(node, eventName, eventListener) {
+	  node.removeEventListener(eventName, eventListener, false);
+	}
+
+	var ReactTransitionEvents = {
+	  addEndEventListener: function (node, eventListener) {
+	    if (endEvents.length === 0) {
+	      // If CSS transitions are not supported, trigger an "end animation"
+	      // event immediately.
+	      window.setTimeout(eventListener, 0);
+	      return;
+	    }
+	    endEvents.forEach(function (endEvent) {
+	      addEventListener(node, endEvent, eventListener);
+	    });
+	  },
+
+	  removeEndEventListener: function (node, eventListener) {
+	    if (endEvents.length === 0) {
+	      return;
+	    }
+	    endEvents.forEach(function (endEvent) {
+	      removeEventListener(node, endEvent, eventListener);
+	    });
+	  }
+	};
+
+	module.exports = ReactTransitionEvents;
+
+/***/ },
+/* 273 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {
+	    cate: _react2.default.PropTypes.bool,
+	    mode: _react2.default.PropTypes.bool,
+	    value1st: _react2.default.PropTypes.number,
+	    value2st: _react2.default.PropTypes.number,
+	    value3st: _react2.default.PropTypes.number,
+	    value4st: _react2.default.PropTypes.number
+	};
+
+	var defaultProps = {
+	    cate: true,
+	    mode: true,
+	    value1st: -1,
+	    value2st: -1,
+	    value3st: -1,
+	    value4st: -1
+	};
+
+	var MiniCard = function (_React$Component) {
+	    _inherits(MiniCard, _React$Component);
+
+	    function MiniCard(props) {
+	        _classCallCheck(this, MiniCard);
+
+	        return _possibleConstructorReturn(this, (MiniCard.__proto__ || Object.getPrototypeOf(MiniCard)).call(this, props));
+	    }
+
+	    _createClass(MiniCard, [{
+	        key: "render",
+	        value: function render() {
+
+	            var totalReport = _react2.default.createElement(
+	                "div",
+	                { className: "card" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "content" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "row" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "col-xs-5" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "icon-big icon-warning text-center" },
+	                                _react2.default.createElement("i", { className: "ti-server" })
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "col-xs-7" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "numbers" },
+	                                _react2.default.createElement(
+	                                    "p",
+	                                    null,
+	                                    "A\uBC84\uD2BC \uAC74\uC218"
+	                                ),
+	                                this.props.value1st
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "card-footer" },
+	                    _react2.default.createElement("hr", null),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "stats" },
+	                        _react2.default.createElement("i", { className: "ti-reload" }),
+	                        "Updated now"
+	                    )
+	                )
+	            );
+
+	            var progressReport = _react2.default.createElement(
+	                "div",
+	                { className: "card" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "content" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "row" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "col-xs-5" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "icon-big icon-success text-center" },
+	                                _react2.default.createElement("i", { className: "ti-wallet" })
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "col-xs-7" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "numbers" },
+	                                _react2.default.createElement(
+	                                    "p",
+	                                    null,
+	                                    "A\uBC84\uD2BC \uCC98\uB9AC"
+	                                ),
+	                                this.props.value2st
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "card-footer" },
+	                    _react2.default.createElement("hr", null),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "stats" },
+	                        _react2.default.createElement("i", { className: "ti-calendar" }),
+	                        "Last day"
+	                    )
+	                )
+	            );
+
+	            var totalCounsel = _react2.default.createElement(
+	                "div",
+	                { className: "card" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "content" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "row" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "col-xs-5" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "icon-big icon-danger text-center" },
+	                                _react2.default.createElement("i", { className: "ti-pulse" })
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "col-xs-7" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "numbers" },
+	                                _react2.default.createElement(
+	                                    "p",
+	                                    null,
+	                                    "B\uBC84\uD2BC \uC2E0\uACE0"
+	                                ),
+	                                this.props.value3st
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "card-footer" },
+	                    _react2.default.createElement("hr", null),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "stats" },
+	                        _react2.default.createElement("i", { className: "ti-timer" }),
+	                        "In the last hour"
+	                    )
+	                )
+	            );
+
+	            var progressCounsel = _react2.default.createElement(
+	                "div",
+	                { className: "card" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "content" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "row" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "col-xs-5" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "icon-big icon-info text-center" },
+	                                _react2.default.createElement("i", { className: "ti-twitter-alt" })
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "col-xs-7" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "numbers" },
+	                                _react2.default.createElement(
+	                                    "p",
+	                                    null,
+	                                    "B\uBC84\uD2BC \uCC98\uB9AC"
+	                                ),
+	                                this.props.value4st
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "card-footer" },
+	                    _react2.default.createElement("hr", null),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "stats" },
+	                        _react2.default.createElement("i", { className: "ti-reload" }),
+	                        "Updated now"
+	                    )
+	                )
+	            );
+
+	            return _react2.default.createElement(
+	                "div",
+	                null,
+	                this.props.cate ? _react2.default.createElement(
+	                    "div",
+	                    null,
+	                    this.props.mode ? totalReport : progressReport
+	                ) : _react2.default.createElement(
+	                    "div",
+	                    null,
+	                    this.props.mode ? totalCounsel : progressCounsel
+	                )
+	            );
+	        }
+	    }]);
+
+	    return MiniCard;
+	}(_react2.default.Component);
+
+	MiniCard.propTypes = propTypes;
+	MiniCard.defaultProps = defaultProps;
+
+	exports.default = MiniCard;
+
+/***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactChartist = __webpack_require__(275);
+
+	var _reactChartist2 = _interopRequireDefault(_reactChartist);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {
+		title: _react2.default.PropTypes.string
+	};
+
+	var defaultProps = {
+		title: "chart title"
+	};
+
+	var Chart = function (_React$Component) {
+		_inherits(Chart, _React$Component);
+
+		function Chart(props) {
+			_classCallCheck(this, Chart);
+
+			return _possibleConstructorReturn(this, (Chart.__proto__ || Object.getPrototypeOf(Chart)).call(this, props));
+		}
+
+		_createClass(Chart, [{
+			key: 'render',
+			value: function render() {
+
+				var dataPrice = {
+					labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'June'],
+					series: [[230, 340, 400, 300, 570, 500, 800]]
+				};
+
+				var optionsPrice = {
+					showPoint: false,
+					lineSmooth: true,
+					height: "210px",
+					axisX: {
+						showGrid: false,
+						showLabel: true
+					},
+					axisY: {
+						offset: 40,
+						showGrid: false
+					},
+					low: 0,
+					high: 'auto',
+					classNames: {
+						line: 'ct-line ct-green'
+					}
+				};
+
+				var data = {
+					labels: ['2009', '2010', '2011', '2012', '2013', '2014', '2015'],
+					series: [[200, 300, 400, 800, 600, 500, 700]]
+				};
+
+				var options = {
+					low: 0,
+					high: 1000,
+					height: "210px",
+					showPoint: false,
+					lineSmooth: true,
+					axisX: {
+						labelInterpolationFnc: function labelInterpolationFnc(value, index) {
+							return index % 2 === 0 ? value : null;
+						},
+						showGrid: false
+					},
+					classNames: {
+						line: 'ct-line ct-red'
+					}
+				};
+
+				var type = 'Line';
+
+				return _react2.default.createElement(
+					'div',
+					{ className: 'card' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'content' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-xs-7' },
+								_react2.default.createElement(
+									'div',
+									{ className: 'numbers pull-left' },
+									'$34,657'
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-xs-5' },
+								_react2.default.createElement(
+									'div',
+									{ className: 'pull-right' },
+									_react2.default.createElement(
+										'span',
+										{ className: 'label label-success' },
+										'+18%'
+									)
+								)
+							)
+						),
+						_react2.default.createElement(
+							'h6',
+							{ className: 'big-title' },
+							'total earnings',
+							_react2.default.createElement(
+								'span',
+								{ className: 'text-muted' },
+								'in last'
+							),
+							'ten',
+							_react2.default.createElement(
+								'span',
+								{ className: 'text-muted' },
+								'quarters'
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement(_reactChartist2.default, { data: data, options: options, type: type, className: 'ct-line ct-red' })
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'card-footer' },
+							_react2.default.createElement('hr', null),
+							_react2.default.createElement(
+								'div',
+								{ className: 'footer-title' },
+								this.props.title
+							)
+						)
+					)
+				);
+			}
+		}]);
+
+		return Chart;
+	}(_react2.default.Component);
+
+	Chart.propTypes = propTypes;
+	Chart.defaultProps = defaultProps;
+
+	exports.default = Chart;
+
+/***/ },
+/* 275 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var ChartistGraph = (function (_Component) {
+	  _inherits(ChartistGraph, _Component);
+
+	  function ChartistGraph() {
+	    _classCallCheck(this, ChartistGraph);
+
+	    _get(Object.getPrototypeOf(ChartistGraph.prototype), 'constructor', this).apply(this, arguments);
+	  }
+
+	  _createClass(ChartistGraph, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(newProps) {
+	      this.updateChart(newProps);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      if (this.chartist) {
+	        try {
+	          this.chartist.detach();
+	        } catch (err) {
+	          throw new Error('Internal chartist error', err);
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.updateChart(this.props);
+	    }
+	  }, {
+	    key: 'updateChart',
+	    value: function updateChart(config) {
+	      var Chartist = __webpack_require__(276);
+
+	      var type = config.type;
+	      var data = config.data;
+
+	      var options = config.options || {};
+	      var responsiveOptions = config.responsiveOptions || [];
+	      var event = undefined;
+
+	      if (this.chartist) {
+	        this.chartist.update(data, options, responsiveOptions);
+	      } else {
+	        this.chartist = new Chartist[type](this.refs.chart, data, options, responsiveOptions);
+
+	        if (config.listener) {
+	          for (event in config.listener) {
+	            if (config.listener.hasOwnProperty(event)) {
+	              this.chartist.on(event, config.listener[event]);
+	            }
+	          }
+	        }
+	      }
+
+	      return this.chartist;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var className = this.props.className ? ' ' + this.props.className : '';
+	      var style = this.props.style ? this.props.style : {};
+	      return _react2['default'].createElement('div', { className: 'ct-chart' + className, ref: 'chart', style: style });
+	    }
+	  }]);
+
+	  return ChartistGraph;
+	})(_react.Component);
+
+	ChartistGraph.propTypes = {
+	  type: _react2['default'].PropTypes.string.isRequired,
+	  data: _react2['default'].PropTypes.object.isRequired,
+	  className: _react2['default'].PropTypes.string,
+	  options: _react2['default'].PropTypes.object,
+	  responsiveOptions: _react2['default'].PropTypes.array,
+	  style: _react2['default'].PropTypes.object
+	};
+
+	exports['default'] = ChartistGraph;
+	module.exports = exports['default'];
+
+
+
+/***/ },
+/* 276 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory) {
+	  if (true) {
+	    // AMD. Register as an anonymous module unless amdModuleId is set
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+	      return (root['Chartist'] = factory());
+	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports === 'object') {
+	    // Node. Does not work with strict CommonJS, but
+	    // only CommonJS-like environments that support module.exports,
+	    // like Node.
+	    module.exports = factory();
+	  } else {
+	    root['Chartist'] = factory();
+	  }
+	}(this, function () {
+
+	/* Chartist.js 0.9.8
+	 * Copyright © 2016 Gion Kunz
+	 * Free to use under either the WTFPL license or the MIT license.
+	 * https://raw.githubusercontent.com/gionkunz/chartist-js/master/LICENSE-WTFPL
+	 * https://raw.githubusercontent.com/gionkunz/chartist-js/master/LICENSE-MIT
+	 */
+	/**
+	 * The core module of Chartist that is mainly providing static functions and higher level functions for chart modules.
+	 *
+	 * @module Chartist.Core
+	 */
+	var Chartist = {
+	  version: '0.9.8'
+	};
+
+	(function (window, document, Chartist) {
+	  'use strict';
+
+	  /**
+	   * This object contains all namespaces used within Chartist.
+	   *
+	   * @memberof Chartist.Core
+	   * @type {{svg: string, xmlns: string, xhtml: string, xlink: string, ct: string}}
+	   */
+	  Chartist.namespaces = {
+	    svg: 'http://www.w3.org/2000/svg',
+	    xmlns: 'http://www.w3.org/2000/xmlns/',
+	    xhtml: 'http://www.w3.org/1999/xhtml',
+	    xlink: 'http://www.w3.org/1999/xlink',
+	    ct: 'http://gionkunz.github.com/chartist-js/ct'
+	  };
+
+	  /**
+	   * Helps to simplify functional style code
+	   *
+	   * @memberof Chartist.Core
+	   * @param {*} n This exact value will be returned by the noop function
+	   * @return {*} The same value that was provided to the n parameter
+	   */
+	  Chartist.noop = function (n) {
+	    return n;
+	  };
+
+	  /**
+	   * Generates a-z from a number 0 to 26
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Number} n A number from 0 to 26 that will result in a letter a-z
+	   * @return {String} A character from a-z based on the input number n
+	   */
+	  Chartist.alphaNumerate = function (n) {
+	    // Limit to a-z
+	    return String.fromCharCode(97 + n % 26);
+	  };
+
+	  /**
+	   * Simple recursive object extend
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Object} target Target object where the source will be merged into
+	   * @param {Object...} sources This object (objects) will be merged into target and then target is returned
+	   * @return {Object} An object that has the same reference as target but is extended and merged with the properties of source
+	   */
+	  Chartist.extend = function (target) {
+	    target = target || {};
+
+	    var sources = Array.prototype.slice.call(arguments, 1);
+	    sources.forEach(function(source) {
+	      for (var prop in source) {
+	        if (typeof source[prop] === 'object' && source[prop] !== null && !(source[prop] instanceof Array)) {
+	          target[prop] = Chartist.extend({}, target[prop], source[prop]);
+	        } else {
+	          target[prop] = source[prop];
+	        }
+	      }
+	    });
+
+	    return target;
+	  };
+
+	  /**
+	   * Replaces all occurrences of subStr in str with newSubStr and returns a new string.
+	   *
+	   * @memberof Chartist.Core
+	   * @param {String} str
+	   * @param {String} subStr
+	   * @param {String} newSubStr
+	   * @return {String}
+	   */
+	  Chartist.replaceAll = function(str, subStr, newSubStr) {
+	    return str.replace(new RegExp(subStr, 'g'), newSubStr);
+	  };
+
+	  /**
+	   * Converts a number to a string with a unit. If a string is passed then this will be returned unmodified.
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Number} value
+	   * @param {String} unit
+	   * @return {String} Returns the passed number value with unit.
+	   */
+	  Chartist.ensureUnit = function(value, unit) {
+	    if(typeof value === 'number') {
+	      value = value + unit;
+	    }
+
+	    return value;
+	  };
+
+	  /**
+	   * Converts a number or string to a quantity object.
+	   *
+	   * @memberof Chartist.Core
+	   * @param {String|Number} input
+	   * @return {Object} Returns an object containing the value as number and the unit as string.
+	   */
+	  Chartist.quantity = function(input) {
+	    if (typeof input === 'string') {
+	      var match = (/^(\d+)\s*(.*)$/g).exec(input);
+	      return {
+	        value : +match[1],
+	        unit: match[2] || undefined
+	      };
+	    }
+	    return { value: input };
+	  };
+
+	  /**
+	   * This is a wrapper around document.querySelector that will return the query if it's already of type Node
+	   *
+	   * @memberof Chartist.Core
+	   * @param {String|Node} query The query to use for selecting a Node or a DOM node that will be returned directly
+	   * @return {Node}
+	   */
+	  Chartist.querySelector = function(query) {
+	    return query instanceof Node ? query : document.querySelector(query);
+	  };
+
+	  /**
+	   * Functional style helper to produce array with given length initialized with undefined values
+	   *
+	   * @memberof Chartist.Core
+	   * @param length
+	   * @return {Array}
+	   */
+	  Chartist.times = function(length) {
+	    return Array.apply(null, new Array(length));
+	  };
+
+	  /**
+	   * Sum helper to be used in reduce functions
+	   *
+	   * @memberof Chartist.Core
+	   * @param previous
+	   * @param current
+	   * @return {*}
+	   */
+	  Chartist.sum = function(previous, current) {
+	    return previous + (current ? current : 0);
+	  };
+
+	  /**
+	   * Multiply helper to be used in `Array.map` for multiplying each value of an array with a factor.
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Number} factor
+	   * @returns {Function} Function that can be used in `Array.map` to multiply each value in an array
+	   */
+	  Chartist.mapMultiply = function(factor) {
+	    return function(num) {
+	      return num * factor;
+	    };
+	  };
+
+	  /**
+	   * Add helper to be used in `Array.map` for adding a addend to each value of an array.
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Number} addend
+	   * @returns {Function} Function that can be used in `Array.map` to add a addend to each value in an array
+	   */
+	  Chartist.mapAdd = function(addend) {
+	    return function(num) {
+	      return num + addend;
+	    };
+	  };
+
+	  /**
+	   * Map for multi dimensional arrays where their nested arrays will be mapped in serial. The output array will have the length of the largest nested array. The callback function is called with variable arguments where each argument is the nested array value (or undefined if there are no more values).
+	   *
+	   * @memberof Chartist.Core
+	   * @param arr
+	   * @param cb
+	   * @return {Array}
+	   */
+	  Chartist.serialMap = function(arr, cb) {
+	    var result = [],
+	        length = Math.max.apply(null, arr.map(function(e) {
+	          return e.length;
+	        }));
+
+	    Chartist.times(length).forEach(function(e, index) {
+	      var args = arr.map(function(e) {
+	        return e[index];
+	      });
+
+	      result[index] = cb.apply(null, args);
+	    });
+
+	    return result;
+	  };
+
+	  /**
+	   * This helper function can be used to round values with certain precision level after decimal. This is used to prevent rounding errors near float point precision limit.
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Number} value The value that should be rounded with precision
+	   * @param {Number} [digits] The number of digits after decimal used to do the rounding
+	   * @returns {number} Rounded value
+	   */
+	  Chartist.roundWithPrecision = function(value, digits) {
+	    var precision = Math.pow(10, digits || Chartist.precision);
+	    return Math.round(value * precision) / precision;
+	  };
+
+	  /**
+	   * Precision level used internally in Chartist for rounding. If you require more decimal places you can increase this number.
+	   *
+	   * @memberof Chartist.Core
+	   * @type {number}
+	   */
+	  Chartist.precision = 8;
+
+	  /**
+	   * A map with characters to escape for strings to be safely used as attribute values.
+	   *
+	   * @memberof Chartist.Core
+	   * @type {Object}
+	   */
+	  Chartist.escapingMap = {
+	    '&': '&amp;',
+	    '<': '&lt;',
+	    '>': '&gt;',
+	    '"': '&quot;',
+	    '\'': '&#039;'
+	  };
+
+	  /**
+	   * This function serializes arbitrary data to a string. In case of data that can't be easily converted to a string, this function will create a wrapper object and serialize the data using JSON.stringify. The outcoming string will always be escaped using Chartist.escapingMap.
+	   * If called with null or undefined the function will return immediately with null or undefined.
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Number|String|Object} data
+	   * @return {String}
+	   */
+	  Chartist.serialize = function(data) {
+	    if(data === null || data === undefined) {
+	      return data;
+	    } else if(typeof data === 'number') {
+	      data = ''+data;
+	    } else if(typeof data === 'object') {
+	      data = JSON.stringify({data: data});
+	    }
+
+	    return Object.keys(Chartist.escapingMap).reduce(function(result, key) {
+	      return Chartist.replaceAll(result, key, Chartist.escapingMap[key]);
+	    }, data);
+	  };
+
+	  /**
+	   * This function de-serializes a string previously serialized with Chartist.serialize. The string will always be unescaped using Chartist.escapingMap before it's returned. Based on the input value the return type can be Number, String or Object. JSON.parse is used with try / catch to see if the unescaped string can be parsed into an Object and this Object will be returned on success.
+	   *
+	   * @memberof Chartist.Core
+	   * @param {String} data
+	   * @return {String|Number|Object}
+	   */
+	  Chartist.deserialize = function(data) {
+	    if(typeof data !== 'string') {
+	      return data;
+	    }
+
+	    data = Object.keys(Chartist.escapingMap).reduce(function(result, key) {
+	      return Chartist.replaceAll(result, Chartist.escapingMap[key], key);
+	    }, data);
+
+	    try {
+	      data = JSON.parse(data);
+	      data = data.data !== undefined ? data.data : data;
+	    } catch(e) {}
+
+	    return data;
+	  };
+
+	  /**
+	   * Create or reinitialize the SVG element for the chart
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Node} container The containing DOM Node object that will be used to plant the SVG element
+	   * @param {String} width Set the width of the SVG element. Default is 100%
+	   * @param {String} height Set the height of the SVG element. Default is 100%
+	   * @param {String} className Specify a class to be added to the SVG element
+	   * @return {Object} The created/reinitialized SVG element
+	   */
+	  Chartist.createSvg = function (container, width, height, className) {
+	    var svg;
+
+	    width = width || '100%';
+	    height = height || '100%';
+
+	    // Check if there is a previous SVG element in the container that contains the Chartist XML namespace and remove it
+	    // Since the DOM API does not support namespaces we need to manually search the returned list http://www.w3.org/TR/selectors-api/
+	    Array.prototype.slice.call(container.querySelectorAll('svg')).filter(function filterChartistSvgObjects(svg) {
+	      return svg.getAttributeNS(Chartist.namespaces.xmlns, 'ct');
+	    }).forEach(function removePreviousElement(svg) {
+	      container.removeChild(svg);
+	    });
+
+	    // Create svg object with width and height or use 100% as default
+	    svg = new Chartist.Svg('svg').attr({
+	      width: width,
+	      height: height
+	    }).addClass(className).attr({
+	      style: 'width: ' + width + '; height: ' + height + ';'
+	    });
+
+	    // Add the DOM node to our container
+	    container.appendChild(svg._node);
+
+	    return svg;
+	  };
+
+	  /**
+	   * Ensures that the data object passed as second argument to the charts is present and correctly initialized.
+	   *
+	   * @param  {Object} data The data object that is passed as second argument to the charts
+	   * @return {Object} The normalized data object
+	   */
+	  Chartist.normalizeData = function(data) {
+	    // Ensure data is present otherwise enforce
+	    data = data || {series: [], labels: []};
+	    data.series = data.series || [];
+	    data.labels = data.labels || [];
+
+	    // Check if we should generate some labels based on existing series data
+	    if (data.series.length > 0 && data.labels.length === 0) {
+	      var normalized = Chartist.getDataArray(data),
+	          labelCount;
+
+	      // If all elements of the normalized data array are arrays we're dealing with
+	      // data from Bar or Line charts and we need to find the largest series if they are un-even
+	      if (normalized.every(function(value) {
+	        return value instanceof Array;
+	      })) {
+	        // Getting the series with the the most elements
+	        labelCount = Math.max.apply(null, normalized.map(function(series) {
+	          return series.length;
+	        }));
+	      } else {
+	        // We're dealing with Pie data so we just take the normalized array length
+	        labelCount = normalized.length;
+	      }
+
+	      // Setting labels to an array with emptry strings using our labelCount estimated above
+	      data.labels = Chartist.times(labelCount).map(function() {
+	        return '';
+	      });
+	    }
+	    return data;
+	  };
+
+	  /**
+	   * Reverses the series, labels and series data arrays.
+	   *
+	   * @memberof Chartist.Core
+	   * @param data
+	   */
+	  Chartist.reverseData = function(data) {
+	    data.labels.reverse();
+	    data.series.reverse();
+	    for (var i = 0; i < data.series.length; i++) {
+	      if(typeof(data.series[i]) === 'object' && data.series[i].data !== undefined) {
+	        data.series[i].data.reverse();
+	      } else if(data.series[i] instanceof Array) {
+	        data.series[i].reverse();
+	      }
+	    }
+	  };
+
+	  /**
+	   * Convert data series into plain array
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Object} data The series object that contains the data to be visualized in the chart
+	   * @param {Boolean} reverse If true the whole data is reversed by the getDataArray call. This will modify the data object passed as first parameter. The labels as well as the series order is reversed. The whole series data arrays are reversed too.
+	   * @param {Boolean} multi Create a multi dimensional array from a series data array where a value object with `x` and `y` values will be created.
+	   * @return {Array} A plain array that contains the data to be visualized in the chart
+	   */
+	  Chartist.getDataArray = function (data, reverse, multi) {
+	    // If the data should be reversed but isn't we need to reverse it
+	    // If it's reversed but it shouldn't we need to reverse it back
+	    // That's required to handle data updates correctly and to reflect the responsive configurations
+	    if(reverse && !data.reversed || !reverse && data.reversed) {
+	      Chartist.reverseData(data);
+	      data.reversed = !data.reversed;
+	    }
+
+	    // Recursively walks through nested arrays and convert string values to numbers and objects with value properties
+	    // to values. Check the tests in data core -> data normalization for a detailed specification of expected values
+	    function recursiveConvert(value) {
+	      if(Chartist.isFalseyButZero(value)) {
+	        // This is a hole in data and we should return undefined
+	        return undefined;
+	      } else if((value.data || value) instanceof Array) {
+	        return (value.data || value).map(recursiveConvert);
+	      } else if(value.hasOwnProperty('value')) {
+	        return recursiveConvert(value.value);
+	      } else {
+	        if(multi) {
+	          var multiValue = {};
+
+	          // Single series value arrays are assumed to specify the Y-Axis value
+	          // For example: [1, 2] => [{x: undefined, y: 1}, {x: undefined, y: 2}]
+	          // If multi is a string then it's assumed that it specified which dimension should be filled as default
+	          if(typeof multi === 'string') {
+	            multiValue[multi] = Chartist.getNumberOrUndefined(value);
+	          } else {
+	            multiValue.y = Chartist.getNumberOrUndefined(value);
+	          }
+
+	          multiValue.x = value.hasOwnProperty('x') ? Chartist.getNumberOrUndefined(value.x) : multiValue.x;
+	          multiValue.y = value.hasOwnProperty('y') ? Chartist.getNumberOrUndefined(value.y) : multiValue.y;
+
+	          return multiValue;
+
+	        } else {
+	          return Chartist.getNumberOrUndefined(value);
+	        }
+	      }
+	    }
+
+	    return data.series.map(recursiveConvert);
+	  };
+
+	  /**
+	   * Converts a number into a padding object.
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Object|Number} padding
+	   * @param {Number} [fallback] This value is used to fill missing values if a incomplete padding object was passed
+	   * @returns {Object} Returns a padding object containing top, right, bottom, left properties filled with the padding number passed in as argument. If the argument is something else than a number (presumably already a correct padding object) then this argument is directly returned.
+	   */
+	  Chartist.normalizePadding = function(padding, fallback) {
+	    fallback = fallback || 0;
+
+	    return typeof padding === 'number' ? {
+	      top: padding,
+	      right: padding,
+	      bottom: padding,
+	      left: padding
+	    } : {
+	      top: typeof padding.top === 'number' ? padding.top : fallback,
+	      right: typeof padding.right === 'number' ? padding.right : fallback,
+	      bottom: typeof padding.bottom === 'number' ? padding.bottom : fallback,
+	      left: typeof padding.left === 'number' ? padding.left : fallback
+	    };
+	  };
+
+	  Chartist.getMetaData = function(series, index) {
+	    var value = series.data ? series.data[index] : series[index];
+	    return value ? Chartist.serialize(value.meta) : undefined;
+	  };
+
+	  /**
+	   * Calculate the order of magnitude for the chart scale
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Number} value The value Range of the chart
+	   * @return {Number} The order of magnitude
+	   */
+	  Chartist.orderOfMagnitude = function (value) {
+	    return Math.floor(Math.log(Math.abs(value)) / Math.LN10);
+	  };
+
+	  /**
+	   * Project a data length into screen coordinates (pixels)
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Object} axisLength The svg element for the chart
+	   * @param {Number} length Single data value from a series array
+	   * @param {Object} bounds All the values to set the bounds of the chart
+	   * @return {Number} The projected data length in pixels
+	   */
+	  Chartist.projectLength = function (axisLength, length, bounds) {
+	    return length / bounds.range * axisLength;
+	  };
+
+	  /**
+	   * Get the height of the area in the chart for the data series
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Object} svg The svg element for the chart
+	   * @param {Object} options The Object that contains all the optional values for the chart
+	   * @return {Number} The height of the area in the chart for the data series
+	   */
+	  Chartist.getAvailableHeight = function (svg, options) {
+	    return Math.max((Chartist.quantity(options.height).value || svg.height()) - (options.chartPadding.top +  options.chartPadding.bottom) - options.axisX.offset, 0);
+	  };
+
+	  /**
+	   * Get highest and lowest value of data array. This Array contains the data that will be visualized in the chart.
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Array} data The array that contains the data to be visualized in the chart
+	   * @param {Object} options The Object that contains the chart options
+	   * @param {String} dimension Axis dimension 'x' or 'y' used to access the correct value and high / low configuration
+	   * @return {Object} An object that contains the highest and lowest value that will be visualized on the chart.
+	   */
+	  Chartist.getHighLow = function (data, options, dimension) {
+	    // TODO: Remove workaround for deprecated global high / low config. Axis high / low configuration is preferred
+	    options = Chartist.extend({}, options, dimension ? options['axis' + dimension.toUpperCase()] : {});
+
+	    var highLow = {
+	        high: options.high === undefined ? -Number.MAX_VALUE : +options.high,
+	        low: options.low === undefined ? Number.MAX_VALUE : +options.low
+	      };
+	    var findHigh = options.high === undefined;
+	    var findLow = options.low === undefined;
+
+	    // Function to recursively walk through arrays and find highest and lowest number
+	    function recursiveHighLow(data) {
+	      if(data === undefined) {
+	        return undefined;
+	      } else if(data instanceof Array) {
+	        for (var i = 0; i < data.length; i++) {
+	          recursiveHighLow(data[i]);
+	        }
+	      } else {
+	        var value = dimension ? +data[dimension] : +data;
+
+	        if (findHigh && value > highLow.high) {
+	          highLow.high = value;
+	        }
+
+	        if (findLow && value < highLow.low) {
+	          highLow.low = value;
+	        }
+	      }
+	    }
+
+	    // Start to find highest and lowest number recursively
+	    if(findHigh || findLow) {
+	      recursiveHighLow(data);
+	    }
+
+	    // Overrides of high / low based on reference value, it will make sure that the invisible reference value is
+	    // used to generate the chart. This is useful when the chart always needs to contain the position of the
+	    // invisible reference value in the view i.e. for bipolar scales.
+	    if (options.referenceValue || options.referenceValue === 0) {
+	      highLow.high = Math.max(options.referenceValue, highLow.high);
+	      highLow.low = Math.min(options.referenceValue, highLow.low);
+	    }
+
+	    // If high and low are the same because of misconfiguration or flat data (only the same value) we need
+	    // to set the high or low to 0 depending on the polarity
+	    if (highLow.high <= highLow.low) {
+	      // If both values are 0 we set high to 1
+	      if (highLow.low === 0) {
+	        highLow.high = 1;
+	      } else if (highLow.low < 0) {
+	        // If we have the same negative value for the bounds we set bounds.high to 0
+	        highLow.high = 0;
+	      } else if (highLow.high > 0) {
+	        // If we have the same positive value for the bounds we set bounds.low to 0
+	        highLow.low = 0;
+	      } else {
+	        // If data array was empty, values are Number.MAX_VALUE and -Number.MAX_VALUE. Set bounds to prevent errors
+	        highLow.high = 1;
+	        highLow.low = 0;
+	      }
+	    }
+
+	    return highLow;
+	  };
+
+	  /**
+	   * Checks if the value is a valid number or string with a number.
+	   *
+	   * @memberof Chartist.Core
+	   * @param value
+	   * @returns {Boolean}
+	   */
+	  Chartist.isNum = function(value) {
+	    return !isNaN(value) && isFinite(value);
+	  };
+
+	  /**
+	   * Returns true on all falsey values except the numeric value 0.
+	   *
+	   * @memberof Chartist.Core
+	   * @param value
+	   * @returns {boolean}
+	   */
+	  Chartist.isFalseyButZero = function(value) {
+	    return !value && value !== 0;
+	  };
+
+	  /**
+	   * Returns a number if the passed parameter is a valid number or the function will return undefined. On all other values than a valid number, this function will return undefined.
+	   *
+	   * @memberof Chartist.Core
+	   * @param value
+	   * @returns {*}
+	   */
+	  Chartist.getNumberOrUndefined = function(value) {
+	    return isNaN(+value) ? undefined : +value;
+	  };
+
+	  /**
+	   * Gets a value from a dimension `value.x` or `value.y` while returning value directly if it's a valid numeric value. If the value is not numeric and it's falsey this function will return undefined.
+	   *
+	   * @param value
+	   * @param dimension
+	   * @returns {*}
+	   */
+	  Chartist.getMultiValue = function(value, dimension) {
+	    if(Chartist.isNum(value)) {
+	      return +value;
+	    } else if(value) {
+	      return value[dimension || 'y'] || 0;
+	    } else {
+	      return 0;
+	    }
+	  };
+
+	  /**
+	   * Pollard Rho Algorithm to find smallest factor of an integer value. There are more efficient algorithms for factorization, but this one is quite efficient and not so complex.
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Number} num An integer number where the smallest factor should be searched for
+	   * @returns {Number} The smallest integer factor of the parameter num.
+	   */
+	  Chartist.rho = function(num) {
+	    if(num === 1) {
+	      return num;
+	    }
+
+	    function gcd(p, q) {
+	      if (p % q === 0) {
+	        return q;
+	      } else {
+	        return gcd(q, p % q);
+	      }
+	    }
+
+	    function f(x) {
+	      return x * x + 1;
+	    }
+
+	    var x1 = 2, x2 = 2, divisor;
+	    if (num % 2 === 0) {
+	      return 2;
+	    }
+
+	    do {
+	      x1 = f(x1) % num;
+	      x2 = f(f(x2)) % num;
+	      divisor = gcd(Math.abs(x1 - x2), num);
+	    } while (divisor === 1);
+
+	    return divisor;
+	  };
+
+	  /**
+	   * Calculate and retrieve all the bounds for the chart and return them in one array
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Number} axisLength The length of the Axis used for
+	   * @param {Object} highLow An object containing a high and low property indicating the value range of the chart.
+	   * @param {Number} scaleMinSpace The minimum projected length a step should result in
+	   * @param {Boolean} onlyInteger
+	   * @return {Object} All the values to set the bounds of the chart
+	   */
+	  Chartist.getBounds = function (axisLength, highLow, scaleMinSpace, onlyInteger) {
+	    var i,
+	      optimizationCounter = 0,
+	      newMin,
+	      newMax,
+	      bounds = {
+	        high: highLow.high,
+	        low: highLow.low
+	      };
+
+	    bounds.valueRange = bounds.high - bounds.low;
+	    bounds.oom = Chartist.orderOfMagnitude(bounds.valueRange);
+	    bounds.step = Math.pow(10, bounds.oom);
+	    bounds.min = Math.floor(bounds.low / bounds.step) * bounds.step;
+	    bounds.max = Math.ceil(bounds.high / bounds.step) * bounds.step;
+	    bounds.range = bounds.max - bounds.min;
+	    bounds.numberOfSteps = Math.round(bounds.range / bounds.step);
+
+	    // Optimize scale step by checking if subdivision is possible based on horizontalGridMinSpace
+	    // If we are already below the scaleMinSpace value we will scale up
+	    var length = Chartist.projectLength(axisLength, bounds.step, bounds);
+	    var scaleUp = length < scaleMinSpace;
+	    var smallestFactor = onlyInteger ? Chartist.rho(bounds.range) : 0;
+
+	    // First check if we should only use integer steps and if step 1 is still larger than scaleMinSpace so we can use 1
+	    if(onlyInteger && Chartist.projectLength(axisLength, 1, bounds) >= scaleMinSpace) {
+	      bounds.step = 1;
+	    } else if(onlyInteger && smallestFactor < bounds.step && Chartist.projectLength(axisLength, smallestFactor, bounds) >= scaleMinSpace) {
+	      // If step 1 was too small, we can try the smallest factor of range
+	      // If the smallest factor is smaller than the current bounds.step and the projected length of smallest factor
+	      // is larger than the scaleMinSpace we should go for it.
+	      bounds.step = smallestFactor;
+	    } else {
+	      // Trying to divide or multiply by 2 and find the best step value
+	      while (true) {
+	        if (scaleUp && Chartist.projectLength(axisLength, bounds.step, bounds) <= scaleMinSpace) {
+	          bounds.step *= 2;
+	        } else if (!scaleUp && Chartist.projectLength(axisLength, bounds.step / 2, bounds) >= scaleMinSpace) {
+	          bounds.step /= 2;
+	          if(onlyInteger && bounds.step % 1 !== 0) {
+	            bounds.step *= 2;
+	            break;
+	          }
+	        } else {
+	          break;
+	        }
+
+	        if(optimizationCounter++ > 1000) {
+	          throw new Error('Exceeded maximum number of iterations while optimizing scale step!');
+	        }
+	      }
+	    }
+
+	    // step must not be less than EPSILON to create values that can be represented as floating number.
+	    var EPSILON = 2.221E-16;
+	    bounds.step = Math.max(bounds.step, EPSILON);
+
+	    // Narrow min and max based on new step
+	    newMin = bounds.min;
+	    newMax = bounds.max;
+	    while(newMin + bounds.step <= bounds.low) {
+	      newMin += bounds.step;
+	    }
+	    while(newMax - bounds.step >= bounds.high) {
+	      newMax -= bounds.step;
+	    }
+	    bounds.min = newMin;
+	    bounds.max = newMax;
+	    bounds.range = bounds.max - bounds.min;
+
+	    var values = [];
+	    for (i = bounds.min; i <= bounds.max; i += bounds.step) {
+	      var value = Chartist.roundWithPrecision(i);
+	      if (value !== values[values.length - 1]) {
+	        values.push(i);
+	      }
+	    }
+	    bounds.values = values;
+	    return bounds;
+	  };
+
+	  /**
+	   * Calculate cartesian coordinates of polar coordinates
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Number} centerX X-axis coordinates of center point of circle segment
+	   * @param {Number} centerY X-axis coordinates of center point of circle segment
+	   * @param {Number} radius Radius of circle segment
+	   * @param {Number} angleInDegrees Angle of circle segment in degrees
+	   * @return {{x:Number, y:Number}} Coordinates of point on circumference
+	   */
+	  Chartist.polarToCartesian = function (centerX, centerY, radius, angleInDegrees) {
+	    var angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
+
+	    return {
+	      x: centerX + (radius * Math.cos(angleInRadians)),
+	      y: centerY + (radius * Math.sin(angleInRadians))
+	    };
+	  };
+
+	  /**
+	   * Initialize chart drawing rectangle (area where chart is drawn) x1,y1 = bottom left / x2,y2 = top right
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Object} svg The svg element for the chart
+	   * @param {Object} options The Object that contains all the optional values for the chart
+	   * @param {Number} [fallbackPadding] The fallback padding if partial padding objects are used
+	   * @return {Object} The chart rectangles coordinates inside the svg element plus the rectangles measurements
+	   */
+	  Chartist.createChartRect = function (svg, options, fallbackPadding) {
+	    var hasAxis = !!(options.axisX || options.axisY);
+	    var yAxisOffset = hasAxis ? options.axisY.offset : 0;
+	    var xAxisOffset = hasAxis ? options.axisX.offset : 0;
+	    // If width or height results in invalid value (including 0) we fallback to the unitless settings or even 0
+	    var width = svg.width() || Chartist.quantity(options.width).value || 0;
+	    var height = svg.height() || Chartist.quantity(options.height).value || 0;
+	    var normalizedPadding = Chartist.normalizePadding(options.chartPadding, fallbackPadding);
+
+	    // If settings were to small to cope with offset (legacy) and padding, we'll adjust
+	    width = Math.max(width, yAxisOffset + normalizedPadding.left + normalizedPadding.right);
+	    height = Math.max(height, xAxisOffset + normalizedPadding.top + normalizedPadding.bottom);
+
+	    var chartRect = {
+	      padding: normalizedPadding,
+	      width: function () {
+	        return this.x2 - this.x1;
+	      },
+	      height: function () {
+	        return this.y1 - this.y2;
+	      }
+	    };
+
+	    if(hasAxis) {
+	      if (options.axisX.position === 'start') {
+	        chartRect.y2 = normalizedPadding.top + xAxisOffset;
+	        chartRect.y1 = Math.max(height - normalizedPadding.bottom, chartRect.y2 + 1);
+	      } else {
+	        chartRect.y2 = normalizedPadding.top;
+	        chartRect.y1 = Math.max(height - normalizedPadding.bottom - xAxisOffset, chartRect.y2 + 1);
+	      }
+
+	      if (options.axisY.position === 'start') {
+	        chartRect.x1 = normalizedPadding.left + yAxisOffset;
+	        chartRect.x2 = Math.max(width - normalizedPadding.right, chartRect.x1 + 1);
+	      } else {
+	        chartRect.x1 = normalizedPadding.left;
+	        chartRect.x2 = Math.max(width - normalizedPadding.right - yAxisOffset, chartRect.x1 + 1);
+	      }
+	    } else {
+	      chartRect.x1 = normalizedPadding.left;
+	      chartRect.x2 = Math.max(width - normalizedPadding.right, chartRect.x1 + 1);
+	      chartRect.y2 = normalizedPadding.top;
+	      chartRect.y1 = Math.max(height - normalizedPadding.bottom, chartRect.y2 + 1);
+	    }
+
+	    return chartRect;
+	  };
+
+	  /**
+	   * Creates a grid line based on a projected value.
+	   *
+	   * @memberof Chartist.Core
+	   * @param position
+	   * @param index
+	   * @param axis
+	   * @param offset
+	   * @param length
+	   * @param group
+	   * @param classes
+	   * @param eventEmitter
+	   */
+	  Chartist.createGrid = function(position, index, axis, offset, length, group, classes, eventEmitter) {
+	    var positionalData = {};
+	    positionalData[axis.units.pos + '1'] = position;
+	    positionalData[axis.units.pos + '2'] = position;
+	    positionalData[axis.counterUnits.pos + '1'] = offset;
+	    positionalData[axis.counterUnits.pos + '2'] = offset + length;
+
+	    var gridElement = group.elem('line', positionalData, classes.join(' '));
+
+	    // Event for grid draw
+	    eventEmitter.emit('draw',
+	      Chartist.extend({
+	        type: 'grid',
+	        axis: axis,
+	        index: index,
+	        group: group,
+	        element: gridElement
+	      }, positionalData)
+	    );
+	  };
+
+	  /**
+	   * Creates a label based on a projected value and an axis.
+	   *
+	   * @memberof Chartist.Core
+	   * @param position
+	   * @param length
+	   * @param index
+	   * @param labels
+	   * @param axis
+	   * @param axisOffset
+	   * @param labelOffset
+	   * @param group
+	   * @param classes
+	   * @param useForeignObject
+	   * @param eventEmitter
+	   */
+	  Chartist.createLabel = function(position, length, index, labels, axis, axisOffset, labelOffset, group, classes, useForeignObject, eventEmitter) {
+	    var labelElement;
+	    var positionalData = {};
+
+	    positionalData[axis.units.pos] = position + labelOffset[axis.units.pos];
+	    positionalData[axis.counterUnits.pos] = labelOffset[axis.counterUnits.pos];
+	    positionalData[axis.units.len] = length;
+	    positionalData[axis.counterUnits.len] = Math.max(0, axisOffset - 10);
+
+	    if(useForeignObject) {
+	      // We need to set width and height explicitly to px as span will not expand with width and height being
+	      // 100% in all browsers
+	      var content = '<span class="' + classes.join(' ') + '" style="' +
+	        axis.units.len + ': ' + Math.round(positionalData[axis.units.len]) + 'px; ' +
+	        axis.counterUnits.len + ': ' + Math.round(positionalData[axis.counterUnits.len]) + 'px">' +
+	        labels[index] + '</span>';
+
+	      labelElement = group.foreignObject(content, Chartist.extend({
+	        style: 'overflow: visible;'
+	      }, positionalData));
+	    } else {
+	      labelElement = group.elem('text', positionalData, classes.join(' ')).text(labels[index]);
+	    }
+
+	    eventEmitter.emit('draw', Chartist.extend({
+	      type: 'label',
+	      axis: axis,
+	      index: index,
+	      group: group,
+	      element: labelElement,
+	      text: labels[index]
+	    }, positionalData));
+	  };
+
+	  /**
+	   * Helper to read series specific options from options object. It automatically falls back to the global option if
+	   * there is no option in the series options.
+	   *
+	   * @param {Object} series Series object
+	   * @param {Object} options Chartist options object
+	   * @param {string} key The options key that should be used to obtain the options
+	   * @returns {*}
+	   */
+	  Chartist.getSeriesOption = function(series, options, key) {
+	    if(series.name && options.series && options.series[series.name]) {
+	      var seriesOptions = options.series[series.name];
+	      return seriesOptions.hasOwnProperty(key) ? seriesOptions[key] : options[key];
+	    } else {
+	      return options[key];
+	    }
+	  };
+
+	  /**
+	   * Provides options handling functionality with callback for options changes triggered by responsive options and media query matches
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Object} options Options set by user
+	   * @param {Array} responsiveOptions Optional functions to add responsive behavior to chart
+	   * @param {Object} eventEmitter The event emitter that will be used to emit the options changed events
+	   * @return {Object} The consolidated options object from the defaults, base and matching responsive options
+	   */
+	  Chartist.optionsProvider = function (options, responsiveOptions, eventEmitter) {
+	    var baseOptions = Chartist.extend({}, options),
+	      currentOptions,
+	      mediaQueryListeners = [],
+	      i;
+
+	    function updateCurrentOptions(mediaEvent) {
+	      var previousOptions = currentOptions;
+	      currentOptions = Chartist.extend({}, baseOptions);
+
+	      if (responsiveOptions) {
+	        for (i = 0; i < responsiveOptions.length; i++) {
+	          var mql = window.matchMedia(responsiveOptions[i][0]);
+	          if (mql.matches) {
+	            currentOptions = Chartist.extend(currentOptions, responsiveOptions[i][1]);
+	          }
+	        }
+	      }
+
+	      if(eventEmitter && mediaEvent) {
+	        eventEmitter.emit('optionsChanged', {
+	          previousOptions: previousOptions,
+	          currentOptions: currentOptions
+	        });
+	      }
+	    }
+
+	    function removeMediaQueryListeners() {
+	      mediaQueryListeners.forEach(function(mql) {
+	        mql.removeListener(updateCurrentOptions);
+	      });
+	    }
+
+	    if (!window.matchMedia) {
+	      throw 'window.matchMedia not found! Make sure you\'re using a polyfill.';
+	    } else if (responsiveOptions) {
+
+	      for (i = 0; i < responsiveOptions.length; i++) {
+	        var mql = window.matchMedia(responsiveOptions[i][0]);
+	        mql.addListener(updateCurrentOptions);
+	        mediaQueryListeners.push(mql);
+	      }
+	    }
+	    // Execute initially without an event argument so we get the correct options
+	    updateCurrentOptions();
+
+	    return {
+	      removeMediaQueryListeners: removeMediaQueryListeners,
+	      getCurrentOptions: function getCurrentOptions() {
+	        return Chartist.extend({}, currentOptions);
+	      }
+	    };
+	  };
+
+
+	  /**
+	   * Splits a list of coordinates and associated values into segments. Each returned segment contains a pathCoordinates
+	   * valueData property describing the segment.
+	   *
+	   * With the default options, segments consist of contiguous sets of points that do not have an undefined value. Any
+	   * points with undefined values are discarded.
+	   *
+	   * **Options**
+	   * The following options are used to determine how segments are formed
+	   * ```javascript
+	   * var options = {
+	   *   // If fillHoles is true, undefined values are simply discarded without creating a new segment. Assuming other options are default, this returns single segment.
+	   *   fillHoles: false,
+	   *   // If increasingX is true, the coordinates in all segments have strictly increasing x-values.
+	   *   increasingX: false
+	   * };
+	   * ```
+	   *
+	   * @memberof Chartist.Core
+	   * @param {Array} pathCoordinates List of point coordinates to be split in the form [x1, y1, x2, y2 ... xn, yn]
+	   * @param {Array} values List of associated point values in the form [v1, v2 .. vn]
+	   * @param {Object} options Options set by user
+	   * @return {Array} List of segments, each containing a pathCoordinates and valueData property.
+	   */
+	  Chartist.splitIntoSegments = function(pathCoordinates, valueData, options) {
+	    var defaultOptions = {
+	      increasingX: false,
+	      fillHoles: false
+	    };
+
+	    options = Chartist.extend({}, defaultOptions, options);
+
+	    var segments = [];
+	    var hole = true;
+
+	    for(var i = 0; i < pathCoordinates.length; i += 2) {
+	      // If this value is a "hole" we set the hole flag
+	      if(valueData[i / 2].value === undefined) {
+	        if(!options.fillHoles) {
+	          hole = true;
+	        }
+	      } else {
+	        if(options.increasingX && i >= 2 && pathCoordinates[i] <= pathCoordinates[i-2]) {
+	          // X is not increasing, so we need to make sure we start a new segment
+	          hole = true;
+	        }
+
+
+	        // If it's a valid value we need to check if we're coming out of a hole and create a new empty segment
+	        if(hole) {
+	          segments.push({
+	            pathCoordinates: [],
+	            valueData: []
+	          });
+	          // As we have a valid value now, we are not in a "hole" anymore
+	          hole = false;
+	        }
+
+	        // Add to the segment pathCoordinates and valueData
+	        segments[segments.length - 1].pathCoordinates.push(pathCoordinates[i], pathCoordinates[i + 1]);
+	        segments[segments.length - 1].valueData.push(valueData[i / 2]);
+	      }
+	    }
+
+	    return segments;
+	  };
+	}(window, document, Chartist));
+	;/**
+	 * Chartist path interpolation functions.
+	 *
+	 * @module Chartist.Interpolation
+	 */
+	/* global Chartist */
+	(function(window, document, Chartist) {
+	  'use strict';
+
+	  Chartist.Interpolation = {};
+
+	  /**
+	   * This interpolation function does not smooth the path and the result is only containing lines and no curves.
+	   *
+	   * @example
+	   * var chart = new Chartist.Line('.ct-chart', {
+	   *   labels: [1, 2, 3, 4, 5],
+	   *   series: [[1, 2, 8, 1, 7]]
+	   * }, {
+	   *   lineSmooth: Chartist.Interpolation.none({
+	   *     fillHoles: false
+	   *   })
+	   * });
+	   *
+	   *
+	   * @memberof Chartist.Interpolation
+	   * @return {Function}
+	   */
+	  Chartist.Interpolation.none = function(options) {
+	    var defaultOptions = {
+	      fillHoles: false
+	    };
+	    options = Chartist.extend({}, defaultOptions, options);
+	    return function none(pathCoordinates, valueData) {
+	      var path = new Chartist.Svg.Path();
+	      var hole = true;
+
+	      for(var i = 0; i < pathCoordinates.length; i += 2) {
+	        var currX = pathCoordinates[i];
+	        var currY = pathCoordinates[i + 1];
+	        var currData = valueData[i / 2];
+
+	        if(currData.value !== undefined) {
+
+	          if(hole) {
+	            path.move(currX, currY, false, currData);
+	          } else {
+	            path.line(currX, currY, false, currData);
+	          }
+
+	          hole = false;
+	        } else if(!options.fillHoles) {
+	          hole = true;
+	        }
+	      }
+
+	      return path;
+	    };
+	  };
+
+	  /**
+	   * Simple smoothing creates horizontal handles that are positioned with a fraction of the length between two data points. You can use the divisor option to specify the amount of smoothing.
+	   *
+	   * Simple smoothing can be used instead of `Chartist.Smoothing.cardinal` if you'd like to get rid of the artifacts it produces sometimes. Simple smoothing produces less flowing lines but is accurate by hitting the points and it also doesn't swing below or above the given data point.
+	   *
+	   * All smoothing functions within Chartist are factory functions that accept an options parameter. The simple interpolation function accepts one configuration parameter `divisor`, between 1 and ∞, which controls the smoothing characteristics.
+	   *
+	   * @example
+	   * var chart = new Chartist.Line('.ct-chart', {
+	   *   labels: [1, 2, 3, 4, 5],
+	   *   series: [[1, 2, 8, 1, 7]]
+	   * }, {
+	   *   lineSmooth: Chartist.Interpolation.simple({
+	   *     divisor: 2,
+	   *     fillHoles: false
+	   *   })
+	   * });
+	   *
+	   *
+	   * @memberof Chartist.Interpolation
+	   * @param {Object} options The options of the simple interpolation factory function.
+	   * @return {Function}
+	   */
+	  Chartist.Interpolation.simple = function(options) {
+	    var defaultOptions = {
+	      divisor: 2,
+	      fillHoles: false
+	    };
+	    options = Chartist.extend({}, defaultOptions, options);
+
+	    var d = 1 / Math.max(1, options.divisor);
+
+	    return function simple(pathCoordinates, valueData) {
+	      var path = new Chartist.Svg.Path();
+	      var prevX, prevY, prevData;
+
+	      for(var i = 0; i < pathCoordinates.length; i += 2) {
+	        var currX = pathCoordinates[i];
+	        var currY = pathCoordinates[i + 1];
+	        var length = (currX - prevX) * d;
+	        var currData = valueData[i / 2];
+
+	        if(currData.value !== undefined) {
+
+	          if(prevData === undefined) {
+	            path.move(currX, currY, false, currData);
+	          } else {
+	            path.curve(
+	              prevX + length,
+	              prevY,
+	              currX - length,
+	              currY,
+	              currX,
+	              currY,
+	              false,
+	              currData
+	            );
+	          }
+
+	          prevX = currX;
+	          prevY = currY;
+	          prevData = currData;
+	        } else if(!options.fillHoles) {
+	          prevX = currX = prevData = undefined;
+	        }
+	      }
+
+	      return path;
+	    };
+	  };
+
+	  /**
+	   * Cardinal / Catmull-Rome spline interpolation is the default smoothing function in Chartist. It produces nice results where the splines will always meet the points. It produces some artifacts though when data values are increased or decreased rapidly. The line may not follow a very accurate path and if the line should be accurate this smoothing function does not produce the best results.
+	   *
+	   * Cardinal splines can only be created if there are more than two data points. If this is not the case this smoothing will fallback to `Chartist.Smoothing.none`.
+	   *
+	   * All smoothing functions within Chartist are factory functions that accept an options parameter. The cardinal interpolation function accepts one configuration parameter `tension`, between 0 and 1, which controls the smoothing intensity.
+	   *
+	   * @example
+	   * var chart = new Chartist.Line('.ct-chart', {
+	   *   labels: [1, 2, 3, 4, 5],
+	   *   series: [[1, 2, 8, 1, 7]]
+	   * }, {
+	   *   lineSmooth: Chartist.Interpolation.cardinal({
+	   *     tension: 1,
+	   *     fillHoles: false
+	   *   })
+	   * });
+	   *
+	   * @memberof Chartist.Interpolation
+	   * @param {Object} options The options of the cardinal factory function.
+	   * @return {Function}
+	   */
+	  Chartist.Interpolation.cardinal = function(options) {
+	    var defaultOptions = {
+	      tension: 1,
+	      fillHoles: false
+	    };
+
+	    options = Chartist.extend({}, defaultOptions, options);
+
+	    var t = Math.min(1, Math.max(0, options.tension)),
+	      c = 1 - t;
+
+	    return function cardinal(pathCoordinates, valueData) {
+	      // First we try to split the coordinates into segments
+	      // This is necessary to treat "holes" in line charts
+	      var segments = Chartist.splitIntoSegments(pathCoordinates, valueData, {
+	        fillHoles: options.fillHoles
+	      });
+
+	      if(!segments.length) {
+	        // If there were no segments return 'Chartist.Interpolation.none'
+	        return Chartist.Interpolation.none()([]);
+	      } else if(segments.length > 1) {
+	        // If the split resulted in more that one segment we need to interpolate each segment individually and join them
+	        // afterwards together into a single path.
+	          var paths = [];
+	        // For each segment we will recurse the cardinal function
+	        segments.forEach(function(segment) {
+	          paths.push(cardinal(segment.pathCoordinates, segment.valueData));
+	        });
+	        // Join the segment path data into a single path and return
+	        return Chartist.Svg.Path.join(paths);
+	      } else {
+	        // If there was only one segment we can proceed regularly by using pathCoordinates and valueData from the first
+	        // segment
+	        pathCoordinates = segments[0].pathCoordinates;
+	        valueData = segments[0].valueData;
+
+	        // If less than two points we need to fallback to no smoothing
+	        if(pathCoordinates.length <= 4) {
+	          return Chartist.Interpolation.none()(pathCoordinates, valueData);
+	        }
+
+	        var path = new Chartist.Svg.Path().move(pathCoordinates[0], pathCoordinates[1], false, valueData[0]),
+	          z;
+
+	        for (var i = 0, iLen = pathCoordinates.length; iLen - 2 * !z > i; i += 2) {
+	          var p = [
+	            {x: +pathCoordinates[i - 2], y: +pathCoordinates[i - 1]},
+	            {x: +pathCoordinates[i], y: +pathCoordinates[i + 1]},
+	            {x: +pathCoordinates[i + 2], y: +pathCoordinates[i + 3]},
+	            {x: +pathCoordinates[i + 4], y: +pathCoordinates[i + 5]}
+	          ];
+	          if (z) {
+	            if (!i) {
+	              p[0] = {x: +pathCoordinates[iLen - 2], y: +pathCoordinates[iLen - 1]};
+	            } else if (iLen - 4 === i) {
+	              p[3] = {x: +pathCoordinates[0], y: +pathCoordinates[1]};
+	            } else if (iLen - 2 === i) {
+	              p[2] = {x: +pathCoordinates[0], y: +pathCoordinates[1]};
+	              p[3] = {x: +pathCoordinates[2], y: +pathCoordinates[3]};
+	            }
+	          } else {
+	            if (iLen - 4 === i) {
+	              p[3] = p[2];
+	            } else if (!i) {
+	              p[0] = {x: +pathCoordinates[i], y: +pathCoordinates[i + 1]};
+	            }
+	          }
+
+	          path.curve(
+	            (t * (-p[0].x + 6 * p[1].x + p[2].x) / 6) + (c * p[2].x),
+	            (t * (-p[0].y + 6 * p[1].y + p[2].y) / 6) + (c * p[2].y),
+	            (t * (p[1].x + 6 * p[2].x - p[3].x) / 6) + (c * p[2].x),
+	            (t * (p[1].y + 6 * p[2].y - p[3].y) / 6) + (c * p[2].y),
+	            p[2].x,
+	            p[2].y,
+	            false,
+	            valueData[(i + 2) / 2]
+	          );
+	        }
+
+	        return path;
+	      }
+	    };
+	  };
+
+	  /**
+	   * Monotone Cubic spline interpolation produces a smooth curve which preserves monotonicity. Unlike cardinal splines, the curve will not extend beyond the range of y-values of the original data points.
+	   *
+	   * Monotone Cubic splines can only be created if there are more than two data points. If this is not the case this smoothing will fallback to `Chartist.Smoothing.none`.
+	   *
+	   * The x-values of subsequent points must be increasing to fit a Monotone Cubic spline. If this condition is not met for a pair of adjacent points, then there will be a break in the curve between those data points.
+	   *
+	   * All smoothing functions within Chartist are factory functions that accept an options parameter.
+	   *
+	   * @example
+	   * var chart = new Chartist.Line('.ct-chart', {
+	   *   labels: [1, 2, 3, 4, 5],
+	   *   series: [[1, 2, 8, 1, 7]]
+	   * }, {
+	   *   lineSmooth: Chartist.Interpolation.monotoneCubic({
+	   *     fillHoles: false
+	   *   })
+	   * });
+	   *
+	   * @memberof Chartist.Interpolation
+	   * @param {Object} options The options of the monotoneCubic factory function.
+	   * @return {Function}
+	   */
+	  Chartist.Interpolation.monotoneCubic = function(options) {
+	    var defaultOptions = {
+	      fillHoles: false
+	    };
+
+	    options = Chartist.extend({}, defaultOptions, options);
+
+	    return function monotoneCubic(pathCoordinates, valueData) {
+	      // First we try to split the coordinates into segments
+	      // This is necessary to treat "holes" in line charts
+	      var segments = Chartist.splitIntoSegments(pathCoordinates, valueData, {
+	        fillHoles: options.fillHoles,
+	        increasingX: true
+	      });
+
+	      if(!segments.length) {
+	        // If there were no segments return 'Chartist.Interpolation.none'
+	        return Chartist.Interpolation.none()([]);
+	      } else if(segments.length > 1) {
+	        // If the split resulted in more that one segment we need to interpolate each segment individually and join them
+	        // afterwards together into a single path.
+	          var paths = [];
+	        // For each segment we will recurse the monotoneCubic fn function
+	        segments.forEach(function(segment) {
+	          paths.push(monotoneCubic(segment.pathCoordinates, segment.valueData));
+	        });
+	        // Join the segment path data into a single path and return
+	        return Chartist.Svg.Path.join(paths);
+	      } else {
+	        // If there was only one segment we can proceed regularly by using pathCoordinates and valueData from the first
+	        // segment
+	        pathCoordinates = segments[0].pathCoordinates;
+	        valueData = segments[0].valueData;
+
+	        // If less than three points we need to fallback to no smoothing
+	        if(pathCoordinates.length <= 4) {
+	          return Chartist.Interpolation.none()(pathCoordinates, valueData);
+	        }
+
+	        var xs = [],
+	          ys = [],
+	          i,
+	          n = pathCoordinates.length / 2,
+	          ms = [],
+	          ds = [], dys = [], dxs = [],
+	          path;
+
+	        // Populate x and y coordinates into separate arrays, for readability
+
+	        for(i = 0; i < n; i++) {
+	          xs[i] = pathCoordinates[i * 2];
+	          ys[i] = pathCoordinates[i * 2 + 1];
+	        }
+
+	        // Calculate deltas and derivative
+
+	        for(i = 0; i < n - 1; i++) {
+	          dys[i] = ys[i + 1] - ys[i];
+	          dxs[i] = xs[i + 1] - xs[i];
+	          ds[i] = dys[i] / dxs[i];
+	        }
+
+	        // Determine desired slope (m) at each point using Fritsch-Carlson method
+	        // See: http://math.stackexchange.com/questions/45218/implementation-of-monotone-cubic-interpolation
+
+	        ms[0] = ds[0];
+	        ms[n - 1] = ds[n - 2];
+
+	        for(i = 1; i < n - 1; i++) {
+	          if(ds[i] === 0 || ds[i - 1] === 0 || (ds[i - 1] > 0) !== (ds[i] > 0)) {
+	            ms[i] = 0;
+	          } else {
+	            ms[i] = 3 * (dxs[i - 1] + dxs[i]) / (
+	              (2 * dxs[i] + dxs[i - 1]) / ds[i - 1] +
+	              (dxs[i] + 2 * dxs[i - 1]) / ds[i]);
+
+	            if(!isFinite(ms[i])) {
+	              ms[i] = 0;
+	            }
+	          }
+	        }
+
+	        // Now build a path from the slopes
+
+	        path = new Chartist.Svg.Path().move(xs[0], ys[0], false, valueData[0]);
+
+	        for(i = 0; i < n - 1; i++) {
+	          path.curve(
+	            // First control point
+	            xs[i] + dxs[i] / 3,
+	            ys[i] + ms[i] * dxs[i] / 3,
+	            // Second control point
+	            xs[i + 1] - dxs[i] / 3,
+	            ys[i + 1] - ms[i + 1] * dxs[i] / 3,
+	            // End point
+	            xs[i + 1],
+	            ys[i + 1],
+
+	            false,
+	            valueData[i + 1]
+	          );
+	        }
+
+	        return path;
+	      }
+	    };
+	  };
+
+	  /**
+	   * Step interpolation will cause the line chart to move in steps rather than diagonal or smoothed lines. This interpolation will create additional points that will also be drawn when the `showPoint` option is enabled.
+	   *
+	   * All smoothing functions within Chartist are factory functions that accept an options parameter. The step interpolation function accepts one configuration parameter `postpone`, that can be `true` or `false`. The default value is `true` and will cause the step to occur where the value actually changes. If a different behaviour is needed where the step is shifted to the left and happens before the actual value, this option can be set to `false`.
+	   *
+	   * @example
+	   * var chart = new Chartist.Line('.ct-chart', {
+	   *   labels: [1, 2, 3, 4, 5],
+	   *   series: [[1, 2, 8, 1, 7]]
+	   * }, {
+	   *   lineSmooth: Chartist.Interpolation.step({
+	   *     postpone: true,
+	   *     fillHoles: false
+	   *   })
+	   * });
+	   *
+	   * @memberof Chartist.Interpolation
+	   * @param options
+	   * @returns {Function}
+	   */
+	  Chartist.Interpolation.step = function(options) {
+	    var defaultOptions = {
+	      postpone: true,
+	      fillHoles: false
+	    };
+
+	    options = Chartist.extend({}, defaultOptions, options);
+
+	    return function step(pathCoordinates, valueData) {
+	      var path = new Chartist.Svg.Path();
+
+	      var prevX, prevY, prevData;
+
+	      for (var i = 0; i < pathCoordinates.length; i += 2) {
+	        var currX = pathCoordinates[i];
+	        var currY = pathCoordinates[i + 1];
+	        var currData = valueData[i / 2];
+
+	        // If the current point is also not a hole we can draw the step lines
+	        if(currData.value !== undefined) {
+	          if(prevData === undefined) {
+	            path.move(currX, currY, false, currData);
+	          } else {
+	            if(options.postpone) {
+	              // If postponed we should draw the step line with the value of the previous value
+	              path.line(currX, prevY, false, prevData);
+	            } else {
+	              // If not postponed we should draw the step line with the value of the current value
+	              path.line(prevX, currY, false, currData);
+	            }
+	            // Line to the actual point (this should only be a Y-Axis movement
+	            path.line(currX, currY, false, currData);
+	          }
+
+	          prevX = currX;
+	          prevY = currY;
+	          prevData = currData;
+	        } else if(!options.fillHoles) {
+	          prevX = prevY = prevData = undefined;
+	        }
+	      }
+
+	      return path;
+	    };
+	  };
+
+	}(window, document, Chartist));
+	;/**
+	 * A very basic event module that helps to generate and catch events.
+	 *
+	 * @module Chartist.Event
+	 */
+	/* global Chartist */
+	(function (window, document, Chartist) {
+	  'use strict';
+
+	  Chartist.EventEmitter = function () {
+	    var handlers = [];
+
+	    /**
+	     * Add an event handler for a specific event
+	     *
+	     * @memberof Chartist.Event
+	     * @param {String} event The event name
+	     * @param {Function} handler A event handler function
+	     */
+	    function addEventHandler(event, handler) {
+	      handlers[event] = handlers[event] || [];
+	      handlers[event].push(handler);
+	    }
+
+	    /**
+	     * Remove an event handler of a specific event name or remove all event handlers for a specific event.
+	     *
+	     * @memberof Chartist.Event
+	     * @param {String} event The event name where a specific or all handlers should be removed
+	     * @param {Function} [handler] An optional event handler function. If specified only this specific handler will be removed and otherwise all handlers are removed.
+	     */
+	    function removeEventHandler(event, handler) {
+	      // Only do something if there are event handlers with this name existing
+	      if(handlers[event]) {
+	        // If handler is set we will look for a specific handler and only remove this
+	        if(handler) {
+	          handlers[event].splice(handlers[event].indexOf(handler), 1);
+	          if(handlers[event].length === 0) {
+	            delete handlers[event];
+	          }
+	        } else {
+	          // If no handler is specified we remove all handlers for this event
+	          delete handlers[event];
+	        }
+	      }
+	    }
+
+	    /**
+	     * Use this function to emit an event. All handlers that are listening for this event will be triggered with the data parameter.
+	     *
+	     * @memberof Chartist.Event
+	     * @param {String} event The event name that should be triggered
+	     * @param {*} data Arbitrary data that will be passed to the event handler callback functions
+	     */
+	    function emit(event, data) {
+	      // Only do something if there are event handlers with this name existing
+	      if(handlers[event]) {
+	        handlers[event].forEach(function(handler) {
+	          handler(data);
+	        });
+	      }
+
+	      // Emit event to star event handlers
+	      if(handlers['*']) {
+	        handlers['*'].forEach(function(starHandler) {
+	          starHandler(event, data);
+	        });
+	      }
+	    }
+
+	    return {
+	      addEventHandler: addEventHandler,
+	      removeEventHandler: removeEventHandler,
+	      emit: emit
+	    };
+	  };
+
+	}(window, document, Chartist));
+	;/**
+	 * This module provides some basic prototype inheritance utilities.
+	 *
+	 * @module Chartist.Class
+	 */
+	/* global Chartist */
+	(function(window, document, Chartist) {
+	  'use strict';
+
+	  function listToArray(list) {
+	    var arr = [];
+	    if (list.length) {
+	      for (var i = 0; i < list.length; i++) {
+	        arr.push(list[i]);
+	      }
+	    }
+	    return arr;
+	  }
+
+	  /**
+	   * Method to extend from current prototype.
+	   *
+	   * @memberof Chartist.Class
+	   * @param {Object} properties The object that serves as definition for the prototype that gets created for the new class. This object should always contain a constructor property that is the desired constructor for the newly created class.
+	   * @param {Object} [superProtoOverride] By default extens will use the current class prototype or Chartist.class. With this parameter you can specify any super prototype that will be used.
+	   * @return {Function} Constructor function of the new class
+	   *
+	   * @example
+	   * var Fruit = Class.extend({
+	     * color: undefined,
+	     *   sugar: undefined,
+	     *
+	     *   constructor: function(color, sugar) {
+	     *     this.color = color;
+	     *     this.sugar = sugar;
+	     *   },
+	     *
+	     *   eat: function() {
+	     *     this.sugar = 0;
+	     *     return this;
+	     *   }
+	     * });
+	   *
+	   * var Banana = Fruit.extend({
+	     *   length: undefined,
+	     *
+	     *   constructor: function(length, sugar) {
+	     *     Banana.super.constructor.call(this, 'Yellow', sugar);
+	     *     this.length = length;
+	     *   }
+	     * });
+	   *
+	   * var banana = new Banana(20, 40);
+	   * console.log('banana instanceof Fruit', banana instanceof Fruit);
+	   * console.log('Fruit is prototype of banana', Fruit.prototype.isPrototypeOf(banana));
+	   * console.log('bananas prototype is Fruit', Object.getPrototypeOf(banana) === Fruit.prototype);
+	   * console.log(banana.sugar);
+	   * console.log(banana.eat().sugar);
+	   * console.log(banana.color);
+	   */
+	  function extend(properties, superProtoOverride) {
+	    var superProto = superProtoOverride || this.prototype || Chartist.Class;
+	    var proto = Object.create(superProto);
+
+	    Chartist.Class.cloneDefinitions(proto, properties);
+
+	    var constr = function() {
+	      var fn = proto.constructor || function () {},
+	        instance;
+
+	      // If this is linked to the Chartist namespace the constructor was not called with new
+	      // To provide a fallback we will instantiate here and return the instance
+	      instance = this === Chartist ? Object.create(proto) : this;
+	      fn.apply(instance, Array.prototype.slice.call(arguments, 0));
+
+	      // If this constructor was not called with new we need to return the instance
+	      // This will not harm when the constructor has been called with new as the returned value is ignored
+	      return instance;
+	    };
+
+	    constr.prototype = proto;
+	    constr.super = superProto;
+	    constr.extend = this.extend;
+
+	    return constr;
+	  }
+
+	  // Variable argument list clones args > 0 into args[0] and retruns modified args[0]
+	  function cloneDefinitions() {
+	    var args = listToArray(arguments);
+	    var target = args[0];
+
+	    args.splice(1, args.length - 1).forEach(function (source) {
+	      Object.getOwnPropertyNames(source).forEach(function (propName) {
+	        // If this property already exist in target we delete it first
+	        delete target[propName];
+	        // Define the property with the descriptor from source
+	        Object.defineProperty(target, propName,
+	          Object.getOwnPropertyDescriptor(source, propName));
+	      });
+	    });
+
+	    return target;
+	  }
+
+	  Chartist.Class = {
+	    extend: extend,
+	    cloneDefinitions: cloneDefinitions
+	  };
+
+	}(window, document, Chartist));
+	;/**
+	 * Base for all chart types. The methods in Chartist.Base are inherited to all chart types.
+	 *
+	 * @module Chartist.Base
+	 */
+	/* global Chartist */
+	(function(window, document, Chartist) {
+	  'use strict';
+
+	  // TODO: Currently we need to re-draw the chart on window resize. This is usually very bad and will affect performance.
+	  // This is done because we can't work with relative coordinates when drawing the chart because SVG Path does not
+	  // work with relative positions yet. We need to check if we can do a viewBox hack to switch to percentage.
+	  // See http://mozilla.6506.n7.nabble.com/Specyfing-paths-with-percentages-unit-td247474.html
+	  // Update: can be done using the above method tested here: http://codepen.io/gionkunz/pen/KDvLj
+	  // The problem is with the label offsets that can't be converted into percentage and affecting the chart container
+	  /**
+	   * Updates the chart which currently does a full reconstruction of the SVG DOM
+	   *
+	   * @param {Object} [data] Optional data you'd like to set for the chart before it will update. If not specified the update method will use the data that is already configured with the chart.
+	   * @param {Object} [options] Optional options you'd like to add to the previous options for the chart before it will update. If not specified the update method will use the options that have been already configured with the chart.
+	   * @param {Boolean} [override] If set to true, the passed options will be used to extend the options that have been configured already. Otherwise the chart default options will be used as the base
+	   * @memberof Chartist.Base
+	   */
+	  function update(data, options, override) {
+	    if(data) {
+	      this.data = data;
+	      // Event for data transformation that allows to manipulate the data before it gets rendered in the charts
+	      this.eventEmitter.emit('data', {
+	        type: 'update',
+	        data: this.data
+	      });
+	    }
+
+	    if(options) {
+	      this.options = Chartist.extend({}, override ? this.options : this.defaultOptions, options);
+
+	      // If chartist was not initialized yet, we just set the options and leave the rest to the initialization
+	      // Otherwise we re-create the optionsProvider at this point
+	      if(!this.initializeTimeoutId) {
+	        this.optionsProvider.removeMediaQueryListeners();
+	        this.optionsProvider = Chartist.optionsProvider(this.options, this.responsiveOptions, this.eventEmitter);
+	      }
+	    }
+
+	    // Only re-created the chart if it has been initialized yet
+	    if(!this.initializeTimeoutId) {
+	      this.createChart(this.optionsProvider.getCurrentOptions());
+	    }
+
+	    // Return a reference to the chart object to chain up calls
+	    return this;
+	  }
+
+	  /**
+	   * This method can be called on the API object of each chart and will un-register all event listeners that were added to other components. This currently includes a window.resize listener as well as media query listeners if any responsive options have been provided. Use this function if you need to destroy and recreate Chartist charts dynamically.
+	   *
+	   * @memberof Chartist.Base
+	   */
+	  function detach() {
+	    // Only detach if initialization already occurred on this chart. If this chart still hasn't initialized (therefore
+	    // the initializationTimeoutId is still a valid timeout reference, we will clear the timeout
+	    if(!this.initializeTimeoutId) {
+	      window.removeEventListener('resize', this.resizeListener);
+	      this.optionsProvider.removeMediaQueryListeners();
+	    } else {
+	      window.clearTimeout(this.initializeTimeoutId);
+	    }
+
+	    return this;
+	  }
+
+	  /**
+	   * Use this function to register event handlers. The handler callbacks are synchronous and will run in the main thread rather than the event loop.
+	   *
+	   * @memberof Chartist.Base
+	   * @param {String} event Name of the event. Check the examples for supported events.
+	   * @param {Function} handler The handler function that will be called when an event with the given name was emitted. This function will receive a data argument which contains event data. See the example for more details.
+	   */
+	  function on(event, handler) {
+	    this.eventEmitter.addEventHandler(event, handler);
+	    return this;
+	  }
+
+	  /**
+	   * Use this function to un-register event handlers. If the handler function parameter is omitted all handlers for the given event will be un-registered.
+	   *
+	   * @memberof Chartist.Base
+	   * @param {String} event Name of the event for which a handler should be removed
+	   * @param {Function} [handler] The handler function that that was previously used to register a new event handler. This handler will be removed from the event handler list. If this parameter is omitted then all event handlers for the given event are removed from the list.
+	   */
+	  function off(event, handler) {
+	    this.eventEmitter.removeEventHandler(event, handler);
+	    return this;
+	  }
+
+	  function initialize() {
+	    // Add window resize listener that re-creates the chart
+	    window.addEventListener('resize', this.resizeListener);
+
+	    // Obtain current options based on matching media queries (if responsive options are given)
+	    // This will also register a listener that is re-creating the chart based on media changes
+	    this.optionsProvider = Chartist.optionsProvider(this.options, this.responsiveOptions, this.eventEmitter);
+	    // Register options change listener that will trigger a chart update
+	    this.eventEmitter.addEventHandler('optionsChanged', function() {
+	      this.update();
+	    }.bind(this));
+
+	    // Before the first chart creation we need to register us with all plugins that are configured
+	    // Initialize all relevant plugins with our chart object and the plugin options specified in the config
+	    if(this.options.plugins) {
+	      this.options.plugins.forEach(function(plugin) {
+	        if(plugin instanceof Array) {
+	          plugin[0](this, plugin[1]);
+	        } else {
+	          plugin(this);
+	        }
+	      }.bind(this));
+	    }
+
+	    // Event for data transformation that allows to manipulate the data before it gets rendered in the charts
+	    this.eventEmitter.emit('data', {
+	      type: 'initial',
+	      data: this.data
+	    });
+
+	    // Create the first chart
+	    this.createChart(this.optionsProvider.getCurrentOptions());
+
+	    // As chart is initialized from the event loop now we can reset our timeout reference
+	    // This is important if the chart gets initialized on the same element twice
+	    this.initializeTimeoutId = undefined;
+	  }
+
+	  /**
+	   * Constructor of chart base class.
+	   *
+	   * @param query
+	   * @param data
+	   * @param defaultOptions
+	   * @param options
+	   * @param responsiveOptions
+	   * @constructor
+	   */
+	  function Base(query, data, defaultOptions, options, responsiveOptions) {
+	    this.container = Chartist.querySelector(query);
+	    this.data = data;
+	    this.defaultOptions = defaultOptions;
+	    this.options = options;
+	    this.responsiveOptions = responsiveOptions;
+	    this.eventEmitter = Chartist.EventEmitter();
+	    this.supportsForeignObject = Chartist.Svg.isSupported('Extensibility');
+	    this.supportsAnimations = Chartist.Svg.isSupported('AnimationEventsAttribute');
+	    this.resizeListener = function resizeListener(){
+	      this.update();
+	    }.bind(this);
+
+	    if(this.container) {
+	      // If chartist was already initialized in this container we are detaching all event listeners first
+	      if(this.container.__chartist__) {
+	        this.container.__chartist__.detach();
+	      }
+
+	      this.container.__chartist__ = this;
+	    }
+
+	    // Using event loop for first draw to make it possible to register event listeners in the same call stack where
+	    // the chart was created.
+	    this.initializeTimeoutId = setTimeout(initialize.bind(this), 0);
+	  }
+
+	  // Creating the chart base class
+	  Chartist.Base = Chartist.Class.extend({
+	    constructor: Base,
+	    optionsProvider: undefined,
+	    container: undefined,
+	    svg: undefined,
+	    eventEmitter: undefined,
+	    createChart: function() {
+	      throw new Error('Base chart type can\'t be instantiated!');
+	    },
+	    update: update,
+	    detach: detach,
+	    on: on,
+	    off: off,
+	    version: Chartist.version,
+	    supportsForeignObject: false
+	  });
+
+	}(window, document, Chartist));
+	;/**
+	 * Chartist SVG module for simple SVG DOM abstraction
+	 *
+	 * @module Chartist.Svg
+	 */
+	/* global Chartist */
+	(function(window, document, Chartist) {
+	  'use strict';
+
+	  /**
+	   * Chartist.Svg creates a new SVG object wrapper with a starting element. You can use the wrapper to fluently create sub-elements and modify them.
+	   *
+	   * @memberof Chartist.Svg
+	   * @constructor
+	   * @param {String|Element} name The name of the SVG element to create or an SVG dom element which should be wrapped into Chartist.Svg
+	   * @param {Object} attributes An object with properties that will be added as attributes to the SVG element that is created. Attributes with undefined values will not be added.
+	   * @param {String} className This class or class list will be added to the SVG element
+	   * @param {Object} parent The parent SVG wrapper object where this newly created wrapper and it's element will be attached to as child
+	   * @param {Boolean} insertFirst If this param is set to true in conjunction with a parent element the newly created element will be added as first child element in the parent element
+	   */
+	  function Svg(name, attributes, className, parent, insertFirst) {
+	    // If Svg is getting called with an SVG element we just return the wrapper
+	    if(name instanceof Element) {
+	      this._node = name;
+	    } else {
+	      this._node = document.createElementNS(Chartist.namespaces.svg, name);
+
+	      // If this is an SVG element created then custom namespace
+	      if(name === 'svg') {
+	        this.attr({
+	          'xmlns:ct': Chartist.namespaces.ct
+	        });
+	      }
+	    }
+
+	    if(attributes) {
+	      this.attr(attributes);
+	    }
+
+	    if(className) {
+	      this.addClass(className);
+	    }
+
+	    if(parent) {
+	      if (insertFirst && parent._node.firstChild) {
+	        parent._node.insertBefore(this._node, parent._node.firstChild);
+	      } else {
+	        parent._node.appendChild(this._node);
+	      }
+	    }
+	  }
+
+	  /**
+	   * Set attributes on the current SVG element of the wrapper you're currently working on.
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {Object|String} attributes An object with properties that will be added as attributes to the SVG element that is created. Attributes with undefined values will not be added. If this parameter is a String then the function is used as a getter and will return the attribute value.
+	   * @param {String} ns If specified, the attribute will be obtained using getAttributeNs. In order to write namepsaced attributes you can use the namespace:attribute notation within the attributes object.
+	   * @return {Object|String} The current wrapper object will be returned so it can be used for chaining or the attribute value if used as getter function.
+	   */
+	  function attr(attributes, ns) {
+	    if(typeof attributes === 'string') {
+	      if(ns) {
+	        return this._node.getAttributeNS(ns, attributes);
+	      } else {
+	        return this._node.getAttribute(attributes);
+	      }
+	    }
+
+	    Object.keys(attributes).forEach(function(key) {
+	      // If the attribute value is undefined we can skip this one
+	      if(attributes[key] === undefined) {
+	        return;
+	      }
+
+	      if (key.indexOf(':') !== -1) {
+	        var namespacedAttribute = key.split(':');
+	        this._node.setAttributeNS(Chartist.namespaces[namespacedAttribute[0]], key, attributes[key]);
+	      } else {
+	        this._node.setAttribute(key, attributes[key]);
+	      }
+	    }.bind(this));
+
+	    return this;
+	  }
+
+	  /**
+	   * Create a new SVG element whose wrapper object will be selected for further operations. This way you can also create nested groups easily.
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {String} name The name of the SVG element that should be created as child element of the currently selected element wrapper
+	   * @param {Object} [attributes] An object with properties that will be added as attributes to the SVG element that is created. Attributes with undefined values will not be added.
+	   * @param {String} [className] This class or class list will be added to the SVG element
+	   * @param {Boolean} [insertFirst] If this param is set to true in conjunction with a parent element the newly created element will be added as first child element in the parent element
+	   * @return {Chartist.Svg} Returns a Chartist.Svg wrapper object that can be used to modify the containing SVG data
+	   */
+	  function elem(name, attributes, className, insertFirst) {
+	    return new Chartist.Svg(name, attributes, className, this, insertFirst);
+	  }
+
+	  /**
+	   * Returns the parent Chartist.SVG wrapper object
+	   *
+	   * @memberof Chartist.Svg
+	   * @return {Chartist.Svg} Returns a Chartist.Svg wrapper around the parent node of the current node. If the parent node is not existing or it's not an SVG node then this function will return null.
+	   */
+	  function parent() {
+	    return this._node.parentNode instanceof SVGElement ? new Chartist.Svg(this._node.parentNode) : null;
+	  }
+
+	  /**
+	   * This method returns a Chartist.Svg wrapper around the root SVG element of the current tree.
+	   *
+	   * @memberof Chartist.Svg
+	   * @return {Chartist.Svg} The root SVG element wrapped in a Chartist.Svg element
+	   */
+	  function root() {
+	    var node = this._node;
+	    while(node.nodeName !== 'svg') {
+	      node = node.parentNode;
+	    }
+	    return new Chartist.Svg(node);
+	  }
+
+	  /**
+	   * Find the first child SVG element of the current element that matches a CSS selector. The returned object is a Chartist.Svg wrapper.
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {String} selector A CSS selector that is used to query for child SVG elements
+	   * @return {Chartist.Svg} The SVG wrapper for the element found or null if no element was found
+	   */
+	  function querySelector(selector) {
+	    var foundNode = this._node.querySelector(selector);
+	    return foundNode ? new Chartist.Svg(foundNode) : null;
+	  }
+
+	  /**
+	   * Find the all child SVG elements of the current element that match a CSS selector. The returned object is a Chartist.Svg.List wrapper.
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {String} selector A CSS selector that is used to query for child SVG elements
+	   * @return {Chartist.Svg.List} The SVG wrapper list for the element found or null if no element was found
+	   */
+	  function querySelectorAll(selector) {
+	    var foundNodes = this._node.querySelectorAll(selector);
+	    return foundNodes.length ? new Chartist.Svg.List(foundNodes) : null;
+	  }
+
+	  /**
+	   * This method creates a foreignObject (see https://developer.mozilla.org/en-US/docs/Web/SVG/Element/foreignObject) that allows to embed HTML content into a SVG graphic. With the help of foreignObjects you can enable the usage of regular HTML elements inside of SVG where they are subject for SVG positioning and transformation but the Browser will use the HTML rendering capabilities for the containing DOM.
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {Node|String} content The DOM Node, or HTML string that will be converted to a DOM Node, that is then placed into and wrapped by the foreignObject
+	   * @param {String} [attributes] An object with properties that will be added as attributes to the foreignObject element that is created. Attributes with undefined values will not be added.
+	   * @param {String} [className] This class or class list will be added to the SVG element
+	   * @param {Boolean} [insertFirst] Specifies if the foreignObject should be inserted as first child
+	   * @return {Chartist.Svg} New wrapper object that wraps the foreignObject element
+	   */
+	  function foreignObject(content, attributes, className, insertFirst) {
+	    // If content is string then we convert it to DOM
+	    // TODO: Handle case where content is not a string nor a DOM Node
+	    if(typeof content === 'string') {
+	      var container = document.createElement('div');
+	      container.innerHTML = content;
+	      content = container.firstChild;
+	    }
+
+	    // Adding namespace to content element
+	    content.setAttribute('xmlns', Chartist.namespaces.xmlns);
+
+	    // Creating the foreignObject without required extension attribute (as described here
+	    // http://www.w3.org/TR/SVG/extend.html#ForeignObjectElement)
+	    var fnObj = this.elem('foreignObject', attributes, className, insertFirst);
+
+	    // Add content to foreignObjectElement
+	    fnObj._node.appendChild(content);
+
+	    return fnObj;
+	  }
+
+	  /**
+	   * This method adds a new text element to the current Chartist.Svg wrapper.
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {String} t The text that should be added to the text element that is created
+	   * @return {Chartist.Svg} The same wrapper object that was used to add the newly created element
+	   */
+	  function text(t) {
+	    this._node.appendChild(document.createTextNode(t));
+	    return this;
+	  }
+
+	  /**
+	   * This method will clear all child nodes of the current wrapper object.
+	   *
+	   * @memberof Chartist.Svg
+	   * @return {Chartist.Svg} The same wrapper object that got emptied
+	   */
+	  function empty() {
+	    while (this._node.firstChild) {
+	      this._node.removeChild(this._node.firstChild);
+	    }
+
+	    return this;
+	  }
+
+	  /**
+	   * This method will cause the current wrapper to remove itself from its parent wrapper. Use this method if you'd like to get rid of an element in a given DOM structure.
+	   *
+	   * @memberof Chartist.Svg
+	   * @return {Chartist.Svg} The parent wrapper object of the element that got removed
+	   */
+	  function remove() {
+	    this._node.parentNode.removeChild(this._node);
+	    return this.parent();
+	  }
+
+	  /**
+	   * This method will replace the element with a new element that can be created outside of the current DOM.
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {Chartist.Svg} newElement The new Chartist.Svg object that will be used to replace the current wrapper object
+	   * @return {Chartist.Svg} The wrapper of the new element
+	   */
+	  function replace(newElement) {
+	    this._node.parentNode.replaceChild(newElement._node, this._node);
+	    return newElement;
+	  }
+
+	  /**
+	   * This method will append an element to the current element as a child.
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {Chartist.Svg} element The Chartist.Svg element that should be added as a child
+	   * @param {Boolean} [insertFirst] Specifies if the element should be inserted as first child
+	   * @return {Chartist.Svg} The wrapper of the appended object
+	   */
+	  function append(element, insertFirst) {
+	    if(insertFirst && this._node.firstChild) {
+	      this._node.insertBefore(element._node, this._node.firstChild);
+	    } else {
+	      this._node.appendChild(element._node);
+	    }
+
+	    return this;
+	  }
+
+	  /**
+	   * Returns an array of class names that are attached to the current wrapper element. This method can not be chained further.
+	   *
+	   * @memberof Chartist.Svg
+	   * @return {Array} A list of classes or an empty array if there are no classes on the current element
+	   */
+	  function classes() {
+	    return this._node.getAttribute('class') ? this._node.getAttribute('class').trim().split(/\s+/) : [];
+	  }
+
+	  /**
+	   * Adds one or a space separated list of classes to the current element and ensures the classes are only existing once.
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {String} names A white space separated list of class names
+	   * @return {Chartist.Svg} The wrapper of the current element
+	   */
+	  function addClass(names) {
+	    this._node.setAttribute('class',
+	      this.classes(this._node)
+	        .concat(names.trim().split(/\s+/))
+	        .filter(function(elem, pos, self) {
+	          return self.indexOf(elem) === pos;
+	        }).join(' ')
+	    );
+
+	    return this;
+	  }
+
+	  /**
+	   * Removes one or a space separated list of classes from the current element.
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {String} names A white space separated list of class names
+	   * @return {Chartist.Svg} The wrapper of the current element
+	   */
+	  function removeClass(names) {
+	    var removedClasses = names.trim().split(/\s+/);
+
+	    this._node.setAttribute('class', this.classes(this._node).filter(function(name) {
+	      return removedClasses.indexOf(name) === -1;
+	    }).join(' '));
+
+	    return this;
+	  }
+
+	  /**
+	   * Removes all classes from the current element.
+	   *
+	   * @memberof Chartist.Svg
+	   * @return {Chartist.Svg} The wrapper of the current element
+	   */
+	  function removeAllClasses() {
+	    this._node.setAttribute('class', '');
+
+	    return this;
+	  }
+
+	  /**
+	   * Get element height using `getBoundingClientRect`
+	   *
+	   * @memberof Chartist.Svg
+	   * @return {Number} The elements height in pixels
+	   */
+	  function height() {
+	    return this._node.getBoundingClientRect().height;
+	  }
+
+	  /**
+	   * Get element width using `getBoundingClientRect`
+	   *
+	   * @memberof Chartist.Core
+	   * @return {Number} The elements width in pixels
+	   */
+	  function width() {
+	    return this._node.getBoundingClientRect().width;
+	  }
+
+	  /**
+	   * The animate function lets you animate the current element with SMIL animations. You can add animations for multiple attributes at the same time by using an animation definition object. This object should contain SMIL animation attributes. Please refer to http://www.w3.org/TR/SVG/animate.html for a detailed specification about the available animation attributes. Additionally an easing property can be passed in the animation definition object. This can be a string with a name of an easing function in `Chartist.Svg.Easing` or an array with four numbers specifying a cubic Bézier curve.
+	   * **An animations object could look like this:**
+	   * ```javascript
+	   * element.animate({
+	   *   opacity: {
+	   *     dur: 1000,
+	   *     from: 0,
+	   *     to: 1
+	   *   },
+	   *   x1: {
+	   *     dur: '1000ms',
+	   *     from: 100,
+	   *     to: 200,
+	   *     easing: 'easeOutQuart'
+	   *   },
+	   *   y1: {
+	   *     dur: '2s',
+	   *     from: 0,
+	   *     to: 100
+	   *   }
+	   * });
+	   * ```
+	   * **Automatic unit conversion**
+	   * For the `dur` and the `begin` animate attribute you can also omit a unit by passing a number. The number will automatically be converted to milli seconds.
+	   * **Guided mode**
+	   * The default behavior of SMIL animations with offset using the `begin` attribute is that the attribute will keep it's original value until the animation starts. Mostly this behavior is not desired as you'd like to have your element attributes already initialized with the animation `from` value even before the animation starts. Also if you don't specify `fill="freeze"` on an animate element or if you delete the animation after it's done (which is done in guided mode) the attribute will switch back to the initial value. This behavior is also not desired when performing simple one-time animations. For one-time animations you'd want to trigger animations immediately instead of relative to the document begin time. That's why in guided mode Chartist.Svg will also use the `begin` property to schedule a timeout and manually start the animation after the timeout. If you're using multiple SMIL definition objects for an attribute (in an array), guided mode will be disabled for this attribute, even if you explicitly enabled it.
+	   * If guided mode is enabled the following behavior is added:
+	   * - Before the animation starts (even when delayed with `begin`) the animated attribute will be set already to the `from` value of the animation
+	   * - `begin` is explicitly set to `indefinite` so it can be started manually without relying on document begin time (creation)
+	   * - The animate element will be forced to use `fill="freeze"`
+	   * - The animation will be triggered with `beginElement()` in a timeout where `begin` of the definition object is interpreted in milli seconds. If no `begin` was specified the timeout is triggered immediately.
+	   * - After the animation the element attribute value will be set to the `to` value of the animation
+	   * - The animate element is deleted from the DOM
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {Object} animations An animations object where the property keys are the attributes you'd like to animate. The properties should be objects again that contain the SMIL animation attributes (usually begin, dur, from, and to). The property begin and dur is auto converted (see Automatic unit conversion). You can also schedule multiple animations for the same attribute by passing an Array of SMIL definition objects. Attributes that contain an array of SMIL definition objects will not be executed in guided mode.
+	   * @param {Boolean} guided Specify if guided mode should be activated for this animation (see Guided mode). If not otherwise specified, guided mode will be activated.
+	   * @param {Object} eventEmitter If specified, this event emitter will be notified when an animation starts or ends.
+	   * @return {Chartist.Svg} The current element where the animation was added
+	   */
+	  function animate(animations, guided, eventEmitter) {
+	    if(guided === undefined) {
+	      guided = true;
+	    }
+
+	    Object.keys(animations).forEach(function createAnimateForAttributes(attribute) {
+
+	      function createAnimate(animationDefinition, guided) {
+	        var attributeProperties = {},
+	          animate,
+	          timeout,
+	          easing;
+
+	        // Check if an easing is specified in the definition object and delete it from the object as it will not
+	        // be part of the animate element attributes.
+	        if(animationDefinition.easing) {
+	          // If already an easing Bézier curve array we take it or we lookup a easing array in the Easing object
+	          easing = animationDefinition.easing instanceof Array ?
+	            animationDefinition.easing :
+	            Chartist.Svg.Easing[animationDefinition.easing];
+	          delete animationDefinition.easing;
+	        }
+
+	        // If numeric dur or begin was provided we assume milli seconds
+	        animationDefinition.begin = Chartist.ensureUnit(animationDefinition.begin, 'ms');
+	        animationDefinition.dur = Chartist.ensureUnit(animationDefinition.dur, 'ms');
+
+	        if(easing) {
+	          animationDefinition.calcMode = 'spline';
+	          animationDefinition.keySplines = easing.join(' ');
+	          animationDefinition.keyTimes = '0;1';
+	        }
+
+	        // Adding "fill: freeze" if we are in guided mode and set initial attribute values
+	        if(guided) {
+	          animationDefinition.fill = 'freeze';
+	          // Animated property on our element should already be set to the animation from value in guided mode
+	          attributeProperties[attribute] = animationDefinition.from;
+	          this.attr(attributeProperties);
+
+	          // In guided mode we also set begin to indefinite so we can trigger the start manually and put the begin
+	          // which needs to be in ms aside
+	          timeout = Chartist.quantity(animationDefinition.begin || 0).value;
+	          animationDefinition.begin = 'indefinite';
+	        }
+
+	        animate = this.elem('animate', Chartist.extend({
+	          attributeName: attribute
+	        }, animationDefinition));
+
+	        if(guided) {
+	          // If guided we take the value that was put aside in timeout and trigger the animation manually with a timeout
+	          setTimeout(function() {
+	            // If beginElement fails we set the animated attribute to the end position and remove the animate element
+	            // This happens if the SMIL ElementTimeControl interface is not supported or any other problems occured in
+	            // the browser. (Currently FF 34 does not support animate elements in foreignObjects)
+	            try {
+	              animate._node.beginElement();
+	            } catch(err) {
+	              // Set animated attribute to current animated value
+	              attributeProperties[attribute] = animationDefinition.to;
+	              this.attr(attributeProperties);
+	              // Remove the animate element as it's no longer required
+	              animate.remove();
+	            }
+	          }.bind(this), timeout);
+	        }
+
+	        if(eventEmitter) {
+	          animate._node.addEventListener('beginEvent', function handleBeginEvent() {
+	            eventEmitter.emit('animationBegin', {
+	              element: this,
+	              animate: animate._node,
+	              params: animationDefinition
+	            });
+	          }.bind(this));
+	        }
+
+	        animate._node.addEventListener('endEvent', function handleEndEvent() {
+	          if(eventEmitter) {
+	            eventEmitter.emit('animationEnd', {
+	              element: this,
+	              animate: animate._node,
+	              params: animationDefinition
+	            });
+	          }
+
+	          if(guided) {
+	            // Set animated attribute to current animated value
+	            attributeProperties[attribute] = animationDefinition.to;
+	            this.attr(attributeProperties);
+	            // Remove the animate element as it's no longer required
+	            animate.remove();
+	          }
+	        }.bind(this));
+	      }
+
+	      // If current attribute is an array of definition objects we create an animate for each and disable guided mode
+	      if(animations[attribute] instanceof Array) {
+	        animations[attribute].forEach(function(animationDefinition) {
+	          createAnimate.bind(this)(animationDefinition, false);
+	        }.bind(this));
+	      } else {
+	        createAnimate.bind(this)(animations[attribute], guided);
+	      }
+
+	    }.bind(this));
+
+	    return this;
+	  }
+
+	  Chartist.Svg = Chartist.Class.extend({
+	    constructor: Svg,
+	    attr: attr,
+	    elem: elem,
+	    parent: parent,
+	    root: root,
+	    querySelector: querySelector,
+	    querySelectorAll: querySelectorAll,
+	    foreignObject: foreignObject,
+	    text: text,
+	    empty: empty,
+	    remove: remove,
+	    replace: replace,
+	    append: append,
+	    classes: classes,
+	    addClass: addClass,
+	    removeClass: removeClass,
+	    removeAllClasses: removeAllClasses,
+	    height: height,
+	    width: width,
+	    animate: animate
+	  });
+
+	  /**
+	   * This method checks for support of a given SVG feature like Extensibility, SVG-animation or the like. Check http://www.w3.org/TR/SVG11/feature for a detailed list.
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {String} feature The SVG 1.1 feature that should be checked for support.
+	   * @return {Boolean} True of false if the feature is supported or not
+	   */
+	  Chartist.Svg.isSupported = function(feature) {
+	    return document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#' + feature, '1.1');
+	  };
+
+	  /**
+	   * This Object contains some standard easing cubic bezier curves. Then can be used with their name in the `Chartist.Svg.animate`. You can also extend the list and use your own name in the `animate` function. Click the show code button to see the available bezier functions.
+	   *
+	   * @memberof Chartist.Svg
+	   */
+	  var easingCubicBeziers = {
+	    easeInSine: [0.47, 0, 0.745, 0.715],
+	    easeOutSine: [0.39, 0.575, 0.565, 1],
+	    easeInOutSine: [0.445, 0.05, 0.55, 0.95],
+	    easeInQuad: [0.55, 0.085, 0.68, 0.53],
+	    easeOutQuad: [0.25, 0.46, 0.45, 0.94],
+	    easeInOutQuad: [0.455, 0.03, 0.515, 0.955],
+	    easeInCubic: [0.55, 0.055, 0.675, 0.19],
+	    easeOutCubic: [0.215, 0.61, 0.355, 1],
+	    easeInOutCubic: [0.645, 0.045, 0.355, 1],
+	    easeInQuart: [0.895, 0.03, 0.685, 0.22],
+	    easeOutQuart: [0.165, 0.84, 0.44, 1],
+	    easeInOutQuart: [0.77, 0, 0.175, 1],
+	    easeInQuint: [0.755, 0.05, 0.855, 0.06],
+	    easeOutQuint: [0.23, 1, 0.32, 1],
+	    easeInOutQuint: [0.86, 0, 0.07, 1],
+	    easeInExpo: [0.95, 0.05, 0.795, 0.035],
+	    easeOutExpo: [0.19, 1, 0.22, 1],
+	    easeInOutExpo: [1, 0, 0, 1],
+	    easeInCirc: [0.6, 0.04, 0.98, 0.335],
+	    easeOutCirc: [0.075, 0.82, 0.165, 1],
+	    easeInOutCirc: [0.785, 0.135, 0.15, 0.86],
+	    easeInBack: [0.6, -0.28, 0.735, 0.045],
+	    easeOutBack: [0.175, 0.885, 0.32, 1.275],
+	    easeInOutBack: [0.68, -0.55, 0.265, 1.55]
+	  };
+
+	  Chartist.Svg.Easing = easingCubicBeziers;
+
+	  /**
+	   * This helper class is to wrap multiple `Chartist.Svg` elements into a list where you can call the `Chartist.Svg` functions on all elements in the list with one call. This is helpful when you'd like to perform calls with `Chartist.Svg` on multiple elements.
+	   * An instance of this class is also returned by `Chartist.Svg.querySelectorAll`.
+	   *
+	   * @memberof Chartist.Svg
+	   * @param {Array<Node>|NodeList} nodeList An Array of SVG DOM nodes or a SVG DOM NodeList (as returned by document.querySelectorAll)
+	   * @constructor
+	   */
+	  function SvgList(nodeList) {
+	    var list = this;
+
+	    this.svgElements = [];
+	    for(var i = 0; i < nodeList.length; i++) {
+	      this.svgElements.push(new Chartist.Svg(nodeList[i]));
+	    }
+
+	    // Add delegation methods for Chartist.Svg
+	    Object.keys(Chartist.Svg.prototype).filter(function(prototypeProperty) {
+	      return ['constructor',
+	          'parent',
+	          'querySelector',
+	          'querySelectorAll',
+	          'replace',
+	          'append',
+	          'classes',
+	          'height',
+	          'width'].indexOf(prototypeProperty) === -1;
+	    }).forEach(function(prototypeProperty) {
+	      list[prototypeProperty] = function() {
+	        var args = Array.prototype.slice.call(arguments, 0);
+	        list.svgElements.forEach(function(element) {
+	          Chartist.Svg.prototype[prototypeProperty].apply(element, args);
+	        });
+	        return list;
+	      };
+	    });
+	  }
+
+	  Chartist.Svg.List = Chartist.Class.extend({
+	    constructor: SvgList
+	  });
+	}(window, document, Chartist));
+	;/**
+	 * Chartist SVG path module for SVG path description creation and modification.
+	 *
+	 * @module Chartist.Svg.Path
+	 */
+	/* global Chartist */
+	(function(window, document, Chartist) {
+	  'use strict';
+
+	  /**
+	   * Contains the descriptors of supported element types in a SVG path. Currently only move, line and curve are supported.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @type {Object}
+	   */
+	  var elementDescriptions = {
+	    m: ['x', 'y'],
+	    l: ['x', 'y'],
+	    c: ['x1', 'y1', 'x2', 'y2', 'x', 'y'],
+	    a: ['rx', 'ry', 'xAr', 'lAf', 'sf', 'x', 'y']
+	  };
+
+	  /**
+	   * Default options for newly created SVG path objects.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @type {Object}
+	   */
+	  var defaultOptions = {
+	    // The accuracy in digit count after the decimal point. This will be used to round numbers in the SVG path. If this option is set to false then no rounding will be performed.
+	    accuracy: 3
+	  };
+
+	  function element(command, params, pathElements, pos, relative, data) {
+	    var pathElement = Chartist.extend({
+	      command: relative ? command.toLowerCase() : command.toUpperCase()
+	    }, params, data ? { data: data } : {} );
+
+	    pathElements.splice(pos, 0, pathElement);
+	  }
+
+	  function forEachParam(pathElements, cb) {
+	    pathElements.forEach(function(pathElement, pathElementIndex) {
+	      elementDescriptions[pathElement.command.toLowerCase()].forEach(function(paramName, paramIndex) {
+	        cb(pathElement, paramName, pathElementIndex, paramIndex, pathElements);
+	      });
+	    });
+	  }
+
+	  /**
+	   * Used to construct a new path object.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {Boolean} close If set to true then this path will be closed when stringified (with a Z at the end)
+	   * @param {Object} options Options object that overrides the default objects. See default options for more details.
+	   * @constructor
+	   */
+	  function SvgPath(close, options) {
+	    this.pathElements = [];
+	    this.pos = 0;
+	    this.close = close;
+	    this.options = Chartist.extend({}, defaultOptions, options);
+	  }
+
+	  /**
+	   * Gets or sets the current position (cursor) inside of the path. You can move around the cursor freely but limited to 0 or the count of existing elements. All modifications with element functions will insert new elements at the position of this cursor.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {Number} [pos] If a number is passed then the cursor is set to this position in the path element array.
+	   * @return {Chartist.Svg.Path|Number} If the position parameter was passed then the return value will be the path object for easy call chaining. If no position parameter was passed then the current position is returned.
+	   */
+	  function position(pos) {
+	    if(pos !== undefined) {
+	      this.pos = Math.max(0, Math.min(this.pathElements.length, pos));
+	      return this;
+	    } else {
+	      return this.pos;
+	    }
+	  }
+
+	  /**
+	   * Removes elements from the path starting at the current position.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {Number} count Number of path elements that should be removed from the current position.
+	   * @return {Chartist.Svg.Path} The current path object for easy call chaining.
+	   */
+	  function remove(count) {
+	    this.pathElements.splice(this.pos, count);
+	    return this;
+	  }
+
+	  /**
+	   * Use this function to add a new move SVG path element.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {Number} x The x coordinate for the move element.
+	   * @param {Number} y The y coordinate for the move element.
+	   * @param {Boolean} [relative] If set to true the move element will be created with relative coordinates (lowercase letter)
+	   * @param {*} [data] Any data that should be stored with the element object that will be accessible in pathElement
+	   * @return {Chartist.Svg.Path} The current path object for easy call chaining.
+	   */
+	  function move(x, y, relative, data) {
+	    element('M', {
+	      x: +x,
+	      y: +y
+	    }, this.pathElements, this.pos++, relative, data);
+	    return this;
+	  }
+
+	  /**
+	   * Use this function to add a new line SVG path element.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {Number} x The x coordinate for the line element.
+	   * @param {Number} y The y coordinate for the line element.
+	   * @param {Boolean} [relative] If set to true the line element will be created with relative coordinates (lowercase letter)
+	   * @param {*} [data] Any data that should be stored with the element object that will be accessible in pathElement
+	   * @return {Chartist.Svg.Path} The current path object for easy call chaining.
+	   */
+	  function line(x, y, relative, data) {
+	    element('L', {
+	      x: +x,
+	      y: +y
+	    }, this.pathElements, this.pos++, relative, data);
+	    return this;
+	  }
+
+	  /**
+	   * Use this function to add a new curve SVG path element.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {Number} x1 The x coordinate for the first control point of the bezier curve.
+	   * @param {Number} y1 The y coordinate for the first control point of the bezier curve.
+	   * @param {Number} x2 The x coordinate for the second control point of the bezier curve.
+	   * @param {Number} y2 The y coordinate for the second control point of the bezier curve.
+	   * @param {Number} x The x coordinate for the target point of the curve element.
+	   * @param {Number} y The y coordinate for the target point of the curve element.
+	   * @param {Boolean} [relative] If set to true the curve element will be created with relative coordinates (lowercase letter)
+	   * @param {*} [data] Any data that should be stored with the element object that will be accessible in pathElement
+	   * @return {Chartist.Svg.Path} The current path object for easy call chaining.
+	   */
+	  function curve(x1, y1, x2, y2, x, y, relative, data) {
+	    element('C', {
+	      x1: +x1,
+	      y1: +y1,
+	      x2: +x2,
+	      y2: +y2,
+	      x: +x,
+	      y: +y
+	    }, this.pathElements, this.pos++, relative, data);
+	    return this;
+	  }
+
+	  /**
+	   * Use this function to add a new non-bezier curve SVG path element.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {Number} rx The radius to be used for the x-axis of the arc.
+	   * @param {Number} ry The radius to be used for the y-axis of the arc.
+	   * @param {Number} xAr Defines the orientation of the arc
+	   * @param {Number} lAf Large arc flag
+	   * @param {Number} sf Sweep flag
+	   * @param {Number} x The x coordinate for the target point of the curve element.
+	   * @param {Number} y The y coordinate for the target point of the curve element.
+	   * @param {Boolean} [relative] If set to true the curve element will be created with relative coordinates (lowercase letter)
+	   * @param {*} [data] Any data that should be stored with the element object that will be accessible in pathElement
+	   * @return {Chartist.Svg.Path} The current path object for easy call chaining.
+	   */
+	  function arc(rx, ry, xAr, lAf, sf, x, y, relative, data) {
+	    element('A', {
+	      rx: +rx,
+	      ry: +ry,
+	      xAr: +xAr,
+	      lAf: +lAf,
+	      sf: +sf,
+	      x: +x,
+	      y: +y
+	    }, this.pathElements, this.pos++, relative, data);
+	    return this;
+	  }
+
+	  /**
+	   * Parses an SVG path seen in the d attribute of path elements, and inserts the parsed elements into the existing path object at the current cursor position. Any closing path indicators (Z at the end of the path) will be ignored by the parser as this is provided by the close option in the options of the path object.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {String} path Any SVG path that contains move (m), line (l) or curve (c) components.
+	   * @return {Chartist.Svg.Path} The current path object for easy call chaining.
+	   */
+	  function parse(path) {
+	    // Parsing the SVG path string into an array of arrays [['M', '10', '10'], ['L', '100', '100']]
+	    var chunks = path.replace(/([A-Za-z])([0-9])/g, '$1 $2')
+	      .replace(/([0-9])([A-Za-z])/g, '$1 $2')
+	      .split(/[\s,]+/)
+	      .reduce(function(result, element) {
+	        if(element.match(/[A-Za-z]/)) {
+	          result.push([]);
+	        }
+
+	        result[result.length - 1].push(element);
+	        return result;
+	      }, []);
+
+	    // If this is a closed path we remove the Z at the end because this is determined by the close option
+	    if(chunks[chunks.length - 1][0].toUpperCase() === 'Z') {
+	      chunks.pop();
+	    }
+
+	    // Using svgPathElementDescriptions to map raw path arrays into objects that contain the command and the parameters
+	    // For example {command: 'M', x: '10', y: '10'}
+	    var elements = chunks.map(function(chunk) {
+	        var command = chunk.shift(),
+	          description = elementDescriptions[command.toLowerCase()];
+
+	        return Chartist.extend({
+	          command: command
+	        }, description.reduce(function(result, paramName, index) {
+	          result[paramName] = +chunk[index];
+	          return result;
+	        }, {}));
+	      });
+
+	    // Preparing a splice call with the elements array as var arg params and insert the parsed elements at the current position
+	    var spliceArgs = [this.pos, 0];
+	    Array.prototype.push.apply(spliceArgs, elements);
+	    Array.prototype.splice.apply(this.pathElements, spliceArgs);
+	    // Increase the internal position by the element count
+	    this.pos += elements.length;
+
+	    return this;
+	  }
+
+	  /**
+	   * This function renders to current SVG path object into a final SVG string that can be used in the d attribute of SVG path elements. It uses the accuracy option to round big decimals. If the close parameter was set in the constructor of this path object then a path closing Z will be appended to the output string.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @return {String}
+	   */
+	  function stringify() {
+	    var accuracyMultiplier = Math.pow(10, this.options.accuracy);
+
+	    return this.pathElements.reduce(function(path, pathElement) {
+	        var params = elementDescriptions[pathElement.command.toLowerCase()].map(function(paramName) {
+	          return this.options.accuracy ?
+	            (Math.round(pathElement[paramName] * accuracyMultiplier) / accuracyMultiplier) :
+	            pathElement[paramName];
+	        }.bind(this));
+
+	        return path + pathElement.command + params.join(',');
+	      }.bind(this), '') + (this.close ? 'Z' : '');
+	  }
+
+	  /**
+	   * Scales all elements in the current SVG path object. There is an individual parameter for each coordinate. Scaling will also be done for control points of curves, affecting the given coordinate.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {Number} x The number which will be used to scale the x, x1 and x2 of all path elements.
+	   * @param {Number} y The number which will be used to scale the y, y1 and y2 of all path elements.
+	   * @return {Chartist.Svg.Path} The current path object for easy call chaining.
+	   */
+	  function scale(x, y) {
+	    forEachParam(this.pathElements, function(pathElement, paramName) {
+	      pathElement[paramName] *= paramName[0] === 'x' ? x : y;
+	    });
+	    return this;
+	  }
+
+	  /**
+	   * Translates all elements in the current SVG path object. The translation is relative and there is an individual parameter for each coordinate. Translation will also be done for control points of curves, affecting the given coordinate.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {Number} x The number which will be used to translate the x, x1 and x2 of all path elements.
+	   * @param {Number} y The number which will be used to translate the y, y1 and y2 of all path elements.
+	   * @return {Chartist.Svg.Path} The current path object for easy call chaining.
+	   */
+	  function translate(x, y) {
+	    forEachParam(this.pathElements, function(pathElement, paramName) {
+	      pathElement[paramName] += paramName[0] === 'x' ? x : y;
+	    });
+	    return this;
+	  }
+
+	  /**
+	   * This function will run over all existing path elements and then loop over their attributes. The callback function will be called for every path element attribute that exists in the current path.
+	   * The method signature of the callback function looks like this:
+	   * ```javascript
+	   * function(pathElement, paramName, pathElementIndex, paramIndex, pathElements)
+	   * ```
+	   * If something else than undefined is returned by the callback function, this value will be used to replace the old value. This allows you to build custom transformations of path objects that can't be achieved using the basic transformation functions scale and translate.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {Function} transformFnc The callback function for the transformation. Check the signature in the function description.
+	   * @return {Chartist.Svg.Path} The current path object for easy call chaining.
+	   */
+	  function transform(transformFnc) {
+	    forEachParam(this.pathElements, function(pathElement, paramName, pathElementIndex, paramIndex, pathElements) {
+	      var transformed = transformFnc(pathElement, paramName, pathElementIndex, paramIndex, pathElements);
+	      if(transformed || transformed === 0) {
+	        pathElement[paramName] = transformed;
+	      }
+	    });
+	    return this;
+	  }
+
+	  /**
+	   * This function clones a whole path object with all its properties. This is a deep clone and path element objects will also be cloned.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {Boolean} [close] Optional option to set the new cloned path to closed. If not specified or false, the original path close option will be used.
+	   * @return {Chartist.Svg.Path}
+	   */
+	  function clone(close) {
+	    var c = new Chartist.Svg.Path(close || this.close);
+	    c.pos = this.pos;
+	    c.pathElements = this.pathElements.slice().map(function cloneElements(pathElement) {
+	      return Chartist.extend({}, pathElement);
+	    });
+	    c.options = Chartist.extend({}, this.options);
+	    return c;
+	  }
+
+	  /**
+	   * Split a Svg.Path object by a specific command in the path chain. The path chain will be split and an array of newly created paths objects will be returned. This is useful if you'd like to split an SVG path by it's move commands, for example, in order to isolate chunks of drawings.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {String} command The command you'd like to use to split the path
+	   * @return {Array<Chartist.Svg.Path>}
+	   */
+	  function splitByCommand(command) {
+	    var split = [
+	      new Chartist.Svg.Path()
+	    ];
+
+	    this.pathElements.forEach(function(pathElement) {
+	      if(pathElement.command === command.toUpperCase() && split[split.length - 1].pathElements.length !== 0) {
+	        split.push(new Chartist.Svg.Path());
+	      }
+
+	      split[split.length - 1].pathElements.push(pathElement);
+	    });
+
+	    return split;
+	  }
+
+	  /**
+	   * This static function on `Chartist.Svg.Path` is joining multiple paths together into one paths.
+	   *
+	   * @memberof Chartist.Svg.Path
+	   * @param {Array<Chartist.Svg.Path>} paths A list of paths to be joined together. The order is important.
+	   * @param {boolean} close If the newly created path should be a closed path
+	   * @param {Object} options Path options for the newly created path.
+	   * @return {Chartist.Svg.Path}
+	   */
+
+	  function join(paths, close, options) {
+	    var joinedPath = new Chartist.Svg.Path(close, options);
+	    for(var i = 0; i < paths.length; i++) {
+	      var path = paths[i];
+	      for(var j = 0; j < path.pathElements.length; j++) {
+	        joinedPath.pathElements.push(path.pathElements[j]);
+	      }
+	    }
+	    return joinedPath;
+	  }
+
+	  Chartist.Svg.Path = Chartist.Class.extend({
+	    constructor: SvgPath,
+	    position: position,
+	    remove: remove,
+	    move: move,
+	    line: line,
+	    curve: curve,
+	    arc: arc,
+	    scale: scale,
+	    translate: translate,
+	    transform: transform,
+	    parse: parse,
+	    stringify: stringify,
+	    clone: clone,
+	    splitByCommand: splitByCommand
+	  });
+
+	  Chartist.Svg.Path.elementDescriptions = elementDescriptions;
+	  Chartist.Svg.Path.join = join;
+	}(window, document, Chartist));
+	;/* global Chartist */
+	(function (window, document, Chartist) {
+	  'use strict';
+
+	  var axisUnits = {
+	    x: {
+	      pos: 'x',
+	      len: 'width',
+	      dir: 'horizontal',
+	      rectStart: 'x1',
+	      rectEnd: 'x2',
+	      rectOffset: 'y2'
+	    },
+	    y: {
+	      pos: 'y',
+	      len: 'height',
+	      dir: 'vertical',
+	      rectStart: 'y2',
+	      rectEnd: 'y1',
+	      rectOffset: 'x1'
+	    }
+	  };
+
+	  function Axis(units, chartRect, ticks, options) {
+	    this.units = units;
+	    this.counterUnits = units === axisUnits.x ? axisUnits.y : axisUnits.x;
+	    this.chartRect = chartRect;
+	    this.axisLength = chartRect[units.rectEnd] - chartRect[units.rectStart];
+	    this.gridOffset = chartRect[units.rectOffset];
+	    this.ticks = ticks;
+	    this.options = options;
+	  }
+
+	  function createGridAndLabels(gridGroup, labelGroup, useForeignObject, chartOptions, eventEmitter) {
+	    var axisOptions = chartOptions['axis' + this.units.pos.toUpperCase()];
+	    var projectedValues = this.ticks.map(this.projectValue.bind(this));
+	    var labelValues = this.ticks.map(axisOptions.labelInterpolationFnc);
+
+	    projectedValues.forEach(function(projectedValue, index) {
+	      var labelOffset = {
+	        x: 0,
+	        y: 0
+	      };
+
+	      // TODO: Find better solution for solving this problem
+	      // Calculate how much space we have available for the label
+	      var labelLength;
+	      if(projectedValues[index + 1]) {
+	        // If we still have one label ahead, we can calculate the distance to the next tick / label
+	        labelLength = projectedValues[index + 1] - projectedValue;
+	      } else {
+	        // If we don't have a label ahead and we have only two labels in total, we just take the remaining distance to
+	        // on the whole axis length. We limit that to a minimum of 30 pixel, so that labels close to the border will
+	        // still be visible inside of the chart padding.
+	        labelLength = Math.max(this.axisLength - projectedValue, 30);
+	      }
+
+	      // Skip grid lines and labels where interpolated label values are falsey (execpt for 0)
+	      if(Chartist.isFalseyButZero(labelValues[index]) && labelValues[index] !== '') {
+	        return;
+	      }
+
+	      // Transform to global coordinates using the chartRect
+	      // We also need to set the label offset for the createLabel function
+	      if(this.units.pos === 'x') {
+	        projectedValue = this.chartRect.x1 + projectedValue;
+	        labelOffset.x = chartOptions.axisX.labelOffset.x;
+
+	        // If the labels should be positioned in start position (top side for vertical axis) we need to set a
+	        // different offset as for positioned with end (bottom)
+	        if(chartOptions.axisX.position === 'start') {
+	          labelOffset.y = this.chartRect.padding.top + chartOptions.axisX.labelOffset.y + (useForeignObject ? 5 : 20);
+	        } else {
+	          labelOffset.y = this.chartRect.y1 + chartOptions.axisX.labelOffset.y + (useForeignObject ? 5 : 20);
+	        }
+	      } else {
+	        projectedValue = this.chartRect.y1 - projectedValue;
+	        labelOffset.y = chartOptions.axisY.labelOffset.y - (useForeignObject ? labelLength : 0);
+
+	        // If the labels should be positioned in start position (left side for horizontal axis) we need to set a
+	        // different offset as for positioned with end (right side)
+	        if(chartOptions.axisY.position === 'start') {
+	          labelOffset.x = useForeignObject ? this.chartRect.padding.left + chartOptions.axisY.labelOffset.x : this.chartRect.x1 - 10;
+	        } else {
+	          labelOffset.x = this.chartRect.x2 + chartOptions.axisY.labelOffset.x + 10;
+	        }
+	      }
+
+	      if(axisOptions.showGrid) {
+	        Chartist.createGrid(projectedValue, index, this, this.gridOffset, this.chartRect[this.counterUnits.len](), gridGroup, [
+	          chartOptions.classNames.grid,
+	          chartOptions.classNames[this.units.dir]
+	        ], eventEmitter);
+	      }
+
+	      if(axisOptions.showLabel) {
+	        Chartist.createLabel(projectedValue, labelLength, index, labelValues, this, axisOptions.offset, labelOffset, labelGroup, [
+	          chartOptions.classNames.label,
+	          chartOptions.classNames[this.units.dir],
+	          chartOptions.classNames[axisOptions.position]
+	        ], useForeignObject, eventEmitter);
+	      }
+	    }.bind(this));
+	  }
+
+	  Chartist.Axis = Chartist.Class.extend({
+	    constructor: Axis,
+	    createGridAndLabels: createGridAndLabels,
+	    projectValue: function(value, index, data) {
+	      throw new Error('Base axis can\'t be instantiated!');
+	    }
+	  });
+
+	  Chartist.Axis.units = axisUnits;
+
+	}(window, document, Chartist));
+	;/**
+	 * The auto scale axis uses standard linear scale projection of values along an axis. It uses order of magnitude to find a scale automatically and evaluates the available space in order to find the perfect amount of ticks for your chart.
+	 * **Options**
+	 * The following options are used by this axis in addition to the default axis options outlined in the axis configuration of the chart default settings.
+	 * ```javascript
+	 * var options = {
+	 *   // If high is specified then the axis will display values explicitly up to this value and the computed maximum from the data is ignored
+	 *   high: 100,
+	 *   // If low is specified then the axis will display values explicitly down to this value and the computed minimum from the data is ignored
+	 *   low: 0,
+	 *   // This option will be used when finding the right scale division settings. The amount of ticks on the scale will be determined so that as many ticks as possible will be displayed, while not violating this minimum required space (in pixel).
+	 *   scaleMinSpace: 20,
+	 *   // Can be set to true or false. If set to true, the scale will be generated with whole numbers only.
+	 *   onlyInteger: true,
+	 *   // The reference value can be used to make sure that this value will always be on the chart. This is especially useful on bipolar charts where the bipolar center always needs to be part of the chart.
+	 *   referenceValue: 5
+	 * };
+	 * ```
+	 *
+	 * @module Chartist.AutoScaleAxis
+	 */
+	/* global Chartist */
+	(function (window, document, Chartist) {
+	  'use strict';
+
+	  function AutoScaleAxis(axisUnit, data, chartRect, options) {
+	    // Usually we calculate highLow based on the data but this can be overriden by a highLow object in the options
+	    var highLow = options.highLow || Chartist.getHighLow(data.normalized, options, axisUnit.pos);
+	    this.bounds = Chartist.getBounds(chartRect[axisUnit.rectEnd] - chartRect[axisUnit.rectStart], highLow, options.scaleMinSpace || 20, options.onlyInteger);
+	    this.range = {
+	      min: this.bounds.min,
+	      max: this.bounds.max
+	    };
+
+	    Chartist.AutoScaleAxis.super.constructor.call(this,
+	      axisUnit,
+	      chartRect,
+	      this.bounds.values,
+	      options);
+	  }
+
+	  function projectValue(value) {
+	    return this.axisLength * (+Chartist.getMultiValue(value, this.units.pos) - this.bounds.min) / this.bounds.range;
+	  }
+
+	  Chartist.AutoScaleAxis = Chartist.Axis.extend({
+	    constructor: AutoScaleAxis,
+	    projectValue: projectValue
+	  });
+
+	}(window, document, Chartist));
+	;/**
+	 * The fixed scale axis uses standard linear projection of values along an axis. It makes use of a divisor option to divide the range provided from the minimum and maximum value or the options high and low that will override the computed minimum and maximum.
+	 * **Options**
+	 * The following options are used by this axis in addition to the default axis options outlined in the axis configuration of the chart default settings.
+	 * ```javascript
+	 * var options = {
+	 *   // If high is specified then the axis will display values explicitly up to this value and the computed maximum from the data is ignored
+	 *   high: 100,
+	 *   // If low is specified then the axis will display values explicitly down to this value and the computed minimum from the data is ignored
+	 *   low: 0,
+	 *   // If specified then the value range determined from minimum to maximum (or low and high) will be divided by this number and ticks will be generated at those division points. The default divisor is 1.
+	 *   divisor: 4,
+	 *   // If ticks is explicitly set, then the axis will not compute the ticks with the divisor, but directly use the data in ticks to determine at what points on the axis a tick need to be generated.
+	 *   ticks: [1, 10, 20, 30]
+	 * };
+	 * ```
+	 *
+	 * @module Chartist.FixedScaleAxis
+	 */
+	/* global Chartist */
+	(function (window, document, Chartist) {
+	  'use strict';
+
+	  function FixedScaleAxis(axisUnit, data, chartRect, options) {
+	    var highLow = options.highLow || Chartist.getHighLow(data.normalized, options, axisUnit.pos);
+	    this.divisor = options.divisor || 1;
+	    this.ticks = options.ticks || Chartist.times(this.divisor).map(function(value, index) {
+	      return highLow.low + (highLow.high - highLow.low) / this.divisor * index;
+	    }.bind(this));
+	    this.ticks.sort(function(a, b) {
+	      return a - b;
+	    });
+	    this.range = {
+	      min: highLow.low,
+	      max: highLow.high
+	    };
+
+	    Chartist.FixedScaleAxis.super.constructor.call(this,
+	      axisUnit,
+	      chartRect,
+	      this.ticks,
+	      options);
+
+	    this.stepLength = this.axisLength / this.divisor;
+	  }
+
+	  function projectValue(value) {
+	    return this.axisLength * (+Chartist.getMultiValue(value, this.units.pos) - this.range.min) / (this.range.max - this.range.min);
+	  }
+
+	  Chartist.FixedScaleAxis = Chartist.Axis.extend({
+	    constructor: FixedScaleAxis,
+	    projectValue: projectValue
+	  });
+
+	}(window, document, Chartist));
+	;/**
+	 * The step axis for step based charts like bar chart or step based line charts. It uses a fixed amount of ticks that will be equally distributed across the whole axis length. The projection is done using the index of the data value rather than the value itself and therefore it's only useful for distribution purpose.
+	 * **Options**
+	 * The following options are used by this axis in addition to the default axis options outlined in the axis configuration of the chart default settings.
+	 * ```javascript
+	 * var options = {
+	 *   // Ticks to be used to distribute across the axis length. As this axis type relies on the index of the value rather than the value, arbitrary data that can be converted to a string can be used as ticks.
+	 *   ticks: ['One', 'Two', 'Three'],
+	 *   // If set to true the full width will be used to distribute the values where the last value will be at the maximum of the axis length. If false the spaces between the ticks will be evenly distributed instead.
+	 *   stretch: true
+	 * };
+	 * ```
+	 *
+	 * @module Chartist.StepAxis
+	 */
+	/* global Chartist */
+	(function (window, document, Chartist) {
+	  'use strict';
+
+	  function StepAxis(axisUnit, data, chartRect, options) {
+	    Chartist.StepAxis.super.constructor.call(this,
+	      axisUnit,
+	      chartRect,
+	      options.ticks,
+	      options);
+
+	    this.stepLength = this.axisLength / (options.ticks.length - (options.stretch ? 1 : 0));
+	  }
+
+	  function projectValue(value, index) {
+	    return this.stepLength * index;
+	  }
+
+	  Chartist.StepAxis = Chartist.Axis.extend({
+	    constructor: StepAxis,
+	    projectValue: projectValue
+	  });
+
+	}(window, document, Chartist));
+	;/**
+	 * The Chartist line chart can be used to draw Line or Scatter charts. If used in the browser you can access the global `Chartist` namespace where you find the `Line` function as a main entry point.
+	 *
+	 * For examples on how to use the line chart please check the examples of the `Chartist.Line` method.
+	 *
+	 * @module Chartist.Line
+	 */
+	/* global Chartist */
+	(function(window, document, Chartist){
+	  'use strict';
+
+	  /**
+	   * Default options in line charts. Expand the code view to see a detailed list of options with comments.
+	   *
+	   * @memberof Chartist.Line
+	   */
+	  var defaultOptions = {
+	    // Options for X-Axis
+	    axisX: {
+	      // The offset of the labels to the chart area
+	      offset: 30,
+	      // Position where labels are placed. Can be set to `start` or `end` where `start` is equivalent to left or top on vertical axis and `end` is equivalent to right or bottom on horizontal axis.
+	      position: 'end',
+	      // Allows you to correct label positioning on this axis by positive or negative x and y offset.
+	      labelOffset: {
+	        x: 0,
+	        y: 0
+	      },
+	      // If labels should be shown or not
+	      showLabel: true,
+	      // If the axis grid should be drawn or not
+	      showGrid: true,
+	      // Interpolation function that allows you to intercept the value from the axis label
+	      labelInterpolationFnc: Chartist.noop,
+	      // Set the axis type to be used to project values on this axis. If not defined, Chartist.StepAxis will be used for the X-Axis, where the ticks option will be set to the labels in the data and the stretch option will be set to the global fullWidth option. This type can be changed to any axis constructor available (e.g. Chartist.FixedScaleAxis), where all axis options should be present here.
+	      type: undefined
+	    },
+	    // Options for Y-Axis
+	    axisY: {
+	      // The offset of the labels to the chart area
+	      offset: 40,
+	      // Position where labels are placed. Can be set to `start` or `end` where `start` is equivalent to left or top on vertical axis and `end` is equivalent to right or bottom on horizontal axis.
+	      position: 'start',
+	      // Allows you to correct label positioning on this axis by positive or negative x and y offset.
+	      labelOffset: {
+	        x: 0,
+	        y: 0
+	      },
+	      // If labels should be shown or not
+	      showLabel: true,
+	      // If the axis grid should be drawn or not
+	      showGrid: true,
+	      // Interpolation function that allows you to intercept the value from the axis label
+	      labelInterpolationFnc: Chartist.noop,
+	      // Set the axis type to be used to project values on this axis. If not defined, Chartist.AutoScaleAxis will be used for the Y-Axis, where the high and low options will be set to the global high and low options. This type can be changed to any axis constructor available (e.g. Chartist.FixedScaleAxis), where all axis options should be present here.
+	      type: undefined,
+	      // This value specifies the minimum height in pixel of the scale steps
+	      scaleMinSpace: 20,
+	      // Use only integer values (whole numbers) for the scale steps
+	      onlyInteger: false
+	    },
+	    // Specify a fixed width for the chart as a string (i.e. '100px' or '50%')
+	    width: undefined,
+	    // Specify a fixed height for the chart as a string (i.e. '100px' or '50%')
+	    height: undefined,
+	    // If the line should be drawn or not
+	    showLine: true,
+	    // If dots should be drawn or not
+	    showPoint: true,
+	    // If the line chart should draw an area
+	    showArea: false,
+	    // The base for the area chart that will be used to close the area shape (is normally 0)
+	    areaBase: 0,
+	    // Specify if the lines should be smoothed. This value can be true or false where true will result in smoothing using the default smoothing interpolation function Chartist.Interpolation.cardinal and false results in Chartist.Interpolation.none. You can also choose other smoothing / interpolation functions available in the Chartist.Interpolation module, or write your own interpolation function. Check the examples for a brief description.
+	    lineSmooth: true,
+	    // Overriding the natural low of the chart allows you to zoom in or limit the charts lowest displayed value
+	    low: undefined,
+	    // Overriding the natural high of the chart allows you to zoom in or limit the charts highest displayed value
+	    high: undefined,
+	    // Padding of the chart drawing area to the container element and labels as a number or padding object {top: 5, right: 5, bottom: 5, left: 5}
+	    chartPadding: {
+	      top: 15,
+	      right: 15,
+	      bottom: 5,
+	      left: 10
+	    },
+	    // When set to true, the last grid line on the x-axis is not drawn and the chart elements will expand to the full available width of the chart. For the last label to be drawn correctly you might need to add chart padding or offset the last label with a draw event handler.
+	    fullWidth: false,
+	    // If true the whole data is reversed including labels, the series order as well as the whole series data arrays.
+	    reverseData: false,
+	    // Override the class names that get used to generate the SVG structure of the chart
+	    classNames: {
+	      chart: 'ct-chart-line',
+	      label: 'ct-label',
+	      labelGroup: 'ct-labels',
+	      series: 'ct-series',
+	      line: 'ct-line',
+	      point: 'ct-point',
+	      area: 'ct-area',
+	      grid: 'ct-grid',
+	      gridGroup: 'ct-grids',
+	      vertical: 'ct-vertical',
+	      horizontal: 'ct-horizontal',
+	      start: 'ct-start',
+	      end: 'ct-end'
+	    }
+	  };
+
+	  /**
+	   * Creates a new chart
+	   *
+	   */
+	  function createChart(options) {
+	    this.data = Chartist.normalizeData(this.data);
+	    var data = {
+	      raw: this.data,
+	      normalized: Chartist.getDataArray(this.data, options.reverseData, true)
+	    };
+
+	    // Create new svg object
+	    this.svg = Chartist.createSvg(this.container, options.width, options.height, options.classNames.chart);
+	    // Create groups for labels, grid and series
+	    var gridGroup = this.svg.elem('g').addClass(options.classNames.gridGroup);
+	    var seriesGroup = this.svg.elem('g');
+	    var labelGroup = this.svg.elem('g').addClass(options.classNames.labelGroup);
+
+	    var chartRect = Chartist.createChartRect(this.svg, options, defaultOptions.padding);
+	    var axisX, axisY;
+
+	    if(options.axisX.type === undefined) {
+	      axisX = new Chartist.StepAxis(Chartist.Axis.units.x, data, chartRect, Chartist.extend({}, options.axisX, {
+	        ticks: data.raw.labels,
+	        stretch: options.fullWidth
+	      }));
+	    } else {
+	      axisX = options.axisX.type.call(Chartist, Chartist.Axis.units.x, data, chartRect, options.axisX);
+	    }
+
+	    if(options.axisY.type === undefined) {
+	      axisY = new Chartist.AutoScaleAxis(Chartist.Axis.units.y, data, chartRect, Chartist.extend({}, options.axisY, {
+	        high: Chartist.isNum(options.high) ? options.high : options.axisY.high,
+	        low: Chartist.isNum(options.low) ? options.low : options.axisY.low
+	      }));
+	    } else {
+	      axisY = options.axisY.type.call(Chartist, Chartist.Axis.units.y, data, chartRect, options.axisY);
+	    }
+
+	    axisX.createGridAndLabels(gridGroup, labelGroup, this.supportsForeignObject, options, this.eventEmitter);
+	    axisY.createGridAndLabels(gridGroup, labelGroup, this.supportsForeignObject, options, this.eventEmitter);
+
+	    // Draw the series
+	    data.raw.series.forEach(function(series, seriesIndex) {
+	      var seriesElement = seriesGroup.elem('g');
+
+	      // Write attributes to series group element. If series name or meta is undefined the attributes will not be written
+	      seriesElement.attr({
+	        'ct:series-name': series.name,
+	        'ct:meta': Chartist.serialize(series.meta)
+	      });
+
+	      // Use series class from series data or if not set generate one
+	      seriesElement.addClass([
+	        options.classNames.series,
+	        (series.className || options.classNames.series + '-' + Chartist.alphaNumerate(seriesIndex))
+	      ].join(' '));
+
+	      var pathCoordinates = [],
+	        pathData = [];
+
+	      data.normalized[seriesIndex].forEach(function(value, valueIndex) {
+	        var p = {
+	          x: chartRect.x1 + axisX.projectValue(value, valueIndex, data.normalized[seriesIndex]),
+	          y: chartRect.y1 - axisY.projectValue(value, valueIndex, data.normalized[seriesIndex])
+	        };
+	        pathCoordinates.push(p.x, p.y);
+	        pathData.push({
+	          value: value,
+	          valueIndex: valueIndex,
+	          meta: Chartist.getMetaData(series, valueIndex)
+	        });
+	      }.bind(this));
+
+	      var seriesOptions = {
+	        lineSmooth: Chartist.getSeriesOption(series, options, 'lineSmooth'),
+	        showPoint: Chartist.getSeriesOption(series, options, 'showPoint'),
+	        showLine: Chartist.getSeriesOption(series, options, 'showLine'),
+	        showArea: Chartist.getSeriesOption(series, options, 'showArea'),
+	        areaBase: Chartist.getSeriesOption(series, options, 'areaBase')
+	      };
+
+	      var smoothing = typeof seriesOptions.lineSmooth === 'function' ?
+	        seriesOptions.lineSmooth : (seriesOptions.lineSmooth ? Chartist.Interpolation.monotoneCubic() : Chartist.Interpolation.none());
+	      // Interpolating path where pathData will be used to annotate each path element so we can trace back the original
+	      // index, value and meta data
+	      var path = smoothing(pathCoordinates, pathData);
+
+	      // If we should show points we need to create them now to avoid secondary loop
+	      // Points are drawn from the pathElements returned by the interpolation function
+	      // Small offset for Firefox to render squares correctly
+	      if (seriesOptions.showPoint) {
+
+	        path.pathElements.forEach(function(pathElement) {
+	          var point = seriesElement.elem('line', {
+	            x1: pathElement.x,
+	            y1: pathElement.y,
+	            x2: pathElement.x + 0.01,
+	            y2: pathElement.y
+	          }, options.classNames.point).attr({
+	            'ct:value': [pathElement.data.value.x, pathElement.data.value.y].filter(Chartist.isNum).join(','),
+	            'ct:meta': pathElement.data.meta
+	          });
+
+	          this.eventEmitter.emit('draw', {
+	            type: 'point',
+	            value: pathElement.data.value,
+	            index: pathElement.data.valueIndex,
+	            meta: pathElement.data.meta,
+	            series: series,
+	            seriesIndex: seriesIndex,
+	            axisX: axisX,
+	            axisY: axisY,
+	            group: seriesElement,
+	            element: point,
+	            x: pathElement.x,
+	            y: pathElement.y
+	          });
+	        }.bind(this));
+	      }
+
+	      if(seriesOptions.showLine) {
+	        var line = seriesElement.elem('path', {
+	          d: path.stringify()
+	        }, options.classNames.line, true);
+
+	        this.eventEmitter.emit('draw', {
+	          type: 'line',
+	          values: data.normalized[seriesIndex],
+	          path: path.clone(),
+	          chartRect: chartRect,
+	          index: seriesIndex,
+	          series: series,
+	          seriesIndex: seriesIndex,
+	          axisX: axisX,
+	          axisY: axisY,
+	          group: seriesElement,
+	          element: line
+	        });
+	      }
+
+	      // Area currently only works with axes that support a range!
+	      if(seriesOptions.showArea && axisY.range) {
+	        // If areaBase is outside the chart area (< min or > max) we need to set it respectively so that
+	        // the area is not drawn outside the chart area.
+	        var areaBase = Math.max(Math.min(seriesOptions.areaBase, axisY.range.max), axisY.range.min);
+
+	        // We project the areaBase value into screen coordinates
+	        var areaBaseProjected = chartRect.y1 - axisY.projectValue(areaBase);
+
+	        // In order to form the area we'll first split the path by move commands so we can chunk it up into segments
+	        path.splitByCommand('M').filter(function onlySolidSegments(pathSegment) {
+	          // We filter only "solid" segments that contain more than one point. Otherwise there's no need for an area
+	          return pathSegment.pathElements.length > 1;
+	        }).map(function convertToArea(solidPathSegments) {
+	          // Receiving the filtered solid path segments we can now convert those segments into fill areas
+	          var firstElement = solidPathSegments.pathElements[0];
+	          var lastElement = solidPathSegments.pathElements[solidPathSegments.pathElements.length - 1];
+
+	          // Cloning the solid path segment with closing option and removing the first move command from the clone
+	          // We then insert a new move that should start at the area base and draw a straight line up or down
+	          // at the end of the path we add an additional straight line to the projected area base value
+	          // As the closing option is set our path will be automatically closed
+	          return solidPathSegments.clone(true)
+	            .position(0)
+	            .remove(1)
+	            .move(firstElement.x, areaBaseProjected)
+	            .line(firstElement.x, firstElement.y)
+	            .position(solidPathSegments.pathElements.length + 1)
+	            .line(lastElement.x, areaBaseProjected);
+
+	        }).forEach(function createArea(areaPath) {
+	          // For each of our newly created area paths, we'll now create path elements by stringifying our path objects
+	          // and adding the created DOM elements to the correct series group
+	          var area = seriesElement.elem('path', {
+	            d: areaPath.stringify()
+	          }, options.classNames.area, true);
+
+	          // Emit an event for each area that was drawn
+	          this.eventEmitter.emit('draw', {
+	            type: 'area',
+	            values: data.normalized[seriesIndex],
+	            path: areaPath.clone(),
+	            series: series,
+	            seriesIndex: seriesIndex,
+	            axisX: axisX,
+	            axisY: axisY,
+	            chartRect: chartRect,
+	            index: seriesIndex,
+	            group: seriesElement,
+	            element: area
+	          });
+	        }.bind(this));
+	      }
+	    }.bind(this));
+
+	    this.eventEmitter.emit('created', {
+	      bounds: axisY.bounds,
+	      chartRect: chartRect,
+	      axisX: axisX,
+	      axisY: axisY,
+	      svg: this.svg,
+	      options: options
+	    });
+	  }
+
+	  /**
+	   * This method creates a new line chart.
+	   *
+	   * @memberof Chartist.Line
+	   * @param {String|Node} query A selector query string or directly a DOM element
+	   * @param {Object} data The data object that needs to consist of a labels and a series array
+	   * @param {Object} [options] The options object with options that override the default options. Check the examples for a detailed list.
+	   * @param {Array} [responsiveOptions] Specify an array of responsive option arrays which are a media query and options object pair => [[mediaQueryString, optionsObject],[more...]]
+	   * @return {Object} An object which exposes the API for the created chart
+	   *
+	   * @example
+	   * // Create a simple line chart
+	   * var data = {
+	   *   // A labels array that can contain any sort of values
+	   *   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+	   *   // Our series array that contains series objects or in this case series data arrays
+	   *   series: [
+	   *     [5, 2, 4, 2, 0]
+	   *   ]
+	   * };
+	   *
+	   * // As options we currently only set a static size of 300x200 px
+	   * var options = {
+	   *   width: '300px',
+	   *   height: '200px'
+	   * };
+	   *
+	   * // In the global name space Chartist we call the Line function to initialize a line chart. As a first parameter we pass in a selector where we would like to get our chart created. Second parameter is the actual data object and as a third parameter we pass in our options
+	   * new Chartist.Line('.ct-chart', data, options);
+	   *
+	   * @example
+	   * // Use specific interpolation function with configuration from the Chartist.Interpolation module
+	   *
+	   * var chart = new Chartist.Line('.ct-chart', {
+	   *   labels: [1, 2, 3, 4, 5],
+	   *   series: [
+	   *     [1, 1, 8, 1, 7]
+	   *   ]
+	   * }, {
+	   *   lineSmooth: Chartist.Interpolation.cardinal({
+	   *     tension: 0.2
+	   *   })
+	   * });
+	   *
+	   * @example
+	   * // Create a line chart with responsive options
+	   *
+	   * var data = {
+	   *   // A labels array that can contain any sort of values
+	   *   labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+	   *   // Our series array that contains series objects or in this case series data arrays
+	   *   series: [
+	   *     [5, 2, 4, 2, 0]
+	   *   ]
+	   * };
+	   *
+	   * // In addition to the regular options we specify responsive option overrides that will override the default configutation based on the matching media queries.
+	   * var responsiveOptions = [
+	   *   ['screen and (min-width: 641px) and (max-width: 1024px)', {
+	   *     showPoint: false,
+	   *     axisX: {
+	   *       labelInterpolationFnc: function(value) {
+	   *         // Will return Mon, Tue, Wed etc. on medium screens
+	   *         return value.slice(0, 3);
+	   *       }
+	   *     }
+	   *   }],
+	   *   ['screen and (max-width: 640px)', {
+	   *     showLine: false,
+	   *     axisX: {
+	   *       labelInterpolationFnc: function(value) {
+	   *         // Will return M, T, W etc. on small screens
+	   *         return value[0];
+	   *       }
+	   *     }
+	   *   }]
+	   * ];
+	   *
+	   * new Chartist.Line('.ct-chart', data, null, responsiveOptions);
+	   *
+	   */
+	  function Line(query, data, options, responsiveOptions) {
+	    Chartist.Line.super.constructor.call(this,
+	      query,
+	      data,
+	      defaultOptions,
+	      Chartist.extend({}, defaultOptions, options),
+	      responsiveOptions);
+	  }
+
+	  // Creating line chart type in Chartist namespace
+	  Chartist.Line = Chartist.Base.extend({
+	    constructor: Line,
+	    createChart: createChart
+	  });
+
+	}(window, document, Chartist));
+	;/**
+	 * The bar chart module of Chartist that can be used to draw unipolar or bipolar bar and grouped bar charts.
+	 *
+	 * @module Chartist.Bar
+	 */
+	/* global Chartist */
+	(function(window, document, Chartist){
+	  'use strict';
+
+	  /**
+	   * Default options in bar charts. Expand the code view to see a detailed list of options with comments.
+	   *
+	   * @memberof Chartist.Bar
+	   */
+	  var defaultOptions = {
+	    // Options for X-Axis
+	    axisX: {
+	      // The offset of the chart drawing area to the border of the container
+	      offset: 30,
+	      // Position where labels are placed. Can be set to `start` or `end` where `start` is equivalent to left or top on vertical axis and `end` is equivalent to right or bottom on horizontal axis.
+	      position: 'end',
+	      // Allows you to correct label positioning on this axis by positive or negative x and y offset.
+	      labelOffset: {
+	        x: 0,
+	        y: 0
+	      },
+	      // If labels should be shown or not
+	      showLabel: true,
+	      // If the axis grid should be drawn or not
+	      showGrid: true,
+	      // Interpolation function that allows you to intercept the value from the axis label
+	      labelInterpolationFnc: Chartist.noop,
+	      // This value specifies the minimum width in pixel of the scale steps
+	      scaleMinSpace: 30,
+	      // Use only integer values (whole numbers) for the scale steps
+	      onlyInteger: false
+	    },
+	    // Options for Y-Axis
+	    axisY: {
+	      // The offset of the chart drawing area to the border of the container
+	      offset: 40,
+	      // Position where labels are placed. Can be set to `start` or `end` where `start` is equivalent to left or top on vertical axis and `end` is equivalent to right or bottom on horizontal axis.
+	      position: 'start',
+	      // Allows you to correct label positioning on this axis by positive or negative x and y offset.
+	      labelOffset: {
+	        x: 0,
+	        y: 0
+	      },
+	      // If labels should be shown or not
+	      showLabel: true,
+	      // If the axis grid should be drawn or not
+	      showGrid: true,
+	      // Interpolation function that allows you to intercept the value from the axis label
+	      labelInterpolationFnc: Chartist.noop,
+	      // This value specifies the minimum height in pixel of the scale steps
+	      scaleMinSpace: 20,
+	      // Use only integer values (whole numbers) for the scale steps
+	      onlyInteger: false
+	    },
+	    // Specify a fixed width for the chart as a string (i.e. '100px' or '50%')
+	    width: undefined,
+	    // Specify a fixed height for the chart as a string (i.e. '100px' or '50%')
+	    height: undefined,
+	    // Overriding the natural high of the chart allows you to zoom in or limit the charts highest displayed value
+	    high: undefined,
+	    // Overriding the natural low of the chart allows you to zoom in or limit the charts lowest displayed value
+	    low: undefined,
+	    // Padding of the chart drawing area to the container element and labels as a number or padding object {top: 5, right: 5, bottom: 5, left: 5}
+	    chartPadding: {
+	      top: 15,
+	      right: 15,
+	      bottom: 5,
+	      left: 10
+	    },
+	    // Specify the distance in pixel of bars in a group
+	    seriesBarDistance: 15,
+	    // If set to true this property will cause the series bars to be stacked. Check the `stackMode` option for further stacking options.
+	    stackBars: false,
+	    // If set to 'overlap' this property will force the stacked bars to draw from the zero line.
+	    // If set to 'accumulate' this property will form a total for each series point. This will also influence the y-axis and the overall bounds of the chart. In stacked mode the seriesBarDistance property will have no effect.
+	    stackMode: 'accumulate',
+	    // Inverts the axes of the bar chart in order to draw a horizontal bar chart. Be aware that you also need to invert your axis settings as the Y Axis will now display the labels and the X Axis the values.
+	    horizontalBars: false,
+	    // If set to true then each bar will represent a series and the data array is expected to be a one dimensional array of data values rather than a series array of series. This is useful if the bar chart should represent a profile rather than some data over time.
+	    distributeSeries: false,
+	    // If true the whole data is reversed including labels, the series order as well as the whole series data arrays.
+	    reverseData: false,
+	    // Override the class names that get used to generate the SVG structure of the chart
+	    classNames: {
+	      chart: 'ct-chart-bar',
+	      horizontalBars: 'ct-horizontal-bars',
+	      label: 'ct-label',
+	      labelGroup: 'ct-labels',
+	      series: 'ct-series',
+	      bar: 'ct-bar',
+	      grid: 'ct-grid',
+	      gridGroup: 'ct-grids',
+	      vertical: 'ct-vertical',
+	      horizontal: 'ct-horizontal',
+	      start: 'ct-start',
+	      end: 'ct-end'
+	    }
+	  };
+
+	  /**
+	   * Creates a new chart
+	   *
+	   */
+	  function createChart(options) {
+	    this.data = Chartist.normalizeData(this.data);
+	    var data = {
+	      raw: this.data,
+	      normalized: options.distributeSeries ? Chartist.getDataArray(this.data, options.reverseData, options.horizontalBars ? 'x' : 'y').map(function(value) {
+	        return [value];
+	      }) : Chartist.getDataArray(this.data, options.reverseData, options.horizontalBars ? 'x' : 'y')
+	    };
+
+	    var highLow;
+
+	    // Create new svg element
+	    this.svg = Chartist.createSvg(
+	      this.container,
+	      options.width,
+	      options.height,
+	      options.classNames.chart + (options.horizontalBars ? ' ' + options.classNames.horizontalBars : '')
+	    );
+
+	    // Drawing groups in correct order
+	    var gridGroup = this.svg.elem('g').addClass(options.classNames.gridGroup);
+	    var seriesGroup = this.svg.elem('g');
+	    var labelGroup = this.svg.elem('g').addClass(options.classNames.labelGroup);
+
+	    if(options.stackBars && data.normalized.length !== 0) {
+	      // If stacked bars we need to calculate the high low from stacked values from each series
+	      var serialSums = Chartist.serialMap(data.normalized, function serialSums() {
+	        return Array.prototype.slice.call(arguments).map(function(value) {
+	          return value;
+	        }).reduce(function(prev, curr) {
+	          return {
+	            x: prev.x + (curr && curr.x) || 0,
+	            y: prev.y + (curr && curr.y) || 0
+	          };
+	        }, {x: 0, y: 0});
+	      });
+
+	      highLow = Chartist.getHighLow([serialSums], Chartist.extend({}, options, {
+	        referenceValue: 0
+	      }), options.horizontalBars ? 'x' : 'y');
+	    } else {
+	      highLow = Chartist.getHighLow(data.normalized, Chartist.extend({}, options, {
+	        referenceValue: 0
+	      }), options.horizontalBars ? 'x' : 'y');
+	    }
+	    // Overrides of high / low from settings
+	    highLow.high = +options.high || (options.high === 0 ? 0 : highLow.high);
+	    highLow.low = +options.low || (options.low === 0 ? 0 : highLow.low);
+
+	    var chartRect = Chartist.createChartRect(this.svg, options, defaultOptions.padding);
+
+	    var valueAxis,
+	      labelAxisTicks,
+	      labelAxis,
+	      axisX,
+	      axisY;
+
+	    // We need to set step count based on some options combinations
+	    if(options.distributeSeries && options.stackBars) {
+	      // If distributed series are enabled and bars need to be stacked, we'll only have one bar and therefore should
+	      // use only the first label for the step axis
+	      labelAxisTicks = data.raw.labels.slice(0, 1);
+	    } else {
+	      // If distributed series are enabled but stacked bars aren't, we should use the series labels
+	      // If we are drawing a regular bar chart with two dimensional series data, we just use the labels array
+	      // as the bars are normalized
+	      labelAxisTicks = data.raw.labels;
+	    }
+
+	    // Set labelAxis and valueAxis based on the horizontalBars setting. This setting will flip the axes if necessary.
+	    if(options.horizontalBars) {
+	      if(options.axisX.type === undefined) {
+	        valueAxis = axisX = new Chartist.AutoScaleAxis(Chartist.Axis.units.x, data, chartRect, Chartist.extend({}, options.axisX, {
+	          highLow: highLow,
+	          referenceValue: 0
+	        }));
+	      } else {
+	        valueAxis = axisX = options.axisX.type.call(Chartist, Chartist.Axis.units.x, data, chartRect, Chartist.extend({}, options.axisX, {
+	          highLow: highLow,
+	          referenceValue: 0
+	        }));
+	      }
+
+	      if(options.axisY.type === undefined) {
+	        labelAxis = axisY = new Chartist.StepAxis(Chartist.Axis.units.y, data, chartRect, {
+	          ticks: labelAxisTicks
+	        });
+	      } else {
+	        labelAxis = axisY = options.axisY.type.call(Chartist, Chartist.Axis.units.y, data, chartRect, options.axisY);
+	      }
+	    } else {
+	      if(options.axisX.type === undefined) {
+	        labelAxis = axisX = new Chartist.StepAxis(Chartist.Axis.units.x, data, chartRect, {
+	          ticks: labelAxisTicks
+	        });
+	      } else {
+	        labelAxis = axisX = options.axisX.type.call(Chartist, Chartist.Axis.units.x, data, chartRect, options.axisX);
+	      }
+
+	      if(options.axisY.type === undefined) {
+	        valueAxis = axisY = new Chartist.AutoScaleAxis(Chartist.Axis.units.y, data, chartRect, Chartist.extend({}, options.axisY, {
+	          highLow: highLow,
+	          referenceValue: 0
+	        }));
+	      } else {
+	        valueAxis = axisY = options.axisY.type.call(Chartist, Chartist.Axis.units.y, data, chartRect, Chartist.extend({}, options.axisY, {
+	          highLow: highLow,
+	          referenceValue: 0
+	        }));
+	      }
+	    }
+
+	    // Projected 0 point
+	    var zeroPoint = options.horizontalBars ? (chartRect.x1 + valueAxis.projectValue(0)) : (chartRect.y1 - valueAxis.projectValue(0));
+	    // Used to track the screen coordinates of stacked bars
+	    var stackedBarValues = [];
+
+	    labelAxis.createGridAndLabels(gridGroup, labelGroup, this.supportsForeignObject, options, this.eventEmitter);
+	    valueAxis.createGridAndLabels(gridGroup, labelGroup, this.supportsForeignObject, options, this.eventEmitter);
+
+	    // Draw the series
+	    data.raw.series.forEach(function(series, seriesIndex) {
+	      // Calculating bi-polar value of index for seriesOffset. For i = 0..4 biPol will be -1.5, -0.5, 0.5, 1.5 etc.
+	      var biPol = seriesIndex - (data.raw.series.length - 1) / 2;
+	      // Half of the period width between vertical grid lines used to position bars
+	      var periodHalfLength;
+	      // Current series SVG element
+	      var seriesElement;
+
+	      // We need to set periodHalfLength based on some options combinations
+	      if(options.distributeSeries && !options.stackBars) {
+	        // If distributed series are enabled but stacked bars aren't, we need to use the length of the normaizedData array
+	        // which is the series count and divide by 2
+	        periodHalfLength = labelAxis.axisLength / data.normalized.length / 2;
+	      } else if(options.distributeSeries && options.stackBars) {
+	        // If distributed series and stacked bars are enabled we'll only get one bar so we should just divide the axis
+	        // length by 2
+	        periodHalfLength = labelAxis.axisLength / 2;
+	      } else {
+	        // On regular bar charts we should just use the series length
+	        periodHalfLength = labelAxis.axisLength / data.normalized[seriesIndex].length / 2;
+	      }
+
+	      // Adding the series group to the series element
+	      seriesElement = seriesGroup.elem('g');
+
+	      // Write attributes to series group element. If series name or meta is undefined the attributes will not be written
+	      seriesElement.attr({
+	        'ct:series-name': series.name,
+	        'ct:meta': Chartist.serialize(series.meta)
+	      });
+
+	      // Use series class from series data or if not set generate one
+	      seriesElement.addClass([
+	        options.classNames.series,
+	        (series.className || options.classNames.series + '-' + Chartist.alphaNumerate(seriesIndex))
+	      ].join(' '));
+
+	      data.normalized[seriesIndex].forEach(function(value, valueIndex) {
+	        var projected,
+	          bar,
+	          previousStack,
+	          labelAxisValueIndex;
+
+	        // We need to set labelAxisValueIndex based on some options combinations
+	        if(options.distributeSeries && !options.stackBars) {
+	          // If distributed series are enabled but stacked bars aren't, we can use the seriesIndex for later projection
+	          // on the step axis for label positioning
+	          labelAxisValueIndex = seriesIndex;
+	        } else if(options.distributeSeries && options.stackBars) {
+	          // If distributed series and stacked bars are enabled, we will only get one bar and therefore always use
+	          // 0 for projection on the label step axis
+	          labelAxisValueIndex = 0;
+	        } else {
+	          // On regular bar charts we just use the value index to project on the label step axis
+	          labelAxisValueIndex = valueIndex;
+	        }
+
+	        // We need to transform coordinates differently based on the chart layout
+	        if(options.horizontalBars) {
+	          projected = {
+	            x: chartRect.x1 + valueAxis.projectValue(value && value.x ? value.x : 0, valueIndex, data.normalized[seriesIndex]),
+	            y: chartRect.y1 - labelAxis.projectValue(value && value.y ? value.y : 0, labelAxisValueIndex, data.normalized[seriesIndex])
+	          };
+	        } else {
+	          projected = {
+	            x: chartRect.x1 + labelAxis.projectValue(value && value.x ? value.x : 0, labelAxisValueIndex, data.normalized[seriesIndex]),
+	            y: chartRect.y1 - valueAxis.projectValue(value && value.y ? value.y : 0, valueIndex, data.normalized[seriesIndex])
+	          }
+	        }
+
+	        // If the label axis is a step based axis we will offset the bar into the middle of between two steps using
+	        // the periodHalfLength value. Also we do arrange the different series so that they align up to each other using
+	        // the seriesBarDistance. If we don't have a step axis, the bar positions can be chosen freely so we should not
+	        // add any automated positioning.
+	        if(labelAxis instanceof Chartist.StepAxis) {
+	          // Offset to center bar between grid lines, but only if the step axis is not stretched
+	          if(!labelAxis.options.stretch) {
+	            projected[labelAxis.units.pos] += periodHalfLength * (options.horizontalBars ? -1 : 1);
+	          }
+	          // Using bi-polar offset for multiple series if no stacked bars or series distribution is used
+	          projected[labelAxis.units.pos] += (options.stackBars || options.distributeSeries) ? 0 : biPol * options.seriesBarDistance * (options.horizontalBars ? -1 : 1);
+	        }
+
+	        // Enter value in stacked bar values used to remember previous screen value for stacking up bars
+	        previousStack = stackedBarValues[valueIndex] || zeroPoint;
+	        stackedBarValues[valueIndex] = previousStack - (zeroPoint - projected[labelAxis.counterUnits.pos]);
+
+	        // Skip if value is undefined
+	        if(value === undefined) {
+	          return;
+	        }
+
+	        var positions = {};
+	        positions[labelAxis.units.pos + '1'] = projected[labelAxis.units.pos];
+	        positions[labelAxis.units.pos + '2'] = projected[labelAxis.units.pos];
+
+	        if(options.stackBars && (options.stackMode === 'accumulate' || !options.stackMode)) {
+	          // Stack mode: accumulate (default)
+	          // If bars are stacked we use the stackedBarValues reference and otherwise base all bars off the zero line
+	          // We want backwards compatibility, so the expected fallback without the 'stackMode' option
+	          // to be the original behaviour (accumulate)
+	          positions[labelAxis.counterUnits.pos + '1'] = previousStack;
+	          positions[labelAxis.counterUnits.pos + '2'] = stackedBarValues[valueIndex];
+	        } else {
+	          // Draw from the zero line normally
+	          // This is also the same code for Stack mode: overlap
+	          positions[labelAxis.counterUnits.pos + '1'] = zeroPoint;
+	          positions[labelAxis.counterUnits.pos + '2'] = projected[labelAxis.counterUnits.pos];
+	        }
+
+	        // Limit x and y so that they are within the chart rect
+	        positions.x1 = Math.min(Math.max(positions.x1, chartRect.x1), chartRect.x2);
+	        positions.x2 = Math.min(Math.max(positions.x2, chartRect.x1), chartRect.x2);
+	        positions.y1 = Math.min(Math.max(positions.y1, chartRect.y2), chartRect.y1);
+	        positions.y2 = Math.min(Math.max(positions.y2, chartRect.y2), chartRect.y1);
+
+	        // Create bar element
+	        bar = seriesElement.elem('line', positions, options.classNames.bar).attr({
+	          'ct:value': [value.x, value.y].filter(Chartist.isNum).join(','),
+	          'ct:meta': Chartist.getMetaData(series, valueIndex)
+	        });
+
+	        this.eventEmitter.emit('draw', Chartist.extend({
+	          type: 'bar',
+	          value: value,
+	          index: valueIndex,
+	          meta: Chartist.getMetaData(series, valueIndex),
+	          series: series,
+	          seriesIndex: seriesIndex,
+	          axisX: axisX,
+	          axisY: axisY,
+	          chartRect: chartRect,
+	          group: seriesElement,
+	          element: bar
+	        }, positions));
+	      }.bind(this));
+	    }.bind(this));
+
+	    this.eventEmitter.emit('created', {
+	      bounds: valueAxis.bounds,
+	      chartRect: chartRect,
+	      axisX: axisX,
+	      axisY: axisY,
+	      svg: this.svg,
+	      options: options
+	    });
+	  }
+
+	  /**
+	   * This method creates a new bar chart and returns API object that you can use for later changes.
+	   *
+	   * @memberof Chartist.Bar
+	   * @param {String|Node} query A selector query string or directly a DOM element
+	   * @param {Object} data The data object that needs to consist of a labels and a series array
+	   * @param {Object} [options] The options object with options that override the default options. Check the examples for a detailed list.
+	   * @param {Array} [responsiveOptions] Specify an array of responsive option arrays which are a media query and options object pair => [[mediaQueryString, optionsObject],[more...]]
+	   * @return {Object} An object which exposes the API for the created chart
+	   *
+	   * @example
+	   * // Create a simple bar chart
+	   * var data = {
+	   *   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+	   *   series: [
+	   *     [5, 2, 4, 2, 0]
+	   *   ]
+	   * };
+	   *
+	   * // In the global name space Chartist we call the Bar function to initialize a bar chart. As a first parameter we pass in a selector where we would like to get our chart created and as a second parameter we pass our data object.
+	   * new Chartist.Bar('.ct-chart', data);
+	   *
+	   * @example
+	   * // This example creates a bipolar grouped bar chart where the boundaries are limitted to -10 and 10
+	   * new Chartist.Bar('.ct-chart', {
+	   *   labels: [1, 2, 3, 4, 5, 6, 7],
+	   *   series: [
+	   *     [1, 3, 2, -5, -3, 1, -6],
+	   *     [-5, -2, -4, -1, 2, -3, 1]
+	   *   ]
+	   * }, {
+	   *   seriesBarDistance: 12,
+	   *   low: -10,
+	   *   high: 10
+	   * });
+	   *
+	   */
+	  function Bar(query, data, options, responsiveOptions) {
+	    Chartist.Bar.super.constructor.call(this,
+	      query,
+	      data,
+	      defaultOptions,
+	      Chartist.extend({}, defaultOptions, options),
+	      responsiveOptions);
+	  }
+
+	  // Creating bar chart type in Chartist namespace
+	  Chartist.Bar = Chartist.Base.extend({
+	    constructor: Bar,
+	    createChart: createChart
+	  });
+
+	}(window, document, Chartist));
+	;/**
+	 * The pie chart module of Chartist that can be used to draw pie, donut or gauge charts
+	 *
+	 * @module Chartist.Pie
+	 */
+	/* global Chartist */
+	(function(window, document, Chartist) {
+	  'use strict';
+
+	  /**
+	   * Default options in line charts. Expand the code view to see a detailed list of options with comments.
+	   *
+	   * @memberof Chartist.Pie
+	   */
+	  var defaultOptions = {
+	    // Specify a fixed width for the chart as a string (i.e. '100px' or '50%')
+	    width: undefined,
+	    // Specify a fixed height for the chart as a string (i.e. '100px' or '50%')
+	    height: undefined,
+	    // Padding of the chart drawing area to the container element and labels as a number or padding object {top: 5, right: 5, bottom: 5, left: 5}
+	    chartPadding: 5,
+	    // Override the class names that are used to generate the SVG structure of the chart
+	    classNames: {
+	      chartPie: 'ct-chart-pie',
+	      chartDonut: 'ct-chart-donut',
+	      series: 'ct-series',
+	      slicePie: 'ct-slice-pie',
+	      sliceDonut: 'ct-slice-donut',
+	      label: 'ct-label'
+	    },
+	    // The start angle of the pie chart in degrees where 0 points north. A higher value offsets the start angle clockwise.
+	    startAngle: 0,
+	    // An optional total you can specify. By specifying a total value, the sum of the values in the series must be this total in order to draw a full pie. You can use this parameter to draw only parts of a pie or gauge charts.
+	    total: undefined,
+	    // If specified the donut CSS classes will be used and strokes will be drawn instead of pie slices.
+	    donut: false,
+	    // Specify the donut stroke width, currently done in javascript for convenience. May move to CSS styles in the future.
+	    // This option can be set as number or string to specify a relative width (i.e. 100 or '30%').
+	    donutWidth: 60,
+	    // If a label should be shown or not
+	    showLabel: true,
+	    // Label position offset from the standard position which is half distance of the radius. This value can be either positive or negative. Positive values will position the label away from the center.
+	    labelOffset: 0,
+	    // This option can be set to 'inside', 'outside' or 'center'. Positioned with 'inside' the labels will be placed on half the distance of the radius to the border of the Pie by respecting the 'labelOffset'. The 'outside' option will place the labels at the border of the pie and 'center' will place the labels in the absolute center point of the chart. The 'center' option only makes sense in conjunction with the 'labelOffset' option.
+	    labelPosition: 'inside',
+	    // An interpolation function for the label value
+	    labelInterpolationFnc: Chartist.noop,
+	    // Label direction can be 'neutral', 'explode' or 'implode'. The labels anchor will be positioned based on those settings as well as the fact if the labels are on the right or left side of the center of the chart. Usually explode is useful when labels are positioned far away from the center.
+	    labelDirection: 'neutral',
+	    // If true the whole data is reversed including labels, the series order as well as the whole series data arrays.
+	    reverseData: false,
+	    // If true empty values will be ignored to avoid drawing unncessary slices and labels
+	    ignoreEmptyValues: false
+	  };
+
+	  /**
+	   * Determines SVG anchor position based on direction and center parameter
+	   *
+	   * @param center
+	   * @param label
+	   * @param direction
+	   * @return {string}
+	   */
+	  function determineAnchorPosition(center, label, direction) {
+	    var toTheRight = label.x > center.x;
+
+	    if(toTheRight && direction === 'explode' ||
+	      !toTheRight && direction === 'implode') {
+	      return 'start';
+	    } else if(toTheRight && direction === 'implode' ||
+	      !toTheRight && direction === 'explode') {
+	      return 'end';
+	    } else {
+	      return 'middle';
+	    }
+	  }
+
+	  /**
+	   * Creates the pie chart
+	   *
+	   * @param options
+	   */
+	  function createChart(options) {
+	    this.data = Chartist.normalizeData(this.data);
+	    var seriesGroups = [],
+	      labelsGroup,
+	      chartRect,
+	      radius,
+	      labelRadius,
+	      totalDataSum,
+	      startAngle = options.startAngle,
+	      dataArray = Chartist.getDataArray(this.data, options.reverseData);
+
+	    // Create SVG.js draw
+	    this.svg = Chartist.createSvg(this.container, options.width, options.height,options.donut ? options.classNames.chartDonut : options.classNames.chartPie);
+	    // Calculate charting rect
+	    chartRect = Chartist.createChartRect(this.svg, options, defaultOptions.padding);
+	    // Get biggest circle radius possible within chartRect
+	    radius = Math.min(chartRect.width() / 2, chartRect.height() / 2);
+	    // Calculate total of all series to get reference value or use total reference from optional options
+	    totalDataSum = options.total || dataArray.reduce(function(previousValue, currentValue) {
+	      return previousValue + currentValue;
+	    }, 0);
+
+	    var donutWidth = Chartist.quantity(options.donutWidth);
+	    if (donutWidth.unit === '%') {
+	      donutWidth.value *= radius / 100;
+	    }
+
+	    // If this is a donut chart we need to adjust our radius to enable strokes to be drawn inside
+	    // Unfortunately this is not possible with the current SVG Spec
+	    // See this proposal for more details: http://lists.w3.org/Archives/Public/www-svg/2003Oct/0000.html
+	    radius -= options.donut ? donutWidth.value / 2  : 0;
+
+	    // If labelPosition is set to `outside` or a donut chart is drawn then the label position is at the radius,
+	    // if regular pie chart it's half of the radius
+	    if(options.labelPosition === 'outside' || options.donut) {
+	      labelRadius = radius;
+	    } else if(options.labelPosition === 'center') {
+	      // If labelPosition is center we start with 0 and will later wait for the labelOffset
+	      labelRadius = 0;
+	    } else {
+	      // Default option is 'inside' where we use half the radius so the label will be placed in the center of the pie
+	      // slice
+	      labelRadius = radius / 2;
+	    }
+	    // Add the offset to the labelRadius where a negative offset means closed to the center of the chart
+	    labelRadius += options.labelOffset;
+
+	    // Calculate end angle based on total sum and current data value and offset with padding
+	    var center = {
+	      x: chartRect.x1 + chartRect.width() / 2,
+	      y: chartRect.y2 + chartRect.height() / 2
+	    };
+
+	    // Check if there is only one non-zero value in the series array.
+	    var hasSingleValInSeries = this.data.series.filter(function(val) {
+	      return val.hasOwnProperty('value') ? val.value !== 0 : val !== 0;
+	    }).length === 1;
+
+	    //if we need to show labels we create the label group now
+	    if(options.showLabel) {
+	      labelsGroup = this.svg.elem('g', null, null, true);
+	    }
+
+	    // Draw the series
+	    // initialize series groups
+	    for (var i = 0; i < this.data.series.length; i++) {
+	      // If current value is zero and we are ignoring empty values then skip to next value
+	      if (dataArray[i] === 0 && options.ignoreEmptyValues) continue;
+
+	      var series = this.data.series[i];
+	      seriesGroups[i] = this.svg.elem('g', null, null, true);
+
+	      // If the series is an object and contains a name or meta data we add a custom attribute
+	      seriesGroups[i].attr({
+	        'ct:series-name': series.name
+	      });
+
+	      // Use series class from series data or if not set generate one
+	      seriesGroups[i].addClass([
+	        options.classNames.series,
+	        (series.className || options.classNames.series + '-' + Chartist.alphaNumerate(i))
+	      ].join(' '));
+
+	      var endAngle = startAngle + dataArray[i] / totalDataSum * 360;
+
+	      // Use slight offset so there are no transparent hairline issues
+	      var overlappigStartAngle = Math.max(0, startAngle - (i === 0 || hasSingleValInSeries ? 0 : 0.2));
+
+	      // If we need to draw the arc for all 360 degrees we need to add a hack where we close the circle
+	      // with Z and use 359.99 degrees
+	      if(endAngle - overlappigStartAngle >= 359.99) {
+	        endAngle = overlappigStartAngle + 359.99;
+	      }
+
+	      var start = Chartist.polarToCartesian(center.x, center.y, radius, overlappigStartAngle),
+	        end = Chartist.polarToCartesian(center.x, center.y, radius, endAngle);
+
+	      // Create a new path element for the pie chart. If this isn't a donut chart we should close the path for a correct stroke
+	      var path = new Chartist.Svg.Path(!options.donut)
+	        .move(end.x, end.y)
+	        .arc(radius, radius, 0, endAngle - startAngle > 180, 0, start.x, start.y);
+
+	      // If regular pie chart (no donut) we add a line to the center of the circle for completing the pie
+	      if(!options.donut) {
+	        path.line(center.x, center.y);
+	      }
+
+	      // Create the SVG path
+	      // If this is a donut chart we add the donut class, otherwise just a regular slice
+	      var pathElement = seriesGroups[i].elem('path', {
+	        d: path.stringify()
+	      }, options.donut ? options.classNames.sliceDonut : options.classNames.slicePie);
+
+	      // Adding the pie series value to the path
+	      pathElement.attr({
+	        'ct:value': dataArray[i],
+	        'ct:meta': Chartist.serialize(series.meta)
+	      });
+
+	      // If this is a donut, we add the stroke-width as style attribute
+	      if(options.donut) {
+	        pathElement.attr({
+	          'style': 'stroke-width: ' + donutWidth.value + 'px'
+	        });
+	      }
+
+	      // Fire off draw event
+	      this.eventEmitter.emit('draw', {
+	        type: 'slice',
+	        value: dataArray[i],
+	        totalDataSum: totalDataSum,
+	        index: i,
+	        meta: series.meta,
+	        series: series,
+	        group: seriesGroups[i],
+	        element: pathElement,
+	        path: path.clone(),
+	        center: center,
+	        radius: radius,
+	        startAngle: startAngle,
+	        endAngle: endAngle
+	      });
+
+	      // If we need to show labels we need to add the label for this slice now
+	      if(options.showLabel) {
+	        // Position at the labelRadius distance from center and between start and end angle
+	        var labelPosition = Chartist.polarToCartesian(center.x, center.y, labelRadius, startAngle + (endAngle - startAngle) / 2),
+	          interpolatedValue = options.labelInterpolationFnc(this.data.labels && !Chartist.isFalseyButZero(this.data.labels[i]) ? this.data.labels[i] : dataArray[i], i);
+
+	        if(interpolatedValue || interpolatedValue === 0) {
+	          var labelElement = labelsGroup.elem('text', {
+	            dx: labelPosition.x,
+	            dy: labelPosition.y,
+	            'text-anchor': determineAnchorPosition(center, labelPosition, options.labelDirection)
+	          }, options.classNames.label).text('' + interpolatedValue);
+
+	          // Fire off draw event
+	          this.eventEmitter.emit('draw', {
+	            type: 'label',
+	            index: i,
+	            group: labelsGroup,
+	            element: labelElement,
+	            text: '' + interpolatedValue,
+	            x: labelPosition.x,
+	            y: labelPosition.y
+	          });
+	        }
+	      }
+
+	      // Set next startAngle to current endAngle.
+	      // (except for last slice)
+	      startAngle = endAngle;
+	    }
+
+	    this.eventEmitter.emit('created', {
+	      chartRect: chartRect,
+	      svg: this.svg,
+	      options: options
+	    });
+	  }
+
+	  /**
+	   * This method creates a new pie chart and returns an object that can be used to redraw the chart.
+	   *
+	   * @memberof Chartist.Pie
+	   * @param {String|Node} query A selector query string or directly a DOM element
+	   * @param {Object} data The data object in the pie chart needs to have a series property with a one dimensional data array. The values will be normalized against each other and don't necessarily need to be in percentage. The series property can also be an array of value objects that contain a value property and a className property to override the CSS class name for the series group.
+	   * @param {Object} [options] The options object with options that override the default options. Check the examples for a detailed list.
+	   * @param {Array} [responsiveOptions] Specify an array of responsive option arrays which are a media query and options object pair => [[mediaQueryString, optionsObject],[more...]]
+	   * @return {Object} An object with a version and an update method to manually redraw the chart
+	   *
+	   * @example
+	   * // Simple pie chart example with four series
+	   * new Chartist.Pie('.ct-chart', {
+	   *   series: [10, 2, 4, 3]
+	   * });
+	   *
+	   * @example
+	   * // Drawing a donut chart
+	   * new Chartist.Pie('.ct-chart', {
+	   *   series: [10, 2, 4, 3]
+	   * }, {
+	   *   donut: true
+	   * });
+	   *
+	   * @example
+	   * // Using donut, startAngle and total to draw a gauge chart
+	   * new Chartist.Pie('.ct-chart', {
+	   *   series: [20, 10, 30, 40]
+	   * }, {
+	   *   donut: true,
+	   *   donutWidth: 20,
+	   *   startAngle: 270,
+	   *   total: 200
+	   * });
+	   *
+	   * @example
+	   * // Drawing a pie chart with padding and labels that are outside the pie
+	   * new Chartist.Pie('.ct-chart', {
+	   *   series: [20, 10, 30, 40]
+	   * }, {
+	   *   chartPadding: 30,
+	   *   labelOffset: 50,
+	   *   labelDirection: 'explode'
+	   * });
+	   *
+	   * @example
+	   * // Overriding the class names for individual series as well as a name and meta data.
+	   * // The name will be written as ct:series-name attribute and the meta data will be serialized and written
+	   * // to a ct:meta attribute.
+	   * new Chartist.Pie('.ct-chart', {
+	   *   series: [{
+	   *     value: 20,
+	   *     name: 'Series 1',
+	   *     className: 'my-custom-class-one',
+	   *     meta: 'Meta One'
+	   *   }, {
+	   *     value: 10,
+	   *     name: 'Series 2',
+	   *     className: 'my-custom-class-two',
+	   *     meta: 'Meta Two'
+	   *   }, {
+	   *     value: 70,
+	   *     name: 'Series 3',
+	   *     className: 'my-custom-class-three',
+	   *     meta: 'Meta Three'
+	   *   }]
+	   * });
+	   */
+	  function Pie(query, data, options, responsiveOptions) {
+	    Chartist.Pie.super.constructor.call(this,
+	      query,
+	      data,
+	      defaultOptions,
+	      Chartist.extend({}, defaultOptions, options),
+	      responsiveOptions);
+	  }
+
+	  // Creating pie chart type in Chartist namespace
+	  Chartist.Pie = Chartist.Base.extend({
+	    constructor: Pie,
+	    createChart: createChart,
+	    determineAnchorPosition: determineAnchorPosition
+	  });
+
+	}(window, document, Chartist));
+
+	return Chartist;
+
+	}));
+
+
+/***/ },
+/* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {
+		roomName: _react2.default.PropTypes.string
+	};
+
+	var defaultProps = {
+		roomName: "Room"
+	};
+
+	var Room = function (_React$Component) {
+		_inherits(Room, _React$Component);
+
+		function Room(props) {
+			_classCallCheck(this, Room);
+
+			return _possibleConstructorReturn(this, (Room.__proto__ || Object.getPrototypeOf(Room)).call(this, props));
+		}
+
+		_createClass(Room, [{
+			key: "render",
+			value: function render() {
+
+				var styleRoom = {};
+				var stylePhoto = {
+					width: "80px",
+					height: "80px",
+					overflow: "hidden",
+					borderRadius: "50%",
+					margin: "0 auto",
+					border: "4px solid rgba(0, 0, 0, 0.15)"
+				};
+				var stylePhotoImg = {
+					width: "100%"
+				};
+				var styleInfo = {
+					textAlign: "center"
+				};
+
+				return _react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(
+						"div",
+						{ style: stylePhoto },
+						_react2.default.createElement("img", { style: stylePhotoImg, src: "./assets/img/faces/face-2.jpg" })
+					),
+					_react2.default.createElement(
+						"div",
+						{ style: styleInfo },
+						_react2.default.createElement(
+							"p",
+							null,
+							this.props.roomName
+						)
+					)
+				);
+			}
+		}]);
+
+		return Room;
+	}(_react2.default.Component);
+
+	Room.propTypes = propTypes;
+	Room.defaultProps = defaultProps;
+
+	exports.default = Room;
+
+/***/ },
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _components = __webpack_require__(259);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {
+		floorName: _react2.default.PropTypes.string,
+		floorNum: _react2.default.PropTypes.number
+	};
+
+	var defaultProps = {
+		floorName: "floor",
+		floorNum: 0
+	};
+
+	var Floor = function (_React$Component) {
+		_inherits(Floor, _React$Component);
+
+		function Floor(props) {
+			_classCallCheck(this, Floor);
+
+			return _possibleConstructorReturn(this, (Floor.__proto__ || Object.getPrototypeOf(Floor)).call(this, props));
+		}
+
+		_createClass(Floor, [{
+			key: 'render',
+			value: function render() {
+
+				var styleFloor = {
+					verticalAlign: "middle"
+				};
+
+				var styleFloorName = {
+					textAlign: "center"
+				};
+
+				var roomName = new Array(3);
+				roomName[0] = new Array("1-1", "1-2", "1-3", "1-4", "화장실1");
+				roomName[1] = new Array("2-1", "2-2", "2-3", "2-4", "화장실2");
+				roomName[2] = new Array("3-1", "3-2", "3-3", "3-4", "화장실3");
+
+				return _react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-md-2' },
+						_react2.default.createElement(
+							'div',
+							{ style: styleFloorName },
+							_react2.default.createElement(
+								'h4',
+								null,
+								this.props.floorName
+							)
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-md-2' },
+						_react2.default.createElement(_components.Room, { roomName: roomName[this.props.floorNum][0] })
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-md-2' },
+						_react2.default.createElement(_components.Room, { roomName: roomName[this.props.floorNum][1] })
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-md-2' },
+						_react2.default.createElement(_components.Room, { roomName: roomName[this.props.floorNum][2] })
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-md-2' },
+						_react2.default.createElement(_components.Room, { roomName: roomName[this.props.floorNum][3] })
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-md-2' },
+						_react2.default.createElement(_components.Room, { roomName: roomName[this.props.floorNum][4] })
+					)
+				);
+			}
+		}]);
+
+		return Floor;
+	}(_react2.default.Component);
+
+	Floor.propTypes = propTypes;
+	Floor.defaultProps = defaultProps;
+
+	exports.default = Floor;
+
+/***/ },
+/* 279 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.updateMenu = updateMenu;
+
+	var _ActionTypes = __webpack_require__(251);
+
+	function updateMenu(menuname) {
+	    return {
+	        type: _ActionTypes.MENU_UPDATE,
+	        menuname: menuname
+	    };
+	}
+
+/***/ },
+/* 280 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _containers = __webpack_require__(257);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Home = function (_React$Component) {
+	    _inherits(Home, _React$Component);
+
+	    function Home() {
+	        _classCallCheck(this, Home);
+
+	        return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
+	    }
+
+	    _createClass(Home, [{
+	        key: 'render',
+	        value: function render() {
+
+	            return _react2.default.createElement(_containers.Dashboard, null);
+	        }
+	    }]);
+
+	    return Home;
+	}(_react2.default.Component);
+
+	exports.default = Home;
+
+/***/ },
+/* 281 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _components = __webpack_require__(259);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var BambooGrove = function (_React$Component) {
+	  _inherits(BambooGrove, _React$Component);
+
+	  function BambooGrove(props) {
+	    _classCallCheck(this, BambooGrove);
+
+	    return _possibleConstructorReturn(this, (BambooGrove.__proto__ || Object.getPrototypeOf(BambooGrove)).call(this, props));
+	  }
+
+	  _createClass(BambooGrove, [{
+	    key: 'render',
+	    value: function render() {
+
+	      var mockData = [{
+	        "title": "Memo1",
+	        "contents": "살려줘 찡찡"
+	      }, {
+	        "title": "Memo1",
+	        "contents": "문수야 어디있니"
+	      }, {
+	        "title": "Memo1",
+	        "contents": "애들아 어디갔어"
+	      }, {
+	        "title": "Memo1",
+	        "contents": "엄마가 보고싶어요"
+	      }];
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'content' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'container-fluid' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-md-6' },
+	              _react2.default.createElement(_components.MemoList, { data: mockData, title: '\uB300\uB098\uBB34\uC232' })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-md-6' },
+	              _react2.default.createElement(_components.MemoList, { data: mockData, title: '\uC0C8\uB85C\uC6B4\uAE00' })
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return BambooGrove;
+	}(_react2.default.Component);
+
+	exports.default = BambooGrove;
+
+/***/ },
+/* 282 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _components = __webpack_require__(259);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ReportManager = function (_React$Component) {
+	    _inherits(ReportManager, _React$Component);
+
+	    function ReportManager(props) {
+	        _classCallCheck(this, ReportManager);
+
+	        return _possibleConstructorReturn(this, (ReportManager.__proto__ || Object.getPrototypeOf(ReportManager)).call(this, props));
+	    }
+
+	    _createClass(ReportManager, [{
+	        key: 'render',
+	        value: function render() {
+
+	            var mockData = [{
+	                "title": "Memo1",
+	                "contents": "Testing"
+	            }, {
+	                "title": "Memo1",
+	                "contents": "Testing"
+	            }, {
+	                "title": "Memo1",
+	                "contents": "Testing"
+	            }, {
+	                "title": "Memo1",
+	                "contents": "Testing"
+	            }];
+
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'content' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'container-fluid' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-md-6' },
+	                            _react2.default.createElement(_components.MemoList, { data: mockData, title: '\uC2E0\uACE0\uBAA9\uB85D' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-lg-3 col-sd-6' },
+	                                _react2.default.createElement(_components.MiniCard, { cate: true, mode: true })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-lg-3 col-sd-6' },
+	                                _react2.default.createElement(_components.MiniCard, { cate: true, mode: false })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-md-6' },
+	                                _react2.default.createElement(_components.MemoList, { data: mockData, title: '\uC2E0\uACE0\uC644\uB8CC' })
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return ReportManager;
+	}(_react2.default.Component);
+
+	exports.default = ReportManager;
+
+/***/ },
+/* 283 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _components = __webpack_require__(259);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CounselManager = function (_React$Component) {
+		_inherits(CounselManager, _React$Component);
+
+		function CounselManager(props) {
+			_classCallCheck(this, CounselManager);
+
+			return _possibleConstructorReturn(this, (CounselManager.__proto__ || Object.getPrototypeOf(CounselManager)).call(this, props));
+		}
+
+		_createClass(CounselManager, [{
+			key: 'render',
+			value: function render() {
+
+				var mockData = [{
+					"title": "Memo1",
+					"contents": "Testing"
+				}, {
+					"title": "Memo1",
+					"contents": "Testing"
+				}, {
+					"title": "Memo1",
+					"contents": "Testing"
+				}, {
+					"title": "Memo1",
+					"contents": "Testing"
+				}];
+
+				return _react2.default.createElement(
+					'div',
+					{ className: 'content' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'container-fluid' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-6' },
+								_react2.default.createElement(_components.MemoList, { data: mockData, title: '\uC0C1\uB2F4\uBAA9\uB85D' })
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'row' },
+								_react2.default.createElement(
+									'div',
+									{ className: 'col-lg-3 col-sd-6' },
+									_react2.default.createElement(_components.MiniCard, { cate: false, mode: true })
+								),
+								_react2.default.createElement(
+									'div',
+									{ className: 'col-lg-3 col-sd-6' },
+									_react2.default.createElement(_components.MiniCard, { cate: false, mode: false })
+								),
+								_react2.default.createElement(
+									'div',
+									{ className: 'col-md-6' },
+									_react2.default.createElement(_components.MemoList, { data: mockData, title: '\uC0C1\uB2F4\uC644\uB8CC' })
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+
+		return CounselManager;
+	}(_react2.default.Component);
+
+	exports.default = CounselManager;
+
+/***/ },
+/* 284 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+					value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(227);
+
+	var _components = __webpack_require__(259);
+
+	var _authentication = __webpack_require__(285);
+
+	var _reactRouter = __webpack_require__(172);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Login = function (_React$Component) {
+					_inherits(Login, _React$Component);
+
+					function Login(props) {
+									_classCallCheck(this, Login);
+
+									var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+
+									_this.handleLogin = _this.handleLogin.bind(_this);
+
+									return _this;
+					}
+
+					_createClass(Login, [{
+									key: 'handleLogin',
+									value: function handleLogin(id, pw) {
+													var _this2 = this;
+
+													return this.props.loginRequest(id, pw).then(function () {
+																	if (_this2.props.status === "SUCCESS") {
+																					var loginData = {
+																									isLoggedId: true,
+																									username: id
+																					};
+
+																					console.log("Login Success!");
+																					_reactRouter.browserHistory.push('/home');
+
+																					return true;
+																	} else {
+																					console.log("Login failure");
+																					return false;
+																	}
+													});
+									}
+					}, {
+									key: 'render',
+									value: function render() {
+													return _react2.default.createElement(
+																	'div',
+																	null,
+																	_react2.default.createElement(
+																					'nav',
+																					{ className: 'navbar navbar-transparent navbar-absolute' },
+																					_react2.default.createElement(
+																									'div',
+																									{ className: 'container' },
+																									_react2.default.createElement(
+																													'div',
+																													{ className: 'navbar-header' },
+																													_react2.default.createElement(
+																																	'button',
+																																	{ type: 'button', className: 'navbar-toggle', 'data-toggle': 'collapse', 'data-target': '#navigation-example-2' },
+																																	_react2.default.createElement(
+																																					'span',
+																																					{ className: 'sr-only' },
+																																					'Toggle navigation'
+																																	),
+																																	_react2.default.createElement('span', { className: 'icon-bar' }),
+																																	_react2.default.createElement('span', { className: 'icon-bar' }),
+																																	_react2.default.createElement('span', { className: 'icon-bar' })
+																													),
+																													_react2.default.createElement(
+																																	'a',
+																																	{ className: 'navbar-brand', href: '#' },
+																																	'Badge-Ma'
+																													)
+																									),
+																									_react2.default.createElement(
+																													'div',
+																													{ className: 'collapse navbar-collapse' },
+																													_react2.default.createElement(
+																																	'ul',
+																																	{ className: 'nav navbar-nav navbar-right' },
+																																	_react2.default.createElement(
+																																					'li',
+																																					null,
+																																					_react2.default.createElement(
+																																									_reactRouter.Link,
+																																									{ to: '/register' },
+																																									'Register'
+																																					)
+																																	)
+																													)
+																									)
+																					)
+																	),
+																	_react2.default.createElement(
+																					'div',
+																					{ className: 'wrapper wrapper-full-page' },
+																					_react2.default.createElement(
+																									'div',
+																									{ className: 'full-page login-page', 'data-color': '', 'data-image': '../../res/sad_girl_background.jpg' },
+																									_react2.default.createElement(
+																													'div',
+																													{ className: 'content' },
+																													_react2.default.createElement(
+																																	'div',
+																																	{ className: 'container' },
+																																	_react2.default.createElement(
+																																					'div',
+																																					{ className: 'row' },
+																																					_react2.default.createElement(_components.Authentication, { mode: true,
+																																									onLogin: this.handleLogin })
+																																	)
+																													)
+																									),
+																									_react2.default.createElement(
+																													'footer',
+																													{ className: 'footer footer-transparent' },
+																													_react2.default.createElement(
+																																	'div',
+																																	{ className: 'container' },
+																																	_react2.default.createElement(
+																																					'div',
+																																					{ className: 'copyright' },
+																																					'2016 made with',
+																																					_react2.default.createElement('i', { className: 'fa fa-heart heart' }),
+																																					_react2.default.createElement(
+																																									'a',
+																																									null,
+																																									' by Badge-Ma'
+																																					)
+																																	)
+																													)
+																									)
+																					)
+																	)
+													);
+									}
+					}]);
+
+					return Login;
+	}(_react2.default.Component);
+
+	var mapStateToProps = function mapStateToProps(state) {
+					return {
+									status: state.authentication.login.status
+					};
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+					return {
+									loginRequest: function loginRequest(id, pw) {
+													return dispatch((0, _authentication.loginRequest)(id, pw));
+									}
+					};
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Login);
+
+/***/ },
+/* 285 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.loginRequest = loginRequest;
+	exports.login = login;
+	exports.loginSuccess = loginSuccess;
+	exports.loginFailure = loginFailure;
+
+	var _ActionTypes = __webpack_require__(251);
+
+	var _axios = __webpack_require__(286);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/* AUTH */
+
+	/* LOGIN */
+	function loginRequest(username, password) {
+
+	    var LOGIN_URL = "http://52.78.88.51:8080/BadgeMaServer/login.do";
+
+	    return function (dispatch) {
+	        dispatch(login());
+
+	        return _axios2.default.get(LOGIN_URL, {
+	            params: {
+	                id: username,
+	                passwd: password
+	            }
+	        }).then(function (response) {
+	            dispatch(loginSuccess(username));
+	        }).catch(function (error) {
+	            dispatch(loginFailure());
+	        });
+	    };
+	}
+
+	function login() {
+	    return {
+	        type: _ActionTypes.AUTH_LOGIN
+	    };
+	}
+
+	function loginSuccess(username) {
+	    return {
+	        type: _ActionTypes.AUTH_LOGIN_SUCCESS,
+	        username: username
+	    };
+	}
+
+	function loginFailure() {
+	    return {
+	        type: _ActionTypes.AUTH_LOGIN_FAILURE
+	    };
+	}
+
+/***/ },
+/* 286 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(287);
+
+/***/ },
+/* 287 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(288);
+	var bind = __webpack_require__(289);
+	var Axios = __webpack_require__(290);
+
+	/**
+	 * Create an instance of Axios
+	 *
+	 * @param {Object} defaultConfig The default config for the instance
+	 * @return {Axios} A new instance of Axios
+	 */
+	function createInstance(defaultConfig) {
+	  var context = new Axios(defaultConfig);
+	  var instance = bind(Axios.prototype.request, context);
+
+	  // Copy axios.prototype to instance
+	  utils.extend(instance, Axios.prototype, context);
+
+	  // Copy context to instance
+	  utils.extend(instance, context);
+
+	  return instance;
+	}
+
+	// Create the default instance to be exported
+	var axios = createInstance();
+
+	// Expose Axios class to allow class inheritance
+	axios.Axios = Axios;
+
+	// Factory for creating new instances
+	axios.create = function create(defaultConfig) {
+	  return createInstance(defaultConfig);
+	};
+
+	// Expose Cancel & CancelToken
+	axios.Cancel = __webpack_require__(308);
+	axios.CancelToken = __webpack_require__(309);
+	axios.isCancel = __webpack_require__(305);
+
+	// Expose all/spread
+	axios.all = function all(promises) {
+	  return Promise.all(promises);
+	};
+	axios.spread = __webpack_require__(310);
+
+	module.exports = axios;
+
+	// Allow use of default import syntax in TypeScript
+	module.exports.default = axios;
+
+
+/***/ },
+/* 288 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var bind = __webpack_require__(289);
+
+	/*global toString:true*/
+
+	// utils is a library of generic helper functions non-specific to axios
+
+	var toString = Object.prototype.toString;
+
+	/**
+	 * Determine if a value is an Array
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an Array, otherwise false
+	 */
+	function isArray(val) {
+	  return toString.call(val) === '[object Array]';
+	}
+
+	/**
+	 * Determine if a value is an ArrayBuffer
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+	 */
+	function isArrayBuffer(val) {
+	  return toString.call(val) === '[object ArrayBuffer]';
+	}
+
+	/**
+	 * Determine if a value is a FormData
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an FormData, otherwise false
+	 */
+	function isFormData(val) {
+	  return (typeof FormData !== 'undefined') && (val instanceof FormData);
+	}
+
+	/**
+	 * Determine if a value is a view on an ArrayBuffer
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+	 */
+	function isArrayBufferView(val) {
+	  var result;
+	  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+	    result = ArrayBuffer.isView(val);
+	  } else {
+	    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+	  }
+	  return result;
+	}
+
+	/**
+	 * Determine if a value is a String
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a String, otherwise false
+	 */
+	function isString(val) {
+	  return typeof val === 'string';
+	}
+
+	/**
+	 * Determine if a value is a Number
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Number, otherwise false
+	 */
+	function isNumber(val) {
+	  return typeof val === 'number';
+	}
+
+	/**
+	 * Determine if a value is undefined
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if the value is undefined, otherwise false
+	 */
+	function isUndefined(val) {
+	  return typeof val === 'undefined';
+	}
+
+	/**
+	 * Determine if a value is an Object
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an Object, otherwise false
+	 */
+	function isObject(val) {
+	  return val !== null && typeof val === 'object';
+	}
+
+	/**
+	 * Determine if a value is a Date
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Date, otherwise false
+	 */
+	function isDate(val) {
+	  return toString.call(val) === '[object Date]';
+	}
+
+	/**
+	 * Determine if a value is a File
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a File, otherwise false
+	 */
+	function isFile(val) {
+	  return toString.call(val) === '[object File]';
+	}
+
+	/**
+	 * Determine if a value is a Blob
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Blob, otherwise false
+	 */
+	function isBlob(val) {
+	  return toString.call(val) === '[object Blob]';
+	}
+
+	/**
+	 * Determine if a value is a Function
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Function, otherwise false
+	 */
+	function isFunction(val) {
+	  return toString.call(val) === '[object Function]';
+	}
+
+	/**
+	 * Determine if a value is a Stream
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Stream, otherwise false
+	 */
+	function isStream(val) {
+	  return isObject(val) && isFunction(val.pipe);
+	}
+
+	/**
+	 * Determine if a value is a URLSearchParams object
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+	 */
+	function isURLSearchParams(val) {
+	  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+	}
+
+	/**
+	 * Trim excess whitespace off the beginning and end of a string
+	 *
+	 * @param {String} str The String to trim
+	 * @returns {String} The String freed of excess whitespace
+	 */
+	function trim(str) {
+	  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+	}
+
+	/**
+	 * Determine if we're running in a standard browser environment
+	 *
+	 * This allows axios to run in a web worker, and react-native.
+	 * Both environments support XMLHttpRequest, but not fully standard globals.
+	 *
+	 * web workers:
+	 *  typeof window -> undefined
+	 *  typeof document -> undefined
+	 *
+	 * react-native:
+	 *  typeof document.createElement -> undefined
+	 */
+	function isStandardBrowserEnv() {
+	  return (
+	    typeof window !== 'undefined' &&
+	    typeof document !== 'undefined' &&
+	    typeof document.createElement === 'function'
+	  );
+	}
+
+	/**
+	 * Iterate over an Array or an Object invoking a function for each item.
+	 *
+	 * If `obj` is an Array callback will be called passing
+	 * the value, index, and complete array for each item.
+	 *
+	 * If 'obj' is an Object callback will be called passing
+	 * the value, key, and complete object for each property.
+	 *
+	 * @param {Object|Array} obj The object to iterate
+	 * @param {Function} fn The callback to invoke for each item
+	 */
+	function forEach(obj, fn) {
+	  // Don't bother if no value provided
+	  if (obj === null || typeof obj === 'undefined') {
+	    return;
+	  }
+
+	  // Force an array if not already something iterable
+	  if (typeof obj !== 'object' && !isArray(obj)) {
+	    /*eslint no-param-reassign:0*/
+	    obj = [obj];
+	  }
+
+	  if (isArray(obj)) {
+	    // Iterate over array values
+	    for (var i = 0, l = obj.length; i < l; i++) {
+	      fn.call(null, obj[i], i, obj);
+	    }
+	  } else {
+	    // Iterate over object keys
+	    for (var key in obj) {
+	      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+	        fn.call(null, obj[key], key, obj);
+	      }
+	    }
+	  }
+	}
+
+	/**
+	 * Accepts varargs expecting each argument to be an object, then
+	 * immutably merges the properties of each object and returns result.
+	 *
+	 * When multiple objects contain the same key the later object in
+	 * the arguments list will take precedence.
+	 *
+	 * Example:
+	 *
+	 * ```js
+	 * var result = merge({foo: 123}, {foo: 456});
+	 * console.log(result.foo); // outputs 456
+	 * ```
+	 *
+	 * @param {Object} obj1 Object to merge
+	 * @returns {Object} Result of all merge properties
+	 */
+	function merge(/* obj1, obj2, obj3, ... */) {
+	  var result = {};
+	  function assignValue(val, key) {
+	    if (typeof result[key] === 'object' && typeof val === 'object') {
+	      result[key] = merge(result[key], val);
+	    } else {
+	      result[key] = val;
+	    }
+	  }
+
+	  for (var i = 0, l = arguments.length; i < l; i++) {
+	    forEach(arguments[i], assignValue);
+	  }
+	  return result;
+	}
+
+	/**
+	 * Extends object a by mutably adding to it the properties of object b.
+	 *
+	 * @param {Object} a The object to be extended
+	 * @param {Object} b The object to copy properties from
+	 * @param {Object} thisArg The object to bind function to
+	 * @return {Object} The resulting value of object a
+	 */
+	function extend(a, b, thisArg) {
+	  forEach(b, function assignValue(val, key) {
+	    if (thisArg && typeof val === 'function') {
+	      a[key] = bind(val, thisArg);
+	    } else {
+	      a[key] = val;
+	    }
+	  });
+	  return a;
+	}
+
+	module.exports = {
+	  isArray: isArray,
+	  isArrayBuffer: isArrayBuffer,
+	  isFormData: isFormData,
+	  isArrayBufferView: isArrayBufferView,
+	  isString: isString,
+	  isNumber: isNumber,
+	  isObject: isObject,
+	  isUndefined: isUndefined,
+	  isDate: isDate,
+	  isFile: isFile,
+	  isBlob: isBlob,
+	  isFunction: isFunction,
+	  isStream: isStream,
+	  isURLSearchParams: isURLSearchParams,
+	  isStandardBrowserEnv: isStandardBrowserEnv,
+	  forEach: forEach,
+	  merge: merge,
+	  extend: extend,
+	  trim: trim
+	};
+
+
+/***/ },
+/* 289 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function bind(fn, thisArg) {
+	  return function wrap() {
+	    var args = new Array(arguments.length);
+	    for (var i = 0; i < args.length; i++) {
+	      args[i] = arguments[i];
+	    }
+	    return fn.apply(thisArg, args);
+	  };
+	};
+
+
+/***/ },
+/* 290 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var defaults = __webpack_require__(291);
+	var utils = __webpack_require__(288);
+	var InterceptorManager = __webpack_require__(302);
+	var dispatchRequest = __webpack_require__(303);
+	var isAbsoluteURL = __webpack_require__(306);
+	var combineURLs = __webpack_require__(307);
+
+	/**
+	 * Create a new instance of Axios
+	 *
+	 * @param {Object} defaultConfig The default config for the instance
+	 */
+	function Axios(defaultConfig) {
+	  this.defaults = utils.merge(defaults, defaultConfig);
+	  this.interceptors = {
+	    request: new InterceptorManager(),
+	    response: new InterceptorManager()
+	  };
+	}
+
+	/**
+	 * Dispatch a request
+	 *
+	 * @param {Object} config The config specific for this request (merged with this.defaults)
+	 */
+	Axios.prototype.request = function request(config) {
+	  /*eslint no-param-reassign:0*/
+	  // Allow for axios('example/url'[, config]) a la fetch API
+	  if (typeof config === 'string') {
+	    config = utils.merge({
+	      url: arguments[0]
+	    }, arguments[1]);
+	  }
+
+	  config = utils.merge(defaults, this.defaults, { method: 'get' }, config);
+
+	  // Support baseURL config
+	  if (config.baseURL && !isAbsoluteURL(config.url)) {
+	    config.url = combineURLs(config.baseURL, config.url);
+	  }
+
+	  // Hook up interceptors middleware
+	  var chain = [dispatchRequest, undefined];
+	  var promise = Promise.resolve(config);
+
+	  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+	    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+	  });
+
+	  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+	    chain.push(interceptor.fulfilled, interceptor.rejected);
+	  });
+
+	  while (chain.length) {
+	    promise = promise.then(chain.shift(), chain.shift());
+	  }
+
+	  return promise;
+	};
+
+	// Provide aliases for supported request methods
+	utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+	  /*eslint func-names:0*/
+	  Axios.prototype[method] = function(url, config) {
+	    return this.request(utils.merge(config || {}, {
+	      method: method,
+	      url: url
+	    }));
+	  };
+	});
+
+	utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+	  /*eslint func-names:0*/
+	  Axios.prototype[method] = function(url, data, config) {
+	    return this.request(utils.merge(config || {}, {
+	      method: method,
+	      url: url,
+	      data: data
+	    }));
+	  };
+	});
+
+	module.exports = Axios;
+
+
+/***/ },
+/* 291 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	var utils = __webpack_require__(288);
+	var normalizeHeaderName = __webpack_require__(292);
+
+	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
+	var DEFAULT_CONTENT_TYPE = {
+	  'Content-Type': 'application/x-www-form-urlencoded'
+	};
+
+	function setContentTypeIfUnset(headers, value) {
+	  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+	    headers['Content-Type'] = value;
+	  }
+	}
+
+	function getDefaultAdapter() {
+	  var adapter;
+	  if (typeof XMLHttpRequest !== 'undefined') {
+	    // For browsers use XHR adapter
+	    adapter = __webpack_require__(293);
+	  } else if (typeof process !== 'undefined') {
+	    // For node use HTTP adapter
+	    adapter = __webpack_require__(293);
+	  }
+	  return adapter;
+	}
+
+	module.exports = {
+	  adapter: getDefaultAdapter(),
+
+	  transformRequest: [function transformRequest(data, headers) {
+	    normalizeHeaderName(headers, 'Content-Type');
+	    if (utils.isFormData(data) ||
+	      utils.isArrayBuffer(data) ||
+	      utils.isStream(data) ||
+	      utils.isFile(data) ||
+	      utils.isBlob(data)
+	    ) {
+	      return data;
+	    }
+	    if (utils.isArrayBufferView(data)) {
+	      return data.buffer;
+	    }
+	    if (utils.isURLSearchParams(data)) {
+	      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+	      return data.toString();
+	    }
+	    if (utils.isObject(data)) {
+	      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+	      return JSON.stringify(data);
+	    }
+	    return data;
+	  }],
+
+	  transformResponse: [function transformResponse(data) {
+	    /*eslint no-param-reassign:0*/
+	    if (typeof data === 'string') {
+	      data = data.replace(PROTECTION_PREFIX, '');
+	      try {
+	        data = JSON.parse(data);
+	      } catch (e) { /* Ignore */ }
+	    }
+	    return data;
+	  }],
+
+	  headers: {
+	    common: {
+	      'Accept': 'application/json, text/plain, */*'
+	    },
+	    patch: utils.merge(DEFAULT_CONTENT_TYPE),
+	    post: utils.merge(DEFAULT_CONTENT_TYPE),
+	    put: utils.merge(DEFAULT_CONTENT_TYPE)
+	  },
+
+	  timeout: 0,
+
+	  xsrfCookieName: 'XSRF-TOKEN',
+	  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+	  maxContentLength: -1,
+
+	  validateStatus: function validateStatus(status) {
+	    return status >= 200 && status < 300;
+	  }
+	};
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 292 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(288);
+
+	module.exports = function normalizeHeaderName(headers, normalizedName) {
+	  utils.forEach(headers, function processHeader(value, name) {
+	    if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
+	      headers[normalizedName] = value;
+	      delete headers[name];
+	    }
+	  });
+	};
+
+
+/***/ },
+/* 293 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	var utils = __webpack_require__(288);
+	var settle = __webpack_require__(294);
+	var buildURL = __webpack_require__(297);
+	var parseHeaders = __webpack_require__(298);
+	var isURLSameOrigin = __webpack_require__(299);
+	var createError = __webpack_require__(295);
+	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(300);
+
+	module.exports = function xhrAdapter(config) {
+	  return new Promise(function dispatchXhrRequest(resolve, reject) {
+	    var requestData = config.data;
+	    var requestHeaders = config.headers;
+
+	    if (utils.isFormData(requestData)) {
+	      delete requestHeaders['Content-Type']; // Let the browser set it
+	    }
+
+	    var request = new XMLHttpRequest();
+	    var loadEvent = 'onreadystatechange';
+	    var xDomain = false;
+
+	    // For IE 8/9 CORS support
+	    // Only supports POST and GET calls and doesn't returns the response headers.
+	    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
+	    if (process.env.NODE_ENV !== 'test' &&
+	        typeof window !== 'undefined' &&
+	        window.XDomainRequest && !('withCredentials' in request) &&
+	        !isURLSameOrigin(config.url)) {
+	      request = new window.XDomainRequest();
+	      loadEvent = 'onload';
+	      xDomain = true;
+	      request.onprogress = function handleProgress() {};
+	      request.ontimeout = function handleTimeout() {};
+	    }
+
+	    // HTTP basic authentication
+	    if (config.auth) {
+	      var username = config.auth.username || '';
+	      var password = config.auth.password || '';
+	      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+	    }
+
+	    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+
+	    // Set the request timeout in MS
+	    request.timeout = config.timeout;
+
+	    // Listen for ready state
+	    request[loadEvent] = function handleLoad() {
+	      if (!request || (request.readyState !== 4 && !xDomain)) {
+	        return;
+	      }
+
+	      // The request errored out and we didn't get a response, this will be
+	      // handled by onerror instead
+	      // With one exception: request that using file: protocol, most browsers
+	      // will return status as 0 even though it's a successful request
+	      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+	        return;
+	      }
+
+	      // Prepare the response
+	      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+	      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+	      var response = {
+	        data: responseData,
+	        // IE sends 1223 instead of 204 (https://github.com/mzabriskie/axios/issues/201)
+	        status: request.status === 1223 ? 204 : request.status,
+	        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+	        headers: responseHeaders,
+	        config: config,
+	        request: request
+	      };
+
+	      settle(resolve, reject, response);
+
+	      // Clean up request
+	      request = null;
+	    };
+
+	    // Handle low level network errors
+	    request.onerror = function handleError() {
+	      // Real errors are hidden from us by the browser
+	      // onerror should only fire if it's a network error
+	      reject(createError('Network Error', config));
+
+	      // Clean up request
+	      request = null;
+	    };
+
+	    // Handle timeout
+	    request.ontimeout = function handleTimeout() {
+	      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED'));
+
+	      // Clean up request
+	      request = null;
+	    };
+
+	    // Add xsrf header
+	    // This is only done if running in a standard browser environment.
+	    // Specifically not if we're in a web worker, or react-native.
+	    if (utils.isStandardBrowserEnv()) {
+	      var cookies = __webpack_require__(301);
+
+	      // Add xsrf header
+	      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
+	          cookies.read(config.xsrfCookieName) :
+	          undefined;
+
+	      if (xsrfValue) {
+	        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+	      }
+	    }
+
+	    // Add headers to the request
+	    if ('setRequestHeader' in request) {
+	      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+	        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+	          // Remove Content-Type if data is undefined
+	          delete requestHeaders[key];
+	        } else {
+	          // Otherwise add header to the request
+	          request.setRequestHeader(key, val);
+	        }
+	      });
+	    }
+
+	    // Add withCredentials to request if needed
+	    if (config.withCredentials) {
+	      request.withCredentials = true;
+	    }
+
+	    // Add responseType to request if needed
+	    if (config.responseType) {
+	      try {
+	        request.responseType = config.responseType;
+	      } catch (e) {
+	        if (request.responseType !== 'json') {
+	          throw e;
+	        }
+	      }
+	    }
+
+	    // Handle progress if needed
+	    if (typeof config.onDownloadProgress === 'function') {
+	      request.addEventListener('progress', config.onDownloadProgress);
+	    }
+
+	    // Not all browsers support upload events
+	    if (typeof config.onUploadProgress === 'function' && request.upload) {
+	      request.upload.addEventListener('progress', config.onUploadProgress);
+	    }
+
+	    if (config.cancelToken) {
+	      // Handle cancellation
+	      config.cancelToken.promise.then(function onCanceled(cancel) {
+	        if (!request) {
+	          return;
+	        }
+
+	        request.abort();
+	        reject(cancel);
+	        // Clean up request
+	        request = null;
+	      });
+	    }
+
+	    if (requestData === undefined) {
+	      requestData = null;
+	    }
+
+	    // Send the request
+	    request.send(requestData);
+	  });
+	};
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 294 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var createError = __webpack_require__(295);
+
+	/**
+	 * Resolve or reject a Promise based on response status.
+	 *
+	 * @param {Function} resolve A function that resolves the promise.
+	 * @param {Function} reject A function that rejects the promise.
+	 * @param {object} response The response.
+	 */
+	module.exports = function settle(resolve, reject, response) {
+	  var validateStatus = response.config.validateStatus;
+	  // Note: status is not exposed by XDomainRequest
+	  if (!response.status || !validateStatus || validateStatus(response.status)) {
+	    resolve(response);
+	  } else {
+	    reject(createError(
+	      'Request failed with status code ' + response.status,
+	      response.config,
+	      null,
+	      response
+	    ));
+	  }
+	};
+
+
+/***/ },
+/* 295 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var enhanceError = __webpack_require__(296);
+
+	/**
+	 * Create an Error with the specified message, config, error code, and response.
+	 *
+	 * @param {string} message The error message.
+	 * @param {Object} config The config.
+	 * @param {string} [code] The error code (for example, 'ECONNABORTED').
+	 @ @param {Object} [response] The response.
+	 * @returns {Error} The created error.
+	 */
+	module.exports = function createError(message, config, code, response) {
+	  var error = new Error(message);
+	  return enhanceError(error, config, code, response);
+	};
+
+
+/***/ },
+/* 296 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Update an Error with the specified config, error code, and response.
+	 *
+	 * @param {Error} error The error to update.
+	 * @param {Object} config The config.
+	 * @param {string} [code] The error code (for example, 'ECONNABORTED').
+	 @ @param {Object} [response] The response.
+	 * @returns {Error} The error.
+	 */
+	module.exports = function enhanceError(error, config, code, response) {
+	  error.config = config;
+	  if (code) {
+	    error.code = code;
+	  }
+	  error.response = response;
+	  return error;
+	};
+
+
+/***/ },
+/* 297 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(288);
+
+	function encode(val) {
+	  return encodeURIComponent(val).
+	    replace(/%40/gi, '@').
+	    replace(/%3A/gi, ':').
+	    replace(/%24/g, '$').
+	    replace(/%2C/gi, ',').
+	    replace(/%20/g, '+').
+	    replace(/%5B/gi, '[').
+	    replace(/%5D/gi, ']');
+	}
+
+	/**
+	 * Build a URL by appending params to the end
+	 *
+	 * @param {string} url The base of the url (e.g., http://www.google.com)
+	 * @param {object} [params] The params to be appended
+	 * @returns {string} The formatted url
+	 */
+	module.exports = function buildURL(url, params, paramsSerializer) {
+	  /*eslint no-param-reassign:0*/
+	  if (!params) {
+	    return url;
+	  }
+
+	  var serializedParams;
+	  if (paramsSerializer) {
+	    serializedParams = paramsSerializer(params);
+	  } else if (utils.isURLSearchParams(params)) {
+	    serializedParams = params.toString();
+	  } else {
+	    var parts = [];
+
+	    utils.forEach(params, function serialize(val, key) {
+	      if (val === null || typeof val === 'undefined') {
+	        return;
+	      }
+
+	      if (utils.isArray(val)) {
+	        key = key + '[]';
+	      }
+
+	      if (!utils.isArray(val)) {
+	        val = [val];
+	      }
+
+	      utils.forEach(val, function parseValue(v) {
+	        if (utils.isDate(v)) {
+	          v = v.toISOString();
+	        } else if (utils.isObject(v)) {
+	          v = JSON.stringify(v);
+	        }
+	        parts.push(encode(key) + '=' + encode(v));
+	      });
+	    });
+
+	    serializedParams = parts.join('&');
+	  }
+
+	  if (serializedParams) {
+	    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+	  }
+
+	  return url;
+	};
+
+
+/***/ },
+/* 298 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(288);
+
+	/**
+	 * Parse headers into an object
+	 *
+	 * ```
+	 * Date: Wed, 27 Aug 2014 08:58:49 GMT
+	 * Content-Type: application/json
+	 * Connection: keep-alive
+	 * Transfer-Encoding: chunked
+	 * ```
+	 *
+	 * @param {String} headers Headers needing to be parsed
+	 * @returns {Object} Headers parsed into an object
+	 */
+	module.exports = function parseHeaders(headers) {
+	  var parsed = {};
+	  var key;
+	  var val;
+	  var i;
+
+	  if (!headers) { return parsed; }
+
+	  utils.forEach(headers.split('\n'), function parser(line) {
+	    i = line.indexOf(':');
+	    key = utils.trim(line.substr(0, i)).toLowerCase();
+	    val = utils.trim(line.substr(i + 1));
+
+	    if (key) {
+	      parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+	    }
+	  });
+
+	  return parsed;
+	};
+
+
+/***/ },
+/* 299 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(288);
+
+	module.exports = (
+	  utils.isStandardBrowserEnv() ?
+
+	  // Standard browser envs have full support of the APIs needed to test
+	  // whether the request URL is of the same origin as current location.
+	  (function standardBrowserEnv() {
+	    var msie = /(msie|trident)/i.test(navigator.userAgent);
+	    var urlParsingNode = document.createElement('a');
+	    var originURL;
+
+	    /**
+	    * Parse a URL to discover it's components
+	    *
+	    * @param {String} url The URL to be parsed
+	    * @returns {Object}
+	    */
+	    function resolveURL(url) {
+	      var href = url;
+
+	      if (msie) {
+	        // IE needs attribute set twice to normalize properties
+	        urlParsingNode.setAttribute('href', href);
+	        href = urlParsingNode.href;
+	      }
+
+	      urlParsingNode.setAttribute('href', href);
+
+	      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+	      return {
+	        href: urlParsingNode.href,
+	        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+	        host: urlParsingNode.host,
+	        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+	        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+	        hostname: urlParsingNode.hostname,
+	        port: urlParsingNode.port,
+	        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+	                  urlParsingNode.pathname :
+	                  '/' + urlParsingNode.pathname
+	      };
+	    }
+
+	    originURL = resolveURL(window.location.href);
+
+	    /**
+	    * Determine if a URL shares the same origin as the current location
+	    *
+	    * @param {String} requestURL The URL to test
+	    * @returns {boolean} True if URL shares the same origin, otherwise false
+	    */
+	    return function isURLSameOrigin(requestURL) {
+	      var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+	      return (parsed.protocol === originURL.protocol &&
+	            parsed.host === originURL.host);
+	    };
+	  })() :
+
+	  // Non standard browser envs (web workers, react-native) lack needed support.
+	  (function nonStandardBrowserEnv() {
+	    return function isURLSameOrigin() {
+	      return true;
+	    };
+	  })()
+	);
+
+
+/***/ },
+/* 300 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
+
+	var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+	function E() {
+	  this.message = 'String contains an invalid character';
+	}
+	E.prototype = new Error;
+	E.prototype.code = 5;
+	E.prototype.name = 'InvalidCharacterError';
+
+	function btoa(input) {
+	  var str = String(input);
+	  var output = '';
+	  for (
+	    // initialize result and counter
+	    var block, charCode, idx = 0, map = chars;
+	    // if the next str index does not exist:
+	    //   change the mapping table to "="
+	    //   check if d has no fractional digits
+	    str.charAt(idx | 0) || (map = '=', idx % 1);
+	    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
+	    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+	  ) {
+	    charCode = str.charCodeAt(idx += 3 / 4);
+	    if (charCode > 0xFF) {
+	      throw new E();
+	    }
+	    block = block << 8 | charCode;
+	  }
+	  return output;
+	}
+
+	module.exports = btoa;
+
+
+/***/ },
+/* 301 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(288);
+
+	module.exports = (
+	  utils.isStandardBrowserEnv() ?
+
+	  // Standard browser envs support document.cookie
+	  (function standardBrowserEnv() {
+	    return {
+	      write: function write(name, value, expires, path, domain, secure) {
+	        var cookie = [];
+	        cookie.push(name + '=' + encodeURIComponent(value));
+
+	        if (utils.isNumber(expires)) {
+	          cookie.push('expires=' + new Date(expires).toGMTString());
+	        }
+
+	        if (utils.isString(path)) {
+	          cookie.push('path=' + path);
+	        }
+
+	        if (utils.isString(domain)) {
+	          cookie.push('domain=' + domain);
+	        }
+
+	        if (secure === true) {
+	          cookie.push('secure');
+	        }
+
+	        document.cookie = cookie.join('; ');
+	      },
+
+	      read: function read(name) {
+	        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+	        return (match ? decodeURIComponent(match[3]) : null);
+	      },
+
+	      remove: function remove(name) {
+	        this.write(name, '', Date.now() - 86400000);
+	      }
+	    };
+	  })() :
+
+	  // Non standard browser env (web workers, react-native) lack needed support.
+	  (function nonStandardBrowserEnv() {
+	    return {
+	      write: function write() {},
+	      read: function read() { return null; },
+	      remove: function remove() {}
+	    };
+	  })()
+	);
+
+
+/***/ },
+/* 302 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(288);
+
+	function InterceptorManager() {
+	  this.handlers = [];
+	}
+
+	/**
+	 * Add a new interceptor to the stack
+	 *
+	 * @param {Function} fulfilled The function to handle `then` for a `Promise`
+	 * @param {Function} rejected The function to handle `reject` for a `Promise`
+	 *
+	 * @return {Number} An ID used to remove interceptor later
+	 */
+	InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+	  this.handlers.push({
+	    fulfilled: fulfilled,
+	    rejected: rejected
+	  });
+	  return this.handlers.length - 1;
+	};
+
+	/**
+	 * Remove an interceptor from the stack
+	 *
+	 * @param {Number} id The ID that was returned by `use`
+	 */
+	InterceptorManager.prototype.eject = function eject(id) {
+	  if (this.handlers[id]) {
+	    this.handlers[id] = null;
+	  }
+	};
+
+	/**
+	 * Iterate over all the registered interceptors
+	 *
+	 * This method is particularly useful for skipping over any
+	 * interceptors that may have become `null` calling `eject`.
+	 *
+	 * @param {Function} fn The function to call for each interceptor
+	 */
+	InterceptorManager.prototype.forEach = function forEach(fn) {
+	  utils.forEach(this.handlers, function forEachHandler(h) {
+	    if (h !== null) {
+	      fn(h);
+	    }
+	  });
+	};
+
+	module.exports = InterceptorManager;
+
+
+/***/ },
+/* 303 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(288);
+	var transformData = __webpack_require__(304);
+	var isCancel = __webpack_require__(305);
+	var defaults = __webpack_require__(291);
+
+	/**
+	 * Throws a `Cancel` if cancellation has been requested.
+	 */
+	function throwIfCancellationRequested(config) {
+	  if (config.cancelToken) {
+	    config.cancelToken.throwIfRequested();
+	  }
+	}
+
+	/**
+	 * Dispatch a request to the server using the configured adapter.
+	 *
+	 * @param {object} config The config that is to be used for the request
+	 * @returns {Promise} The Promise to be fulfilled
+	 */
+	module.exports = function dispatchRequest(config) {
+	  throwIfCancellationRequested(config);
+
+	  // Ensure headers exist
+	  config.headers = config.headers || {};
+
+	  // Transform request data
+	  config.data = transformData(
+	    config.data,
+	    config.headers,
+	    config.transformRequest
+	  );
+
+	  // Flatten headers
+	  config.headers = utils.merge(
+	    config.headers.common || {},
+	    config.headers[config.method] || {},
+	    config.headers || {}
+	  );
+
+	  utils.forEach(
+	    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+	    function cleanHeaderConfig(method) {
+	      delete config.headers[method];
+	    }
+	  );
+
+	  var adapter = config.adapter || defaults.adapter;
+
+	  return adapter(config).then(function onAdapterResolution(response) {
+	    throwIfCancellationRequested(config);
+
+	    // Transform response data
+	    response.data = transformData(
+	      response.data,
+	      response.headers,
+	      config.transformResponse
+	    );
+
+	    return response;
+	  }, function onAdapterRejection(reason) {
+	    if (!isCancel(reason)) {
+	      throwIfCancellationRequested(config);
+
+	      // Transform response data
+	      if (reason && reason.response) {
+	        reason.response.data = transformData(
+	          reason.response.data,
+	          reason.response.headers,
+	          config.transformResponse
+	        );
+	      }
+	    }
+
+	    return Promise.reject(reason);
+	  });
+	};
+
+
+/***/ },
+/* 304 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(288);
+
+	/**
+	 * Transform the data for a request or a response
+	 *
+	 * @param {Object|String} data The data to be transformed
+	 * @param {Array} headers The headers for the request or response
+	 * @param {Array|Function} fns A single function or Array of functions
+	 * @returns {*} The resulting transformed data
+	 */
+	module.exports = function transformData(data, headers, fns) {
+	  /*eslint no-param-reassign:0*/
+	  utils.forEach(fns, function transform(fn) {
+	    data = fn(data, headers);
+	  });
+
+	  return data;
+	};
+
+
+/***/ },
+/* 305 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function isCancel(value) {
+	  return !!(value && value.__CANCEL__);
+	};
+
+
+/***/ },
+/* 306 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Determines whether the specified URL is absolute
+	 *
+	 * @param {string} url The URL to test
+	 * @returns {boolean} True if the specified URL is absolute, otherwise false
+	 */
+	module.exports = function isAbsoluteURL(url) {
+	  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+	  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+	  // by any combination of letters, digits, plus, period, or hyphen.
+	  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+	};
+
+
+/***/ },
+/* 307 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Creates a new URL by combining the specified URLs
+	 *
+	 * @param {string} baseURL The base URL
+	 * @param {string} relativeURL The relative URL
+	 * @returns {string} The combined URL
+	 */
+	module.exports = function combineURLs(baseURL, relativeURL) {
+	  return baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '');
+	};
+
+
+/***/ },
+/* 308 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * A `Cancel` is an object that is thrown when an operation is canceled.
+	 *
+	 * @class
+	 * @param {string=} message The message.
+	 */
+	function Cancel(message) {
+	  this.message = message;
+	}
+
+	Cancel.prototype.toString = function toString() {
+	  return 'Cancel' + (this.message ? ': ' + this.message : '');
+	};
+
+	Cancel.prototype.__CANCEL__ = true;
+
+	module.exports = Cancel;
+
+
+/***/ },
+/* 309 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var Cancel = __webpack_require__(308);
+
+	/**
+	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
+	 *
+	 * @class
+	 * @param {Function} executor The executor function.
+	 */
+	function CancelToken(executor) {
+	  if (typeof executor !== 'function') {
+	    throw new TypeError('executor must be a function.');
+	  }
+
+	  var resolvePromise;
+	  this.promise = new Promise(function promiseExecutor(resolve) {
+	    resolvePromise = resolve;
+	  });
+
+	  var token = this;
+	  executor(function cancel(message) {
+	    if (token.reason) {
+	      // Cancellation has already been requested
+	      return;
+	    }
+
+	    token.reason = new Cancel(message);
+	    resolvePromise(token.reason);
+	  });
+	}
+
+	/**
+	 * Throws a `Cancel` if cancellation has been requested.
+	 */
+	CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+	  if (this.reason) {
+	    throw this.reason;
+	  }
+	};
+
+	/**
+	 * Returns an object that contains a new `CancelToken` and a function that, when called,
+	 * cancels the `CancelToken`.
+	 */
+	CancelToken.source = function source() {
+	  var cancel;
+	  var token = new CancelToken(function executor(c) {
+	    cancel = c;
+	  });
+	  return {
+	    token: token,
+	    cancel: cancel
+	  };
+	};
+
+	module.exports = CancelToken;
+
+
+/***/ },
+/* 310 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Syntactic sugar for invoking a function and expanding an array for arguments.
+	 *
+	 * Common use case would be to use `Function.prototype.apply`.
+	 *
+	 *  ```js
+	 *  function f(x, y, z) {}
+	 *  var args = [1, 2, 3];
+	 *  f.apply(null, args);
+	 *  ```
+	 *
+	 * With `spread` this example can be re-written.
+	 *
+	 *  ```js
+	 *  spread(function(x, y, z) {})([1, 2, 3]);
+	 *  ```
+	 *
+	 * @param {Function} callback
+	 * @returns {Function}
+	 */
+	module.exports = function spread(callback) {
+	  return function wrap(arr) {
+	    return callback.apply(null, arr);
+	  };
+	};
+
+
+/***/ },
+/* 311 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(227);
+
+	var _components = __webpack_require__(259);
+
+	var _authentication = __webpack_require__(285);
+
+	var _reactRouter = __webpack_require__(172);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {};
+
+	var defaultProps = {};
+
+	var Register = function (_React$Component) {
+	    _inherits(Register, _React$Component);
+
+	    function Register(props) {
+	        _classCallCheck(this, Register);
+
+	        return _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this, props));
+	    }
+
+	    _createClass(Register, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'nav',
+	                    { className: 'navbar navbar-transparent navbar-absolute' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'container' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'navbar-header' },
+	                            _react2.default.createElement(
+	                                'button',
+	                                { type: 'button', className: 'navbar-toggle', 'data-toggle': 'collapse', 'data-target': '#navigation-example-2' },
+	                                _react2.default.createElement(
+	                                    'span',
+	                                    { className: 'sr-only' },
+	                                    'Toggle navigation'
+	                                ),
+	                                _react2.default.createElement('span', { className: 'icon-bar' }),
+	                                _react2.default.createElement('span', { className: 'icon-bar' }),
+	                                _react2.default.createElement('span', { className: 'icon-bar' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'a',
+	                                { className: 'navbar-brand', href: '#' },
+	                                'Badge-Ma'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'collapse navbar-collapse' },
+	                            _react2.default.createElement(
+	                                'ul',
+	                                { className: 'nav navbar-nav navbar-right' },
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { to: '/login' },
+	                                        'Login'
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'wrapper wrapper-full-page' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'full-page login-page', 'data-color': '', 'data-image': '../../public/assets/img/background/background-2.jpg' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'content' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'container' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'row' },
+	                                    _react2.default.createElement(_components.Authentication, { mode: false })
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'footer',
+	                            { className: 'footer footer-transparent' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'container' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'copyright' },
+	                                    '2016 made with',
+	                                    _react2.default.createElement('i', { className: 'fa fa-heart heart' }),
+	                                    _react2.default.createElement(
+	                                        'a',
+	                                        null,
+	                                        ' by Badge-Ma'
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Register;
+	}(_react2.default.Component);
+
+	exports.default = Register;
+
+
+	Register.propTypes = propTypes;
+	Register.defaultProps = defaultProps;
+
+/***/ },
+/* 312 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(227);
+
+	var _components = __webpack_require__(259);
+
+	var _minicard = __webpack_require__(313);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Dashboard = function (_React$Component) {
+	    _inherits(Dashboard, _React$Component);
+
+	    function Dashboard() {
+	        _classCallCheck(this, Dashboard);
+
+	        return _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).apply(this, arguments));
+	    }
+
+	    _createClass(Dashboard, [{
+	        key: 'render',
+	        value: function render() {
+
+	            var mockData = [{
+	                "title": "Memo1",
+	                "contents": "Testing"
+	            }, {
+	                "title": "Memo1",
+	                "contents": "Testing"
+	            }, {
+	                "title": "Memo1",
+	                "contents": "Testing"
+	            }, {
+	                "title": "Memo1",
+	                "contents": "Testing"
+	            }];
+
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'content' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'container-fluid' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-lg-3 col-sm-6' },
+	                            _react2.default.createElement(_components.MiniCard, { cate: true, mode: true,
+	                                value1st: this.props.mini1th })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-lg-3 col-sm-6' },
+	                            _react2.default.createElement(_components.MiniCard, { cate: true, mode: false,
+	                                value2st: this.props.mini2th })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-lg-3 col-sm-6' },
+	                            _react2.default.createElement(_components.MiniCard, { cate: false, mode: true,
+	                                value3st: this.props.mini3th })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-lg-3 col-sm-6' },
+	                            _react2.default.createElement(_components.MiniCard, { cate: false, mode: false,
+	                                value4st: this.props.mini4th })
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-lg-4 col-sm-6' },
+	                            _react2.default.createElement(_components.Chart, { title: '\uC5F0\uAC04 \uC2E0\uACE0 \uAC74\uC218' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-lg-4 col-sm-6' },
+	                            _react2.default.createElement(_components.Chart, { title: '\uC6D4\uAC04 \uC2E0\uACE0 \uAC74\uC218' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-lg-4 col-sm-6' },
+	                            _react2.default.createElement(_components.Chart, { title: '\uC8FC\uAC04 \uC2E0\uACE0 \uAC74\uC218' })
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-lg-4 col-sm-6' },
+	                            _react2.default.createElement(_components.Chart, { title: '\uC5F0\uAC04 \uC0C1\uB2F4 \uAC74\uC218' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-lg-4 col-sm-6' },
+	                            _react2.default.createElement(_components.Chart, { title: '\uC6D4\uAC04 \uC0C1\uB2F4 \uAC74\uC218' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-lg-4 col-sm-6' },
+	                            _react2.default.createElement(_components.Chart, { title: '\uC8FC\uAC04 \uC0C1\uB2F4 \uAC74\uC218' })
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Dashboard;
+	}(_react2.default.Component);
+
+	var mapStateToProps = function mapStateToProps(state) {
+	    return {
+	        mini1th: state.minicard.count.mini1th,
+	        mini2th: state.minicard.count.mini2th,
+	        mini3th: state.minicard.count.mini3th,
+	        mini4th: state.minicard.count.mini4th
+	    };
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	    return {
+	        updateMini1st: function updateMini1st(value) {
+	            return dispatch((0, _minicard.updateMini1st)(value));
+	        },
+	        updateMini2st: function updateMini2st(value) {
+	            return dispatch((0, _minicard.updateMini2st)(value));
+	        },
+	        updateMini3st: function updateMini3st(value) {
+	            return dispatch((0, _minicard.updateMini3st)(value));
+	        },
+	        updateMini4st: function updateMini4st(value) {
+	            return dispatch((0, _minicard.updateMini4st)(value));
+	        }
+	    };
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Dashboard);
+
+/***/ },
+/* 313 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.updateMini1st = updateMini1st;
+	exports.updateMini2st = updateMini2st;
+	exports.updateMini3st = updateMini3st;
+	exports.updateMini4st = updateMini4st;
+
+	var _ActionTypes = __webpack_require__(251);
+
+	function updateMini1st(value) {
+	    return {
+	        type: MENU_UPDATE_1TH,
+	        value: value
+	    };
+	}
+
+	function updateMini2st(value) {
+	    return {
+	        type: MENU_UPDATE_2TH,
+	        value: value
+	    };
+	}
+
+	function updateMini3st(value) {
+	    return {
+	        type: MENU_UPDATE_3TH,
+	        value: value
+	    };
+	}
+
+	function updateMini4st(value) {
+	    return {
+	        type: MENU_UPDATE_4TH,
+	        value: value
+	    };
+	}
+
+/***/ },
+/* 314 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _components = __webpack_require__(259);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var propTypes = {};
+
+	var defaultProps = {};
+
+	var SeatingChart = function (_React$Component) {
+		_inherits(SeatingChart, _React$Component);
+
+		function SeatingChart(props) {
+			_classCallCheck(this, SeatingChart);
+
+			return _possibleConstructorReturn(this, (SeatingChart.__proto__ || Object.getPrototypeOf(SeatingChart)).call(this, props));
+		}
+
+		_createClass(SeatingChart, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					{ className: 'content' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'container-fluid' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-12' },
+								_react2.default.createElement(
+									'div',
+									{ className: 'card' },
+									_react2.default.createElement(
+										'div',
+										{ className: 'header' },
+										_react2.default.createElement(
+											'h4',
+											{ className: 'title' },
+											'\uBC18\uBCC4 \uBC30\uCE58 \uC0C1\uD669'
+										),
+										_react2.default.createElement(
+											'p',
+											{ className: 'category' },
+											'\uC2E4\uC2DC\uAC04 \uC791\uB3D9 \uAC10\uC2DC'
+										),
+										_react2.default.createElement('br', null)
+									),
+									_react2.default.createElement(
+										'div',
+										{ className: 'content' },
+										_react2.default.createElement('hr', null),
+										_react2.default.createElement(_components.Floor, { floorName: '1\uCE35', floorNum: 0 }),
+										_react2.default.createElement('hr', null),
+										_react2.default.createElement(_components.Floor, { floorName: '2\uCE35', floorNum: 1 }),
+										_react2.default.createElement('hr', null),
+										_react2.default.createElement(_components.Floor, { floorName: '3\uCE35', floorNum: 2 })
+									)
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+
+		return SeatingChart;
+	}(_react2.default.Component);
+
+	SeatingChart.propTypes = propTypes;
+	SeatingChart.defaultProps = defaultProps;
+
+	exports.default = SeatingChart;
 
 /***/ }
 /******/ ]);

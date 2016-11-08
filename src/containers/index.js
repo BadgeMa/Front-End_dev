@@ -7,5 +7,6 @@ import Login from './Login';
 import Register from './Register';
 import Dashboard from './Dashboard';
 import SeatingChart from './SeatingChart';
+import User from './User';
 
-export { App, Home, BambooGrove, ReportManager, CounselManager, Login, Register, Dashboard, SeatingChart };
+export { App, Home, BambooGrove, ReportManager, CounselManager, Login, Register, Dashboard, SeatingChart, User };
