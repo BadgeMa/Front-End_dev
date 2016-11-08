@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import SweetAlert from 'sweetalert-react';
 
 const propTypes = {
 	roomName: React.PropTypes.string
@@ -13,6 +14,9 @@ class Room extends React.Component {
 	constructor(props) {
         super(props);
 
+		this.state = {
+			show: false
+		};
 	}
 
 	render() {
@@ -38,7 +42,15 @@ class Room extends React.Component {
         return(
 			<div>
 				<div style={stylePhoto}>
-					<img style={stylePhotoImg} src="./assets/img/faces/face-2.jpg" />
+					<img style={stylePhotoImg}
+						src="./assets/img/faces/face-2.jpg"
+						onClick={ () => this.setState({ show: true }) } />
+					<SweetAlert
+					    show={this.state.show}
+					    title="Demo"
+				        text="SweetAlert in React"
+				    	onConfirm={ () => this.setState({ show: false }) }
+					/>
 				</div>
 				<div style={styleInfo}>
 					<p>{this.props.roomName}</p>

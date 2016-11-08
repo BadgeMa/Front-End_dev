@@ -42,55 +42,9 @@ class Header extends React.Component {
                             <span className="icon-bar bar2"></span>
                             <span className="icon-bar bar3"></span>
                         </button>
-                        <Link to="#" className="navbar-brand">{this.props.currentMenu}</Link>
+                        <Link to={this.props.currentMenu} className="navbar-brand">{this.props.currentMenu}</Link>
                     </div>
-                    <div className="collapse navbar-collapse">
-                        <ul className="nav navbar-nav navbar-right">
-                            <li>
-                                <Link to="/home" className="btn-magnify">
-                                    <i className="ti-home"></i>
-                                    <p onClick={this.handleHome}>
-										Home
-									</p>
-                                </Link>
-                            </li>
-                            <li className="dropdown">
-                                <Link to="#notifications" className="dropdown-toggle btn-rotate" data-toggle="dropdown">
-                                    <i className="ti-bell"></i>
-                                    <span className="notification">5</span>
-                                    <p className="hidden-md hidden-lg">
-                                        Notifications
-                                        <b className="caret"></b>
-                                    </p>
-                                </Link>
-                                <ul className="dropdown-menu">
-                                    <li>
-                                        <Link to="#not1">Notification 1</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="#not2">Notification 2</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="#not3">Notification 3</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="#not4">Notification 4</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="#another">Another notification</Link>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <Link to="#settings" className="btn-rotate">
-                                    <i className="ti-settings"></i>
-                                    <p className="hidden-md hidden-lg">
-                                        Settings
-                                    </p>
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+
                 </div>
             </nav>
         );
