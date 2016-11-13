@@ -14,9 +14,23 @@ class Room extends React.Component {
 	constructor(props) {
         super(props);
 
-		this.state = {
-			show: false
-		};
+
+		this.handleRoom = this.handleRoom.bind(this);
+	}
+
+
+	handleRoom() {
+		swal({  title: this.props.roomName,
+				html:
+					'You can use <b>bold text</b>, ' +
+					'<a href="http://github.com">links</a> ' +
+					'and other HTML tags'
+			});
+	}
+
+	componentDidMount() {
+
+
 	}
 
 	render() {
@@ -44,13 +58,7 @@ class Room extends React.Component {
 				<div style={stylePhoto}>
 					<img style={stylePhotoImg}
 						src="./assets/img/faces/face-2.jpg"
-						onClick={ () => this.setState({ show: true }) } />
-					<SweetAlert
-					    show={this.state.show}
-					    title="Demo"
-				        text="SweetAlert in React"
-				    	onConfirm={ () => this.setState({ show: false }) }
-					/>
+						onClick={this.handleRoom}/>
 				</div>
 				<div style={styleInfo}>
 					<p>{this.props.roomName}</p>

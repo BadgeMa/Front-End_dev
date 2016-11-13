@@ -8,6 +8,9 @@ import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
 import thunk from 'redux-thunk';
 
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './sagas';
+
 import {
     App,
     Home,
@@ -21,7 +24,13 @@ import {
 	User
 } from './containers';
 
-const store = createStore(reducers, applyMiddleware(thunk));
+const sagaMiddleware = createSagaMiddleware();
+let middleware = [sagaMiddleware];
+
+const store = createStore(reducers, applyMiddleware(thunk, ...middleware));
+
+sagaMiddleware.run(rootSaga);
+
 let rootElement = document.getElementById('root');
 
 ReactDOM.render(

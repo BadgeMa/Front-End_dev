@@ -82,7 +82,7 @@
 	<script src="./assets/js/fullcalendar.min.js"></script>
 
 	<!-- Paper Dashboard PRO Core javascript and methods for Demo purpose -->
-	<script src="./assets/js/paper-dashboard.js"></script>
+	<script src="../../assets/js/paper-dashboard.js"></script>
 
 	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 	<script src="./assets/js/demo.js"></script>
@@ -95,6 +95,14 @@
 				// after 1000 ms we add the class animated to the login/register card
 				$('.card').removeClass('card-hidden');
 			}, 700)
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			demo.initOverviewDashboard();
+			demo.initCirclePercentage();
+
 		});
 	</script>
 

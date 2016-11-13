@@ -23,6 +23,10 @@ class Sidebar extends React.Component {
 		this.handleProfile = this.handleProfile.bind(this);
 	}
 
+	componentDidMount() {
+		
+	}
+
 	handleDashboard() {
 		this.props.onUpdate('Dashboard');
 	}

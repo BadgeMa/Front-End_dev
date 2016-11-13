@@ -3,11 +3,37 @@ import ChartistGraph from 'react-chartist';
 
 
 const propTypes = {
-	title: React.PropTypes.string
+	title: React.PropTypes.string,
+	data: React.PropTypes.object,
+	options: React.PropTypes.object
 };
 
 const defaultProps = {
 	title: "chart title",
+	data: {
+		labels: ['Jan','Feb','Mar', 'April', 'May', 'June'],
+	  	series: [
+			[230, 340, 400, 300, 570, 500, 800]
+		]
+  	},
+	options: {
+		showPoint: false,
+		lineSmooth: true,
+		height: "210px",
+		axisX: {
+		  showGrid: false,
+		  showLabel: true
+		},
+		axisY: {
+		  offset: 40,
+		  showGrid: false
+		},
+		low: 0,
+		high: 'auto',
+		classNames: {
+			line: 'ct-line ct-green'
+		}
+	}
 };
 
 class Chart extends React.Component {
@@ -17,60 +43,11 @@ class Chart extends React.Component {
 
     }
 
+	componentDidMount() {
+		Chartist.Line('#chart', this.props.data, this.props.options);
+	}
+
     render() {
-
-		var dataPrice = {
-		  labels: ['Jan','Feb','Mar', 'April', 'May', 'June'],
-		  series: [
-			[230, 340, 400, 300, 570, 500, 800]
-		  ]
-		};
-
-		var optionsPrice = {
-		  showPoint: false,
-		  lineSmooth: true,
-		  height: "210px",
-		  axisX: {
-			showGrid: false,
-			showLabel: true
-		  },
-		  axisY: {
-			offset: 40,
-			showGrid: false
-		  },
-		  low: 0,
-		  high: 'auto',
-			  classNames: {
-				line: 'ct-line ct-green'
-			}
-		};
-
-		var data = {
-	      labels: ['2009', '2010', '2011', '2012', '2013', '2014', '2015'],
-	      series: [
-	        [200, 300, 400, 800, 600, 500, 700]
-	      ]
-	    };
-
-	    var options = {
-  		  	low: 0,
-			high: 1000,
-			height: "210px",
-			showPoint: false,
-			lineSmooth: true,
-	        axisX: {
-	        	labelInterpolationFnc: function(value, index) {
-	        		return index % 2 === 0 ? value : null;
-				},
-				showGrid: false
-			},
-			classNames: {
-				line: 'ct-line ct-red'
-			}
-		};
-
-	    var type = 'Line'
-
 
         return (
             <div className="card">
@@ -95,7 +72,7 @@ class Chart extends React.Component {
                         <span className="text-muted">quarters</span>
                     </h6>
 					<div>
-						<ChartistGraph data={data} options={options} type={type} className="ct-line ct-red" />
+						<div id="chart"></div>
 					</div>
 	                <div className="card-footer">
 	                    <hr/>

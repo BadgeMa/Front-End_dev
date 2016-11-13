@@ -1,27 +1,53 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {MemoList, MiniCard, Chart} from '../components';
-import {updateMini1st, updateMini2st, updateMini3st, updateMini4st} from '../actions/minicard';
+import { totalReportRequest, getTotalReport } from '../actions/minicard';
 
 class Dashboard extends React.Component {
 
+	componentDidMount() {
+		console.log("Start componentDidMount function of Room component");
+
+		this.props.minicard.updateTotalReport();
+		// this.props.minicardEvents.get();
+		// this.handleTotalReport = this.handleTotalReport.bind(this);
+	}
+
+
+
+
+
+	handleTotalReport() {
+		this.props.minicardEvents.get();
+	}
+
     render() {
 
-        var mockData = [
-            {
-                "title": "Memo1",
-                "contents": "Testing"
-            }, {
-                "title": "Memo1",
-                "contents": "Testing"
-            }, {
-                "title": "Memo1",
-                "contents": "Testing"
-            }, {
-                "title": "Memo1",
-                "contents": "Testing"
-            }
-        ];
+		var dataPrice = {
+		  labels: ['Jan','Feb','Mar', 'April', 'May', 'June'],
+		  series: [
+			[230, 340, 400, 300, 570, 500, 800]
+		  ]
+		};
+
+		var optionsPrice = {
+		  showPoint: false,
+		  lineSmooth: true,
+		  height: "210px",
+		  axisX: {
+			showGrid: false,
+			showLabel: true
+		  },
+		  axisY: {
+			offset: 40,
+			showGrid: false
+		  },
+		  low: 0,
+		  high: 'auto',
+			  classNames: {
+				line: 'ct-line ct-green'
+			}
+		};
 
         return (
             <div className="content">
@@ -29,7 +55,8 @@ class Dashboard extends React.Component {
                     <div className="row">
                         <div className="col-lg-3 col-sm-6">
                             <MiniCard cate={true} mode={true}
-								value1st={this.props.mini1th}/>
+								totalReport={this.props.totalReport}
+								onUpdate={this.handleTotalReport}/>
                         </div>
                         <div className="col-lg-3 col-sm-6">
                             <MiniCard cate={true} mode={false}
@@ -74,27 +101,21 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-		mini1th: state.minicard.count.mini1th,
-		mini2th: state.minicard.count.mini2th,
-		mini3th: state.minicard.count.mini3th,
-		mini4th: state.minicard.count.mini4th
+		totalReport: state.minicard.totalReport,
+		todayReport: state.minicard.todayReport,
+		totalCouncel: state.minicard.totalCouncel,
+		todayCouncel: state.minicard.todayCouncel
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateMini1st: (value) => {
-            return dispatch(updateMini1st(value));
-        },
-		updateMini2st: (value) => {
-			return dispatch(updateMini2st(value));
+		minicard: {
+			updateTotalReport: () => dispatch(totalReportRequest())
 		},
-		updateMini3st: (value) => {
-			return dispatch(updateMini3st(value));
-		},
-		updateMini4st: (value) => {
-			return dispatch(updateMini4st(value));
-		}
+		minicardEvents: {
+            get: (payload) => dispatch(getTotalReport(payload))
+        }
     };
 };
 

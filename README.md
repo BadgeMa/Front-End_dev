@@ -14,7 +14,8 @@
  - react-chartist : chartist library
  - style-loader : css파일을 react component에 직접로딩
  - css-loader : css파일을 react component에 직접로딩
-
+- redux-saga : 이건 minicard 실시간 변화를 위해 설치
+- redux-actions : 이건 minicard 실시간 변화흘 위해 설치 
 
 
 ### npm install --save-dev

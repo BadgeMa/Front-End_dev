@@ -10,5 +10,6 @@ import Room from './Room';
 import Floor from './Floor';
 import EditProfile from './EditProfile';
 import UserCard from './UserCard';
+import CircleChart from './CircleChart';
 
-export { Header, Footer, Sidebar, Authentication, Memo, MemoList, MiniCard, Chart, Room, Floor, EditProfile, UserCard };
+export { Header, Footer, Sidebar, Authentication, Memo, MemoList, MiniCard, Chart, Room, Floor, EditProfile, UserCard, CircleChart };

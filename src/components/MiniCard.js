@@ -3,19 +3,26 @@ import React, {Component, PropTypes} from 'react';
 const propTypes = {
 	cate: React.PropTypes.bool,
 	mode: React.PropTypes.bool,
-	value1st: React.PropTypes.number,
-	value2st: React.PropTypes.number,
-	value3st: React.PropTypes.number,
-	value4st: React.PropTypes.number
+
+	totalReport: React.PropTypes.number,
+	todayReport: React.PropTypes.number,
+	totalCouncel: React.PropTypes.number,
+	todayCouncel: React.PropTypes.number,
+
+	onUpdate: React.PropTypes.func
+
 };
 
 const defaultProps = {
 	cate: true,
 	mode: true,
-	value1st: -1,
-	value2st: -1,
-	value3st: -1,
-	value4st: -1
+	totalReport: -1,
+	todayReport: -1,
+	totalCouncel: -1,
+	todayCouncel: -1,
+
+	onUpdate: () => { console.error("onUpdate not defined"); }
+
 };
 
 class MiniCard extends React.Component {
@@ -24,6 +31,7 @@ class MiniCard extends React.Component {
         super(props);
 
     }
+
 
     render() {
 
@@ -39,7 +47,7 @@ class MiniCard extends React.Component {
                         <div className="col-xs-7">
                             <div className="numbers">
                                 <p>A버튼 건수</p>
-                                {this.props.value1st}
+                                {this.props.totalReport}
                             </div>
                         </div>
                     </div>
@@ -66,7 +74,7 @@ class MiniCard extends React.Component {
                         <div className="col-xs-7">
                             <div className="numbers">
                                 <p>A버튼 처리</p>
-                                {this.props.value2st}
+                                {this.props.todayReport}
                             </div>
                         </div>
                     </div>
@@ -93,7 +101,7 @@ class MiniCard extends React.Component {
                         <div className="col-xs-7">
                             <div className="numbers">
                                 <p>B버튼 신고</p>
-                                {this.props.value3st}
+                                {this.props.totalCouncel}
                             </div>
                         </div>
                     </div>
@@ -120,7 +128,7 @@ class MiniCard extends React.Component {
                         <div className="col-xs-7">
                             <div className="numbers">
                                 <p>B버튼 처리</p>
-                                {this.props.value4st}
+                                {this.props.todayCouncel}
                             </div>
                         </div>
                     </div>
